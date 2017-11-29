@@ -1,0 +1,144 @@
+[
+  {
+    "dpPresentDeleteByID": "57f4d26ae4b060e268aeb08d",
+    "dpNotPresentDeleteByID": "57f372b5e4b060e268aeb111",
+    "dpLinkedInDevice": "57f3769be4b060e268aeb056",
+    "dpByManufacturerName": "GetManufacturer",
+    "dpPresentDeleteByName": "DeviceProfileDeleteByName",
+    "dpNotPresentDeleteByName": "DeviceProfileDeleteByNameNp",
+    "dpLinkedInDeviceByName": "DeviceProfileLinkedToDevice",
+    "dpByName": "DeviceProfileGetByName",
+    "dpById": "57f39ee1e4b060e268aeb06d",
+    "dpByModel": "TestModel7",
+    "dpByLable": "bacnet",
+    "responseTime": 400,
+    "ApplicationJsonContentType": "application/json",
+    "ApplicationTextPlainType": "text/plain",
+    "deviceProfileSchemaArray": {
+      "type": "array",
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "description": "template describing devices and sensors of the same nature in reporting the same data and offering the same commands",
+      "title": "deviceprofile",
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": false,
+          "title": "id"
+        },
+        "created": {
+          "type": "integer",
+          "required": false,
+          "title": "created"
+        },
+        "modified": {
+          "type": "integer",
+          "required": false,
+          "title": "modified"
+        },
+        "origin": {
+          "type": "integer",
+          "required": false,
+          "title": "origin"
+        },
+        "name": {
+          "type": "string",
+          "required": false,
+          "title": "name"
+        },
+        "manufacturer": {
+          "type": "string",
+          "required": false,
+          "title": "manufacturer"
+        },
+        "model": {
+          "type": "string",
+          "required": false,
+          "title": "model"
+        },
+        "labels": {
+          "type": "array",
+          "required": false,
+          "title": "labels",
+          "items": {
+            "type": "string",
+            "title": "labels"
+          },
+          "uniqueItems": false
+        },
+        "description": {
+          "type": "string",
+          "required": false,
+          "title": "description"
+        },
+        "objects": {
+          "type": "string",
+          "required": false,
+          "title": "objects"
+        }
+      }
+    },
+    "deviceProfileSchemaObject": {
+      "type": "object",
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "description": "template describing devices and sensors of the same nature in reporting the same data and offering the same commands",
+      "title": "deviceprofile",
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": false,
+          "title": "id"
+        },
+        "created": {
+          "type": "integer",
+          "required": false,
+          "title": "created"
+        },
+        "modified": {
+          "type": "integer",
+          "required": false,
+          "title": "modified"
+        },
+        "origin": {
+          "type": "integer",
+          "required": false,
+          "title": "origin"
+        },
+        "name": {
+          "type": "string",
+          "required": false,
+          "title": "name"
+        },
+        "manufacturer": {
+          "type": "string",
+          "required": false,
+          "title": "manufacturer"
+        },
+        "model": {
+          "type": "string",
+          "required": false,
+          "title": "model"
+        },
+        "labels": {
+          "type": "array",
+          "required": false,
+          "title": "labels",
+          "items": {
+            "type": "string",
+            "title": "labels"
+          },
+          "uniqueItems": false
+        },
+        "description": {
+          "type": "string",
+          "required": false,
+          "title": "description"
+        },
+        "objects": {
+          "type": "object",
+          "required": false,
+          "title": "objects"
+        }
+      }
+    }
+  }
+]

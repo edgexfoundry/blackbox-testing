@@ -1,0 +1,110 @@
+[
+  {
+    "responseTime": 400,
+    "ApplicationJsonContentType": "application/json",
+    "TextPlainContentType": "text/plain",
+    "scheduleEventGetRequestId": "57f72b79e4b060e27309e453",
+    "scheduleEventGetRequestName": "car engine revolution collection",
+    "scheduleEventDelRequestId": "57f73d89e4b060e27309e45c",
+    "scheduleEventDelRequestName": "ship engine revolution collection",
+    "invalidScheduleEventId": "1234657898sdssdw",
+    "invalidScheduleEventName": "invalid_name",
+    "scheduleEventObjectSchema": {
+      "type": "object",
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "title": "scheduleevent",
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": false,
+          "title": "id"
+        },
+        "created": {
+          "type": "integer",
+          "required": false,
+          "title": "created"
+        },
+        "modified": {
+          "type": "integer",
+          "required": false,
+          "title": "modified"
+        },
+        "origin": {
+          "type": "integer",
+          "required": false,
+          "title": "origin"
+        },
+        "name": {
+          "type": "string",
+          "required": false,
+          "title": "name"
+        },
+        "action": {
+          "type": "string",
+          "required": false,
+          "title": "action"
+        },
+        "actionParameters": {
+          "type": "string",
+          "required": false,
+          "title": "actionParameters"
+        },
+        "schedule": {
+          "type": "string",
+          "required": false,
+          "title": "schedule"
+        }
+      }
+    },
+    "scheduleEventSchema": {
+      "type": "array",
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "title": "scheduleevent",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "required": false,
+            "title": "id"
+          },
+          "created": {
+            "type": "integer",
+            "required": false,
+            "title": "created"
+          },
+          "modified": {
+            "type": "integer",
+            "required": false,
+            "title": "modified"
+          },
+          "origin": {
+            "type": "integer",
+            "required": false,
+            "title": "origin"
+          },
+          "name": {
+            "type": "string",
+            "required": false,
+            "title": "name"
+          },
+          "action": {
+            "type": "string",
+            "required": false,
+            "title": "action"
+          },
+          "actionParameters": {
+            "type": "string",
+            "required": false,
+            "title": "actionParameters"
+          },
+          "schedule": {
+            "type": "string",
+            "required": false,
+            "title": "schedule"
+          }
+        }
+      }
+    }
+  }
+]
