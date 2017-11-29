@@ -1,0 +1,90 @@
+{
+  "_id": {
+    "$oid": "57fef1cce4b060e2364c2e2d"
+  },
+  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "name": "hvac telxsi thermo address",
+  "protocol": "HTTP",
+  "address": "172.17.0.1",
+  "port": 48089,
+  "path": "/livingroomthermostat",
+  "publisher": "none",
+  "user": "none",
+  "password": "none",
+  "topic": "none",
+  "created": 1476325836425,
+  "modified": 1476325836425,
+  "origin": 1471806386920
+}
+{
+  "_id": {
+    "$oid": "57f74398e4b060e2730a58de"
+  },
+  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "name": "variableSpeedMeterTest",
+  "protocol": "HTTP",
+  "address": "172.17.0.1",
+  "port": 48089,
+  "path": "/variableSpeedMeter",
+  "publisher": "none",
+  "user": "none",
+  "password": "none",
+  "topic": "none",
+  "created": 1475822488226,
+  "modified": 1475822488226,
+  "origin": 1471806386921
+}
+{
+  "_id": {
+    "$oid": "57f5df3ce4b060e2071a5c34"
+  },
+  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "name": "test addressable for command",
+  "protocol": "HTTP",
+  "address": "172.17.0.2",
+  "port": 48089,
+  "path": "/livingroomthermostat",
+  "publisher": "none",
+  "user": "none",
+  "password": "none",
+  "topic": "none",
+  "created": 1475731260298,
+  "modified": 1475731260298,
+  "origin": 1471806386920
+}
+{
+  "_id": {
+    "$oid": "57f73cd2e4b060e27309e458"
+  },
+  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "name": "aeroplane tachometer address",
+  "protocol": "HTTP",
+  "address": "localhost",
+  "port": 48082,
+  "path": "/aeroplanetachometer",
+  "publisher": "none",
+  "user": "none",
+  "password": "none",
+  "topic": "none",
+  "created": 1475820754746,
+  "modified": 1475820754746,
+  "origin": 1471806386924
+}
+{
+  "_id": {
+    "$oid": "57fef1cce4b060e2364c2e3d"
+  },
+  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "name": "nebulizer address",
+  "protocol": "HTTP",
+  "address": "172.17.0.1",
+  "port": 48089,
+  "path": "/personalnebulizer",
+  "publisher": "none",
+  "user": "none",
+  "password": "none",
+  "topic": "none",
+  "created": 1476325836426,
+  "modified": 1476325836426,
+  "origin": 1471806386911
+}

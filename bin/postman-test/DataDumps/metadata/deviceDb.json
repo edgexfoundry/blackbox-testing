@@ -1,0 +1,628 @@
+{
+  "_id": {
+    "$oid": "57f73d70e4b060e27309e45c"
+  },
+  "_class": "com.dell.fuse.domain.meta.Device",
+  "name": "cartachometer",
+  "description": "car rev-counter",
+  "adminState": "unlocked",
+  "operatingState": "enabled",
+  "lastConnected": 0,
+  "lastReported": 0,
+  "labels": [
+    "car",
+    "rev-counter",
+    "tachometer"
+  ],
+  "location": "{lat:45.45,long:47.80}",
+  "responseDelay": 0,
+  "created": 1475820912626,
+  "modified": 1475820912626,
+  "origin": 1471806386921,
+  "addressable": {
+    "$ref": "addressable",
+    "$id": {
+      "$oid": "57f73cd2e4b060e27309e456"
+    }
+  },
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57f73d4ee4b060e27309e459"
+    }
+  },
+  "profile": {
+    "$ref": "deviceProfile",
+    "$id": {
+      "$oid": "57f73d6ce4b060e27309e45b"
+    }
+  }
+}
+{
+  "_id": {
+    "$oid": "57f73d70e4b060e27309e45d"
+  },
+  "_class": "com.dell.fuse.domain.meta.Device",
+  "name": "mopettachometer",
+  "description": "mopet rev-counter",
+  "adminState": "unlocked",
+  "operatingState": "enabled",
+  "lastConnected": 0,
+  "lastReported": 0,
+  "labels": [
+    "mopet",
+    "rev-counter",
+    "tachometer"
+  ],
+  "location": "{lat:45.46,long:48.80}",
+  "responseDelay": 0,
+  "created": 1475820912627,
+  "modified": 1475820912627,
+  "origin": 1471806386922,
+  "addressable": {
+    "$ref": "addressable",
+    "$id": {
+      "$oid": "57f73cd2e4b060e27309e457"
+    }
+  },
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57f73d4ee4b060e27309e460"
+    }
+  },
+  "profile": {
+    "$ref": "deviceProfile",
+    "$id": {
+      "$oid": "57f73d6ce4b060e27309e45b"
+    }
+  }
+}
+{
+  "_id": {
+    "$oid": "57f73d70e4b060e27309e45e"
+  },
+  "_class": "com.dell.fuse.domain.meta.Device",
+  "name": "aeroplanetachometer",
+  "description": "aeroplane engine rev-counter",
+  "adminState": "locked",
+  "operatingState": "enabled",
+  "lastConnected": 0,
+  "lastReported": 0,
+  "labels": [
+    "aeroplane",
+    "rev-counter",
+    "tachometer"
+  ],
+  "location": "{lat:55.46,long:58.80}",
+  "responseDelay": 0,
+  "created": 1475820912628,
+  "modified": 1475820912628,
+  "origin": 1471806386924,
+  "addressable": {
+    "$ref": "addressable",
+    "$id": {
+      "$oid": "57f73cd2e4b060e27309e458"
+    }
+  },
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57f73d4ee4b060e27309e46e"
+    }
+  },
+  "profile": {
+    "$ref": "deviceProfile",
+    "$id": {
+      "$oid": "57f73d6ce4b060e27309e46b"
+    }
+  }
+}
+{
+  "_id": {
+    "$oid": "57fb30d2e4b060e22bd8c1b8"
+  },
+  "_class": "com.dell.fuse.domain.meta.Device",
+  "name": "Livingroom automation",
+  "description": "Home automation system",
+  "adminState": "locked",
+  "operatingState": "enabled",
+  "lastConnected": 0,
+  "lastReported": 0,
+  "labels": [
+    "home",
+    "hvac",
+    "thermostat"
+  ],
+  "location": "{lat:45.45,long:47.80}",
+  "responseDelay": 0,
+  "created": 1476079826520,
+  "modified": 1476080548974,
+  "origin": 1471806386919,
+  "addressable": {
+    "$ref": "addressable",
+    "$id": {
+      "$oid": "57f74398e4b060e2730a58de"
+    }
+  },
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57f79ff6e4b060e22bd8c1a8"
+    }
+  },
+  "profile": {
+    "$ref": "deviceProfile",
+    "$id": {
+      "$oid": "57fb3067e4b060e22bd8c1b7"
+    }
+  }
+}
+{
+  "_id": {
+    "$oid": "57f7343ae4b060e28114164c"
+  },
+  "_class": "com.dell.fuse.domain.meta.Device",
+  "name": "TestDeviceToReport",
+  "description": "This is to test device Report service.",
+  "adminState": "unlocked",
+  "operatingState": "enabled",
+  "lastConnected": 0,
+  "lastReported": 0,
+  "labels": [
+    "home",
+    "hvac",
+    "thermostat"
+  ],
+  "location": "{lat:45.45,long:47.80}",
+  "responseDelay": 0,
+  "created": 1475818554138,
+  "modified": 1475818554138,
+  "origin": 1471806386919,
+  "addressable": {
+    "$ref": "addressable",
+    "$id": {
+      "$oid": "57f73226e4b060e281141646"
+    }
+  },
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57f733b1e4b060e28114164b"
+    }
+  },
+  "profile": {
+    "$ref": "deviceProfile",
+    "$id": {
+      "$oid": "57f7334be4b060e28114164a"
+    }
+  }
+}
+{
+  "_id": {
+    "$oid": "57f378bee4b060e268aeb057"
+  },
+  "_class": "com.dell.fuse.domain.meta.Device",
+  "name": "TestDeviceLinkToProfile",
+  "description": "This device has link to the device profile.",
+  "adminState": "unlocked",
+  "operatingState": "enabled",
+  "lastConnected": 0,
+  "lastReported": 0,
+  "labels": [
+    "home",
+    "hvac",
+    "thermostat"
+  ],
+  "location": "{lat:45.45,long:47.80}",
+  "responseDelay": 0,
+  "created": 1475573950694,
+  "modified": 1475573950694,
+  "origin": 1471806386919,
+  "addressable": {
+    "$ref": "addressable",
+    "$id": {
+      "$oid": "57f22789e4b060e2dd9f7597"
+    }
+  },
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57f227c3e4b060e2dd9f759e"
+    }
+  },
+  "profile": {
+    "$ref": "deviceProfile",
+    "$id": {
+      "$oid": "57f3769be4b060e268aeb056"
+    }
+  }
+}
+{
+  "_id": {
+    "$oid": "57f35577e4b060e27b9d5f6f"
+  },
+  "_class": "com.dell.fuse.domain.meta.Device",
+  "name": "livingroomthermostat",
+  "description": "living room HVAC thermostat",
+  "adminState": "unlocked",
+  "operatingState": "enabled",
+  "lastConnected": 0,
+  "lastReported": 0,
+  "labels": [
+    "home",
+    "hvac",
+    "thermostat"
+  ],
+  "location": "{lat:45.45,long:47.80}",
+  "responseDelay": 0,
+  "created": 1475564919038,
+  "modified": 1475564919038,
+  "origin": 1471806386919,
+  "addressable": {
+    "$ref": "addressable",
+    "$id": {
+      "$oid": "57f3556ce4b060e27b9d5f6e"
+    }
+  },
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57f35502e4b060e27b9d5f6b"
+    }
+  },
+  "profile": {
+    "$ref": "deviceProfile",
+    "$id": {
+      "$oid": "57f3552de4b060e27b9d5f6d"
+    }
+  }
+}
+{
+  "_id": {
+    "$oid": "57f5e0ebe4b060e2071a5c38"
+  },
+  "_class": "com.dell.fuse.domain.meta.Device",
+  "name": "test device for command",
+  "description": "living room HVAC thermostat",
+  "adminState": "unlocked",
+  "operatingState": "enabled",
+  "lastConnected": 0,
+  "lastReported": 0,
+  "labels": [
+    "home",
+    "hvac",
+    "thermostat"
+  ],
+  "location": "{lat:45.45,long:47.80}",
+  "responseDelay": 0,
+  "created": 1475731691006,
+  "modified": 1475731691006,
+  "origin": 1471806386919,
+  "addressable": {
+    "$ref": "addressable",
+    "$id": {
+      "$oid": "57f5df3ce4b060e2071a5c34"
+    }
+  },
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57f5df95e4b060e2071a5c35"
+    }
+  },
+  "profile": {
+    "$ref": "deviceProfile",
+    "$id": {
+      "$oid": "57f5e077e4b060e2071a5c37"
+    }
+  }
+}
+{
+  "_id": {
+    "$oid": "57f5e11fe4b060e2071a5c39"
+  },
+  "_class": "com.dell.fuse.domain.meta.Device",
+  "name": "test device-2 for command",
+  "description": "living room HVAC thermostat",
+  "adminState": "locked",
+  "operatingState": "enabled",
+  "lastConnected": 0,
+  "lastReported": 0,
+  "labels": [
+    "home",
+    "hvac",
+    "thermostat"
+  ],
+  "location": "{lat:45.45,long:47.80}",
+  "responseDelay": 0,
+  "created": 1475731743036,
+  "modified": 1475731743036,
+  "origin": 1471806386919,
+  "addressable": {
+    "$ref": "addressable",
+    "$id": {
+      "$oid": "57f5df3ce4b060e2071a5c34"
+    }
+  },
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57f5df95e4b060e2071a5c35"
+    }
+  },
+  "profile": {
+    "$ref": "deviceProfile",
+    "$id": {
+      "$oid": "57f5e077e4b060e2071a5c37"
+    }
+  }
+}
+{
+  "_id": {
+    "$oid": "57fdbaeee4b060e2bbc15111"
+  },
+  "_class": "com.dell.fuse.domain.meta.Device",
+  "name": "smart botton controller",
+  "description": "Connected Nespresso machine",
+  "adminState": "locked",
+  "operatingState": "enabled",
+  "lastConnected": 123456789,
+  "lastReported": 123456789,
+  "labels": [
+    "home",
+    "hvac",
+    "thermostat"
+  ],
+  "location": "{lat:45.45,long:47.80}",
+  "responseDelay": 0,
+  "created": 1476246254904,
+  "modified": 1476249883865,
+  "origin": 1471806386919,
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57f6322de4b060e2e0dd6ece"
+    }
+  }
+}
+{
+  "_id": {
+    "$oid": "57f63243e4b060e2e0dd6ed0"
+  },
+  "_class": "com.dell.fuse.domain.meta.Device",
+  "name": "livingroomthermostatdevice",
+  "description": "Home automation",
+  "adminState": "locked",
+  "operatingState": "enabled",
+  "lastConnected": 123456789,
+  "lastReported": 123456789,
+  "labels": [
+    "home",
+    "hvac",
+    "thermostat"
+  ],
+  "location": "{lat:45.45,long:47.80}",
+  "responseDelay": 0,
+  "created": 1475752515873,
+  "modified": 1476245308449,
+  "origin": 1471806386919,
+  "addressable": {
+    "$ref": "addressable",
+    "$id": {
+      "$oid": "57f631f4e4b060e2e0dd6eca"
+    }
+  },
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57f6322de4b060e2e0dd6ece"
+    }
+  },
+  "profile": {
+    "$ref": "deviceProfile",
+    "$id": {
+      "$oid": "57f63219e4b060e2e0dd6ecd"
+    }
+  }
+}
+{
+  "_id": {
+    "$oid": "57fddeefe4b060e2df0aa107"
+  },
+  "_class": "com.dell.fuse.domain.meta.Device",
+  "name": "WiFi wireless router",
+  "description": "Home automation system",
+  "adminState": "unlocked",
+  "operatingState": "enabled",
+  "lastConnected": 0,
+  "lastReported": 0,
+  "labels": [
+    "home",
+    "hvac",
+    "thermostat"
+  ],
+  "location": "{lat:45.45,long:47.80}",
+  "responseDelay": 0,
+  "created": 1476255471412,
+  "modified": 1476255471412,
+  "origin": 1471806386919,
+  "addressable": {
+    "$ref": "addressable",
+    "$id": {
+      "$oid": "57fdbb53e4b060e2bbc15112"
+    }
+  },
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57fddb0de4b060e2df0aa105"
+    }
+  },
+  "profile": {
+    "$ref": "deviceProfile",
+    "$id": {
+      "$oid": "57fddad1e4b060e2df0aa104"
+    }
+  }
+}
+{
+  "_id": {
+    "$oid": "57fddb6ee4b060e2df0aa106"
+  },
+  "_class": "com.dell.fuse.domain.meta.Device",
+  "name": "Prodigio",
+  "description": "Connected Nespresso machine",
+  "adminState": "unlocked",
+  "operatingState": "enabled",
+  "lastConnected": 0,
+  "lastReported": 0,
+  "labels": [
+    "home",
+    "hvac",
+    "thermostat"
+  ],
+  "location": "{lat:45.45,long:47.80}",
+  "responseDelay": 0,
+  "created": 1476254574356,
+  "modified": 1476254574356,
+  "origin": 1471806386919,
+  "addressable": {
+    "$ref": "addressable",
+    "$id": {
+      "$oid": "57fdda80e4b060e2df0aa102"
+    }
+  },
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57fddb0de4b060e2df0aa105"
+    }
+  },
+  "profile": {
+    "$ref": "deviceProfile",
+    "$id": {
+      "$oid": "57fddad1e4b060e2df0aa104"
+    }
+  }
+}
+{
+  "_id": {
+    "$oid": "57fe0a4ce4b060e2df0aa10f"
+  },
+  "_class": "com.dell.fuse.domain.meta.Device",
+  "name": "AWS IOT Button",
+  "description": "Home automation system",
+  "adminState": "unlocked",
+  "operatingState": "enabled",
+  "lastConnected": 0,
+  "lastReported": 0,
+  "labels": [
+    "home",
+    "hvac",
+    "thermostat"
+  ],
+  "location": "{lat:45.45,long:47.80}",
+  "responseDelay": 0,
+  "created": 1476266572168,
+  "modified": 1476266572168,
+  "origin": 1471806386919,
+  "addressable": {
+    "$ref": "addressable",
+    "$id": {
+      "$oid": "57f635dfe4b060e2e0dd6ed1"
+    }
+  },
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57fddb0de4b060e2df0aa105"
+    }
+  },
+  "profile": {
+    "$ref": "deviceProfile",
+    "$id": {
+      "$oid": "57fddad1e4b060e2df0aa104"
+    }
+  }
+}
+{
+  "_id": {
+    "$oid": "57fe0342e4b060e2c823643f"
+  },
+  "_class": "com.dell.fuse.domain.meta.Device",
+  "name": "livingroomthermostatDM1",
+  "description": "living room HVAC thermostat for DM",
+  "adminState": "unlocked",
+  "operatingState": "enabled",
+  "lastConnected": 0,
+  "lastReported": 0,
+  "labels": [
+    "homeDM",
+    "hvacDM",
+    "thermostatDM"
+  ],
+  "location": "{lat:45.45,long:47.80}",
+  "responseDelay": 0,
+  "created": 1476264770745,
+  "modified": 1476264770745,
+  "origin": 1471806386919,
+  "addressable": {
+    "$ref": "addressable",
+    "$id": {
+      "$oid": "57fe00b3e4b060e2c8236436"
+    }
+  },
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57fe0296e4b060e2c823643d"
+    }
+  },
+  "profile": {
+    "$ref": "deviceProfile",
+    "$id": {
+      "$oid": "57fe0142e4b060e2c823643c"
+    }
+  }
+}
+{
+  "_id": {
+    "$oid": "57fe0321e4b060e2df0aa10d"
+  },
+  "_class": "com.dell.fuse.domain.meta.Device",
+  "name": "CUJO",
+  "description": "smart firewall for smart home",
+  "adminState": "locked",
+  "operatingState": "enabled",
+  "lastConnected": 123456789,
+  "lastReported": 123456789,
+  "labels": [
+    "home",
+    "hvac",
+    "thermostat"
+  ],
+  "location": "{lat:45.45,long:47.80}",
+  "responseDelay": 0,
+  "created": 1476264737642,
+  "modified": 1476265827823,
+  "origin": 1471806386919,
+  "addressable": {
+    "$ref": "addressable",
+    "$id": {
+      "$oid": "57fe01f6e4b060e2df0aa108"
+    }
+  },
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57fe024ce4b060e2df0aa109"
+    }
+  },
+  "profile": {
+    "$ref": "deviceProfile",
+    "$id": {
+      "$oid": "57fe02b3e4b060e2df0aa10c"
+    }
+  }
+}

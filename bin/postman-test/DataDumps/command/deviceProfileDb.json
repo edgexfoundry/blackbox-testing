@@ -1,0 +1,200 @@
+{
+  "_id": {
+    "$oid": "57fef1dbe4b060e2364c2e31"
+  },
+  "_class": "com.dell.fuse.domain.meta.DeviceProfile",
+  "name": "telxsi thermostat profile",
+  "manufacturer": "Honeywell",
+  "model": "ABC123",
+  "labels": [
+    "bacnet",
+    "thermostat",
+    "Honeywell"
+  ],
+  "description": "BACnet Honeywell thermostats",
+  "objects": {
+    "resources": {
+      "CurrentHumidity": {
+        "get": [
+          {
+            "parameter": "CurrentHumidity",
+            "property": "presentValue",
+            "operation": "get",
+            "object": "AnalogValue_22"
+          }
+        ]
+      }
+    }
+  },
+  "created": 1476325851342,
+  "modified": 1476325851342,
+  "origin": 1471806386919,
+  "commands": [
+    {
+      "$ref": "command",
+      "$id": {
+        "$oid": "57fef1dbe4b060e2364c2e30"
+      }
+    }
+  ]
+}
+{
+  "_id": {
+    "$oid": "57fb3067e4b060e22bd8c1b7"
+  },
+  "_class": "com.dell.fuse.domain.meta.DeviceProfile",
+  "name": "livingroom thermostat profile",
+  "manufacturer": "Honeywell",
+  "model": "ABC123",
+  "labels": [
+    "bacnet",
+    "thermostat",
+    "Honeywell"
+  ],
+  "description": "BACnet livingroom thermostats",
+  "objects": {
+    "resources": {
+      "CurrentHumidity": {
+        "get": [
+          {
+            "parameter": "CurrentHumidity",
+            "property": "presentValue",
+            "operation": "get",
+            "object": "AnalogValue_22"
+          }
+        ]
+      }
+    }
+  },
+  "created": 1476079719921,
+  "modified": 1476079719921,
+  "origin": 1471806386919,
+  "commands": [
+    {
+      "$ref": "command",
+      "$id": {
+        "$oid": "57fb3067e4b060e22bd8c1b6"
+      }
+    }
+  ]
+}
+{
+  "_id": {
+    "$oid": "57f73d6ce4b060e27309e46b"
+  },
+  "_class": "com.dell.fuse.domain.meta.DeviceProfile",
+  "name": "aeroplane tachometer profile",
+  "manufacturer": "Honeywell",
+  "model": "ABC123",
+  "labels": [
+    "aeroplane",
+    "tachometer",
+    "Honeywell"
+  ],
+  "description": "BACnet Honeywell tachometers",
+  "objects": {
+    "resources": {
+      "CurrentHumidity": {
+        "get": [
+          {
+            "parameter": "CurrentRPM",
+            "property": "presentValue",
+            "operation": "get",
+            "object": "AnalogValue_2000"
+          }
+        ]
+      }
+    }
+  },
+  "created": 1475820908258,
+  "modified": 1475820908258,
+  "origin": 1471806386924,
+  "commands": [
+    {
+      "$ref": "command",
+      "$id": {
+        "$oid": "57f73d6ce4b060e27309e45b"
+      }
+    }
+  ]
+}
+{
+  "_id": {
+    "$oid": "57f5e077e4b060e2071a5c37"
+  },
+  "_class": "com.dell.fuse.domain.meta.DeviceProfile",
+  "name": "test device profile",
+  "manufacturer": "Honeywell",
+  "model": "ABC123",
+  "labels": [
+    "bacnet",
+    "thermostat",
+    "Honeywell"
+  ],
+  "description": "BACnet Honeywell thermostats",
+  "objects": {
+    "resources": {
+      "CurrentHumidity": {
+        "get": [
+          {
+            "parameter": "CurrentHumidity",
+            "property": "presentValue",
+            "operation": "get",
+            "object": "AnalogValue_22"
+          }
+        ]
+      }
+    }
+  },
+  "created": 1475731575403,
+  "modified": 1475731575403,
+  "origin": 1471806386919,
+  "commands": [
+    {
+      "$ref": "command",
+      "$id": {
+        "$oid": "57f5e077e4b060e2071a5c36"
+      }
+    }
+  ]
+}
+{
+  "_id": {
+    "$oid": "57fef1e6e4b060e2374f2e32"
+  },
+  "_class": "com.dell.fuse.domain.meta.DeviceProfile",
+  "name": "nebulizer profile",
+  "manufacturer": "Honeywell",
+  "model": "ABC123",
+  "labels": [
+    "bacnet",
+    "thermostat",
+    "Honeywell"
+  ],
+  "description": "BACnet Honeywell nebulizer",
+  "objects": {
+    "resources": {
+      "CurrentHumidity": {
+        "get": [
+          {
+            "parameter": "CurrentPercentage",
+            "property": "presentValue",
+            "operation": "get",
+            "object": "AnalogValue_22"
+          }
+        ]
+      }
+    }
+  },
+  "created": 1476325851343,
+  "modified": 1476325851343,
+  "origin": 1471806386911,
+  "commands": [
+    {
+      "$ref": "command",
+      "$id": {
+        "$oid": "57fef1fbe4b060e2364c2e30"
+      }
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+[
+  {
+    "responseTime": 400,
+    "ApplicationJsonContentType": "application/json",
+    "ValuedescriptorDeleteById": "57ea0061e4b0f1b53f534137",
+    "ValuedescriptorByName": "co2",
+    "ValuedescriptorByInvalidName": "HC",
+    "ValuedescriptorDeleteByName": "O2",
+    "ValuedescriptorById": "57b9fbb2189b95b8afcdafd2",
+    "ValuedescriptorByUmo": "degreecel",
+    "ValuedescriptorByLabel": "hvac",
+    "ValuedescriptorDeleteInavlidId": "57e5036fe4b0f1b53f5340fe2",
+    "ValuedescriptorByDeleteInvalidName": "HC",
+    "ValuedescriptorDeleteReferReadingId": "57b9fbb2189b95b8afcdafd4",
+    "ValuedescriptorDeleteReferReadingName": "RPM",
+    "schema": {
+      "type": "array",
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "description": "Fuse Core and MetaData value descriptor -describes device/sensor data sent and received",
+      "title": "valueDescriptor",
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": false,
+          "title": "id"
+        },
+        "created": {
+          "type": "integer",
+          "required": false,
+          "title": "created"
+        },
+        "modified": {
+          "type": "integer",
+          "required": false,
+          "title": "modified"
+        },
+        "origin": {
+          "type": "integer",
+          "required": false,
+          "title": "origin"
+        },
+        "name": {
+          "type": "string",
+          "required": false,
+          "title": "name"
+        },
+        "min": {
+          "type": "string",
+          "required": false,
+          "title": "min"
+        },
+        "max": {
+          "type": "string",
+          "required": false,
+          "title": "max"
+        },
+        "type": {
+          "type": "string",
+          "required": false,
+          "title": "type"
+        },
+        "uomLabel": {
+          "type": "string",
+          "required": false,
+          "title": "uomLabel"
+        },
+        "defaultValue": {
+          "type": "string",
+          "required": false,
+          "title": "defaultValue"
+        },
+        "formatting": {
+          "type": "string",
+          "required": false,
+          "title": "formatting"
+        },
+        "labels": {
+          "type": "array",
+          "required": false,
+          "title": "labels",
+          "items": {
+            "type": "string",
+            "title": "labels"
+          },
+          "uniqueItems": false
+        }
+      }
+    },
+    "ObjectSchema": {
+      "type": "object",
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "description": "Fuse Core and MetaData value descriptor -describes device/sensor data sent and received",
+      "title": "valueDescriptor",
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": false,
+          "title": "id"
+        },
+        "created": {
+          "type": "integer",
+          "required": false,
+          "title": "created"
+        },
+        "modified": {
+          "type": "integer",
+          "required": false,
+          "title": "modified"
+        },
+        "origin": {
+          "type": "integer",
+          "required": false,
+          "title": "origin"
+        },
+        "name": {
+          "type": "string",
+          "required": false,
+          "title": "name"
+        },
+        "min": {
+          "type": "string",
+          "required": false,
+          "title": "min"
+        },
+        "max": {
+          "type": "string",
+          "required": false,
+          "title": "max"
+        },
+        "type": {
+          "type": "string",
+          "required": false,
+          "title": "type"
+        },
+        "uomLabel": {
+          "type": "string",
+          "required": false,
+          "title": "uomLabel"
+        },
+        "defaultValue": {
+          "type": "string",
+          "required": false,
+          "title": "defaultValue"
+        },
+        "formatting": {
+          "type": "string",
+          "required": false,
+          "title": "formatting"
+        },
+        "labels": {
+          "type": "array",
+          "required": false,
+          "title": "labels",
+          "items": {
+            "type": "string",
+            "title": "labels"
+          },
+          "uniqueItems": false
+        }
+      }
+    }
+  }
+]

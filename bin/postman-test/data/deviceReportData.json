@@ -1,0 +1,126 @@
+[
+  {
+    "drPresentDelByID": "57f74b96e4b060e28114165c",
+    "drNotPresentDelByID": "57f73e52e4b060e281141000",
+    "drPresentDelByName": "TestDeviceReportDelByName",
+    "drNotPresentDelByName": "TestDeviceReportDelByNameNP",
+    "drGetByName": "TestDeviceReportGetByName",
+    "drGetByID": "57f7479ee4b060e281141658",
+    "drGetByDeviceName": "TestDeviceToReport",
+    "responseTime": 400,
+    "ApplicationJsonContentType": "application/json",
+    "ApplicationTextPlainType": "text/plain",
+    "deviceReportSchema": {
+      "type": "array",
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "description": "description of values (value descriptors) that should be collected per device on a schedule event",
+      "title": "devicereport",
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": false,
+          "title": "id"
+        },
+        "created": {
+          "type": "integer",
+          "required": false,
+          "title": "created"
+        },
+        "modified": {
+          "type": "integer",
+          "required": false,
+          "title": "modified"
+        },
+        "origin": {
+          "type": "integer",
+          "required": false,
+          "title": "origin"
+        },
+        "name": {
+          "type": "string",
+          "required": false,
+          "title": "name"
+        },
+        "device": {
+          "type": "string",
+          "required": false,
+          "title": "device"
+        },
+        "event": {
+          "type": "string",
+          "required": false,
+          "title": "event"
+        },
+        "expected": {
+          "type": "array",
+          "required": false,
+          "title": "expected",
+          "items": {
+            "type": "string",
+            "title": "expected"
+          },
+          "uniqueItems": false
+        }
+      }
+    },
+    "deviceReportSchemaObject": {
+      "type": "object",
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "description": "description of values (value descriptors) that should be collected per device on a schedule event",
+      "title": "devicereport",
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": false,
+          "title": "id"
+        },
+        "created": {
+          "type": "integer",
+          "required": false,
+          "title": "created"
+        },
+        "modified": {
+          "type": "integer",
+          "required": false,
+          "title": "modified"
+        },
+        "origin": {
+          "type": "integer",
+          "required": false,
+          "title": "origin"
+        },
+        "name": {
+          "type": "string",
+          "required": false,
+          "title": "name"
+        },
+        "device": {
+          "type": "string",
+          "required": false,
+          "title": "device"
+        },
+        "event": {
+          "type": "string",
+          "required": false,
+          "title": "event"
+        },
+        "expected": {
+          "type": "array",
+          "required": false,
+          "title": "expected",
+          "items": {
+            "type": "string",
+            "title": "expected"
+          },
+          "uniqueItems": false
+        }
+      }
+    },
+    "valuDescriptorList": {
+      "type": "array",
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "description": "description of values (value descriptors) that should be collected per device on a schedule event",
+      "title": "devicereport"
+    }
+  }
+]
