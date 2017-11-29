@@ -1,0 +1,49 @@
+name: "yaml thermostat profile"
+description: "BACnet Honeywell thermostats"
+manufacturer: "Honeywell"
+model: "ABC123"
+labels: 
+  - "bacnet"
+  - "thermostat"
+  - "Honeywell"
+  
+commands:
+  - name: "cooling point"
+    get:
+        path: "/cooling"
+        responses:
+          - code: "200"
+            description: "not a float"
+            expectedValues: 
+              - "temperature"
+    put:
+        path: "/cooling" 
+        responses:
+          - code: "200"
+            description: "not a float"
+            expectedValues: 
+              - "temperature"
+  - name: "cooling point"
+    get:
+        path: "/cooling"
+        responses:
+          - code: "200"
+            description: "not a float"
+            expectedValues: 
+              - "temperature"
+    put:
+        path: "/cooling" 
+        responses:
+          - code: "200"
+            description: "not a float"
+            expectedValues: 
+              - "temperature"
+          
+objects:
+    resources:
+        CurrentHumidity:
+            get:
+              - parameter: "CurrentHumidity"
+                property: "presentValue"
+                operation: "get"
+                object: "AnalogValue_22"

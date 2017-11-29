@@ -1,0 +1,78 @@
+{
+  "_id": {
+    "$oid": "57f4b954e4b060e2bff6c527"
+  },
+  "_class": "com.dell.fuse.domain.meta.ProvisionWatcher",
+  "name": "lonworks watcher",
+  "identifiers": {
+    "MAC": "00-05-1C-C1-99-99",
+    "HTTP": "10.0.0.4"
+  },
+  "created": 1475656020681,
+  "modified": 1475656020681,
+  "origin": 1471806386919,
+  "profile": {
+    "$ref": "deviceProfile",
+    "$id": {
+      "$oid": "57f4b917e4b060e2bff6c523"
+    }
+  },
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57f4b927e4b060e2bff6c525"
+    }
+  }
+}
+{
+  "_id": {
+    "$oid": "57f4b954e4b060e2bff6c526"
+  },
+  "_class": "com.dell.fuse.domain.meta.ProvisionWatcher",
+  "name": "modbus watcher",
+  "identifiers": {
+    "MAC": "00-05-1B-C1-99-99",
+    "HTTP": "10.0.0.3"
+  },
+  "created": 1475656020681,
+  "modified": 1475656020681,
+  "origin": 1471806386919,
+  "profile": {
+    "$ref": "deviceProfile",
+    "$id": {
+      "$oid": "57f4b917e4b060e2bff6c523"
+    }
+  },
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57f4b927e4b060e2bff6c525"
+    }
+  }
+}
+{
+  "_id": {
+    "$oid": "57f4b954e4b060e2bff6c528"
+  },
+  "_class": "com.dell.fuse.domain.meta.ProvisionWatcher",
+  "name": "lonmark watcher",
+  "identifiers": {
+    "MAC": "00-05-1C-C1-99-99",
+    "HTTP": "10.0.0.4"
+  },
+  "created": 1475656020681,
+  "modified": 1475656020681,
+  "origin": 1471806386919,
+  "profile": {
+    "$ref": "deviceProfile",
+    "$id": {
+      "$oid": "57f4b917e4b060e2bff6c523"
+    }
+  },
+  "service": {
+    "$ref": "deviceService",
+    "$id": {
+      "$oid": "57f4b927e4b060e2bff6c525"
+    }
+  }
+}
