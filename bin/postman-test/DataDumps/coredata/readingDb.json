@@ -1,0 +1,814 @@
+{
+  "_id": {
+    "$oid": "57b9fe08189b95b8afcdafd4"
+  },
+  "created": 1471806984866,
+  "modified": 1471807130870,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "temperature",
+  "value": "39"
+}
+{
+  "_id": {
+    "$oid": "57e745efe4b0ca8e6d7116d7"
+  },
+  "created": 1474774511737,
+  "modified": 1474774511737,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "power",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e866d5e4b0ca8e6d73a3c2"
+  },
+  "created": 1474848469836,
+  "modified": 1474848469836,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "power",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e866d5e4b0ca8e6d73a3c3"
+  },
+  "created": 1474848469837,
+  "modified": 1474848469837,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "power",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e866d5e4b0ca8e6d73a3c4"
+  },
+  "created": 1474848469838,
+  "modified": 1474848469838,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "power",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e745e8e4b0ca8e6d7116bd"
+  },
+  "created": 1474774504978,
+  "modified": 1474774504978,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e745e8e4b0ca8e6d7116bc"
+  },
+  "created": 1474774499615,
+  "modified": 1474774499615,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e745e8e4b0ca8e6d7116bf"
+  },
+  "created": 1474774504981,
+  "modified": 1474774504981,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e745e8e4b0ca8e6d7116be"
+  },
+  "created": 1474774504980,
+  "modified": 1474774504980,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e745e8e4b0ca8e6d7116c0"
+  },
+  "created": 1474774504982,
+  "modified": 1474774504982,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e745e8e4b0ca8e6d7116c1"
+  },
+  "created": 1474774504983,
+  "modified": 1474774504983,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e745e8e4b0ca8e6d7116c2"
+  },
+  "created": 1474774504984,
+  "modified": 1474774504984,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e87484e4b0ca8e6d73c2ef"
+  },
+  "created": 1474851972823,
+  "modified": 1474851972823,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e87484e4b0ca8e6d73c2f0"
+  },
+  "created": 1474851972824,
+  "modified": 1474851972824,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e87484e4b0ca8e6d73c2f1"
+  },
+  "created": 1474851972826,
+  "modified": 1474851972826,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e8747fe4b0ca8e6d73c2e2"
+  },
+  "created": 1474851967156,
+  "modified": 1474851967156,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e8747fe4b0ca8e6d73c2e3"
+  },
+  "created": 1474851967158,
+  "modified": 1474851967158,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e8747fe4b0ca8e6d73c2e4"
+  },
+  "created": 1474851967159,
+  "modified": 1474851967159,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e87479e4b0ca8e6d73c2d5"
+  },
+  "created": 1474851961481,
+  "modified": 1474851961481,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e87479e4b0ca8e6d73c2d7"
+  },
+  "created": 1474851961483,
+  "modified": 1474851961483,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e87479e4b0ca8e6d73c2d6"
+  },
+  "created": 1474851961482,
+  "modified": 1474851961482,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e87473e4b0ca8e6d73c2c8"
+  },
+  "created": 1474851955873,
+  "modified": 1474851955873,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e87473e4b0ca8e6d73c2c9"
+  },
+  "created": 1474851955874,
+  "modified": 1474851955874,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e87473e4b0ca8e6d73c2ca"
+  },
+  "created": 1474851955875,
+  "modified": 1474851955875,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e8746ee4b0ca8e6d73c2bb"
+  },
+  "created": 1474851950082,
+  "modified": 1474851950082,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e8746ee4b0ca8e6d73c2bc"
+  },
+  "created": 1474851950083,
+  "modified": 1474851950083,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e8746ee4b0ca8e6d73c2bd"
+  },
+  "created": 1474851950084,
+  "modified": 1474851950084,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e87468e4b0ca8e6d73c2ae"
+  },
+  "created": 1474851944396,
+  "modified": 1474851944396,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e87468e4b0ca8e6d73c2af"
+  },
+  "created": 1474851944398,
+  "modified": 1474851944398,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e87468e4b0ca8e6d73c2b0"
+  },
+  "created": 1474851944399,
+  "modified": 1474851944399,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e87462e4b0ca8e6d73c2a1"
+  },
+  "created": 1474851938710,
+  "modified": 1474851938710,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e87462e4b0ca8e6d73c2a2"
+  },
+  "created": 1474851938711,
+  "modified": 1474851938711,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e87462e4b0ca8e6d73c2a3"
+  },
+  "created": 1474851938713,
+  "modified": 1474851938713,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e8745de4b0ca8e6d73c295"
+  },
+  "created": 1474851933028,
+  "modified": 1474851933028,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e8745de4b0ca8e6d73c296"
+  },
+  "created": 1474851933030,
+  "modified": 1474851933030,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e8745de4b0ca8e6d73c294"
+  },
+  "created": 1474851933027,
+  "modified": 1474851933027,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e87457e4b0ca8e6d73c287"
+  },
+  "created": 1474851927351,
+  "modified": 1474851927351,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e87457e4b0ca8e6d73c288"
+  },
+  "created": 1474851927353,
+  "modified": 1474851927353,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e87457e4b0ca8e6d73c289"
+  },
+  "created": 1474851927355,
+  "modified": 1474851927355,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "RPM",
+  "value": "38"
+}
+{
+  "_id": {
+    "$oid": "57e866dbe4b0ca8e6d73a3cd"
+  },
+  "created": 1474848475198,
+  "modified": 1474848475198,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "OutputCurrent",
+  "value": "4.0950003"
+}
+{
+  "_id": {
+    "$oid": "57e866d4e4b0ca8e6d73a3b9"
+  },
+  "created": 1474848468871,
+  "modified": 1474848468871,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "OutputCurrent",
+  "value": "4.0950003"
+}
+{
+  "_id": {
+    "$oid": "57e866cae4b0ca8e6d73a3ac"
+  },
+  "created": 1474848458509,
+  "modified": 1474848458509,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "OutputCurrent",
+  "value": "4.0950003"
+}
+{
+  "_id": {
+    "$oid": "57e866cae4b0ca8e6d73a3a6"
+  },
+  "created": 1474848458094,
+  "modified": 1474848458094,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "OutputCurrent",
+  "value": "4.0950003"
+}
+{
+  "_id": {
+    "$oid": "57e866c3e4b0ca8e6d73a392"
+  },
+  "created": 1474848451761,
+  "modified": 1474848451761,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "OutputCurrent",
+  "value": "4.0950003"
+}
+{
+  "_id": {
+    "$oid": "57e866b9e4b0ca8e6d73a385"
+  },
+  "created": 1474848441551,
+  "modified": 1474848441551,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "OutputCurrent",
+  "value": "4.0950003"
+}
+{
+  "_id": {
+    "$oid": "57e866b9e4b0ca8e6d73a37f"
+  },
+  "created": 1474848441145,
+  "modified": 1474848441145,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "OutputCurrent",
+  "value": "4.0950003"
+}
+{
+  "_id": {
+    "$oid": "57e866b2e4b0ca8e6d73a36b"
+  },
+  "created": 1474848434864,
+  "modified": 1474848434864,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "OutputCurrent",
+  "value": "4.0950003"
+}
+{
+  "_id": {
+    "$oid": "57e866a8e4b0ca8e6d73a35e"
+  },
+  "created": 1474848424481,
+  "modified": 1474848424481,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "OutputCurrent",
+  "value": "4.0950003"
+}
+{
+  "_id": {
+    "$oid": "57e866a8e4b0ca8e6d73a358"
+  },
+  "created": 1474848424076,
+  "modified": 1474848424076,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "OutputCurrent",
+  "value": "4.0950003"
+}
+{
+  "_id": {
+    "$oid": "57e866a8e4b0ca8e6d73a344"
+  },
+  "created": 1474848417773,
+  "modified": 1474848417773,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "OutputCurrent",
+  "value": "4.0950003"
+}
+{
+  "_id": {
+    "$oid": "57e59a71e4b0ca8e6d6d4cbe"
+  },
+  "created": 1474665073775,
+  "modified": 1474665073775,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "percentage",
+  "value": "5"
+}
+{
+  "_id": {
+    "$oid": "57e59a71e4b0ca8e6d6d4cbf"
+  },
+  "created": 1474665073776,
+  "modified": 1474665073776,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "percentage",
+  "value": "5"
+}
+{
+  "_id": {
+    "$oid": "57e59a71e4b0ca8e6d6d4cc0"
+  },
+  "created": 1474665073777,
+  "modified": 1474665073777,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "percentage",
+  "value": "5"
+}
+{
+  "_id": {
+    "$oid": "57e59a71e4b0ca8e6d6d4cbb"
+  },
+  "created": 1474665073771,
+  "modified": 1474665073771,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "percentage",
+  "value": "5"
+}
+{
+  "_id": {
+    "$oid": "57e745efe4b0ca8e6d711df1"
+  },
+  "created": 1474665079771,
+  "modified": 1474665079771,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "percentage",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e745efe4b0ca8e6d711df3"
+  },
+  "created": 1474665079773,
+  "modified": 1474665079773,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "percentage",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e745efe4b0ca8e6d711df2"
+  },
+  "created": 1474665079772,
+  "modified": 1474665079772,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "percentage",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e745efe4b0ca8e6d711df4"
+  },
+  "created": 1474665079774,
+  "modified": 1474665079774,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "percentage",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e745efe4b0ca8e6d711df5"
+  },
+  "created": 1474665079775,
+  "modified": 1474665079775,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "percentage",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e745efe4b0ca8e6d711df6"
+  },
+  "created": 1474665079776,
+  "modified": 1474665079776,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "percentage",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e745efe4b0ca8e6d711df7"
+  },
+  "created": 1474665079777,
+  "modified": 1474665079777,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "percentage",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e745efe4b0ca8e6d711df8"
+  },
+  "created": 1474665079778,
+  "modified": 1474665079778,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "percentage",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e745efe4b0ca8e6d711df9"
+  },
+  "created": 1474665079779,
+  "modified": 1474665079779,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "percentage",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e745efe4b0ca8e6d711f10"
+  },
+  "created": 1474665079780,
+  "modified": 1474665079780,
+  "origin": 1471806386919,
+  "pushed": 0,
+  "name": "percentage",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e866d4e4b0ca8e6d73a4b9"
+  },
+  "created": 1474848468971,
+  "modified": 1474848468971,
+  "origin": 1471806386918,
+  "pushed": 0,
+  "name": "ohm",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e866d4e4b0ca8e6d73a4b7"
+  },
+  "created": 1474848468971,
+  "modified": 1474848468971,
+  "origin": 1471806386918,
+  "pushed": 0,
+  "name": "ohm",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e866d4e4b0ca8e6d73a4b5"
+  },
+  "created": 1474848468967,
+  "modified": 1474848468967,
+  "origin": 1471806386918,
+  "pushed": 0,
+  "name": "ohm",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e866d4e4b0ca8e6d73a4b3"
+  },
+  "created": 1474848468965,
+  "modified": 1474848468965,
+  "origin": 1471806386918,
+  "pushed": 0,
+  "name": "ohm",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e866d4e4b0ca8e6d73a4b1"
+  },
+  "created": 1474848468963,
+  "modified": 1474848468963,
+  "origin": 1471806386918,
+  "pushed": 0,
+  "name": "ohm",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e866d4e4b0ca8e6d73a4c9"
+  },
+  "created": 1474848468961,
+  "modified": 1474848468961,
+  "origin": 1471806386918,
+  "pushed": 0,
+  "name": "ohm",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e866d4e4b0ca8e6d73a4c7"
+  },
+  "created": 1474848468959,
+  "modified": 1474848468959,
+  "origin": 1471806386918,
+  "pushed": 0,
+  "name": "ohm",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e866d4e4b0ca8e6d73a4c5"
+  },
+  "created": 1474848468957,
+  "modified": 1474848468957,
+  "origin": 1471806386918,
+  "pushed": 0,
+  "name": "ohm",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e866d4e4b0ca8e6d73a4c3"
+  },
+  "created": 1474848468955,
+  "modified": 1474848468955,
+  "origin": 1471806386918,
+  "pushed": 0,
+  "name": "ohm",
+  "value": "6"
+}
+{
+  "_id": {
+    "$oid": "57e866d4e4b0ca8e6d73a4c1"
+  },
+  "created": 1474848468953,
+  "modified": 1474848468953,
+  "origin": 1471806386918,
+  "pushed": 0,
+  "name": "ohm",
+  "value": "6"
+}

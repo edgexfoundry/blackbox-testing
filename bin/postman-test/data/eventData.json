@@ -1,0 +1,161 @@
+[
+  {
+    "responseTime": 400,
+    "ApplicationJsonContentType": "application/json",
+    "TextPlainContentType": "text/plain",
+    "limit": 100,
+    "eventGetRequestId": "57e866d5e4b0ca8e6d73a3c5",
+    "eventPutRequestId": "57e87462e4b0ca8e6d73c2a4",
+    "eventDelRequestId": "57e866d4e4b0ca8e6d73a3ba",
+    "start": "1464039919104",
+    "end": "1464039919109",
+    "deviceGetRequestName": "ohmmeter",
+    "deviceGetRequestId": "57ba04a1189b95b8afcdade1",
+    "deviceDelRequestId": "57ba04a1189b95b8afcdade1",
+    "deviceDelRequestName": "industrialThermostat",
+    "valuedescriptor": "ohm",
+    "age": "1000000000000",
+    "invalidId": "1234657898sdssdw",
+    "invalidLimit": 101,
+    "invalidDeviceName": "preassureSensor",
+    "schema": {
+      "type": "array",
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "description": "FuseCore device/sensorevent",
+      "title": "event",
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": false,
+          "title": "id"
+        },
+        "created": {
+          "type": "integer",
+          "required": false,
+          "title": "created"
+        },
+        "modified": {
+          "type": "integer",
+          "required": false,
+          "title": "modified"
+        },
+        "origin": {
+          "type": "integer",
+          "required": false,
+          "title": "origin"
+        },
+        "pushed": {
+          "type": "integer",
+          "required": false,
+          "title": "pushed"
+        },
+        "device": {
+          "type": "string",
+          "required": false,
+          "title": "device"
+        },
+        "readings": {
+          "type": "array",
+          "required": false,
+          "title": "readings",
+          "items": {
+            "type": "object",
+            "$ref": "#/schemas/reading"
+          },
+          "uniqueItems": false
+        }
+      }
+    },
+    "objectSchema": {
+      "type": "object",
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "description": "FuseCore device/sensorevent",
+      "title": "event",
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": false,
+          "title": "id"
+        },
+        "created": {
+          "type": "integer",
+          "required": false,
+          "title": "created"
+        },
+        "modified": {
+          "type": "integer",
+          "required": false,
+          "title": "modified"
+        },
+        "origin": {
+          "type": "integer",
+          "required": false,
+          "title": "origin"
+        },
+        "pushed": {
+          "type": "integer",
+          "required": false,
+          "title": "pushed"
+        },
+        "device": {
+          "type": "string",
+          "required": false,
+          "title": "device"
+        },
+        "readings": {
+          "type": "array",
+          "required": false,
+          "title": "readings",
+          "items": {
+            "type": "object",
+            "$ref": "#/schemas/reading"
+          },
+          "uniqueItems": false
+        }
+      }
+    },
+    "readingSchema": {
+      "type": "object",
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "description": "Fuse Core device/sensorreading",
+      "title": "reading",
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": false,
+          "title": "id"
+        },
+        "created": {
+          "type": "integer",
+          "required": false,
+          "title": "created"
+        },
+        "modified": {
+          "type": "integer",
+          "required": false,
+          "title": "modified"
+        },
+        "origin": {
+          "type": "integer",
+          "required": false,
+          "title": "origin"
+        },
+        "pushed": {
+          "type": "integer",
+          "required": false,
+          "title": "pushed"
+        },
+        "name": {
+          "type": "string",
+          "required": false,
+          "title": "name"
+        },
+        "value": {
+          "type": "string",
+          "required": false,
+          "title": "value"
+        }
+      }
+    }
+  }
+]
