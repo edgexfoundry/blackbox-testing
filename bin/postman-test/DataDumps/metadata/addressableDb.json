@@ -324,6 +324,24 @@
 }
 {
   "_id": {
+    "$oid": "57fdda80e4b060e2df0aa102"
+  },
+  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "name": "test addressable for Gogle Home device service",
+  "protocol": "HTTP",
+  "address": "172.17.99.42",
+  "port": 48097,
+  "path": "/gogle",
+  "publisher": "none",
+  "user": "none",
+  "password": "none",
+  "topic": "none",
+  "created": 1475731260290,
+  "modified": 1475731260290,
+  "origin": 1471806386921
+}
+{
+  "_id": {
     "$oid": "57fdb862e4b060e2bbc1510e"
   },
   "_class": "com.dell.fuse.domain.meta.Addressable",

@@ -507,10 +507,10 @@
   "device": "industrialThermostat",
   "readings": [
     {
-      "_id": {
+      "$ref": "reading",
+      "$id": {
         "$oid": "57e59a71e4b0ca8e6d6d4cbb"
-      },
-      "$ref": "reading"
+      }
     }
   ]
 }
