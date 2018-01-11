@@ -2040,7 +2040,7 @@
       "description": "Update the Schedule identified by the id or name in the object provided. Id is used first, name is used second for identification purposes. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. DataValidationException (HTTP // 409) if any the cron expression string is not properly formatted. NotFoundException (HTTP 404) if no schedule is found for the id.",
       "collectionId": "63e6e78a-54c7-1735-8e19-eb20eed7ab11",
       "responses": [],
-      "rawModeData": "{\"id\":\"57f49350e4b060e2bff6c52d\",\"start\":1503360000,\"end\":1503390000,\"frequency\":60000}"
+      "rawModeData": "{\"id\":\"57f49350e4b060e2bff6c52d\",\"start\":\"1503360000\",\"end\":\"1503390000\",\"frequency\":\"60000\"}"
     },
     {
       "folder": "bcc1e7ab-8475-500b-f0a5-cf51b7e97172",
@@ -2097,7 +2097,7 @@
       "description": "Update the Schedule identified by the id or name in the object provided. Id is used first, name is used second for identification purposes. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. DataValidationException (HTTP // 409) if any the cron expression string is not properly formatted. NotFoundException (HTTP 404) if no schedule is found for the id.",
       "collectionId": "63e6e78a-54c7-1735-8e19-eb20eed7ab11",
       "responses": [],
-      "rawModeData": "{\"id\":\"57bb49e6555e5218873e5a1b\",\"start\":1503360000,\"end\":1503390000,\"frequency\":60000, \"cron\":\"0 0 13 * * :\"}"
+      "rawModeData": "{\"id\":\"57bb49e6555e5218873e5a1b\",\"start\":\"1503360000\",\"end\":\"1503390000\",\"frequency\":\"60000\", \"cron\":\"0 0 13 * * :\"}"
     },
     {
       "id": "731c02c2-1393-2e44-68ad-e5493e460f9e",
@@ -3774,7 +3774,7 @@
       "description": "Add a new Schedule - name must be unique. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. DataValidationException (HTTP 409) if the cron expression string is not properly formatted.",
       "collectionId": "63e6e78a-54c7-1735-8e19-eb20eed7ab11",
       "responses": [],
-      "rawModeData": "{\"origin\":1471806386919,\"name\":\"at midnight4\",\"frequency\":2, \"cron\":\"0 15 10 * * ?\", \"runOnce\":true} \r\n"
+      "rawModeData": "{\"origin\":1471806386919,\"name\":\"at midnight4\",\"frequency\":\"2\", \"cron\":\"0 15 10 * * ?\", \"runOnce\":true} \r\n"
     },
     {
       "id": "db8c2279-f2d3-8003-6ed5-f9ffd87a9256",
