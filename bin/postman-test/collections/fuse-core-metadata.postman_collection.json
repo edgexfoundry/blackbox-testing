@@ -3774,7 +3774,7 @@
       "description": "Add a new Schedule - name must be unique. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. DataValidationException (HTTP 409) if the cron expression string is not properly formatted.",
       "collectionId": "63e6e78a-54c7-1735-8e19-eb20eed7ab11",
       "responses": [],
-      "rawModeData": "{\"origin\":1471806386919,\"name\":\"at midnight4\",\"frequency\":2, \"cron\":\"0 15 10 * * ?\", \"runOnce\":1471824000} \r\n"
+      "rawModeData": "{\"origin\":1471806386919,\"name\":\"at midnight4\",\"frequency\":2, \"cron\":\"0 15 10 * * ?\", \"runOnce\":true} \r\n"
     },
     {
       "id": "db8c2279-f2d3-8003-6ed5-f9ffd87a9256",
