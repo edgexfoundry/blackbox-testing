@@ -1,6 +1,6 @@
 [
   {
-    "responseTime": 400,
+    "responseTime": 800,
     "ApplicationJsonContentType": "application/json",
     "TextPlainContentType": "text/plain",
     "deleteDeviceId": "57fe0a4ce4b060e2df0aa10f",
@@ -14,8 +14,8 @@
     "getProfileId": "57fddad1e4b060e2df0aa104",
     "getProfileName": "Google Home profile",
     "getAddressablename": "Starry Station",
-    "updateOpState": "enabled",
-    "updateAdminState": "locked",
+    "updateOpState": "ENABLED",
+    "updateAdminState": "LOCKED",
     "time": "123456789",
     "invalidDeviceId": "243654765874fd5",
     "invalidDeviceName": "InValidName",
