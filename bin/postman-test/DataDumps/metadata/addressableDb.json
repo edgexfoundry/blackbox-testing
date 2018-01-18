@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "57f37fd8e4b060e2bff6c517"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "ceiling fan variable speed motor address",
   "protocol": "HTTP",
   "address": "localhost",
@@ -20,7 +20,7 @@
   "_id": {
     "$oid": "57f73cd2e4b060e27309e457"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "mopet tachometer address",
   "protocol": "HTTP",
   "address": "localhost",
@@ -38,7 +38,7 @@
   "_id": {
     "$oid": "57f73cd2e4b060e27309e456"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "tachometer address",
   "protocol": "HTTP",
   "address": "localhost",
@@ -56,7 +56,7 @@
   "_id": {
     "$oid": "57f73cd2e4b060e27309e458"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "aeroplane tachometer address",
   "protocol": "HTTP",
   "address": "localhost",
@@ -74,7 +74,7 @@
   "_id": {
     "$oid": "57f75e9be4b060e2730a58e3"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "hvac thermo addressTest",
   "protocol": "HTTP",
   "address": "172.17.0.2",
@@ -92,7 +92,7 @@
   "_id": {
     "$oid": "57f62eb7e4b060e252ba5ed1"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "hvac thermo address",
   "protocol": "HTTP",
   "address": "192.168.99.100",
@@ -110,7 +110,7 @@
   "_id": {
     "$oid": "57f75ea4e4b060e2730a58e4"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "hvac thermo addressT",
   "protocol": "HTTP",
   "address": "172.17.0.2",
@@ -128,7 +128,7 @@
   "_id": {
     "$oid": "57f74398e4b060e2730a58de"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "variableSpeedMeterTest",
   "protocol": "HTTP",
   "address": "172.17.0.1",
@@ -146,7 +146,7 @@
   "_id": {
     "$oid": "57f73226e4b060e281141646"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "TestAddressable",
   "protocol": "HTTP",
   "address": "localhost",
@@ -164,7 +164,7 @@
   "_id": {
     "$oid": "57f333cee4b060e27b9d5f5b"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "powerScotMeter",
   "protocol": "HTTP",
   "address": "172.17.0.1",
@@ -182,7 +182,7 @@
   "_id": {
     "$oid": "57f333fae4b060e27b9d5f5c"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "ohmMeter",
   "protocol": "HTTP",
   "address": "172.17.0.2",
@@ -200,7 +200,7 @@
   "_id": {
     "$oid": "57f3342ce4b060e27b9d5f5d"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "luxmeter",
   "protocol": "HTTP",
   "address": "172.17.0.3",
@@ -218,7 +218,7 @@
   "_id": {
     "$oid": "57f334d2e4b060e27b9d5f5e"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "smartmeter",
   "protocol": "MAC",
   "address": "172.17.0.4",
@@ -236,7 +236,7 @@
   "_id": {
     "$oid": "57f335fce4b060e27b9d5f60"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "gasmeter",
   "protocol": "HTTP",
   "address": "172.17.0.6",
@@ -254,7 +254,7 @@
   "_id": {
     "$oid": "57f33505e4b060e27b9d5f5f"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "tomtom",
   "protocol": "HTTP",
   "address": "172.17.0.5",
@@ -272,7 +272,7 @@
   "_id": {
     "$oid": "57f33651e4b060e27b9d5f61"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "watermeter",
   "protocol": "HTTP",
   "address": "172.17.0.7",
@@ -290,7 +290,7 @@
   "_id": {
     "$oid": "57f635dfe4b060e2e0dd6ed1"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "canary",
   "protocol": "HTTP",
   "address": "192.168.99.100",
@@ -308,7 +308,7 @@
   "_id": {
     "$oid": "57f5df3ce4b060e2071a5c34"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "test addressable for command",
   "protocol": "HTTP",
   "address": "172.17.0.2",
@@ -326,7 +326,7 @@
   "_id": {
     "$oid": "57fdda80e4b060e2df0aa102"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "test addressable for Gogle Home device service",
   "protocol": "HTTP",
   "address": "172.17.99.42",
@@ -344,7 +344,7 @@
   "_id": {
     "$oid": "57fdb862e4b060e2bbc1510e"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "Logitech Pop",
   "protocol": "HTTP",
   "address": "192.168.99.100",
@@ -362,7 +362,7 @@
   "_id": {
     "$oid": "57fe01f6e4b060e2df0aa108"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "Nest Cam",
   "protocol": "HTTP",
   "address": "192.168.99.100",
@@ -380,7 +380,7 @@
   "_id": {
     "$oid": "57fe00b3e4b060e2c8236436"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "canaryDM",
   "protocol": "HTTP",
   "address": "192.168.99.100",
@@ -398,7 +398,7 @@
   "_id": {
     "$oid": "57f631f4e4b060e2e0dd6eca"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "hvac flipkart thermo address",
   "protocol": "HTTP",
   "address": "192.168.99.100",
@@ -416,7 +416,7 @@
   "_id": {
     "$oid": "57f33672e4b060e27b9d5f62"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "watermeterV2",
   "protocol": "HTTP",
   "address": "172.17.0.8",
@@ -434,7 +434,7 @@
   "_id": {
     "$oid": "57fdbb53e4b060e2bbc15112"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "Starry Station",
   "protocol": "HTTP",
   "address": "192.168.99.100",

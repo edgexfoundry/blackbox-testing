@@ -1,6 +1,6 @@
 {
   "id": "73b9500b-8690-47e5-a76b-45c1ecfd15e6",
-  "name": "fuse-core-data",
+  "name": "core-data",
   "description": null,
   "order": [],
   "folders": [
@@ -1141,7 +1141,7 @@
       "helperAttributes": {},
       "time": 1475057737697,
       "name": "16 http://localhost:48080/api/v1/event/id/:id",
-      "description": "Update the event to be pushed (out of Fuse to an enterprise or cloud system) by setting the pushed timestamp to the current time. NotFoundException (HTTP 404) if the event cannot be found by id. ServcieException (HTTP 503) for unknown or unanticipated issues.",
+      "description": "Update the event to be pushed (out of EdgeX to an enterprise or cloud system) by setting the pushed timestamp to the current time. NotFoundException (HTTP 404) if the event cannot be found by id. ServcieException (HTTP 503) for unknown or unanticipated issues.",
       "collectionId": "73b9500b-8690-47e5-a76b-45c1ecfd15e6",
       "responses": [],
       "rawModeData": "{  \r\n   \"origin\":1471806386919,\r\n   \"device\":\"57e8b705e4b060e251231c4f\",\r\n   \"readings\":[  \r\n      {  \r\n         \"origin\":1471806386919,\r\n         \"name\":\"hummidity\",\r\n         \"value\":\"38\"\r\n      }\r\n   ]\r\n}"
@@ -1537,7 +1537,7 @@
       "data": [],
       "rawModeData": "{\"id\":\"Dummy_Id\",\"pushed\":1471806399999}",
       "descriptionFormat": "html",
-      "description": "Update the event to be pushed (out of Fuse to an enterprise or cloud system) by setting the pushed timestamp to the current time. NotFoundException (HTTP 404) if the event cannot be found by id. ServcieException (HTTP 503) for unknown or unanticipated issues.",
+      "description": "Update the event to be pushed (out of EdgeX to an enterprise or cloud system) by setting the pushed timestamp to the current time. NotFoundException (HTTP 404) if the event cannot be found by id. ServcieException (HTTP 503) for unknown or unanticipated issues.",
       "headers": "Content-Type: application/json\n",
       "method": "PUT",
       "pathVariables": {},
@@ -1719,7 +1719,7 @@
       "helperAttributes": {},
       "time": 1474950440380,
       "name": "15 http://localhost:48080/api/v1/event/id/:id",
-      "description": "Update the event to be pushed (out of Fuse to an enterprise or cloud system) by setting the pushed timestamp to the current time. NotFoundException (HTTP 404) if the event cannot be found by id. ServcieException (HTTP 503) for unknown or unanticipated issues.",
+      "description": "Update the event to be pushed (out of EdgeX to an enterprise or cloud system) by setting the pushed timestamp to the current time. NotFoundException (HTTP 404) if the event cannot be found by id. ServcieException (HTTP 503) for unknown or unanticipated issues.",
       "collectionId": "73b9500b-8690-47e5-a76b-45c1ecfd15e6",
       "responses": [],
       "rawModeData": "{\"pushed\":1471806399999}"

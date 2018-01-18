@@ -58,7 +58,7 @@
   "_id": {
     "$oid": "57f73cd8e4b060e27309e457"
   },
-  "_class": "com.dell.fuse.domain.meta.Schedule",
+  "_class": "org.edgexfoundry.domain.meta.Schedule",
   "name": "half-hourly",
   "start": "1471824000",
   "end": "1503360000",
@@ -72,7 +72,7 @@
   "_id": {
     "$oid": "57f73cd8e4b060e27309e458"
   },
-  "_class": "com.dell.fuse.domain.meta.Schedule",
+  "_class": "org.edgexfoundry.domain.meta.Schedule",
   "name": "trice-hourly",
   "start": "1471824001",
   "end": "1503360001",
@@ -86,7 +86,7 @@
   "_id": {
     "$oid": "57f73cd8e4b060e27309e452"
   },
-  "_class": "com.dell.fuse.domain.meta.Schedule",
+  "_class": "org.edgexfoundry.domain.meta.Schedule",
   "name": "monthly",
   "start": "1471824002",
   "end": "1503360002",
@@ -100,7 +100,7 @@
   "_id": {
     "$oid": "57f73242e4b060e281141647"
   },
-  "_class": "com.dell.fuse.domain.meta.Schedule",
+  "_class": "org.edgexfoundry.domain.meta.Schedule",
   "name": "hourly",
   "start": "1471824000",
   "end": "1503360000",
@@ -114,7 +114,7 @@
   "_id": {
     "$oid": "57f6224fe4b060e231e2e9af"
   },
-  "_class": "com.dell.fuse.domain.meta.Schedule",
+  "_class": "org.edgexfoundry.domain.meta.Schedule",
   "name": "at midnight",
   "runOnce": true,
   "created": 1475748431604,
@@ -125,7 +125,7 @@
   "_id": {
     "$oid": "57f73cd8e4b060e27309e453"
   },
-  "_class": "com.dell.fuse.domain.meta.Schedule",
+  "_class": "org.edgexfoundry.domain.meta.Schedule",
   "name": "yearly",
   "start": "1071824002",
   "end": "1503360000",
@@ -139,7 +139,7 @@
   "_id": {
     "$oid": "57f6224de4b060e231e2e9ae"
   },
-  "_class": "com.dell.fuse.domain.meta.Schedule",
+  "_class": "org.edgexfoundry.domain.meta.Schedule",
   "name": "hourly",
   "start": "1471824000",
   "end": "1503360000",
@@ -153,7 +153,7 @@
   "_id": {
     "$oid": "57f62253e4b060e231e2e9b0"
   },
-  "_class": "com.dell.fuse.domain.meta.Schedule",
+  "_class": "org.edgexfoundry.domain.meta.Schedule",
   "name": "daily noon",
   "cron": "0 0 12 * * ?",
   "runOnce": false,
@@ -165,7 +165,7 @@
   "_id": {
     "$oid": "57fe00eae4b060e2c8236438"
   },
-  "_class": "com.dell.fuse.domain.meta.Schedule",
+  "_class": "org.edgexfoundry.domain.meta.Schedule",
   "name": "at midnight DM",
   "runOnce": true,
   "created": 1476264170230,
@@ -176,7 +176,7 @@
   "_id": {
     "$oid": "57fe00dae4b060e2c8236437"
   },
-  "_class": "com.dell.fuse.domain.meta.Schedule",
+  "_class": "org.edgexfoundry.domain.meta.Schedule",
   "name": "hourlyDM",
   "start": "1471824000",
   "end": "1503360000",
@@ -190,7 +190,7 @@
   "_id": {
     "$oid": "57fe00fae4b060e2c8236439"
   },
-  "_class": "com.dell.fuse.domain.meta.Schedule",
+  "_class": "org.edgexfoundry.domain.meta.Schedule",
   "name": "daily noon DM",
   "cron": "0 0 12 * * ?",
   "runOnce": false,

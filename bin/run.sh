@@ -11,7 +11,7 @@ BASEPATH=$(dirname "$0")/postman-test/scriptLogs
 COREDATALOGSPATH=$BASEPATH/coreData$TIMESTAMPFORMAT.log
 METADATALOGSPATH=$BASEPATH/metaData$TIMESTAMPFORMAT.log
 COMMANDLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
-FUSELOGSPATH=$BASEPATH/fuse$TIMESTAMPFORMAT.log
+EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 coreDataTest() {
 
@@ -69,8 +69,8 @@ case ${option} in
 	commandTest	| tee $COMMANDLOGSPATH
       	;;
    	-all)  
-      	echo "Info: Initiating FUSE Test"
-	testAll		| tee $FUSELOGSPATH
+      	echo "Info: Initiating EdgeX Test"
+	testAll		| tee $EDGEXLOGSPATH
       	;; 
    	*)  
       	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-all All]" 

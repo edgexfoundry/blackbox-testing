@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "57f73d96e4b060e27309e45e"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceReport",
+  "_class": "org.edgexfoundry.domain.meta.DeviceReport",
   "name": "car engine revolution collection report",
   "device": "cartachometer",
   "event": "car engine revolution collection",
@@ -17,7 +17,7 @@
   "_id": {
     "$oid": "57f73d96e4b060e27309e45d"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceReport",
+  "_class": "org.edgexfoundry.domain.meta.DeviceReport",
   "name": "bike engine revolution collection report",
   "device": "cartachometer",
   "event": "bike engine revolution collection",
@@ -32,7 +32,7 @@
   "_id": {
     "$oid": "57f73d96e4b060e27309e45c"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceReport",
+  "_class": "org.edgexfoundry.domain.meta.DeviceReport",
   "name": "mopet engine revolution collection report",
   "device": "mopettachometer",
   "event": "mopet engine revolution collection",
@@ -47,7 +47,7 @@
   "_id": {
     "$oid": "57f73d96e4b060e27309e45a"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceReport",
+  "_class": "org.edgexfoundry.domain.meta.DeviceReport",
   "name": "aeroplane engine revolution collection report",
   "device": "aeroplanetachometer",
   "event": "aeroplane engine revolution collection",
@@ -62,7 +62,7 @@
   "_id": {
     "$oid": "57f73a50e4b060e281141651"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceReport",
+  "_class": "org.edgexfoundry.domain.meta.DeviceReport",
   "name": "TestDeviceReportPut",
   "device": "TestDeviceToReport",
   "event": "TestDeviceReportScheduleEvent",
@@ -77,7 +77,7 @@
   "_id": {
     "$oid": "57f7479ee4b060e281141658"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceReport",
+  "_class": "org.edgexfoundry.domain.meta.DeviceReport",
   "name": "TestDeviceReportGetByID",
   "device": "TestDeviceToReport",
   "event": "TestDeviceReportScheduleEvent",
@@ -92,7 +92,7 @@
   "_id": {
     "$oid": "57f73788e4b060e28114164e"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceReport",
+  "_class": "org.edgexfoundry.domain.meta.DeviceReport",
   "name": "livingroom collection report",
   "device": "TestDeviceToReport",
   "event": "temperature collection",
@@ -107,7 +107,7 @@
   "_id": {
     "$oid": "57f746b0e4b060e281141656"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceReport",
+  "_class": "org.edgexfoundry.domain.meta.DeviceReport",
   "name": "TestDeviceReportGetByName",
   "device": "TestDeviceToReport",
   "event": "TestDeviceReportScheduleEvent",
@@ -122,7 +122,7 @@
   "_id": {
     "$oid": "57f74b96e4b060e28114165c"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceReport",
+  "_class": "org.edgexfoundry.domain.meta.DeviceReport",
   "name": "TestDeviceReportDelByID",
   "device": "TestDeviceToReport",
   "event": "TestDeviceReportScheduleEvent",
@@ -137,7 +137,7 @@
   "_id": {
     "$oid": "57f74bede4b060e28114165d"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceReport",
+  "_class": "org.edgexfoundry.domain.meta.DeviceReport",
   "name": "TestDeviceReportDelByName",
   "device": "TestDeviceToReport",
   "event": "TestDeviceReportScheduleEvent",

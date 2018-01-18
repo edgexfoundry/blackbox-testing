@@ -1,6 +1,6 @@
 {
   "id": "63e6e78a-54c7-1735-8e19-eb20eed7ab11",
-  "name": "fuse-core-metadata",
+  "name": "core-metadata",
   "description": null,
   "order": [],
   "folders": [
@@ -1062,7 +1062,7 @@
       "data": [],
       "rawModeData": null,
       "descriptionFormat": "html",
-      "description": "Return Command objects with given name. Name is not unique for all of Fuse but is unique per any associated Device Profile. Returns ServiceException (HTTP 503) for unknown or unanticipated issues.",
+      "description": "Return Command objects with given name. Name is not unique for all of EdgeX but is unique per any associated Device Profile. Returns ServiceException (HTTP 503) for unknown or unanticipated issues.",
       "headers": "",
       "method": "GET",
       "pathVariables": {},
@@ -3183,7 +3183,7 @@
       "data": [],
       "rawModeData": null,
       "descriptionFormat": "html",
-      "description": "Return Command objects with given name. Name is not unique for all of Fuse but is unique per any associated Device Profile. Returns ServiceException (HTTP 503) for unknown or unanticipated issues.",
+      "description": "Return Command objects with given name. Name is not unique for all of EdgeX but is unique per any associated Device Profile. Returns ServiceException (HTTP 503) for unknown or unanticipated issues.",
       "headers": "",
       "method": "GET",
       "pathVariables": {

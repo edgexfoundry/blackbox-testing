@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "57fef1cce4b060e2364c2e2d"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "hvac telxsi thermo address",
   "protocol": "HTTP",
   "address": "172.17.0.1",
@@ -20,7 +20,7 @@
   "_id": {
     "$oid": "57f74398e4b060e2730a58de"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "variableSpeedMeterTest",
   "protocol": "HTTP",
   "address": "172.17.0.1",
@@ -38,7 +38,7 @@
   "_id": {
     "$oid": "57f5df3ce4b060e2071a5c34"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "test addressable for command",
   "protocol": "HTTP",
   "address": "172.17.0.2",
@@ -56,7 +56,7 @@
   "_id": {
     "$oid": "57f73cd2e4b060e27309e458"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "aeroplane tachometer address",
   "protocol": "HTTP",
   "address": "localhost",
@@ -74,7 +74,7 @@
   "_id": {
     "$oid": "57fef1cce4b060e2364c2e3d"
   },
-  "_class": "com.dell.fuse.domain.meta.Addressable",
+  "_class": "org.edgexfoundry.domain.meta.Addressable",
   "name": "nebulizer address",
   "protocol": "HTTP",
   "address": "172.17.0.1",

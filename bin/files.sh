@@ -6,7 +6,7 @@ CONFIGFILE=$(dirname "$0")/config.sh
 
 EVENTDATAFILE=/etc/newman/data/eventData.json
 COREDATAENVFILE=/etc/newman/environment/CoredataEnv.postman_environment.json
-COREDATACOLLFILE=/etc/newman/collections/fuse-core-data.postman_collection.json
+COREDATACOLLFILE=/etc/newman/collections/core-data.postman_collection.json
 EVENTDATADUMP=/etc/newman/DataDumps/coredata/eventDb.json
 READINGDATADUMP=/etc/newman/DataDumps/coredata/readingDb.json
 VDDATADUMP=/etc/newman/DataDumps/coredata/valueDescriptorDb.json
@@ -14,7 +14,7 @@ READINGDATAFILE=/etc/newman/data/readingData.json
 VDDATAFILE=/etc/newman/data/valueDescriptorData.json
 
 METADATA_ENVFILE=/etc/newman/environment/MetadataEnv.postman_environment.json
-METADATA_COLLFILE=/etc/newman/collections/fuse-core-metadata.postman_collection.json
+METADATA_COLLFILE=/etc/newman/collections/core-metadata.postman_collection.json
 ADDRESSABLE_DATAFILE=/etc/newman/data/addressableData.json
 ADDRESSABLE_DATADUMP=/etc/newman/DataDumps/metadata/addressableDb.json
 DEVICE_DATAFILE=/etc/newman/data/deviceData.json
@@ -37,7 +37,7 @@ SCHEDULEEVENT_DATAFILE=/etc/newman/data/scheduleEventData.json
 SCHEDULEEVENT_DATADUMP=/etc/newman/DataDumps/metadata/scheduleEventDb.json
 
 CORECOMMANDENVFILE=/etc/newman/environment/command.postman_environment.json
-CORECOMMANDCOLLFILE=/etc/newman/collections/fuse-core-command.postman_collection.json
+CORECOMMANDCOLLFILE=/etc/newman/collections/core-command.postman_collection.json
 ADDRESSABLECCDATADUMP=/etc/newman/DataDumps/command/addressableDb.json
 DEVICECCDATADUMP=/etc/newman/DataDumps/command/deviceDb.json
 DEVICEPROFILECCDATADUMP=/etc/newman/DataDumps/command/deviceProfileDb.json
