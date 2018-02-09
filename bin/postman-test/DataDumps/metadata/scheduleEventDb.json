@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "57f73d89e4b060e27309e45d"
   },
-  "_class": "com.dell.fuse.domain.meta.ScheduleEvent",
+  "_class": "org.edgexfoundry.domain.meta.ScheduleEvent",
   "name": "car engine revolution collection",
   "schedule": "half-hourly",
   "created": 1475820937046,
@@ -19,7 +19,7 @@
   "_id": {
     "$oid": "57f72b79e4b060e27309e453"
   },
-  "_class": "com.dell.fuse.domain.meta.ScheduleEvent",
+  "_class": "org.edgexfoundry.domain.meta.ScheduleEvent",
   "name": "bike engine revolution collection",
   "schedule": "trice-hourly",
   "created": 1475816313092,
@@ -36,7 +36,7 @@
   "_id": {
     "$oid": "57f73d89e4b060e27309e45c"
   },
-  "_class": "com.dell.fuse.domain.meta.ScheduleEvent",
+  "_class": "org.edgexfoundry.domain.meta.ScheduleEvent",
   "name": "scooter engine revolution collection",
   "schedule": "half-hourly",
   "created": 1475820937045,
@@ -53,7 +53,7 @@
   "_id": {
     "$oid": "57f73d89e4b060e27309e45b"
   },
-  "_class": "com.dell.fuse.domain.meta.ScheduleEvent",
+  "_class": "org.edgexfoundry.domain.meta.ScheduleEvent",
   "name": "mopet engine revolution collection",
   "schedule": "monthly",
   "created": 1475820937044,
@@ -70,7 +70,7 @@
   "_id": {
     "$oid": "57f73d89e4b060e27309e45f"
   },
-  "_class": "com.dell.fuse.domain.meta.ScheduleEvent",
+  "_class": "org.edgexfoundry.domain.meta.ScheduleEvent",
   "name": "aeroplane engine revolution collection",
   "schedule": "yearly",
   "created": 1475820937043,
@@ -87,7 +87,7 @@
   "_id": {
     "$oid": "57f73d89e4b060e27309e46f"
   },
-  "_class": "com.dell.fuse.domain.meta.ScheduleEvent",
+  "_class": "org.edgexfoundry.domain.meta.ScheduleEvent",
   "name": "ship engine revolution collection",
   "schedule": "monthly",
   "created": 1475820937042,
@@ -104,7 +104,7 @@
   "_id": {
     "$oid": "57f7346ee4b060e28114164d"
   },
-  "_class": "com.dell.fuse.domain.meta.ScheduleEvent",
+  "_class": "org.edgexfoundry.domain.meta.ScheduleEvent",
   "name": "temperature collection",
   "schedule": "hourly",
   "created": 1475818606386,
@@ -121,7 +121,7 @@
   "_id": {
     "$oid": "57f737d7e4b060e28114164f"
   },
-  "_class": "com.dell.fuse.domain.meta.ScheduleEvent",
+  "_class": "org.edgexfoundry.domain.meta.ScheduleEvent",
   "name": "TestDeviceReportScheduleEvent",
   "schedule": "hourly",
   "created": 1475819479867,

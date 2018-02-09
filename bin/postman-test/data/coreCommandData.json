@@ -1,6 +1,6 @@
 [
   {
-    "responseTime": 400,
+    "responseTime": 800,
     "ApplicationJsonContentType": "application/json",
     "TextPlainContentType": "text/plain",
     "commandGetRequestId": "57fef1f9e4b060e2364c2e33",
@@ -10,7 +10,7 @@
     "deviceGetRequestId1": "57f5e0ebe4b060e2071a5c38",
     "commandGetRequestId1": "57f5e077e4b060e2071a5c36",
     "updateDeviceByNameByAdminState": "Livingroom automation",
-    "updateDeviceAdminState": "locked",
+    "updateDeviceAdminState": "LOCKED",
     "deviceLockedId": "57f5e11fe4b060e2071a5c39",
     "commandGetRequestIdForLockdedState": "57f5e077e4b060e2071a5c36",
     "deviceIdNotPresent": "1234657898sdssdw",
@@ -20,8 +20,8 @@
     "getDeviceByInvalidId": "57f62ed0e4b060e252ba5ed61",
     "getDeviceByInvalidName": "Invalid_device_name",
     "deviceIdPresent": "57f7937ae4b060e2d67c20b5",
-    "adminStateChange": "locked",
-    "opStateChange": "disabled",
+    "adminStateChange": "LOCKED",
+    "opStateChange": "DISABLED",
     "deviceIdNotPresent": "57f7937ae4AAAAe2d67c20b5",
     "schema": {
       "type": "object",

@@ -1,6 +1,6 @@
 [
   {
-    "responseTime": 400,
+    "responseTime": 800,
     "ApplicationJsonContentType": "application/json",
     "TextPlainContentType": "text/plain",
     "readingGetRequestId": "57e745efe4b0ca8e6d7116d7",
@@ -17,7 +17,7 @@
     "schema": {
       "type": "array",
       "$schema": "http://json-schema.org/draft-03/schema#",
-      "description": "Fuse Core device/sensor reading",
+      "description": "EdgeX Core device/sensor reading",
       "title": "reading",
       "properties": {
         "id": {
@@ -60,7 +60,7 @@
     "objectSchema": {
       "type": "object",
       "$schema": "http://json-schema.org/draft-03/schema#",
-      "description": "Fuse Core device/sensor reading",
+      "description": "EdgeX Core device/sensor reading",
       "title": "reading",
       "properties": {
         "id": {

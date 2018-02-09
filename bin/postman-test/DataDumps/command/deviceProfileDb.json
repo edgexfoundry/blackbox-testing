@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "57fef1dbe4b060e2364c2e31"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceProfile",
+  "_class": "org.edgexfoundry.domain.meta.DeviceProfile",
   "name": "telxsi thermostat profile",
   "manufacturer": "Honeywell",
   "model": "ABC123",
@@ -42,7 +42,7 @@
   "_id": {
     "$oid": "57fb3067e4b060e22bd8c1b7"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceProfile",
+  "_class": "org.edgexfoundry.domain.meta.DeviceProfile",
   "name": "livingroom thermostat profile",
   "manufacturer": "Honeywell",
   "model": "ABC123",
@@ -82,7 +82,7 @@
   "_id": {
     "$oid": "57f73d6ce4b060e27309e46b"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceProfile",
+  "_class": "org.edgexfoundry.domain.meta.DeviceProfile",
   "name": "aeroplane tachometer profile",
   "manufacturer": "Honeywell",
   "model": "ABC123",
@@ -122,7 +122,7 @@
   "_id": {
     "$oid": "57f5e077e4b060e2071a5c37"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceProfile",
+  "_class": "org.edgexfoundry.domain.meta.DeviceProfile",
   "name": "test device profile",
   "manufacturer": "Honeywell",
   "model": "ABC123",
@@ -162,7 +162,7 @@
   "_id": {
     "$oid": "57fef1e6e4b060e2374f2e32"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceProfile",
+  "_class": "org.edgexfoundry.domain.meta.DeviceProfile",
   "name": "nebulizer profile",
   "manufacturer": "Honeywell",
   "model": "ABC123",

@@ -9,7 +9,7 @@ if [ $? -ne 0 ]; then
 	echo "Error: Docker login failed."
 	exit 0
 else
-	nohup docker-compose up & echo $! > fuse.pid
+	nohup docker-compose up & echo $! > edgex.pid
 fi
 
 echo "Info: Invoking Ping Service."

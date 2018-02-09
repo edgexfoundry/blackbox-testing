@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "57f73d4ee4b060e27309e46e"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceService",
+  "_class": "org.edgexfoundry.domain.meta.DeviceService",
   "adminState": "locked",
   "operatingState": "enabled",
   "name": "aeroplane tachometer device service",
@@ -27,7 +27,7 @@
   "_id": {
     "$oid": "57fef1e6e4b060e2364c2e32"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceService",
+  "_class": "org.edgexfoundry.domain.meta.DeviceService",
   "adminState": "unlocked",
   "operatingState": "enabled",
   "name": "home telxsi thermostat device service",
@@ -52,7 +52,7 @@
   "_id": {
     "$oid": "57f79ff6e4b060e22bd8c1a8"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceService",
+  "_class": "org.edgexfoundry.domain.meta.DeviceService",
   "adminState": "unlocked",
   "operatingState": "enabled",
   "name": "Test update thermostat deviceservice",
@@ -77,7 +77,7 @@
   "_id": {
     "$oid": "57f5df95e4b060e2071a5c35"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceService",
+  "_class": "org.edgexfoundry.domain.meta.DeviceService",
   "adminState": "unlocked",
   "operatingState": "enabled",
   "name": "test service for core command",
@@ -102,7 +102,7 @@
   "_id": {
     "$oid": "57fef1e6e4b070e2374f2e32"
   },
-  "_class": "com.dell.fuse.domain.meta.DeviceService",
+  "_class": "org.edgexfoundry.domain.meta.DeviceService",
   "adminState": "unlocked",
   "operatingState": "enabled",
   "name": "home telxsi thermostat device service",

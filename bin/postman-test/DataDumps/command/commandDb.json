@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "57fef1d5e4b060e2364c2e2f"
   },
-  "_class": "com.dell.fuse.domain.meta.Command",
+  "_class": "org.edgexfoundry.domain.meta.Command",
   "name": "coolingpoint",
   "get": {
     "path": "/telxsicooling"
@@ -24,7 +24,7 @@
   "_id": {
     "$oid": "57fef1dbe4b060e2364c2e30"
   },
-  "_class": "com.dell.fuse.domain.meta.Command",
+  "_class": "org.edgexfoundry.domain.meta.Command",
   "name": "telxsi cooling point",
   "get": {
     "path": "/telxsicooling"
@@ -46,7 +46,7 @@
   "_id": {
     "$oid": "57fb3067e4b060e22bd8c1b6"
   },
-  "_class": "com.dell.fuse.domain.meta.Command",
+  "_class": "org.edgexfoundry.domain.meta.Command",
   "name": "living room command",
   "get": {
     "path": "/cooling"
@@ -68,7 +68,7 @@
   "_id": {
     "$oid": "57f73d6ce4b060e27309e45b"
   },
-  "_class": "com.dell.fuse.domain.meta.Command",
+  "_class": "org.edgexfoundry.domain.meta.Command",
   "name": "min revelutions ",
   "get": {
     "path": "/aeroplaneenginerevelutionsperminute"
@@ -90,7 +90,7 @@
   "_id": {
     "$oid": "57f5e077e4b060e2071a5c36"
   },
-  "_class": "com.dell.fuse.domain.meta.Command",
+  "_class": "org.edgexfoundry.domain.meta.Command",
   "name": "cooling point",
   "get": {
     "path": "/cooling",
@@ -122,7 +122,7 @@
   "_id": {
     "$oid": "57fef1fbe4b060e2364c2e30"
   },
-  "_class": "com.dell.fuse.domain.meta.Command",
+  "_class": "org.edgexfoundry.domain.meta.Command",
   "name": "percentage",
   "get": {
     "path": "/oxygenpercentage"

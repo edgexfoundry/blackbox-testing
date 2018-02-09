@@ -2,7 +2,7 @@
 
 NAMESFILE=$(dirname "$0")/files.sh
 
-COLLECTION_PATH="collections/fuse-core-data.postman_collection.json"
+COLLECTION_PATH="collections/core-data.postman_collection.json"
 ENV_PATH="environment/CoredataEnv.postman_environment.json"
 
 if [ -f $NAMESFILE ]; then 

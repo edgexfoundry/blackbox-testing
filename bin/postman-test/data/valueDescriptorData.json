@@ -1,6 +1,6 @@
 [
   {
-    "responseTime": 400,
+    "responseTime": 800,
     "ApplicationJsonContentType": "application/json",
     "ValuedescriptorDeleteById": "57ea0061e4b0f1b53f534137",
     "ValuedescriptorByName": "co2",
@@ -16,7 +16,7 @@
     "schema": {
       "type": "array",
       "$schema": "http://json-schema.org/draft-03/schema#",
-      "description": "Fuse Core and MetaData value descriptor -describes device/sensor data sent and received",
+      "description": "EdgeX Core and MetaData value descriptor -describes device/sensor data sent and received",
       "title": "valueDescriptor",
       "properties": {
         "id": {
@@ -89,7 +89,7 @@
     "ObjectSchema": {
       "type": "object",
       "$schema": "http://json-schema.org/draft-03/schema#",
-      "description": "Fuse Core and MetaData value descriptor -describes device/sensor data sent and received",
+      "description": "EdgeX Core and MetaData value descriptor -describes device/sensor data sent and received",
       "title": "valueDescriptor",
       "properties": {
         "id": {

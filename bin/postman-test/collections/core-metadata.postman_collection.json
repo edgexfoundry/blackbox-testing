@@ -1,6 +1,6 @@
 {
   "id": "63e6e78a-54c7-1735-8e19-eb20eed7ab11",
-  "name": "fuse-core-metadata",
+  "name": "core-metadata",
   "description": null,
   "order": [],
   "folders": [
@@ -630,7 +630,7 @@
       "name": "355 http://localhost:48081/api/v1/deviceservice",
       "dataMode": "raw",
       "data": [],
-      "rawModeData": "{\r\n  \"origin\":1471806386920,\r\n  \"name\":\"home thermostat deviceservice\",\r\n  \"description\":\"manage homethermostats\",\r\n  \"labels\":[\r\n    \"hvac\",\"thermostat\"\r\n    ],\r\n  \"adminState\":\"unlocked\",\r\n  \"operatingState\":\"enabled\",\r\n  \"addressable\":{\r\n    \"name\":\"hvac thermo address\"\r\n    }\r\n}",
+      "rawModeData": "{\r\n  \"origin\":1471806386920,\r\n  \"name\":\"home thermostat deviceservice\",\r\n  \"description\":\"manage homethermostats\",\r\n  \"labels\":[\r\n    \"hvac\",\"thermostat\"\r\n    ],\r\n  \"adminState\":\"UNLOCKED\",\r\n  \"operatingState\":\"ENABLED\",\r\n  \"addressable\":{\r\n    \"name\":\"hvac thermo address\"\r\n    }\r\n}",
       "descriptionFormat": null,
       "description": "Update the DeviceServcie identified by the id or name stored in the object provided. Id is used first, name is used second for identification purposes. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device service cannot be found by the identifier provided.",
       "headers": "Content-Type: application/json\n",
@@ -1062,7 +1062,7 @@
       "data": [],
       "rawModeData": null,
       "descriptionFormat": "html",
-      "description": "Return Command objects with given name. Name is not unique for all of Fuse but is unique per any associated Device Profile. Returns ServiceException (HTTP 503) for unknown or unanticipated issues.",
+      "description": "Return Command objects with given name. Name is not unique for all of EdgeX but is unique per any associated Device Profile. Returns ServiceException (HTTP 503) for unknown or unanticipated issues.",
       "headers": "",
       "method": "GET",
       "pathVariables": {},
@@ -1598,7 +1598,7 @@
           "key": "file",
           "value": "sample_profile_empty.yaml",
           "type": "file",
-          "enabled": true
+          "ENABLED": true
         }
       ],
       "dataMode": "params",
@@ -1735,7 +1735,7 @@
       "name": "59 http://localhost:48081/api/v1/device",
       "dataMode": "raw",
       "data": [],
-      "rawModeData": "{\r\n  \"id\":\"57f63243e4b060e2e0dd6ed0\",\r\n  \"name\": \"livingroomthermostatdevice\",\r\n  \"description\":\"Home automation\",\r\n  \"adminstate\":\"locked\"\r\n  \r\n}",
+      "rawModeData": "{\r\n  \"id\":\"57f63243e4b060e2e0dd6ed0\",\r\n  \"name\": \"livingroomthermostatdevice\",\r\n  \"description\":\"Home automation\",\r\n  \"adminstate\":\"LOCKED\"\r\n  \r\n}",
       "descriptionFormat": "html",
       "description": "Update the Device identified by the id or name stored in the object provided. Id is used first, name is used second for identification purposes. Device's service & profile cannot be updated. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device cannot be found by the identifier provided.",
       "headers": "Content-Type: application/json\n",
@@ -2040,7 +2040,7 @@
       "description": "Update the Schedule identified by the id or name in the object provided. Id is used first, name is used second for identification purposes. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. DataValidationException (HTTP // 409) if any the cron expression string is not properly formatted. NotFoundException (HTTP 404) if no schedule is found for the id.",
       "collectionId": "63e6e78a-54c7-1735-8e19-eb20eed7ab11",
       "responses": [],
-      "rawModeData": "{\"id\":\"57f49350e4b060e2bff6c52d\",\"start\":1503360000,\"end\":1503390000,\"frequency\":60000}"
+      "rawModeData": "{\"id\":\"57f49350e4b060e2bff6c52d\",\"start\":\"1503360000\",\"end\":\"1503390000\",\"frequency\":\"60000\"}"
     },
     {
       "folder": "bcc1e7ab-8475-500b-f0a5-cf51b7e97172",
@@ -2097,7 +2097,7 @@
       "description": "Update the Schedule identified by the id or name in the object provided. Id is used first, name is used second for identification purposes. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. DataValidationException (HTTP // 409) if any the cron expression string is not properly formatted. NotFoundException (HTTP 404) if no schedule is found for the id.",
       "collectionId": "63e6e78a-54c7-1735-8e19-eb20eed7ab11",
       "responses": [],
-      "rawModeData": "{\"id\":\"57bb49e6555e5218873e5a1b\",\"start\":1503360000,\"end\":1503390000,\"frequency\":60000, \"cron\":\"0 0 13 * * :\"}"
+      "rawModeData": "{\"id\":\"57bb49e6555e5218873e5a1b\",\"start\":\"1503360000\",\"end\":\"1503390000\",\"frequency\":\"60000\", \"cron\":\"0 0 13 * * :\"}"
     },
     {
       "id": "731c02c2-1393-2e44-68ad-e5493e460f9e",
@@ -2418,7 +2418,7 @@
       "name": "58_409 http://localhost:48081/api/v1/device",
       "dataMode": "raw",
       "data": [],
-      "rawModeData": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\":\"Amazon Tap\",\r\n   \"description\":\" Portable voice controlled speaker\",\r\n   \"adminstate\":\"unlocked\",\r\n   \"operatingState\":\"enabled\",\r\n   \"addressable\":{  \r\n      \"name\":\"\"\r\n   },\r\n   \"labels\":[  \r\n      \"home\",\r\n      \"hvac\",\r\n      \"thermostat\"\r\n   ],\r\n   \"location\":\"{lat:45.45,long:47.80}\",\r\n   \"responseDelay\":0,\r\n   \"service\":{  \r\n      \"name\":\"home thermostat device service\"\r\n   },\r\n   \"profile\":{  \r\n      \"name\":\"thermostat profile\"\r\n   }\r\n}",
+      "rawModeData": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\":\"Amazon Tap\",\r\n   \"description\":\" Portable voice controlled speaker\",\r\n   \"adminstate\":\"UNLOCKED\",\r\n   \"operatingState\":\"ENABLED\",\r\n   \"addressable\":{  \r\n      \"name\":\"\"\r\n   },\r\n   \"labels\":[  \r\n      \"home\",\r\n      \"hvac\",\r\n      \"thermostat\"\r\n   ],\r\n   \"location\":\"{lat:45.45,long:47.80}\",\r\n   \"responseDelay\":0,\r\n   \"service\":{  \r\n      \"name\":\"home thermostat device service\"\r\n   },\r\n   \"profile\":{  \r\n      \"name\":\"thermostat profile\"\r\n   }\r\n}",
       "descriptionFormat": null,
       "description": "Add a new Device - name must be unique. Embedded objects (device, service, profile, addressable) are all referenced in the new Device object by id or name to associated objects. All other data in the embedded objects will be ignored. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns DataValidationException (HTTP 409) if an associated object (Addressable, Profile, Service) cannot be found with the id or name provided.",
       "headers": "Content-Type: application/json\n",
@@ -2550,7 +2550,7 @@
       "name": "61_404 http://localhost:48081/api/v1/device",
       "dataMode": "raw",
       "data": [],
-      "rawModeData": "{\r\n  \"id\":\"57bc6d80555e5218873e5a30\",\r\n  \"description\":\"living room thermostat\",\r\n  \"adminstate\":\"locked\"\r\n  \r\n}",
+      "rawModeData": "{\r\n  \"id\":\"57bc6d80555e5218873e5a30\",\r\n  \"description\":\"living room thermostat\",\r\n  \"adminstate\":\"LOCKED\"\r\n  \r\n}",
       "descriptionFormat": "html",
       "description": "Update the Device identified by the id or name stored in the object provided. Id is used first, name is used second for identification purposes. Device's service & profile cannot be updated. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device cannot be found by the identifier provided.",
       "headers": "Content-Type: application/json\n",
@@ -2589,7 +2589,7 @@
       "name": "56 http://localhost:48081/api/v1/device",
       "dataMode": "raw",
       "data": [],
-      "rawModeData": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\" :\"AWS IOT Button\",\r\n   \"description\":\"Home automation system\",\r\n   \"adminState\":\"unlocked\",\r\n   \"operatingState\":\"enabled\",\r\n   \"addressable\":{  \r\n      \"name\":\"canary\"\r\n   },\r\n   \"labels\":[  \r\n      \"home\",\r\n      \"hvac\",\r\n      \"thermostat\"\r\n   ],\r\n   \"location\":\"{lat:45.45,long:47.80}\",\r\n   \"responseDelay\":0,\r\n   \"service\":{  \r\n      \"name\":\"Gogle Home device service\"\r\n   },\r\n   \"profile\":{  \r\n      \"name\":\"Google Home profile\"\r\n   }\r\n}",
+      "rawModeData": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\" :\"AWS IOT Button\",\r\n   \"description\":\"Home automation system\",\r\n   \"adminState\":\"UNLOCKED\",\r\n   \"operatingState\":\"ENABLED\",\r\n   \"addressable\":{  \r\n      \"name\":\"canary\"\r\n   },\r\n   \"labels\":[  \r\n      \"home\",\r\n      \"hvac\",\r\n      \"thermostat\"\r\n   ],\r\n   \"location\":\"{lat:45.45,long:47.80}\",\r\n   \"responseDelay\":0,\r\n   \"service\":{  \r\n      \"name\":\"Gogle Home device service\"\r\n   },\r\n   \"profile\":{  \r\n      \"name\":\"Google Home profile\"\r\n   }\r\n}",
       "descriptionFormat": "html",
       "description": "Add a new Device - name must be unique. Embedded objects (device, service, profile, addressable) are all referenced in the new Device object by id or name to associated objects. All other data in the embedded objects will be ignored. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns DataValidationException (HTTP 409) if an associated object (Addressable, Profile, Service) cannot be found with the id or name provided.",
       "headers": "Content-Type: application/json\n",
@@ -3083,7 +3083,7 @@
       "name": "233 http://localhost:48081/api/v1/deviceservice",
       "dataMode": "raw",
       "data": [],
-      "rawModeData": "{\r\n  \"origin\":1471806386920,\r\n  \"name\":\"home thermostat deviceservice\",\r\n  \"description\":\"manage homethermostats\",\r\n  \"labels\":[\r\n    \"hvac\",\"thermostat\"\r\n    ],\r\n  \"adminState\":\"unlocked\",\r\n  \"operatingState\":\"enabled\",\r\n  \"addressable\":{\r\n    \"name\":\"hvac thermo address5\"\r\n    }\r\n}",
+      "rawModeData": "{\r\n  \"origin\":1471806386920,\r\n  \"name\":\"home thermostat deviceservice\",\r\n  \"description\":\"manage homethermostats\",\r\n  \"labels\":[\r\n    \"hvac\",\"thermostat\"\r\n    ],\r\n  \"adminState\":\"UNLOCKED\",\r\n  \"operatingState\":\"ENABLED\",\r\n  \"addressable\":{\r\n    \"name\":\"hvac thermo address5\"\r\n    }\r\n}",
       "descriptionFormat": "html",
       "description": "Add a new DeviceService - name must be unique.  The Addressable must already exist and can be referenced by an included Addressable object containing the Addressable's id or name. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns DataValidationException (HTTP 409) if an associated addressable (by id or name) is not found.",
       "headers": "Content-Type: application/json\n",
@@ -3121,7 +3121,7 @@
       "name": "354 http://localhost:48081/api/v1/deviceservice ",
       "dataMode": "raw",
       "data": [],
-      "rawModeData": "{\r\n  \"origin\":1471806386920,\r\n  \"name\":\"home thermostat deviceserviceTest\",\r\n  \"description\":\"manage homethermostats\",\r\n  \"labels\":[\r\n    \"hvac\",\"thermostat\"\r\n    ],\r\n  \"adminState\":\"unlocked\",\r\n  \"operatingState\":\"enabled\",\r\n  \"addressable\":{\r\n    \"name\":\"hvac thermo address1\"\r\n    }\r\n}",
+      "rawModeData": "{\r\n  \"origin\":1471806386920,\r\n  \"name\":\"home thermostat deviceserviceTest\",\r\n  \"description\":\"manage homethermostats\",\r\n  \"labels\":[\r\n    \"hvac\",\"thermostat\"\r\n    ],\r\n  \"adminState\":\"UNLOCKED\",\r\n  \"operatingState\":\"ENABLED\",\r\n  \"addressable\":{\r\n    \"name\":\"hvac thermo address1\"\r\n    }\r\n}",
       "descriptionFormat": null,
       "description": "Update the DeviceServcie identified by the id or name stored in the object provided. Id is used first, name is used second for identification purposes. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device service cannot be found by the identifier provided.",
       "headers": "Content-Type: application/json\n",
@@ -3183,7 +3183,7 @@
       "data": [],
       "rawModeData": null,
       "descriptionFormat": "html",
-      "description": "Return Command objects with given name. Name is not unique for all of Fuse but is unique per any associated Device Profile. Returns ServiceException (HTTP 503) for unknown or unanticipated issues.",
+      "description": "Return Command objects with given name. Name is not unique for all of EdgeX but is unique per any associated Device Profile. Returns ServiceException (HTTP 503) for unknown or unanticipated issues.",
       "headers": "",
       "method": "GET",
       "pathVariables": {
@@ -3703,7 +3703,7 @@
       "name": "236 http://localhost:48081/api/v1/deviceservice",
       "dataMode": "raw",
       "data": [],
-      "rawModeData": "{\r\n  \"id\": \"57f20c3ee4b060e251f6774b\",\r\n  \"origin\":1471806386920,\r\n  \"name\":\"home thermostat deviceservice1\",\r\n  \"description\":\"manage homethermostats\",\r\n  \"labels\":[\r\n    \"hvac\",\"thermostat\"\r\n    ],\r\n  \"adminState\":\"unlocked\",\r\n  \"operatingState\":\"enabled\",\r\n  \"addressable\":{\r\n    \"name\":\"hvac thermo address1\"\r\n    }\r\n}",
+      "rawModeData": "{\r\n  \"id\": \"57f20c3ee4b060e251f6774b\",\r\n  \"origin\":1471806386920,\r\n  \"name\":\"home thermostat deviceservice1\",\r\n  \"description\":\"manage homethermostats\",\r\n  \"labels\":[\r\n    \"hvac\",\"thermostat\"\r\n    ],\r\n  \"adminState\":\"UNLOCKED\",\r\n  \"operatingState\":\"ENABLED\",\r\n  \"addressable\":{\r\n    \"name\":\"hvac thermo address1\"\r\n    }\r\n}",
       "descriptionFormat": "html",
       "description": "Update the DeviceServcie identified by the id or name stored in the object provided. Id is used first, name is used second for identification purposes. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device service cannot be found by the identifier provided.",
       "headers": "Content-Type: application/json\n",
@@ -3723,7 +3723,7 @@
       "name": "234 http://localhost:48081/api/v1/deviceservice",
       "dataMode": "raw",
       "data": [],
-      "rawModeData": "{\r\n  \"id\": \"57f79ca1e4b060e2730a58fc\",\r\n  \"origin\":1471806386920,\r\n  \"name\":\"To update thermostat deviceservice\",\r\n  \"description\":\"manage homethermostats\",\r\n  \"labels\":[\r\n    \"hvac\",\"thermostat\"\r\n    ],\r\n  \"adminState\":\"locked\",\r\n  \"operatingState\":\"enabled\",\r\n  \"addressable\":{\r\n    \"name\":\"hvac thermo address\"\r\n    }\r\n}",
+      "rawModeData": "{\r\n  \"id\": \"57f79ca1e4b060e2730a58fc\",\r\n  \"origin\":1471806386920,\r\n  \"name\":\"To update thermostat deviceservice\",\r\n  \"description\":\"manage homethermostats\",\r\n  \"labels\":[\r\n    \"hvac\",\"thermostat\"\r\n    ],\r\n  \"adminState\":\"LOCKED\",\r\n  \"operatingState\":\"ENABLED\",\r\n  \"addressable\":{\r\n    \"name\":\"hvac thermo address\"\r\n    }\r\n}",
       "descriptionFormat": "html",
       "description": "Update the DeviceServcie identified by the id or name stored in the object provided. Id is used first, name is used second for identification purposes. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device service cannot be found by the identifier provided.",
       "headers": "Content-Type: application/json\n",
@@ -3774,7 +3774,7 @@
       "description": "Add a new Schedule - name must be unique. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. DataValidationException (HTTP 409) if the cron expression string is not properly formatted.",
       "collectionId": "63e6e78a-54c7-1735-8e19-eb20eed7ab11",
       "responses": [],
-      "rawModeData": "{\"origin\":1471806386919,\"name\":\"at midnight4\",\"frequency\":2, \"cron\":\"0 15 10 * * ?\", \"runOnce\":1471824000} \r\n"
+      "rawModeData": "{\"origin\":1471806386919,\"name\":\"at midnight4\",\"frequency\":\"2\", \"cron\":\"0 15 10 * * ?\", \"runOnce\":true} \r\n"
     },
     {
       "id": "db8c2279-f2d3-8003-6ed5-f9ffd87a9256",
@@ -3875,7 +3875,7 @@
       "name": "204 http://localhost:48081/api/v1/deviceservice/name/:name/lastconnected/{time}",
       "dataMode": "raw",
       "data": [],
-      "rawModeData": "{\r\n  \"origin\":1471806386920,\r\n  \"name\":\"home thermostat deviceservice\",\r\n  \"lastConnected\": 0,\r\n    \"lastReported\": 0,\r\n  \"labels\":[\r\n    \"hvac\",\"thermostat\"\r\n    ],\r\n  \"adminState\":\"locked\",\r\n  \"operatingState\":\"enabled\",\r\n  \"addressable\":{\r\n    \"name\":\"hvac thermo address\"\r\n    }\r\n}",
+      "rawModeData": "{\r\n  \"origin\":1471806386920,\r\n  \"name\":\"home thermostat deviceservice\",\r\n  \"lastConnected\": 0,\r\n    \"lastReported\": 0,\r\n  \"labels\":[\r\n    \"hvac\",\"thermostat\"\r\n    ],\r\n  \"adminState\":\"LOCKED\",\r\n  \"operatingState\":\"ENABLED\",\r\n  \"addressable\":{\r\n    \"name\":\"hvac thermo address\"\r\n    }\r\n}",
       "descriptionFormat": "html",
       "description": "Update the last connected time of the device service by unique name of the device service. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device service cannot be found by the name provided.",
       "headers": "Content-Type: application/json\n",
@@ -3993,7 +3993,7 @@
       "name": "231 http://localhost:48081/api/v1/deviceservice",
       "dataMode": "raw",
       "data": [],
-      "rawModeData": "{\r\n  \"origin\":1471806386921,\r\n  \"name\":\"home thermostat device service1\",\r\n  \"description\":\"manage homethermostats\",\r\n  \"labels\":[\r\n    \"hvac\",\"thermostat\"\r\n    ],\r\n  \"adminState\":\"unlocked\",\r\n  \"operatingState\":\"enabled\",\r\n  \"addressable\":{\r\n    \"name\":\"variableSpeedMeterTest\"\r\n    }\r\n}",
+      "rawModeData": "{\r\n  \"origin\":1471806386921,\r\n  \"name\":\"home thermostat device service1\",\r\n  \"description\":\"manage homethermostats\",\r\n  \"labels\":[\r\n    \"hvac\",\"thermostat\"\r\n    ],\r\n  \"adminState\":\"UNLOCKED\",\r\n  \"operatingState\":\"ENABLED\",\r\n  \"addressable\":{\r\n    \"name\":\"variableSpeedMeterTest\"\r\n    }\r\n}",
       "descriptionFormat": "html",
       "description": "Add a new DeviceService - name must be unique.  The Addressable must already exist and can be referenced by an included Addressable object containing the Addressable's id or name. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns DataValidationException (HTTP 409) if an associated addressable (by id or name) is not found.",
       "headers": "Content-Type: application/json\n",

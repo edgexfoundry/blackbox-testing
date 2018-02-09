@@ -1,6 +1,6 @@
 [
   {
-    "responseTime": 400,
+    "responseTime": 800,
     "ApplicationJsonContentType": "application/json",
     "TextPlainContentType": "text/plain",
     "limit": 100,
@@ -21,7 +21,7 @@
     "schema": {
       "type": "array",
       "$schema": "http://json-schema.org/draft-03/schema#",
-      "description": "FuseCore device/sensorevent",
+      "description": "EdgeXCore device/sensorevent",
       "title": "event",
       "properties": {
         "id": {
@@ -69,7 +69,7 @@
     "objectSchema": {
       "type": "object",
       "$schema": "http://json-schema.org/draft-03/schema#",
-      "description": "FuseCore device/sensorevent",
+      "description": "EdgeXCore device/sensorevent",
       "title": "event",
       "properties": {
         "id": {
@@ -117,7 +117,7 @@
     "readingSchema": {
       "type": "object",
       "$schema": "http://json-schema.org/draft-03/schema#",
-      "description": "Fuse Core device/sensorreading",
+      "description": "EdgeX Core device/sensorreading",
       "title": "reading",
       "properties": {
         "id": {

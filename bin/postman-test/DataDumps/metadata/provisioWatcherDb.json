@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "57f4b954e4b060e2bff6c527"
   },
-  "_class": "com.dell.fuse.domain.meta.ProvisionWatcher",
+  "_class": "org.edgexfoundry.domain.meta.ProvisionWatcher",
   "name": "lonworks watcher",
   "identifiers": {
     "MAC": "00-05-1C-C1-99-99",
@@ -28,7 +28,7 @@
   "_id": {
     "$oid": "57f4b954e4b060e2bff6c526"
   },
-  "_class": "com.dell.fuse.domain.meta.ProvisionWatcher",
+  "_class": "org.edgexfoundry.domain.meta.ProvisionWatcher",
   "name": "modbus watcher",
   "identifiers": {
     "MAC": "00-05-1B-C1-99-99",
@@ -54,7 +54,7 @@
   "_id": {
     "$oid": "57f4b954e4b060e2bff6c528"
   },
-  "_class": "com.dell.fuse.domain.meta.ProvisionWatcher",
+  "_class": "org.edgexfoundry.domain.meta.ProvisionWatcher",
   "name": "lonmark watcher",
   "identifiers": {
     "MAC": "00-05-1C-C1-99-99",
