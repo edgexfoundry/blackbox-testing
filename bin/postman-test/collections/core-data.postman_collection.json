@@ -540,7 +540,7 @@
       "description": "Update the event data (not including updating the readings). NotFoundException (HTTP 404) if the event cannot be found by id. ServcieException (HTTP 503) for unknown or unanticipated issues.",
       "collectionId": "73b9500b-8690-47e5-a76b-45c1ecfd15e6",
       "responses": [],
-      "rawModeData": "{\"id\":\"Dummy_Id\",\"pushed\":1471806399999}"
+      "rawModeData": "{\"id\":\"57e866d4e4b0ca8e6d73a411\",\"pushed\":1471806399999}"
     },
     {
       "id": "21d1c70c-d875-3708-10fd-89dadc58e3bc",
@@ -656,7 +656,7 @@
       "description": "Update the reading.  Reading object needs to contain the database generated id of the existing reading. NotFoundException (HTTP 404) if the reading cannot be found by id. ServiceException (HTTP 503) for unknown or unanticipated issues. DataValidationException if the associated value descriptor is non-existent.",
       "collectionId": "73b9500b-8690-47e5-a76b-45c1ecfd15e6",
       "responses": [],
-      "rawModeData": "{\n    \"id\": \"INVALID_ID\",\n    \"created\": 1475227070170,\n    \"modified\": 1475227070170,\n    \"origin\": 1471806366619,\n    \"pushed\": 0,\n    \"name\": \"co2\",\n    \"value\": \"12\"\n}"
+      "rawModeData": "{\n    \"id\": \"57e866d4e4b0ca8e6d73a412\",\n    \"created\": 1475227070170,\n    \"modified\": 1475227070170,\n    \"origin\": 1471806366619,\n    \"pushed\": 0,\n    \"name\": \"co2\",\n    \"value\": \"12\"\n}"
     },
     {
       "id": "2e675ea4-8f3c-0dd1-3d36-15015d45f76d",
