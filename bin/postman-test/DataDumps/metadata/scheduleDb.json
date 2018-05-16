@@ -140,7 +140,7 @@
     "$oid": "57f6224de4b060e231e2e9ae"
   },
   "_class": "org.edgexfoundry.domain.meta.Schedule",
-  "name": "hourly",
+  "name": "hourly#2",
   "start": "1471824000",
   "end": "1503360000",
   "frequency": "60000",
