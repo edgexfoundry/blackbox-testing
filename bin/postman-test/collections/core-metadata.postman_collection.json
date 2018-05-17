@@ -2824,7 +2824,7 @@
     {
       "id": "9ab51cfe-94ab-d4b0-03d0-c13c01a70b1a",
       "folder": "36613303-ed09-91ea-4a92-b8f9f1ca1a4f",
-      "name": "10_404 http://localhost:48081/api/v1/device/name/:name/adminstate/{adminState}",
+      "name": "10_404 http://localhost:48081/api/v1/device/name/:name/adminstate/{updateAdminState}",
       "dataMode": "params",
       "data": [],
       "rawModeData": null,
@@ -2835,7 +2835,7 @@
       "pathVariables": {
         "name": "{{name}}"
       },
-      "url": "{{baseUrl}}/api/v1/device/name/:name/adminstate/{updateAdminState}",
+      "url": "{{baseUrl}}/api/v1/device/name/:name/adminstate/{{updateAdminState}}",
       "preRequestScript": "",
       "tests": "/**\n * Test Case:  /api/v1/device/name/:name/adminstate/{updateAdminState} - PUT\n * Version: Alpha\n * Service: Metadata\n * @Author: Tata Elxsi\n *\n **/\n \n    tests[\"Status code is 404\"] = responseCode.code === 404;\n    if(responseCode.code === 404){\n        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n        tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n        if (contentTypeHeaderExists) {\n            tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);\n        }\n        }",
       "currentHelper": "normal",
@@ -4109,7 +4109,7 @@
     {
       "id": "f701ded0-76a3-5a8d-fa24-15b24a0debc5",
       "folder": "36613303-ed09-91ea-4a92-b8f9f1ca1a4f",
-      "name": "07_404 http://localhost:48081/api/v1/device/name/:name/opstate/{opState}",
+      "name": "07_404 http://localhost:48081/api/v1/device/name/:name/opstate/{updateOpState}",
       "dataMode": "params",
       "data": [],
       "rawModeData": null,
@@ -4120,7 +4120,7 @@
       "pathVariables": {
         "name": "{{name}}"
       },
-      "url": "{{baseUrl}}/api/v1/device/name/:name/opstate/{updateOpState}",
+      "url": "{{baseUrl}}/api/v1/device/name/:name/opstate/{{updateOpState}}",
       "preRequestScript": "",
       "tests": "/**\n * Test Case:  /api/v1/device/name/:name/opstate/{updateOpState} - PUT\n * Version: Alpha\n * Service: Metadata\n * @Author: Tata Elxsi\n *\n **/\n \n    tests[\"Status code is 404\"] = responseCode.code === 404;\n    if(responseCode.code === 404){\n        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n        tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n        if (contentTypeHeaderExists) {\n            tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);\n        }\n        }",
       "currentHelper": "normal",
