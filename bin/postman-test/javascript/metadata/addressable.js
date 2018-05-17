@@ -21,7 +21,8 @@ var addressablesToBeRemoved = [
     ObjectId("57f635dfe4b060e2e0dd6ed1"),
     ObjectId("57fdb862e4b060e2bbc1510e"),
     ObjectId("57fdbb53e4b060e2bbc15112"),
-    ObjectId("57fe00b3e4b060e2c8236436")
+    ObjectId("57fe00b3e4b060e2c8236436"),
+    ObjectId("57fdda80e4b060e2df0aa102")
 ];
 
 db.addressable.remove({

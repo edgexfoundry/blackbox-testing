@@ -422,7 +422,7 @@
   "profile": {
     "$ref": "deviceProfile",
     "$id": {
-      "$oid": "57f63219e4b060e2e0dd6ecd"
+      "$oid": "57fe0142e4b060e2c823643c"
     }
   }
 }
@@ -616,13 +616,13 @@
   "service": {
     "$ref": "deviceService",
     "$id": {
-      "$oid": "57fe024ce4b060e2df0aa109"
+      "$oid": "57fe0296e4b060e2c823643d"
     }
   },
   "profile": {
     "$ref": "deviceProfile",
     "$id": {
-      "$oid": "57fe02b3e4b060e2df0aa10c"
+      "$oid": "57fe0142e4b060e2c823643c"
     }
   }
 }
