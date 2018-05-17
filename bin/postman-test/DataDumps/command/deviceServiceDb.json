@@ -105,7 +105,7 @@
   "_class": "org.edgexfoundry.domain.meta.DeviceService",
   "adminState": "UNLOCKED",
   "operatingState": "ENABLED",
-  "name": "home telxsi thermostat device service # 2",
+  "name": "home telxsi thermostat device service #2",
   "description": "manage home thermostats",
   "lastConnected": 0,
   "lastReported": 0,
