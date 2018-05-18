@@ -30,5 +30,6 @@ db.deviceProfile.remove({
     }
 });
 db.deviceProfile.remove({'name': "TestProfileToPost"});
+db.deviceProfile.remove({'name': "TestProfileToPostUniqe"});
 db.deviceProfile.remove({'name': "yaml thermostat profile"});
 //db.deviceProfile.remove({'device':"57e8b705e4b060e251231c4f"});
