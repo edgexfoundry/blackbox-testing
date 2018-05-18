@@ -20,7 +20,7 @@
   "_id": {
     "$oid": "57e866d5e4b0ca8e6d73a3c5"
   },
-  "created": 1474848469840,
+  "created": 474848468956,
   "modified": 1474848469840,
   "origin": 1471806386919,
   "pushed": 1471806399999,
@@ -53,7 +53,7 @@
   "created": 1474851967160,
   "modified": 1474851967160,
   "origin": 1471806386919,
-  "pushed": 1471806399999,
+  "pushed": 0,
   "device": "variableSpeedMotor",
   "readings": [
     {
