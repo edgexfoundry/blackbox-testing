@@ -26,7 +26,9 @@
         "d7b9f54b-2aab-c380-1060-cc63cfe71614",
         "ffce5a08-25d0-3825-484d-2e88425484e5",
         "caa55575-ee06-0216-2af0-13b374ba0957",
-        "00da1829-97da-e251-8e94-f9db65538067"
+        "00da1829-97da-e251-8e94-f9db65538067",
+        "0aa9d644-ac26-9746-5370-a3be6698d25c",
+        "6463d2de-d27b-bc78-8c8f-0f5ba831666e"
       ],
       "collectionId": "73b9500b-8690-47e5-a76b-45c1ecfd15e6"
     },
@@ -36,8 +38,6 @@
       "description": "Folder for event",
       "order": [
         "1f799e18-86f8-fa0e-6b25-6cb137882a57",
-        "0aa9d644-ac26-9746-5370-a3be6698d25c",
-        "6463d2de-d27b-bc78-8c8f-0f5ba831666e",
         "8f01d601-61c5-1b86-927a-53feb370d13b",
         "3ab77e32-f5a3-40c1-dc82-5dac8492fc81",
         "e9e6aa4b-ee93-e403-0cec-5423bc98b075",
@@ -104,7 +104,9 @@
         "54516a8d-6dc8-f940-b7b3-257c35d2968c",
         "06f66b1f-833c-e940-dd9a-9457c459dd0d",
         "bf9aacfc-70fe-30bb-3170-eb887209b6aa",
-        "186bf23b-3e11-93f2-cf0f-3b25c0dd5d3b"
+        "186bf23b-3e11-93f2-cf0f-3b25c0dd5d3b",
+        "045c15ca-99ff-eb90-c23d-6504b528e2fa",
+        "76f750a8-3d4c-9aef-188d-65fd0a36ba85"
       ]
     },
     {
@@ -114,7 +116,6 @@
       "order": [
         "064b635d-21b1-fb64-663c-9af195ae0f64",
         "2e2bb1f1-6841-c2e2-a5ca-ae69d4ba73e7",
-        "045c15ca-99ff-eb90-c23d-6504b528e2fa",
         "9407c63d-04ef-af3c-b523-973f68e766de",
         "1941beb0-1692-d332-71b1-7a288c7706bd",
         "65f91bcd-1c24-f71e-6aa1-1b2a4562a395",
@@ -122,7 +123,6 @@
         "64f867dd-2abd-27c9-1a20-04b2b7acf532",
         "7808c431-d413-8823-4b62-5590389d5900",
         "12abf366-7ef6-14aa-7ffa-5f1b62cf291c",
-        "76f750a8-3d4c-9aef-188d-65fd0a36ba85",
         "fbe1f863-2181-546e-daea-48c1de1e7e3b"
       ],
       "owner": "1042075",
@@ -290,18 +290,18 @@
     {
       "id": "045c15ca-99ff-eb90-c23d-6504b528e2fa",
       "folder": "8094fd3c-5b27-1a6d-41ea-55d117f000bc",
-      "name": "35 http://localhost:48080/api/v1/reading",
+      "name": "35 reading can be added without checking the matching value descriptor",
       "dataMode": "raw",
       "data": [],
-      "rawModeData": "{\"origin\":1471806366619,\"name\":\"co21\",\"value\":\"12\"}",
+      "rawModeData": "{\"origin\":1471806366619,\"name\":\"xxx\",\"value\":\"12\"}",
       "descriptionFormat": "html",
-      "description": "Add a new reading. ServiceException (HTTP 503) for unknown or unanticipated issues. DataValidationException (HTTP 409) if the associated value descriptor is non-existent.",
+      "description": "Given a reading is associated to a non-existent value descriptor 'co21', and configuration file sets ValidateCheck = false ;when use api post this reading ; then the reading object can be updated with the returned status code 200.",
       "headers": "Content-Type: application/json\n",
       "method": "POST",
       "pathVariables": {},
       "url": "{{baseUrl}}/api/v1/reading",
       "preRequestScript": "",
-      "tests": "//Expect 409 Status, if the associated value descriptor is non-existent\ntests[\"Status code is 409\"] = responseCode.code === 409;\ntests[\"Response time is less than 200ms\"] = responseTime < 200;\n",
+      "tests": "/*\n * Test Case:  /api/v1/reading - POST\n * Version: Alpha\n * @Author: Tata Elxsi\n *\n */\n    if(responseCode.code === 200){\n        tests[\"Status code is 200\"] = responseCode.code === 200;\n        tests[\"Response time is less than 200ms\"] = responseTime < 200;\n        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n        tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n        if (contentTypeHeaderExists) {\n            tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");\n        }\n        if(null !== responseBody){\n            tests[\"Response Object id\"] = responseBody.length === 24;\n        }\n    }",
       "currentHelper": "normal",
       "helperAttributes": "{}",
       "responses": [],
@@ -354,15 +354,15 @@
       "method": "POST",
       "data": [],
       "dataMode": "raw",
-      "tests": "/*\n * Test Case:  /event - 404 Error - POST \n * Version: Alpha\n * @Author: Tata Elxsi\n *\n */\n//Test Case for status : 404\ntests[\"Status code is 404\"] = responseCode.code === 404;\n//Test response time\ntests[\"Response time is less than \"+data.responseTime] = responseTime < data.responseTime;",
+      "tests": "/*\n * Test Case:  /event - POST\n * Version: Alpha\n * @Author: Tata Elxsi\n *\n */\n \n//Test Case for status : 200\ntests[\"Status code is 200\"] = responseCode.code === 200;\n//Test response time \ntests[\"Response time is less than \"+data.responseTime] = responseTime < data.responseTime;\nif(responseCode.code === 200) {\n    //Test content type should present in header\n    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n    tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n    \n    if (contentTypeHeaderExists) {\n        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);\n    }\n    //Test body value\n    tests[\"Is Body Conatins Id\"] = responseBody.length === 24;\n}",
       "currentHelper": "normal",
       "helperAttributes": {},
       "time": 1474895413837,
-      "name": "02 http://localhost:48080/api/v1/event",
-      "description": "Add a new event (with its associated readings). Prefers the event device is a device name but can also be a device id (database generated). DataValidationException (HTTP 404) if the a reading is associated to a non-existent value descriptor, or if device verification is enabled and the device is not found. ServiceException (HTTP 503) for unknown or unanticipated issues.",
+      "name": "02 The event that device field is device id , which can be added without checking the matching value descriptor in reading",
+      "description": "Given a new event (with its associated readings),and device field is device id,and a reading is associated to a non-existent value descriptor 'xxx', and configuration file sets ValidateCheck = false ;when use api post this event ; then the event object can be created with the returned status code 200. ",
       "collectionId": "73b9500b-8690-47e5-a76b-45c1ecfd15e6",
       "responses": [],
-      "rawModeData": "{  \r\n   \"origin\":1471806386919,\r\n   \"device\":\"livingroomthermostat\",\r\n   \"readings\":[  \r\n      {  \r\n         \"origin\":1471806386919,\r\n         \"name\":\"hummidity\",\r\n         \"value\":\"38\"\r\n      }\r\n   ]\r\n}"
+      "rawModeData": "{  \r\n   \"origin\":1471806386919,\r\n   \"device\":\"livingroomthermostat\",\r\n   \"readings\":[  \r\n      {  \r\n         \"origin\":1471806386919,\r\n         \"name\":\"xxx\",\r\n         \"value\":\"38\"\r\n      }\r\n   ]\r\n}"
     },
     {
       "id": "0c412c49-00bd-0b65-839a-ab4e13b8f831",
@@ -922,15 +922,15 @@
       "method": "POST",
       "data": [],
       "dataMode": "raw",
-      "tests": "/*\n * Test Case:  /event - 404 Error - POST \n * Version: Alpha\n * @Author: Tata Elxsi\n *\n */\n//Test Case for status : 404\ntests[\"Status code is 404\"] = responseCode.code === 404;\n//Test response time\ntests[\"Response time is less than \"+data.responseTime] = responseTime < data.responseTime;",
+      "tests": "/*\n * Test Case:  /event - POST\n * Version: Alpha\n * @Author: Tata Elxsi\n *\n */\n \n//Test Case for status : 200\ntests[\"Status code is 200\"] = responseCode.code === 200;\n//Test response time \ntests[\"Response time is less than \"+data.responseTime] = responseTime < data.responseTime;\nif(responseCode.code === 200) {\n    //Test content type should present in header\n    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n    tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n    \n    if (contentTypeHeaderExists) {\n        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);\n    }\n    //Test body value\n    tests[\"Is Body Conatins Id\"] = responseBody.length === 24;\n}",
       "currentHelper": "normal",
       "helperAttributes": {},
       "time": 1474950039023,
-      "name": "96 http://localhost:48080/api/v1/event",
-      "description": "Add a new event (with its associated readings). Prefers the event device is a device name but can also be a device id (database generated). DataValidationException (HTTP 404) if the a reading is associated to a non-existent value descriptor, or if device verification is enabled and the device is not found . ServiceException (HTTP 503) for unknown or unanticipated issues.",
+      "name": "96 The event that device field is device name , which can be added without checking the matching value descriptor in reading",
+      "description": "Given a new event (with its associated readings),and device field is device name,and a reading is associated to a non-existent value descriptor 'xxx', and configuration file sets ValidateCheck = false ;when use api post this event ; then the event object can be created with the returned status code 200.",
       "collectionId": "73b9500b-8690-47e5-a76b-45c1ecfd15e6",
       "responses": [],
-      "rawModeData": "{  \r\n   \"origin\":1471806386919,\r\n   \"device\":\"57e8b705e4b060e251231c4f\",\r\n   \"readings\":[  \r\n      {  \r\n         \"origin\":1471806386919,\r\n         \"name\":\"hummidity\",\r\n         \"value\":\"38\"\r\n      }\r\n   ]\r\n}"
+      "rawModeData": "{  \r\n   \"origin\":1471806386919,\r\n   \"device\":\"57e8b705e4b060e251231c4f\",\r\n   \"readings\":[  \r\n      {  \r\n         \"origin\":1471806386919,\r\n         \"name\":\"xxx\",\r\n         \"value\":\"38\"\r\n      }\r\n   ]\r\n}"
     },
     {
       "id": "665f37c0-90aa-b462-75e8-4b505cd0d618",
@@ -1061,14 +1061,14 @@
       "method": "PUT",
       "data": [],
       "dataMode": "raw",
-      "tests": "//Expect 409 Status, if the associated value descriptor is non-existent\ntests[\"Status code is 409\"] = responseCode.code === 409;\ntests[\"Response time is less than 200ms\"] = responseTime < 200;",
+      "tests": "/*\n * Test Case:  /api/v1/reading - PUT\n * Version: Alpha\n * @Author: Tata Elxsi\n *\n */  \n  \n    //Test Case for status : 200\ntests[\"Status code is 200\"] = responseCode.code === 200;\n//Test response time\ntests[\"Response time is less than \"+ data.responseTime] = responseTime < data.responseTime;\n\nif(responseCode.code === 200) {\n    //Test Content type in header\n    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n    tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n    \n    if (contentTypeHeaderExists) {\n        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);\n    }\n    var jsonData = JSON.parse(responseBody);\n    if(jsonData.length !== 0){\n            tests[\"Body has True\"] = responseBody === \"true\";\n    }\n}",
       "currentHelper": "normal",
       "helperAttributes": {},
       "time": 1475232369022,
-      "name": "39 http://localhost:48080/api/v1/reading 409 Error Status",
-      "description": "Update the reading.  Reading object needs to contain the database generated id of the existing reading. NotFoundException (HTTP 404) if the reading cannot be found by id. ServiceException (HTTP 503) for unknown or unanticipated issues. DataValidationException if the associated value descriptor is non-existent.",
+      "name": "39 reading can be updated without checking the matching value descriptor ",
+      "description": "Given a reading is associated to a existent value descriptor 'co2', and configuration file sets ValidateCheck = false ;when use api put this reading ; then the reading object can be updated with the returned status code 200.",
       "collectionId": "73b9500b-8690-47e5-a76b-45c1ecfd15e6",
-      "rawModeData": "{\n    \"id\": \"57e866d4e4b0ca8e6d73a4b1\",\n    \"created\": 1475227393375,\n    \"modified\": 1475227393375,\n    \"origin\": 1471806366619,\n    \"pushed\": 0,\n    \"name\": \"co2213\",\n    \"value\": \"12\"\n}"
+      "rawModeData": "{\n    \"id\": \"57e866d4e4b0ca8e6d73a4b1\",\n    \"created\": 1475227393375,\n    \"modified\": 1475227393375,\n    \"origin\": 1471806366619,\n    \"pushed\": 0,\n    \"name\": \"xxx\",\n    \"value\": \"12\"\n}"
     },
     {
       "id": "7f66e07b-39e6-0296-3062-96d2478be938",
