@@ -1004,7 +1004,7 @@
 					"response": []
 				},
 				{
-					"name": "Fail to delete a specific notification by slug , cause slug not exist .an inexistent slug",
+					"name": "Fail to delete a specific notification by an inexistent slug",
 					"event": [
 						{
 							"listen": "test",
