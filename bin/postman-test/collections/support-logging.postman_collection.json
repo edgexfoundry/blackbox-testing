@@ -1,0 +1,1953 @@
+{
+	"info": {
+		"_postman_id": "be31e168-4888-4889-aa8d-72ab23c44bae",
+		"name": "support-logging",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "logs",
+			"description": "",
+			"item": [
+				{
+					"name": "Create a logEntry",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ef0f0f4a-4d60-417b-a80b-5f572b5d1435",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/logs",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"logLevel\": \"WARN\",\n  \"originService\": \"service1\",\n  \"message\": \"Hello, Logging Service!\",\n  \"labels\": [\n    \"label1\",\n    \"label2\"\n  ]\n}\n"
+						},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs"
+							]
+						},
+						"description": "Create a new LogEntry. Return 202 Accepted to clients with timestamp being accepted."
+					},
+					"response": []
+				},
+				{
+					"name": "Query logs with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "65c96875-c86f-4800-bcd0-4446efb11da1",
+								"type": "text/javascript",
+								"exec": [
+									" /*",
+									" * Test Case:  api/v1/logs/{limit}",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" */",
+									" ",
+									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
+									"var jsonData = pm.response.json();",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c270ce1e-dece-4346-a77f-5bd1049347a0",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.limit){",
+									"    pm.environment.set(\"limit\", \"10\");",
+									"}else{",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/{{limit}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"{{limit}}"
+							]
+						},
+						"description": "List a collection of LogEntry - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Query logs by creation timestamp between start date and end date with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fe95aad7-5323-4476-8e14-0a100845c06d",
+								"type": "text/javascript",
+								"exec": [
+									" /*",
+									" * Test Case:  api/v1/logs/{start}/{end}/{limit}- GET",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" */",
+									"",
+									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d0630f3b-ac2b-43c3-830a-b5475ca16cf3",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"10000000000000\");",
+									"    pm.environment.set(\"limit\", \"10\");",
+									"}else{",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/{{start}}/{{end}}/{{limit}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"{{start}}",
+								"{{end}}",
+								"{{limit}}"
+							]
+						},
+						"description": "list a collection of LogEntry created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Query logs by matched labels  ,which creation timestamp between start date and end date with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5495dd21-c823-44c0-a17d-5853cbab57de",
+								"type": "text/javascript",
+								"exec": [
+									" /*",
+									" * Test Case:  api/v1/logs/labels/{labels}/{start}/{end}/{limit}- GET",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" */",
+									"",
+									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
+									"var jsonData = pm.response.json();",
+									"",
+									"var expectLabel = pm.environment.get(\"loggingLabel\");",
+									"    ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(jsonData.length>0).to.be.true;",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.labels.includes(expectLabel)).to.be.true; ",
+									"    });",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5cf6fb3c-a81c-4de4-bb74-26e205207180",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLabel\", \"testLabel\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"    pm.environment.set(\"limit\", \"10\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLabel\", data.loggingLabel);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/labels/{{loggingLabel}}/{{start}}/{{end}}/{{limit}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"labels",
+								"{{loggingLabel}}",
+								"{{start}}",
+								"{{end}}",
+								"{{limit}}"
+							]
+						},
+						"description": "list a collection of LogEntry matching any of the specified labels and being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Query logs by matched originServices  ,which creation timestamp between start date and end date with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ac0d3362-a12b-4c5c-955e-6f4eadc744cb",
+								"type": "text/javascript",
+								"exec": [
+									" /*",
+									" * Test Case:  api/v1/logs/originServices/{originServices}/{start}/{end}/{limit}- GET",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" */",
+									" ",
+									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
+									"var jsonData = pm.response.json();",
+									"",
+									"var expectLoggingService = pm.environment.get(\"loggingService\");",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(jsonData.length>0).to.be.true;",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.originService.includes(expectLoggingService)).to.be.true; ",
+									"    });",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "10db3e02-41e0-4f0d-8836-9b0aebc13c29",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingService\", \"testService\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"10000000000000\");",
+									"    pm.environment.set(\"limit\", \"10\");",
+									"}else{",
+									"    pm.environment.set(\"loggingService\", data.loggingService);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/originServices/{{loggingService}}/{{start}}/{{end}}/{{limit}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"originServices",
+								"{{loggingService}}",
+								"{{start}}",
+								"{{end}}",
+								"{{limit}}"
+							]
+						},
+						"description": "list a collection of LogEntry matching any of the specified originServices and being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Query logs by matched log message keywords  ,which creation timestamp between start date and end date with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d3eda1d2-d742-43b4-8bb3-7768465bfe2e",
+								"type": "text/javascript",
+								"exec": [
+									" /*",
+									" * Test Case:  api/v1/logs/keywords/{keywords}/{start}/{end}/{limit}- GET",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" */",
+									" ",
+									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
+									"var jsonData = pm.response.json();",
+									"",
+									"var expectLoggingKeyword = pm.environment.get(\"loggingKeyword\");",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(jsonData.length>0).to.be.true;",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.message.includes(expectLoggingKeyword)).to.be.true; ",
+									"    });",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "396d66ee-59cb-4791-aadf-0eeecbfc2a73",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingKeyword\", \"Hello\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"    pm.environment.set(\"limit\", \"10\");",
+									"}else{",
+									"    pm.environment.set(\"loggingKeyword\", data.loggingKeyword);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/keywords/{{loggingKeyword}}/{{start}}/{{end}}/{{limit}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"keywords",
+								"{{loggingKeyword}}",
+								"{{start}}",
+								"{{end}}",
+								"{{limit}}"
+							]
+						},
+						"description": "list a collection of LogEntry whose message containing any of the specified keywords and being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues.."
+					},
+					"response": []
+				},
+				{
+					"name": "Query logs by matched logLevels  ,which creation timestamp between start date and end date with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "41f40781-c9a8-45a5-873c-50ccf8db5fcb",
+								"type": "text/javascript",
+								"exec": [
+									" /*",
+									" * Test Case:  api/v1/logs/logLevels/{logLevels}/{start}/{end}/{limit}- GET",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" */",
+									" ",
+									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
+									"var jsonData = pm.response.json();",
+									"",
+									"var expectLoggingLevel = pm.environment.get(\"loggingLevel\");",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(jsonData.length>0).to.be.true;",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.logLevel.includes(expectLoggingLevel)).to.be.true; ",
+									"    });",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "75dcd025-957c-4491-894b-bbf1d9d0ca13",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLevel\", \"WARN\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"    pm.environment.set(\"limit\", \"10\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLevel\", data.loggingLevel);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevel}}/{{start}}/{{end}}/{{limit}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"logLevels",
+								"{{loggingLevel}}",
+								"{{start}}",
+								"{{end}}",
+								"{{limit}}"
+							]
+						},
+						"description": "list a collection of LogEntry matching any of the specified logLevels and being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Query logs by matched logLevels  and originServices ,which creation timestamp between start date and end date with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cef4f249-f4a1-443f-b9c1-6054fce7a7d8",
+								"type": "text/javascript",
+								"exec": [
+									" /*",
+									" * Test Case:  api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/{start}/{end}/{limit}- GET",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" */",
+									" ",
+									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
+									"var jsonData = pm.response.json();",
+									"",
+									"var expectLoggingLevel = pm.environment.get(\"loggingLevel\");",
+									"var expectLoggingService = pm.environment.get(\"loggingService\");",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(jsonData.length>0).to.be.true;",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.logLevel.includes(expectLoggingLevel) || data.originService.includes(expectLoggingService)).to.be.true; ",
+									"    });",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ee77b5da-8812-40b3-949a-6e6e51e80640",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLevel\", \"WARN\");",
+									"    pm.environment.set(\"loggingService\", \"service1\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"    pm.environment.set(\"limit\", \"10\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLevel\", data.loggingLevel);",
+									"    pm.environment.set(\"loggingService\", data.loggingService);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevel}}/originServices/{{loggingService}}/{{start}}/{{end}}/{{limit}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"logLevels",
+								"{{loggingLevel}}",
+								"originServices",
+								"{{loggingService}}",
+								"{{start}}",
+								"{{end}}",
+								"{{limit}}"
+							]
+						},
+						"description": "list a collection of LogEntry matching any of the specified logLevels, originServices, and also being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Query logs by matched logLevels  and originServices and labels,which creation timestamp between start date and end date with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8a5b89da-dfca-4d84-a42e-7ab8b7839f47",
+								"type": "text/javascript",
+								"exec": [
+									" /*",
+									" * Test Case:  api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{labels}/{start}/{end}/{limit}- GET",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" */",
+									" ",
+									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
+									"var jsonData = pm.response.json();",
+									"",
+									"var expectLoggingLevel = pm.environment.get(\"loggingLevel\");",
+									"var expectLoggingService = pm.environment.get(\"loggingService\");",
+									"var expectLoggingLabel = pm.environment.get(\"loggingLabel\");",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(jsonData.length>0).to.be.true;",
+									"    jsonData.forEach(function(data) {",
+									"      var matched = data.logLevel.includes(expectLoggingLevel) || data.originService.includes(expectLoggingService) || data.labels.includes(expectLoggingLabel);",
+									"      pm.expect(matched).to.be.true; ",
+									"    });",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a5b01e85-e668-4ff5-b994-c402b51dcf63",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLevel\", \"WARN\");",
+									"    pm.environment.set(\"loggingService\", \"testService\");",
+									"    pm.environment.set(\"loggingLabel\", \"testLabel\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"    pm.environment.set(\"limit\", \"10\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLevel\", data.loggingLevel);",
+									"    pm.environment.set(\"loggingService\", data.loggingService);",
+									"    pm.environment.set(\"loggingLabel\", data.loggingLabel);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevel}}/originServices/{{loggingService}}/labels/{{loggingLabel}}/{{start}}/{{end}}/{{limit}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"logLevels",
+								"{{loggingLevel}}",
+								"originServices",
+								"{{loggingService}}",
+								"labels",
+								"{{loggingLabel}}",
+								"{{start}}",
+								"{{end}}",
+								"{{limit}}"
+							]
+						},
+						"description": "list a collection of LogEntry whose message matching any of the specified logLevels, originServices, labels, and also being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Query logs by matched logLevels  and originServices and labels and keywords ,which creation timestamp between start date and end date with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "584032a1-8f0c-4b0a-8aee-d78c7e65d7a4",
+								"type": "text/javascript",
+								"exec": [
+									" /*",
+									" * Test Case:  api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{labels}/keywords/{keywords}/{start}/{end}/{limit}- GET",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" */",
+									" ",
+									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
+									"var jsonData = pm.response.json();",
+									"",
+									"var expectLoggingLevel = pm.environment.get(\"loggingLevel\");",
+									"var expectLoggingService = pm.environment.get(\"loggingService\");",
+									"var expectLoggingLabel = pm.environment.get(\"loggingLabel\");",
+									"var expectLoggingKeyword = pm.environment.get(\"loggingKeyword\");",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(jsonData.length>0).to.be.true;",
+									"    jsonData.forEach(function(data) {",
+									"      var matched = data.logLevel.includes(expectLoggingLevel) || data.originService.includes(expectLoggingService) || data.labels.includes(expectLoggingLabel) || data.message.includes(expectLoggingKeyword);",
+									"      pm.expect(matched).to.be.true; ",
+									"    });",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "02d7d539-10f9-4115-9b14-df52bb717e9b",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLevel\", \"WARN\");",
+									"    pm.environment.set(\"loggingService\", \"testService\");",
+									"    pm.environment.set(\"loggingLabel\", \"testLabel\");",
+									"    pm.environment.set(\"loggingKeyword\", \"Hello\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"    pm.environment.set(\"limit\", \"10\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLevel\", data.loggingLevel);",
+									"    pm.environment.set(\"loggingService\", data.loggingService);",
+									"    pm.environment.set(\"loggingLabel\", data.loggingLabel);",
+									"    pm.environment.set(\"loggingKeyword\", data.loggingKeyword);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevel}}/originServices/{{loggingService}}/labels/{{loggingLabel}}/keywords/{{loggingKeyword}}/{{start}}/{{end}}/{{limit}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"logLevels",
+								"{{loggingLevel}}",
+								"originServices",
+								"{{loggingService}}",
+								"labels",
+								"{{loggingLabel}}",
+								"keywords",
+								"{{loggingKeyword}}",
+								"{{start}}",
+								"{{end}}",
+								"{{limit}}"
+							]
+						},
+						"description": "list a collection of LogEntry whose message containing any of the specified keywords, matching any of the specified logLevels, originServices, labels, and also being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete logs by creation timestamp between start date and end date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1cfc7d9b-c7df-4a67-97a6-ad06df13c07c",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/logs/{start}/{end} - DELETE",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" * ",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text().length>0).to.be.true;",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "561dd395-aaab-4655-8444-5b48884c538a",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"}else{",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/{{start}}/{{end}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"{{start}}",
+								"{{end}}"
+							]
+						},
+						"description": "Delete all log entries between two dates specified by start and end. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete logs by logLevels ,which creation timestamp between start date and end date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e2e52a9f-94f4-42c5-b72a-7eb1d35ccb27",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/logs/logLevels/{logLevels}/{start}/{end} - DELETE",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" * ",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text().length>0).to.be.true;",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "43254381-a2c7-4633-9d5b-ec4f74f650be",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLevelDel\", \"ERROR\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLevelDel\", data.loggingLevelDel);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/{{start}}/{{end}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"logLevels",
+								"{{loggingLevelDel}}",
+								"{{start}}",
+								"{{end}}"
+							]
+						},
+						"description": "Delete a collection of LogEntry matching any of the specified logLevels and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete logs by labels ,which creation timestamp between start date and end date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63956969-a704-47c6-b9c4-e0cb4401f507",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/logs/labels/{labels}/{start}/{end} - DELETE",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" * ",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text().length>0).to.be.true;",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "641e46c2-8797-47e8-81d6-8084cf43b26f",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLabelDel\", \"label3\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLabelDel\", data.loggingLabelDel);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/labels/{{loggingLabelDel}}/{{start}}/{{end}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"labels",
+								"{{loggingLabelDel}}",
+								"{{start}}",
+								"{{end}}"
+							]
+						},
+						"description": "Delete "
+					},
+					"response": []
+				},
+				{
+					"name": "Delete logs by originServices ,which creation timestamp between start date and end date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5f7b65e6-e71e-4b30-9869-f79f02860f02",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/logs/originServices/{originServices}/{start}/{end} - DELETE",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" * ",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text().length>0).to.be.true;",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "029be17b-9ca9-4863-ac08-56a74eb52354",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingServiceDel1\", \"service8\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"}else{",
+									"    pm.environment.set(\"loggingServiceDel1\", data.loggingServiceDel1);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/originServices/{{loggingServiceDel1}}/{{start}}/{{end}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"originServices",
+								"{{loggingServiceDel1}}",
+								"{{start}}",
+								"{{end}}"
+							]
+						},
+						"description": "Delete a collection of LogEntry matching any of the specified originServices and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete logs by keywords ,which creation timestamp between start date and end date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eccbb1ea-8f30-401d-bbd4-db0dd8c826e1",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/logs/keywords/{keywords}/{start}/{end} - DELETE",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" * ",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text().length>0).to.be.true;",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5e848539-419e-4210-93c1-92fe4fe8b18f",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingKeywordDel\", \"KeyWordTest\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"}else{",
+									"    pm.environment.set(\"loggingKeywordDel\", data.loggingKeywordDel);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/keywords/{{loggingKeywordDel}}/{{start}}/{{end}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"keywords",
+								"{{loggingKeywordDel}}",
+								"{{start}}",
+								"{{end}}"
+							]
+						},
+						"description": "Delete a collection of LogEntry whose message containing any of the specified keywords and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete logs by logLevels and originServices ,which creation timestamp between start date and end date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa25c392-cecc-4c00-a77b-24d87636c4f9",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/{start}/{end} - DELETE",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" * ",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text().length>0).to.be.true;",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "46a52b4f-df33-48ce-b40c-c503c55fa1ea",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLabelDel\", \"label3\");",
+									"    pm.environment.set(\"loggingServiceDel4\", \"service7\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLabelDel\", data.loggingLabelDel);",
+									"    pm.environment.set(\"loggingServiceDel4\", data.loggingServiceDel4);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/originServices/{{loggingServiceDel4}}/{{start}}/{{end}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"logLevels",
+								"{{loggingLevelDel}}",
+								"originServices",
+								"{{loggingServiceDel4}}",
+								"{{start}}",
+								"{{end}}"
+							]
+						},
+						"description": "Delete a collection of LogEntry matching any of the specified logLevels, originServices, and also being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete logs by logLevels and originServices and labels ,which creation timestamp between start date and end date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0bba6c98-4fc2-40ae-b49a-9a00523c5d4a",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{lables}/{start}/{end} - DELETE",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" * ",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text().length>0).to.be.true;",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ec536d9a-eddb-4d3a-8a34-b719f327ad29",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLabelDel\", \"label3\");",
+									"    pm.environment.set(\"loggingServiceDel4\", \"service7\");",
+									"    pm.environment.set(\"loggingLabelDel\", \"label3\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLabelDel\", data.loggingLabelDel);",
+									"    pm.environment.set(\"loggingServiceDel4\", data.loggingServiceDel4);",
+									"    pm.environment.set(\"loggingLabelDel\", data.loggingLabelDel);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/originServices/{{loggingServiceDel3}}/labels/{{loggingLabelDel}}/{{start}}/{{end}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"logLevels",
+								"{{loggingLevelDel}}",
+								"originServices",
+								"{{loggingServiceDel3}}",
+								"labels",
+								"{{loggingLabelDel}}",
+								"{{start}}",
+								"{{end}}"
+							]
+						},
+						"description": "Delete a collection of LogEntry whose message matching any of the specified logLevels, originServices, labels, and also being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete logs by logLevels and originServices and labels and keywords  ,which creation timestamp between start date and end date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "93cde7dd-8d01-4fa9-9765-81605350564a",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{lables}/keywords/{keywords}/{start}/{end} - DELETE",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" * ",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text().length>0).to.be.true;",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5d176547-15b0-49f9-9bad-5e8b1d983400",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"loggingLabelDel\", \"label3\");",
+									"    pm.environment.set(\"loggingServiceDel4\", \"service7\");",
+									"    pm.environment.set(\"loggingLabelDel\", \"label3\");",
+									"    pm.environment.set(\"loggingKeywordDel\", \"KeyWordTest\");",
+									"    pm.environment.set(\"start\", \"0\");",
+									"    pm.environment.set(\"end\", \"2145916800000\");",
+									"}else{",
+									"    pm.environment.set(\"loggingLabelDel\", data.loggingLabelDel);",
+									"    pm.environment.set(\"loggingServiceDel4\", data.loggingServiceDel4);",
+									"    pm.environment.set(\"loggingLabelDel\", data.loggingLabelDel);",
+									"    pm.environment.set(\"loggingKeywordDel\", data.loggingKeywordDel);",
+									"    pm.environment.set(\"start\", data.start);",
+									"    pm.environment.set(\"end\", data.end);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/originServices/{{loggingServiceDel2}}/labels/{{loggingLabelDel}}/keywords/{{loggingKeywordDel}}/{{start}}/{{end}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"logLevels",
+								"{{loggingLevelDel}}",
+								"originServices",
+								"{{loggingServiceDel2}}",
+								"labels",
+								"{{loggingLabelDel}}",
+								"keywords",
+								"{{loggingKeywordDel}}",
+								"{{start}}",
+								"{{end}}"
+							]
+						},
+						"description": "Delete a collection of LogEntry whose message containing any of the specified keywords, matching any of the specified logLevels, originServices, labels, and also being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "logs_error_4xx",
+			"description": "",
+			"item": [
+				{
+					"name": "Fail to create logEntry by an inexistent log level",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fe53065f-b72e-4747-98ee-6e9124a80d55",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/logs",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"logLevel\": \"XXX\",\n  \"originService\": \"service1\",\n  \"message\": \"Hello, Logging Service!\",\n  \"labels\": [\n    \"label1\",\n    \"label2\"\n  ]\n}\n"
+						},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to query logs by the number of logs exceeds the current max limit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d6663a73-8c1a-4d3b-b907-2a834042432e",
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  api/v1/logs/{overLimit}",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" *",
+									" **/",
+									"",
+									"pm.test(\"Status code is 413\", function () {",
+									"    pm.response.to.have.status(413);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"}); ",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Payload Too Large\");",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "75a10485-5e41-419d-a735-2838d349238b",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    //Test assumes the default limit is 100 ",
+									"    pm.environment.set(\"overLimit\", \"101\");",
+									"}else{",
+									"    pm.environment.set(\"overLimit\", data.overLimit);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/{{overLimit}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"{{overLimit}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b2798633-3a47-430f-b7e8-7920edde1717",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "259021ad-3a7f-4a3c-b81b-b7d02ff5df41",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "ping",
+			"description": null,
+			"item": [
+				{
+					"name": "Test service providing an indication that the service is available.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7217e96e-48ef-4965-aa01-efa8c9b4b470",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"pong\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/ping",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ping"
+							]
+						},
+						"description": "Test service providing an indicatioon that the service is avaliable."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b153eb91-e64b-4652-a900-114f99399738",
+				"type": "text/javascript",
+				"exec": [
+					"var schemas = {} ; ",
+					"",
+					"schemas.LogEntry = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"LogEntry Schema\",",
+					"        \"type\": \"object\",",
+					"        \"properties\": {",
+					"          \"originService\": {",
+					"            \"type\": \"string\"",
+					"          },",
+					"          \"message\": {",
+					"            \"type\": \"string\"",
+					"          },",
+					"          \"logLevel\": {",
+					"            \"enum\": [\"TRACE\",\"DEBUG\",\"INFO\",\"WARN\",\"ERROR\"]",
+					"          },",
+					"          \"labels\": {",
+					"            \"type\": [\"array\",\"null\"],",
+					"            \"items\": { \"type\": \"string\" },",
+					"            \"uniqueItems\": true",
+					"          },",
+					"          \"created\": {",
+					"            \"description\": \"The creation timestamp\",",
+					"            \"type\": \"integer\",",
+					"            \"minimum\": 0",
+					"          }",
+					"        },",
+					"        \"required\": [\"originService\",\"message\",\"logLevel\"]",
+					"      };",
+					"      ",
+					"schemas.LogEntryArray = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"The Array of Notification\",",
+					"        \"type\": \"array\",",
+					"        \"items\": {",
+					"          \"$ref\": \"#/definitions/Notification\"",
+					"        },",
+					"        \"definitions\": {",
+					"          \"Notification\": schemas.LogEntry",
+					"        }",
+					"      };",
+					"    ",
+					"pm.globals.set(\"schemas\", schemas);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "5dd92d26-9209-4265-a61c-9f892f569987",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
