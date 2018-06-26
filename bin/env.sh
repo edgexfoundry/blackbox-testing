@@ -1,8 +1,9 @@
 #!/bin/bash
 
 export volume=edgexfoundry/docker-edgex-volume
-export consul=edgexfoundry/docker-core-consul
+export consul=consul:1.1.0
 export coreMetadata=nexus3.edgexfoundry.org:10004/docker-core-metadata-go
+export coreConfigseed=nexus3.edgexfoundry.org:10004/docker-core-config-seed-go:master
 export mongo=edgexfoundry/docker-edgex-mongo
 export mongoSeed=edgexfoundry/docker-edgex-mongo-seed
 export supportLogging=nexus3.edgexfoundry.org:10004/docker-support-logging
