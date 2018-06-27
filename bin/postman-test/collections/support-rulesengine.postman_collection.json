@@ -1,0 +1,514 @@
+{
+	"info": {
+		"_postman_id": "7667e0cc-fee7-4bca-9f3b-2dd771e3e31c",
+		"name": "support-rulesengine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ping",
+			"description": "",
+			"item": [
+				{
+					"name": "Test service providing an indication that the service is available.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba46514f-56eb-4624-a7fe-1d4c71bfb99e",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"pong\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportRulesengineUrl}}/api/v1/ping",
+							"host": [
+								"{{supportRulesengineUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ping"
+							]
+						},
+						"description": "Test service providing an indicatioon that the service is avaliable."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "rules_error_5xx",
+			"description": "",
+			"item": [
+				{
+					"name": "Fail to create a rule",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "53a32488-d3e8-42f2-b0a1-778b888e70b1",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 503\", function () {",
+									"    pm.response.to.have.status(503);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"condition\": \n   {\n         \"device\":\"57f73d70e4b060e27309e45e\",\n         \"checks\":[ \n            {\n               \"parameter\":\"CurrentRPM\", \n               \"operand1\":\"Float.parseFloat(value)\", \n               \"operation\":\">\",\"operand2\":\"1\" \n            } ] \n   }, \n   \"action\" : \n   {\n         \"device\":\"57f73d70e4b060e27309e45e\",\n         \"command\":\"57f73d6ce4b060e27309e45b\",\n         \"body\":\"{\\\\\\\"value\\\\\\\":\\\\\\\"3\\\\\\\"}\"},\n         \"log\":\"Warning triggered for engine speed too high\" \n   }\n}"
+						},
+						"url": {
+							"raw": "{{supportRulesengineUrl}}/api/v1/rule",
+							"host": [
+								"{{supportRulesengineUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"rule"
+							]
+						},
+						"description": "Add a new rule. ServcieException (HTTP 503) for unknown or unanticipated issue"
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to delete rule by an inexistent name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b4b06f67-4342-4e18-8d4d-f7c5df92b122",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/rule - DELETE",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" * ",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 503\", function () {",
+									"    pm.response.to.have.status(503);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "dec3a910-3e60-4f03-acf5-ba8f771ccd05",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"ruleNameNoExsist\", \"xxx\");",
+									"}else{",
+									"    pm.environment.set(\"ruleNameNoExsist\", data.ruleNameNoExsist);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportRulesengineUrl}}/api/v1/rule/name/xxx",
+							"host": [
+								"{{supportRulesengineUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"rule",
+								"name",
+								"xxx"
+							]
+						},
+						"description": "Remove the rule designated by name. ServcieException (HTTP 503) for unknown or unanticipated issues."
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d89aeeff-e20c-4134-9866-904157a55f7c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d0103522-108f-4e52-b6df-e817d84565cb",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "rules",
+			"description": "",
+			"item": [
+				{
+					"name": "List all rule",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "925713a0-8948-494c-ac86-6f2166c5ca79",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/rule - GET",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" * ",
+									" **/",
+									" ",
+									"var jsonData = pm.response.json();",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportRulesengineUrl}}/api/v1/rule",
+							"host": [
+								"{{supportRulesengineUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"rule"
+							]
+						},
+						"description": "Return all rule names. ServcieException (HTTP 503) for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Create a rule",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83932fdb-a4dc-4671-a7cb-e8094decb2f7",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"true\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\":\"motortoofastsignal\", \n   \"condition\": \n   {\n         \"device\":\"57f73d70e4b060e27309e45e\",\n         \"checks\":[ \n            {\n               \"parameter\":\"CurrentRPM\", \n               \"operand1\":\"Float.parseFloat(value)\", \n               \"operation\":\">\",\"operand2\":\"1\" \n            } ] \n   }, \n   \"action\" : \n   {\n         \"device\":\"57f73d70e4b060e27309e45e\",\n         \"command\":\"57f73d6ce4b060e27309e45b\",\n         \"body\":\"{\\\\\\\"value\\\\\\\":\\\\\\\"3\\\\\\\"}\"},\n         \"log\":\"Warning triggered for engine speed too high\" \n   }\n}"
+						},
+						"url": {
+							"raw": "{{supportRulesengineUrl}}/api/v1/rule",
+							"host": [
+								"{{supportRulesengineUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"rule"
+							]
+						},
+						"description": "Add a new rule. ServcieException (HTTP 503) for unknown or unanticipated issue"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete rule by name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "737f78e1-7c28-4562-8b80-01359eaabee6",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"true\");",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bc8e0ec3-71af-412d-a86f-dcdf6db01a1b",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    pm.environment.set(\"ruleName\", \"motortoofastsignal\");",
+									"}else{",
+									"    pm.environment.set(\"ruleName\", data.ruleName);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportRulesengineUrl}}/api/v1/rule/name/{{ruleName}}",
+							"host": [
+								"{{supportRulesengineUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"rule",
+								"name",
+								"{{ruleName}}"
+							]
+						},
+						"description": "Remove the rule designated by name. ServcieException (HTTP 503) for unknown or unanticipated issues."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1a0ce22e-d6b9-4ba3-b185-af04c6c80cef",
+				"type": "text/javascript",
+				"exec": [
+					"var schemas = {} ; ",
+					"",
+					"schemas.rule = {",
+					"    \"type\":\"object\",",
+					"    \"$schema\":\"http://json-schema.org/draft-03/schema#\",",
+					"    \"description\":\"EdgeX Support Rules Engine rule\",",
+					"    \"title\":\"rule\",",
+					"    \"properties\":{",
+					"        \"name\":{",
+					"            \"type\":\"string\",",
+					"            \"required\":true,",
+					"            \"title\":\"name\"",
+					"        },",
+					"        \"action\":{",
+					"            \"type\":\"object\",",
+					"            \"properties\":{",
+					"                \"device\":{",
+					"                    \"type\":\"string\",",
+					"                    \"required\":true,",
+					"                    \"title\":\"device\"",
+					"                },",
+					"                \"command\":{",
+					"                    \"type\":\"string\",",
+					"                    \"required\":true,",
+					"                    \"title\":\"command\"",
+					"                },",
+					"                \"body\":{",
+					"                    \"type\":\"string\",",
+					"                    \"required\":true,",
+					"                    \"title\":\"body\"",
+					"                }",
+					"            }",
+					"        },",
+					"        \"condition\":{",
+					"            \"type\":\"object\",",
+					"            \"properties\":{",
+					"                \"device\":{",
+					"                    \"type\":\"string\",",
+					"                    \"required\":true,",
+					"                    \"title\":\"device\"",
+					"                },",
+					"            \"checks\":{",
+					"            \"type\":\"array\",",
+					"            \"required\":false,",
+					"            \"title\":\"checks\",",
+					"            \"items\":{",
+					"                \"type\":\"object\",",
+					"                \"properties\":{",
+					"                    \"parameter\":{",
+					"                        \"type\":\"string\",",
+					"                        \"required\":false,",
+					"                        \"title\":\"parameter\"",
+					"                    },",
+					"                    \"operand1\":{",
+					"                        \"type\":\"string\",",
+					"                        \"required\":false,",
+					"                        \"title\":\"operand1\"",
+					"                    },",
+					"                    \"operation\":{",
+					"                        \"type\":\"string\",",
+					"                        \"required\":false,",
+					"                        \"title\":\"operation\"",
+					"                    },",
+					"                    \"operand2\":{",
+					"                        \"type\":\"string\",",
+					"                        \"required\":false,",
+					"                        \"title\":\"operand2\"",
+					"                    }",
+					"                }",
+					"            },",
+					"            \"uniqueItems\":false",
+					"            }",
+					"            }",
+					"        },",
+					"        \"log\":{",
+					"                \"type\":\"string\",",
+					"                \"required\":false,",
+					"                \"title\":\"log\"",
+					"            }",
+					"    }",
+					"};",
+					"      ",
+					"schemas.ruleArray = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"The Array of rule\",",
+					"        \"type\": \"array\",",
+					"        \"items\": {",
+					"          \"$ref\": \"#/definitions/Rule\"",
+					"        },",
+					"        \"definitions\": {",
+					"          \"Rule\": schemas.rule",
+					"        }",
+					"      };",
+					"    ",
+					"pm.globals.set(\"schemas\", schemas);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "bb679730-335c-4246-b059-85abb13c0539",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
