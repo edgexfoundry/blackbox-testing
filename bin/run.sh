@@ -11,6 +11,7 @@ BASEPATH=$(dirname "$0")/postman-test/scriptLogs
 COREDATALOGSPATH=$BASEPATH/coreData$TIMESTAMPFORMAT.log
 METADATALOGSPATH=$BASEPATH/metaData$TIMESTAMPFORMAT.log
 COMMANDLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
+RULESENGINELOGSPATH=$BASEPATH/rulesengine$TIMESTAMPFORMAT.log
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 coreDataTest() {
@@ -38,11 +39,16 @@ commandTest() {
 
 }
 
+rulesengineTest() {
+	$(dirname "$0")/rulesengineTest.sh
+}
+
 testAll() {
 
 	coreDataTest
 	metaDataTest
 	commandTest
+	rulesengineTest
 }
 
 #Main Script starts here
@@ -68,12 +74,16 @@ case ${option} in
       	echo "Info: Initiating Command Test"
 	commandTest	| tee $COMMANDLOGSPATH
       	;;
+    -ru)
+      	echo "Info: Initiating SupportRulesengine Test"
+	    rulesengineTest	| tee $RULESENGINELOGSPATH
+      	;;
    	-all)
       	echo "Info: Initiating EdgeX Test"
 	testAll		| tee $EDGEXLOGSPATH
       	;;
    	*)
-      	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-all All]" 
+      	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-ru Rulesengine] | [-all All]"
       	echo
       	exit 0
       	;;
