@@ -72,10 +72,10 @@ sleep 5
 #while ! $(docker-compose exec -T consul nc -z edgex-support-scheduler 48085);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
 #sleep 5
 
-#run_service export-client
+run_service export-client
 
-#while ! $(docker-compose exec -T consul nc -z edgex-export-client 48071);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-#sleep 5
+while ! $(docker-compose exec -T consul nc -z edgex-export-client 48071);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
+sleep 5
 
 #run_service export-distro
 

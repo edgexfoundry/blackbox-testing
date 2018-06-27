@@ -45,9 +45,10 @@ DEVICESERVICECCDATADUMP=/etc/newman/DataDumps/command/deviceServiceDb.json
 COMMANDCCDATADUMP=/etc/newman/DataDumps/command/commandDb.json
 CORECOMMANDDATAFILE=/etc/newman/data/coreCommandData.json
 
+REGISTERDATADUMP=/etc/newman/DataDumps/exportclient/exportConfigurationDb.json
 LOGGINGDATADUMP=/etc/newman/DataDumps/logging/logEntryDb.json
 
-if [ -f $CONFIGFILE ]; then 
+if [ -f $CONFIGFILE ]; then
 
 	source $CONFIGFILE
 
