@@ -11,6 +11,7 @@ BASEPATH=$(dirname "$0")/postman-test/scriptLogs
 COREDATALOGSPATH=$BASEPATH/coreData$TIMESTAMPFORMAT.log
 METADATALOGSPATH=$BASEPATH/metaData$TIMESTAMPFORMAT.log
 COMMANDLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
+EXPORTCLIENTLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 coreDataTest() {
@@ -38,11 +39,19 @@ commandTest() {
 
 }
 
+exportClientTest() {
+	$(dirname "$0")/importExportClientDataDump.sh
+	$(dirname "$0")/exportClientTest.sh
+	$(dirname "$0")/flushExportClientDataDump.sh
+
+}
+
 testAll() {
 
 	coreDataTest
 	metaDataTest
 	commandTest
+	exportClientTest
 }
 
 #Main Script starts here
@@ -68,12 +77,16 @@ case ${option} in
       	echo "Info: Initiating Command Test"
 	commandTest	| tee $COMMANDLOGSPATH
       	;;
+  	-exc)
+      	echo "Info: Initiating ExportClient Test"
+	    exportClientTest | tee $EXPORTCLIENTLOGSPATH
+	    ;;
    	-all)
       	echo "Info: Initiating EdgeX Test"
 	testAll		| tee $EDGEXLOGSPATH
       	;;
    	*)
-      	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-all All]" 
+      	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-exc Export Client] | [-all All]"
       	echo
       	exit 0
       	;;
