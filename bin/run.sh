@@ -54,7 +54,7 @@ VOLUME_CONTAINER=`echo ${VOLUME_CONTAINER} | cut -b 1-12`
 
 docker cp $(dirname "$0")/postman-test/. "${VOLUME_CONTAINER}":/etc/newman
 
-
+source venv/bin/active
 case ${option} in
 	-cd)
 	echo "Info: Initiating Coredata Test"
