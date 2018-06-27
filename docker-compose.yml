@@ -15,10 +15,10 @@ services:
       - /etc/newman
   consul:
     image: ${consul}
-#    ports:
-#      - "8400:8400"
-#      - "8500:8500"
-#      - "8600:8600"
+    ports:
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:8600"
     networks:
       edgex-network:
         aliases:
@@ -29,7 +29,7 @@ services:
       - volume
 
   config-seed:
-    image: edgexfoundry/docker-core-config-seed
+    image: ${coreConfigseed}
     networks:
       edgex-network:
         aliases:
@@ -42,8 +42,8 @@ services:
 
   mongo:
     image: ${mongo}
-#    ports:
-#      - "27017:27017"
+    ports:
+      - "27017:27017"
     networks:
       edgex-network:
         aliases:
@@ -68,8 +68,8 @@ services:
 
   logging:
     image: ${supportLogging}
-#    ports:
-#      - "48061:48061"
+    ports:
+      - "48061:48061"
     networks:
       edgex-network:
         aliases:
@@ -85,8 +85,8 @@ services:
 
   notifications:
     image: edgexfoundry/docker-support-notifications
-#    ports:
-#      - "48060:48060"
+    ports:
+      - "48060:48060"
     networks:
       edgex-network:
         aliases:
@@ -103,8 +103,8 @@ services:
 
   metadata:
     image: ${coreMetadata}
-#    ports:
-#      - "48081:48081"
+    ports:
+      - "48081:48081"
     hostname: edgex-core-metadata
     networks:
       edgex-network:
@@ -122,9 +122,9 @@ services:
 
   data:
     image: ${coreData}
-#    ports:
-#      - "48080:48080"
-#      - "5563"
+    ports:
+      - "48080:48080"
+      - "5563"
     networks:
       edgex-network:
         aliases:
@@ -142,8 +142,8 @@ services:
 
   command:
     image: ${coreCommand}
-#    ports:
-#      - "48082:48082"
+    ports:
+      - "48082:48082"
     networks:
       edgex-network:
         aliases:
@@ -161,8 +161,8 @@ services:
 
   scheduler:
     image: ${supportScheduler}
-#    ports:
-#      - "48085:48085"
+    ports:
+      - "48085:48085"
     networks:
       edgex-network:
         aliases:
@@ -181,8 +181,8 @@ services:
 
   export-client:
     image: ${exportClient}
-#    ports:
-#      - "48071:48071"
+    ports:
+      - "48071:48071"
     networks:
       edgex-network:
         aliases:
@@ -202,9 +202,9 @@ services:
 
   export-distro:
     image: ${exportDistro}
-#    ports:
-#      - "48070:48070"
-#      - "5566"
+    ports:
+      - "48070:48070"
+      - "5566"
     networks:
       edgex-network:
         aliases:
@@ -225,8 +225,8 @@ services:
 
   rulesengine:
     image: ${supportRulesengine}
-#    ports:
-#      - "48075:48075"
+    ports:
+      - "48075:48075"
     networks:
       edgex-network:
         aliases:
@@ -250,8 +250,8 @@ services:
 
   device-virtual:
     image: ${deviceVirtual}
-#    ports:
-#      - "49990:49990"
+    ports:
+      - "49990:49990"
     networks:
       edgex-network:
         aliases:
