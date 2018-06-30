@@ -84,7 +84,7 @@ services:
       - mongo-seed
 
   notifications:
-    image: edgexfoundry/docker-support-notifications
+    image: ${supportNotifications}
     ports:
       - "48060:48060"
     networks:
