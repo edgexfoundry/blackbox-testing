@@ -42,7 +42,6 @@ run_service mongo
 
 sleep 10
 
-run_service mongo-seed
 run_service logging
 
 while ! $(docker-compose exec -T consul nc -z edgex-support-logging 48061);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done

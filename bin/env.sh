@@ -5,7 +5,6 @@ export consul=consul:1.1.0
 export coreMetadata=nexus3.edgexfoundry.org:10004/docker-core-metadata-go:0.6.0
 export coreConfigseed=nexus3.edgexfoundry.org:10004/docker-core-config-seed-go:0.6.0
 export mongo=nexus3.edgexfoundry.org:10004/docker-edgex-mongo:0.6.0
-export mongoSeed=edgexfoundry/docker-edgex-mongo-seed
 export supportLogging=nexus3.edgexfoundry.org:10004/docker-support-logging-go:0.6.0
 export coreData=nexus3.edgexfoundry.org:10004/docker-core-data-go:0.6.0
 export coreCommand=nexus3.edgexfoundry.org:10004/docker-core-command-go:0.6.0
