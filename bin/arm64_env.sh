@@ -1,11 +1,10 @@
 #!/bin/bash
 
 export volume=nexus3.edgexfoundry.org:10004/docker-edgex-volume-arm64:0.6.0
-export consul=consul:1.1.0
+export consul=arm64v8/consul:1.1.0
 export coreMetadata=nexus3.edgexfoundry.org:10004/docker-core-metadata-go-arm64:0.6.0
 export coreConfigseed=nexus3.edgexfoundry.org:10004/docker-core-config-seed-go-arm64:0.6.0
 export mongo=nexus3.edgexfoundry.org:10004/docker-edgex-mongo-arm64:0.6.0
-export mongoSeed=edgexfoundry/docker-edgex-mongo-seed
 export supportLogging=nexus3.edgexfoundry.org:10004/docker-support-logging-go-arm64:0.6.0
 export coreData=nexus3.edgexfoundry.org:10004/docker-core-data-go-arm64:0.6.0
 export coreCommand=nexus3.edgexfoundry.org:10004/docker-core-command-go-arm64:0.6.0
