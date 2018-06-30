@@ -247,7 +247,7 @@ services:
       - command
 
   postman:
-    image: postman/newman_ubuntu1404
+    image: ${postman}
     networks:
       - edgex-network
     volumes_from:
