@@ -9,7 +9,7 @@ export coreData=nexus3.edgexfoundry.org:10004/docker-core-data-go
 export coreMetadata=nexus3.edgexfoundry.org:10004/docker-core-metadata-go
 export coreCommand=nexus3.edgexfoundry.org:10004/docker-core-command-go
 
-export supportLogging=nexus3.edgexfoundry.org:10004/docker-support-logging
+export supportLogging=nexus3.edgexfoundry.org:10004/docker-support-logging-go
 export supportNotifications=nexus3.edgexfoundry.org:10004/docker-support-notifications
 export supportScheduler=nexus3.edgexfoundry.org:10004/docker-support-scheduler
 export supportRulesengine=nexus3.edgexfoundry.org:10004/docker-support-rulesengine
