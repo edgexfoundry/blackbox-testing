@@ -15,10 +15,10 @@ services:
       - /etc/newman
   consul:
     image: ${consul}
-#    ports:
-#      - "8400:8400"
-#      - "8500:8500"
-#      - "8600:8600"
+    ports:
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:8600"
     networks:
       edgex-network:
         aliases:
@@ -29,7 +29,7 @@ services:
       - volume
 
   config-seed:
-    image: edgexfoundry/docker-core-config-seed
+    image: ${configSeed}
     networks:
       edgex-network:
         aliases:
@@ -42,8 +42,8 @@ services:
 
   mongo:
     image: ${mongo}
-#    ports:
-#      - "27017:27017"
+    ports:
+      - "27017:27017"
     networks:
       edgex-network:
         aliases:
@@ -52,24 +52,11 @@ services:
       - volume
     depends_on:
       - volume
-    command: --smallfiles
-
-  mongo-seed:
-    image: ${mongoSeed}
-    networks:
-      edgex-network:
-        aliases:
-          - edgex-mongo-seed
-    volumes_from:
-      - volume
-    depends_on:
-      - volume
-      - mongo
 
   logging:
     image: ${supportLogging}
-#    ports:
-#      - "48061:48061"
+    ports:
+      - "48061:48061"
     networks:
       edgex-network:
         aliases:
@@ -79,14 +66,12 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
 
   notifications:
-    image: edgexfoundry/docker-support-notifications
-#    ports:
-#      - "48060:48060"
+    image: ${supportNotifications}
+    ports:
+      - "48060:48060"
     networks:
       edgex-network:
         aliases:
@@ -96,15 +81,13 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
       - logging
 
   metadata:
     image: ${coreMetadata}
-#    ports:
-#      - "48081:48081"
+    ports:
+      - "48081:48081"
     hostname: edgex-core-metadata
     networks:
       edgex-network:
@@ -115,16 +98,14 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
       - logging
 
   data:
     image: ${coreData}
-#    ports:
-#      - "48080:48080"
-#      - "5563"
+    ports:
+      - "48080:48080"
+      - "5563"
     networks:
       edgex-network:
         aliases:
@@ -134,16 +115,14 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
       - logging
       - notifications
 
   command:
     image: ${coreCommand}
-#    ports:
-#      - "48082:48082"
+    ports:
+      - "48082:48082"
     networks:
       edgex-network:
         aliases:
@@ -153,16 +132,14 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
 
   scheduler:
     image: ${supportScheduler}
-#    ports:
-#      - "48085:48085"
+    ports:
+      - "48085:48085"
     networks:
       edgex-network:
         aliases:
@@ -172,17 +149,15 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
       - command
 
   export-client:
     image: ${exportClient}
-#    ports:
-#      - "48071:48071"
+    ports:
+      - "48071:48071"
     networks:
       edgex-network:
         aliases:
@@ -192,9 +167,7 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
       - logging
       - notifications
       - metadata
@@ -202,9 +175,9 @@ services:
 
   export-distro:
     image: ${exportDistro}
-#    ports:
-#      - "48070:48070"
-#      - "5566"
+    ports:
+      - "48070:48070"
+      - "5566"
     networks:
       edgex-network:
         aliases:
@@ -214,9 +187,7 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
       - logging
       - notifications
       - metadata
@@ -225,8 +196,8 @@ services:
 
   rulesengine:
     image: ${supportRulesengine}
-#    ports:
-#      - "48075:48075"
+    ports:
+      - "48075:48075"
     networks:
       edgex-network:
         aliases:
@@ -236,9 +207,7 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
       - command
@@ -250,8 +219,8 @@ services:
 
   device-virtual:
     image: ${deviceVirtual}
-#    ports:
-#      - "49990:49990"
+    ports:
+      - "49990:49990"
     networks:
       edgex-network:
         aliases:
@@ -261,9 +230,7 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
       - data
