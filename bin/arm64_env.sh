@@ -14,7 +14,6 @@ export supportNotifications=nexus3.edgexfoundry.org:10004/docker-support-notific
 export supportScheduler=nexus3.edgexfoundry.org:10004/docker-support-scheduler-arm64:0.6.0
 export supportRulesengine=nexus3.edgexfoundry.org:10004/docker-support-rulesengine-arm64:0.6.0
 
-export exportClient=edgexfoundry/docker-export-client
+export exportClient=nexus3.edgexfoundry.org:10004/docker-export-client-go-arm64
 export exportDistro=nexus3.edgexfoundry.org:10004/docker-export-distro-go-arm64
 export deviceVirtual=nexus3.edgexfoundry.org:10004/docker-device-virtual-arm64
-
