@@ -32,41 +32,42 @@ run_service () {
 }
 
 run_service volume
-sleep 10
+sleep 20
 run_service consul
+sleep 20
 
 while ! $(docker-compose exec -T consul nc -z edgex-core-consul 8500);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
 
 run_service config-seed
 run_service mongo
 
-sleep 10
+sleep 20
 
 run_service mongo-seed
 run_service logging
 
 while ! $(docker-compose exec -T consul nc -z edgex-support-logging 48061);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
+sleep 10
 
 run_service notifications
 
 while ! $(docker-compose exec -T consul nc -z edgex-support-notifications 48060);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
+sleep 10
 
 run_service metadata
 
 while ! $(docker-compose exec -T consul nc -z edgex-core-metadata 48081);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
+sleep 10
 
 run_service data
 
 while ! $(docker-compose exec -T consul nc -z edgex-core-data 48080);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
+sleep 10
 
 run_service command
 
 while ! $(docker-compose exec -T consul nc -z edgex-core-command 48082);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
+sleep 10
 
 #run_service scheduler
 
