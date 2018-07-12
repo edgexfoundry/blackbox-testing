@@ -1,0 +1,230 @@
+{
+    "notification": {
+        "$ref": "notification",
+        "$id": {
+            "$oid": "57ba04a1189b95b8afcdafd1"
+        }
+    },
+    "receiver": "Jack",
+    "channel": {
+        "type": "REST",
+        "url": "http://localhost:5566/test",
+        "httpMethod": "POST",
+        "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel"
+    },
+    "status": "SENT",
+    "resendCount": 0,
+    "records": [
+        {
+            "status": "SENT",
+            "response": "true",
+            "sent": 1472439914709
+        }
+    ],
+    "created": 1472439915730,
+    "modified": 1472439915730
+}
+{
+    "receiver": "Jack",
+    "channel": {
+        "type": "REST",
+        "url": "http://localhost:5566/test",
+        "httpMethod": "POST",
+        "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel"
+    },
+    "status": "SENT",
+    "resendCount": 0,
+    "records": [
+        {
+            "status": "SENT",
+            "response": "true",
+            "sent": 1472439914709
+        }
+    ],
+    "created": 100010,
+    "modified": 100010
+}
+{
+    "receiver": "Jack",
+    "channel": {
+        "type": "REST",
+        "url": "http://localhost:5566/test",
+        "httpMethod": "POST",
+        "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel"
+    },
+    "status": "SENT",
+    "resendCount": 0,
+    "records": [
+        {
+            "status": "SENT",
+            "response": "true",
+            "sent": 1472439914709
+        }
+    ],
+    "created": 150000,
+    "modified": 150000
+}
+{
+    "receiver": "Jack",
+    "channel": {
+        "type": "REST",
+        "url": "http://localhost:5566/test",
+        "httpMethod": "POST",
+        "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel"
+    },
+    "status": "SENT",
+    "resendCount": 0,
+    "records": [
+        {
+            "status": "SENT",
+            "response": "true",
+            "sent": 1472439914709
+        }
+    ],
+    "created": 99000,
+    "modified": 99000
+}
+{
+    "receiver": "Jack",
+    "channel": {
+        "type": "REST",
+        "url": "http://localhost:5566/test",
+        "httpMethod": "POST",
+        "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel"
+    },
+    "status": "ESCALATED",
+    "resendCount": 0,
+    "records": [
+        {
+            "status": "SENT",
+            "response": "true",
+            "sent": 1472439914709
+        }
+    ],
+    "created": 100000,
+    "modified": 100000
+}
+{
+    "receiver": "Jack",
+    "channel": {
+        "type": "REST",
+        "url": "http://localhost:5566/test",
+        "httpMethod": "POST",
+        "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel"
+    },
+    "status": "FAILED",
+    "resendCount": 0,
+    "records": [
+        {
+            "status": "FAILED",
+            "response": "true",
+            "sent": 1472439914709
+        }
+    ],
+    "created": 100000,
+    "modified": 100000
+}
+{
+    "notification": {
+        "$ref": "notification",
+        "$id": {
+            "$oid": "57ba04a1189b95b8afcdafd2"
+        }
+    },
+    "receiver": "Jack",
+    "channel": {
+        "type": "REST",
+        "url": "http://localhost:5566/test",
+        "httpMethod": "POST",
+        "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel"
+    },
+    "status": "SENT",
+    "resendCount": 0,
+    "records": [
+        {
+            "status": "SENT",
+            "response": "true",
+            "sent": 1472439914709
+        }
+    ],
+    "created": 100000,
+    "modified": 100000
+}
+{
+    "notification": {
+        "$ref": "notification",
+        "$id": {
+            "$oid": "57ba04a1189b95b8afcdafd3"
+        }
+    },
+    "receiver": "Jack",
+    "channel": {
+        "type": "REST",
+        "url": "http://localhost:5566/test",
+        "httpMethod": "POST",
+        "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel"
+    },
+    "status": "ESCALATED",
+    "resendCount": 0,
+    "records": [
+        {
+            "status": "ESCALATED",
+            "response": "true",
+            "sent": 1472439914709
+        }
+    ],
+    "created": 100000,
+    "modified": 100000
+}
+{
+    "notification": {
+        "$ref": "notification",
+        "$id": {
+            "$oid": "57ba04a1189b95b8afcdafd4"
+        }
+    },
+    "receiver": "Jack",
+    "channel": {
+        "type": "REST",
+        "url": "http://localhost:5566/test",
+        "httpMethod": "POST",
+        "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel"
+    },
+    "status": "ACKNOWLEDGED",
+    "resendCount": 0,
+    "records": [
+        {
+            "status": "SENT",
+            "response": "true",
+            "sent": 1472439914709
+        }
+    ],
+    "created": 100000,
+    "modified": 100000
+}
+{
+    "notification": {
+        "$ref": "notification",
+        "$id": {
+            "$oid": "57ba04a1189b95b8afcdafd5"
+        }
+    },
+    "receiver": "Jack",
+    "channel": {
+        "type": "REST",
+        "url": "http://localhost:5566/test",
+        "httpMethod": "POST",
+        "_class" : "org.edgexfoundry.support.domain.notifications.RESTfulChannel"
+    },
+    "status": "FAILED",
+    "resendCount": 3,
+    "records": [
+        {
+            "status": "FAILED",
+            "response": "true",
+            "sent": 1472439914709
+        }
+    ],
+    "created": 100000,
+    "modified": 100000
+}
