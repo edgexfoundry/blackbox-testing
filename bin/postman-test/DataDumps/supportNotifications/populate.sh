@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-mongo notifications subscription.js
-mongo notifications notification.js
-mongo notifications transmission.js
+mongoimport -d notifications -c subscription --file subscriptionDb.json
+mongoimport -d notifications -c notification --file notificationDb.json
+mongoimport -d notifications -c transmission --file transmissionDb.json

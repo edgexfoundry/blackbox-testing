@@ -47,7 +47,11 @@ CORECOMMANDDATAFILE=/etc/newman/data/coreCommandData.json
 
 LOGGINGDATADUMP=/etc/newman/DataDumps/logging/logEntryDb.json
 
-if [ -f $CONFIGFILE ]; then 
+SUPPORTNOTIFICATION_NOTIFICATION_DATADUMP=/etc/newman/DataDumps/supportNotifications/notificationDb.json
+SUPPORTNOTIFICATION_SUBSCRIPTION_DATADUMP=/etc/newman/DataDumps/supportNotifications/subscriptionDb.json
+SUPPORTNOTIFICATION_TRANSMISSION_DATADUMP=/etc/newman/DataDumps/supportNotifications/transmissionDb.json
+
+if [ -f $CONFIGFILE ]; then
 
 	source $CONFIGFILE
 
