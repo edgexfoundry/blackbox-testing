@@ -3,7 +3,7 @@
 NAMESFILE=$(dirname "$0")/files.sh
 
 COLLECTION_PATH="collections/support-logging.postman_collection.json"
-ENV_PATH="environment/edgex.postman_environment.json"
+ENV_PATH="environment/support-logging-docker.json"
 
 if [ -f $NAMESFILE ]; then 
 
