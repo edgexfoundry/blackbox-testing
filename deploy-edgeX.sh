@@ -27,6 +27,7 @@
 
 run_service () {
 	echo "\033[0;32mStarting.. $1\033[0m"
+  docker login nexus3.edgexfoundry.org:10004 -u docker -p docker
 	docker-compose up -d $1
 }
 
@@ -34,7 +35,7 @@ run_service volume
 sleep 10
 run_service consul
 
-while ! $(docker-compose exec -T consul nc -z localhost 8500);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
+while ! $(docker-compose exec -T consul nc -z edgex-core-consul 8500);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
 
 run_service config-seed
 run_service mongo

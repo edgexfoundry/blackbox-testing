@@ -173,7 +173,8 @@ var readingsToBeRemoved = [
     ObjectId("57e866d4e4b0ca8e6d73a4c7"),
     ObjectId("57e866d4e4b0ca8e6d73a4c5"),
     ObjectId("57e866d4e4b0ca8e6d73a4c3"),
-    ObjectId("57e866d4e4b0ca8e6d73a4c1")
+    ObjectId("57e866d4e4b0ca8e6d73a4c1"),
+    ObjectId("57e745efe4b0ca8e6d711ef1")
 ];
 
 db.reading.remove({
