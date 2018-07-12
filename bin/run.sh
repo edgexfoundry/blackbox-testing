@@ -1,4 +1,6 @@
 #!/bin/bash
+# Ensure we fail the job if any steps fail
+set -e -o pipefail
 
 #. $(dirname "$0")/env.sh
 
