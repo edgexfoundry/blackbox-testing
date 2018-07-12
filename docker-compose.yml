@@ -54,18 +54,6 @@ services:
       - volume
     command: --smallfiles
 
-  mongo-seed:
-    image: ${mongoSeed}
-    networks:
-      edgex-network:
-        aliases:
-          - edgex-mongo-seed
-    volumes_from:
-      - volume
-    depends_on:
-      - volume
-      - mongo
-
   logging:
     image: ${supportLogging}
     ports:
@@ -81,7 +69,6 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
 
   notifications:
     image: edgexfoundry/docker-support-notifications
@@ -98,7 +85,6 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
 
   metadata:
@@ -117,7 +103,6 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
 
   data:
@@ -136,7 +121,6 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - notifications
 
@@ -155,7 +139,6 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
 
@@ -174,7 +157,6 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
       - command
@@ -194,7 +176,6 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - notifications
       - metadata
@@ -216,7 +197,6 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - notifications
       - metadata
@@ -238,7 +218,6 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
       - command
@@ -263,7 +242,6 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
       - data
