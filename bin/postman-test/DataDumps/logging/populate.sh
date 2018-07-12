@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-mongo logging logEntry.js
+mongoimport -d logging -c logEntry --file logEntryDb.json
