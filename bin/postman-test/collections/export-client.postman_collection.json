@@ -287,10 +287,10 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "5fa1802a-3f8e-4afb-b8b1-bf8975939563",
+								"id": "67686c79-2d26-463c-a38e-dc42fd876bc4",
 								"type": "text/javascript",
 								"exec": [
-									"if(!data.loggingLabel){",
+									"if(!data.regID){",
 									"    pm.environment.set(\"regID\", \"5b0eb384fd4ca80001df4fa9\");",
 									"}else{",
 									"    pm.environment.set(\"regID\", data.regID);",
@@ -304,7 +304,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+							"raw": "{\n  \"name\":\"OSIClient\",\n  \"enable\":false\n}"
 						},
 						"url": {
 							"raw": "{{exportClientUrl}}/api/v1/registration/{{regID}}",
@@ -1015,7 +1015,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+							"raw": "{\n  \"name\":\"OSIClient\",\n  \"enable\":false\n}"
 						},
 						"url": {
 							"raw": "{{exportClientUrl}}/api/v1/registration/name/{{nameNotFound}}",
@@ -1432,7 +1432,7 @@
 					"              \"title\":\"protocol\"",
 					"            },",
 					"            \"address\":{",
-					"              \"type\":\"string\",",
+					"              \"type\":[\"string\",\"null\"],",
 					"              \"required\":false,",
 					"              \"title\":\"address\"",
 					"            },",
@@ -1447,22 +1447,22 @@
 					"              \"title\":\"path\"",
 					"            },",
 					"            \"publisher\":{",
-					"              \"type\":\"string\",",
+					"              \"type\":[\"string\",\"null\"],",
 					"              \"required\":false,",
 					"              \"title\":\"publisher\"",
 					"            },",
 					"            \"user\":{",
-					"              \"type\":\"string\",",
+					"              \"type\":[\"string\",\"null\"],",
 					"              \"required\":false,",
 					"              \"title\":\"user\"",
 					"            },",
 					"            \"password\":{",
-					"              \"type\":\"string\",",
+					"              \"type\":[\"string\",\"null\"],",
 					"              \"required\":false,",
 					"              \"title\":\"password\"",
 					"            },",
 					"            \"topic\":{",
-					"              \"type\":\"string\",",
+					"              \"type\":[\"string\",\"null\"],",
 					"              \"required\":false,",
 					"              \"title\":\"topic\"",
 					"            }",
