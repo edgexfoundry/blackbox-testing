@@ -1,0 +1,44 @@
+name: "device-sdk-thermostat-profile"
+description: "BACnet Honeywell thermostats"
+manufacturer: "Honeywell"
+model: "ABC123"
+labels: 
+  - "bacnet"
+  - "thermostat"
+  - "Honeywell"
+
+deviceResources:
+       -
+         name: "coolingpoint"
+         description: "Cooling Point"
+         properties:
+             value:
+                 { type: "INT64", readWrite: "RW", size: "1", scale: "1", minimum: "0", maximum: "1000", defaultValue: "0"}
+             units:
+                 { type: "String", readWrite: "R", defaultValue: "degree"}
+
+resources:
+      -
+        name: "coolingpoint"
+        get:
+          - { index: "1", operation: "get", object: "coolingpoint", parameter: "coolingpoint", property: "value" }
+        set:
+          - { index: "2", operation: "set", object: "coolingpoint", parameter: "coolingpoint", property: "value" }
+  
+commands:
+  - name: "coolingpoint"
+    get:
+        path: "/api/v1/device/{deviceId}/coolingpoint"
+        responses:
+          - code: "200"
+            description: "not a float"
+            expectedValues: 
+              - "coolingpoint"
+    put:
+        path: "/api/v1/device/{deviceId}/coolingpoint" 
+        parameterNames: ["coolingpoint"]
+        responses:
+          - code: "200"
+            description: "not a float"
+            expectedValues: 
+              - "coolingpoint"
