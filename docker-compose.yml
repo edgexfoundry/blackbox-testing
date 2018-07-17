@@ -52,19 +52,6 @@ services:
       - volume
     depends_on:
       - volume
-    command: --smallfiles
-
-  mongo-seed:
-    image: ${mongoSeed}
-    networks:
-      edgex-network:
-        aliases:
-          - edgex-mongo-seed
-    volumes_from:
-      - volume
-    depends_on:
-      - volume
-      - mongo
 
   logging:
     image: ${supportLogging}
@@ -81,10 +68,9 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
 
   notifications:
-    image: edgexfoundry/docker-support-notifications
+    image: ${supportNotifications}
     ports:
       - "48060:48060"
     networks:
@@ -98,7 +84,6 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
 
   metadata:
@@ -117,7 +102,6 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
 
   data:
@@ -136,7 +120,6 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - notifications
 
@@ -155,7 +138,6 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
 
@@ -174,7 +156,6 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
       - command
@@ -194,7 +175,6 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - notifications
       - metadata
@@ -216,7 +196,6 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - notifications
       - metadata
@@ -238,7 +217,6 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
       - command
@@ -263,14 +241,13 @@ services:
       - consul
       - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
       - data
       - command
 
   postman:
-    image: postman/newman_ubuntu1404
+    image: ${postman}
     networks:
       - edgex-network
     volumes_from:
