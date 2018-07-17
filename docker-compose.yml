@@ -29,7 +29,7 @@ services:
       - volume
 
   config-seed:
-    image: ${coreConfigseed}
+    image: ${configSeed}
     networks:
       edgex-network:
         aliases:
@@ -52,19 +52,6 @@ services:
       - volume
     depends_on:
       - volume
-    command: --smallfiles
-
-  mongo-seed:
-    image: ${mongoSeed}
-    networks:
-      edgex-network:
-        aliases:
-          - edgex-mongo-seed
-    volumes_from:
-      - volume
-    depends_on:
-      - volume
-      - mongo
 
   logging:
     image: ${supportLogging}
@@ -79,12 +66,10 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
 
   notifications:
-    image: edgexfoundry/docker-support-notifications
+    image: ${supportNotifications}
     ports:
       - "48060:48060"
     networks:
@@ -96,9 +81,7 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
       - logging
 
   metadata:
@@ -115,9 +98,7 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
       - logging
 
   data:
@@ -134,9 +115,7 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
       - logging
       - notifications
 
@@ -153,9 +132,7 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
 
@@ -172,9 +149,7 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
       - command
@@ -192,9 +167,7 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
       - logging
       - notifications
       - metadata
@@ -214,9 +187,7 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
       - logging
       - notifications
       - metadata
@@ -236,9 +207,7 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
       - command
@@ -261,9 +230,7 @@ services:
     depends_on:
       - volume
       - consul
-      - config-seed
       - mongo
-      - mongo-seed
       - logging
       - metadata
       - data

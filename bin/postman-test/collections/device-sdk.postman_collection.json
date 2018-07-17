@@ -1,0 +1,385 @@
+{
+	"info": {
+		"_postman_id": "77dda8ca-e561-415e-b239-eba984c98bec",
+		"name": "device-sdk",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "check device-sdk registered itself as a device service",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "932d2b4e-d44b-473c-bc7d-565cd47fe239",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 600ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Content-Type is application/json\", function(){",
+							"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+							"    pm.expect(contentType).to.include(\"application/json\");",
+							"});",
+							"",
+							"pm.test(\"Response must be valid and have a body\", function () {",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json; ",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{metaDataUrl}}/api/v1/deviceservice/name/device-sdk",
+					"host": [
+						"{{metaDataUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"deviceservice",
+						"name",
+						"device-sdk"
+					]
+				},
+				"description": "given core-metadata and device-sdk started up\nwhen device-sdk initialized successfully\nthen device-sdk registered itself as a device service"
+			},
+			"response": []
+		},
+		{
+			"name": "create a device profile for device-sdk",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8b7fbafb-ac2f-4efc-bee2-6f97176bbd8f",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 600ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Content-Type is text/plain\", function(){",
+							"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+							"    pm.expect(contentType).to.include(\"text/plain\");",
+							"});",
+							"",
+							"pm.test(\"Response must be valid and have a body\", function () {",
+							"     pm.response.to.be.withBody;",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"value": "device-sdk_sample_profile.yaml",
+							"description": "",
+							"type": "file"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{metaDataUrl}}/api/v1/deviceprofile/uploadfile",
+					"host": [
+						"{{metaDataUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"deviceprofile",
+						"uploadfile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create an addressable for device-sdk",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f8f052a6-5691-49c4-a712-b1365404fa99",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 600ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Content-Type is text/plain\", function(){",
+							"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+							"    pm.expect(contentType).to.include(\"text/plain\");",
+							"});",
+							"",
+							"pm.test(\"Response must be valid and have a body\", function () {",
+							"     pm.response.to.be.withBody;",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"device-sdk-sample-address\",\"protocol\":\"HTTP\",\"address\":\"192.168.1.1\",\"port\":502,\"path\":\"\",\"publisher\":\"none\",\"user\":\"none\",\"password\":\"none\",\"topic\":\"none\"}"
+				},
+				"url": {
+					"raw": "{{metaDataUrl}}/api/v1/addressable",
+					"host": [
+						"{{metaDataUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"addressable"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create a device tied to device-sdk to test callback",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3004f0c3-7fdf-4f1a-9a34-ff120ff825e8",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 600ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Content-Type is text/plain\", function(){",
+							"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+							"    pm.expect(contentType).to.include(\"text/plain\");",
+							"});",
+							"",
+							"pm.test(\"Response must be valid and have a body\", function () {",
+							"     pm.response.to.be.withBody;",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\": \"5b2255460a5d402bb0711a39\", \"name\":\"device-sdk-sample\",\"description\":\"created for test\",\"adminState\":\"UNLOCKED\",\"operatingState\":\"ENABLED\",\"addressable\":{\"name\":\"device-sdk-sample-address\"},\"labels\":[\"modbus\",\"smart-meter\"],\"service\":{\"name\":\"device-sdk\"},\"profile\":{\"name\":\"device-sdk-thermostat-profile\"}}"
+				},
+				"url": {
+					"raw": "{{metaDataUrl}}/api/v1/device",
+					"host": [
+						"{{metaDataUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"device"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete the device tied to device-sdk to test callback",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3b142789-04c6-43ed-a9b6-7d68ac2d169a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 600ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);",
+							"});",
+							"",
+							"pm.test(\"Response must be valid and have a body\", function () {",
+							"     pm.response.to.be.withBody;",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{metaDataUrl}}/api/v1/device/id/5b2255460a5d402bb0711a39",
+					"host": [
+						"{{metaDataUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"device",
+						"id",
+						"5b2255460a5d402bb0711a39"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check the get command works",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6f2e5f9a-52e2-447a-91cc-1eddea9acf8a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 600ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Content-Type is application/json\", function(){",
+							"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+							"    pm.expect(contentType).to.include(\"application/json\");",
+							"});",
+							"",
+							"pm.test(\"Response must be valid and have a body\", function () {",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json; ",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{deviceSDKUrl}}/api/v1/device/5b2255460a5d402bb0711a39/coolingpoint",
+					"host": [
+						"{{deviceSDKUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"device",
+						"5b2255460a5d402bb0711a39",
+						"coolingpoint"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check the get command from the deleted device returns 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "278c89bb-4bd5-45f9-9cf8-3136fba6cc90",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 400ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{deviceSDKUrl}}/api/v1/device/5b2255460a5d402bb0711a39/coolingpoint",
+					"host": [
+						"{{deviceSDKUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"device",
+						"5b2255460a5d402bb0711a39",
+						"coolingpoint"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
