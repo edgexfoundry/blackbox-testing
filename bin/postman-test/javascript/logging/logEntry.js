@@ -15,3 +15,4 @@ db.logEntry.remove({
     }
 });
 
+db.logEntry.remove({"originService" : "testService"});

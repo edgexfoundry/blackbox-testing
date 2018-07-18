@@ -26,6 +26,15 @@
     "created" : NumberLong(1527780479547)
 }
 {
+    "logLevel" : "WARN",
+    "labels" : [
+        "testLabel"
+    ],
+    "originService" : "testService",
+    "message" : "Hello, this is testService !",
+    "created" : NumberLong(1527780479547)
+}
+{
     "logLevel" : "ERROR",
     "labels" : [
         "testLabel"
