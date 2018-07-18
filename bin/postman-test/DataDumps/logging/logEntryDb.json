@@ -127,3 +127,1138 @@
     "message" : "Hello, Logging Service!",
     "created" : NumberLong(1527780479547)
 }
+
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}
+{
+    "logLevel" : "INFO",
+    "labels" : [
+        "label1"
+    ],
+    "originService" : "service10",
+    "message" : "Hello, Logging Service!",
+    "created" : NumberLong(999999999999999)
+}

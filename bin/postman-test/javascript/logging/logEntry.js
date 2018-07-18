@@ -16,3 +16,4 @@ db.logEntry.remove({
 });
 
 db.logEntry.remove({"originService" : "testService"});
+db.logEntry.remove({"originService" : "service10"});
