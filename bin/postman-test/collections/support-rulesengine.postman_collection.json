@@ -207,15 +207,15 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0ea752a3-1c66-4000-b790-e276728a9710",
+								"id": "02a25826-5eb6-4345-bce4-a8de8c5ad110",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"pm.test(\"Response time is less than 1500ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(1500);",
+									"pm.test(\"Response time is less than 2000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
 									"});",
 									"",
 									"pm.test(\"Content-Type is present\", function () {",
