@@ -1,13 +1,13 @@
 {
 	"info": {
-		"_postman_id": "7667e0cc-fee7-4bca-9f3b-2dd771e3e31c",
+		"_postman_id": "ce1363fe-b5df-4993-a160-1e53eb7b0866",
 		"name": "support-rulesengine",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "ping",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "Test service providing an indication that the service is available.",
@@ -40,7 +40,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportRulesengineUrl}}/api/v1/ping",
 							"host": [
@@ -60,7 +63,7 @@
 		},
 		{
 			"name": "rules_error_5xx",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "Fail to create a rule",
@@ -118,74 +121,6 @@
 						"description": "Add a new rule. ServcieException (HTTP 503) for unknown or unanticipated issue"
 					},
 					"response": []
-				},
-				{
-					"name": "Fail to delete rule by an inexistent name",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "b4b06f67-4342-4e18-8d4d-f7c5df92b122",
-								"type": "text/javascript",
-								"exec": [
-									" /**",
-									" * Test Case:  /api/v1/rule - DELETE",
-									" * Version: Alpha",
-									" * @Author: Tom Fleming",
-									" * ",
-									" **/",
-									" ",
-									"pm.test(\"Status code is 503\", function () {",
-									"    pm.response.to.have.status(503);",
-									"});",
-									"",
-									"pm.test(\"Response time is less than 200ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);",
-									"});",
-									"",
-									"pm.test(\"Content-Type is present\", function () {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
-									""
-								]
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "dec3a910-3e60-4f03-acf5-ba8f771ccd05",
-								"type": "text/javascript",
-								"exec": [
-									"// handle iteration data",
-									"if(!data.loggingLabel){",
-									"    pm.environment.set(\"ruleNameNoExsist\", \"xxx\");",
-									"}else{",
-									"    pm.environment.set(\"ruleNameNoExsist\", data.ruleNameNoExsist);",
-									"}"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "{{supportRulesengineUrl}}/api/v1/rule/name/xxx",
-							"host": [
-								"{{supportRulesengineUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"rule",
-								"name",
-								"xxx"
-							]
-						},
-						"description": "Remove the rule designated by name. ServcieException (HTTP 503) for unknown or unanticipated issues."
-					},
-					"response": []
 				}
 			],
 			"event": [
@@ -213,8 +148,114 @@
 		},
 		{
 			"name": "rules",
-			"description": "",
+			"description": null,
 			"item": [
+				{
+					"name": "Create a rule",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "02ab351a-ce4e-436b-bc69-4c4054ac9f95",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"true\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\":\"motortoofastsignal\", \n   \"condition\": \n   {\n         \"device\":\"57f73d70e4b060e27309e45e\",\n         \"checks\":[ \n            {\n               \"parameter\":\"CurrentRPM\", \n               \"operand1\":\"Float.parseFloat(value)\", \n               \"operation\":\">\",\"operand2\":\"1\" \n            } ] \n   }, \n   \"action\" : \n   {\n         \"device\":\"57f73d70e4b060e27309e45e\",\n         \"command\":\"57f73d6ce4b060e27309e45b\",\n         \"body\":\"{\\\\\\\"value\\\\\\\":\\\\\\\"3\\\\\\\"}\"},\n         \"log\":\"Warning triggered for engine speed too high\" \n   }\n}"
+						},
+						"url": {
+							"raw": "{{supportRulesengineUrl}}/api/v1/rule",
+							"host": [
+								"{{supportRulesengineUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"rule"
+							]
+						},
+						"description": "Add a new rule. ServcieException (HTTP 503) for unknown or unanticipated issue"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a rule",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0ea752a3-1c66-4000-b790-e276728a9710",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1500);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"true\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\":\"motortoofastsignal\", \n   \"condition\": \n   {\n         \"device\":\"57f73d70e4b060e27309e45e\",\n         \"checks\":[ \n            {\n               \"parameter\":\"CurrentRPM\", \n               \"operand1\":\"Float.parseFloat(value)\", \n               \"operation\":\">\",\"operand2\":\"1\" \n            } ] \n   }, \n   \"action\" : \n   {\n         \"device\":\"57f73d70e4b060e27309e45e\",\n         \"command\":\"57f73d6ce4b060e27309e45b\",\n         \"body\":\"{\\\\\\\"value\\\\\\\":\\\\\\\"3\\\\\\\"}\"},\n         \"log\":\"Warning triggered for engine speed too high\" \n   }\n}"
+						},
+						"url": {
+							"raw": "{{supportRulesengineUrl}}/api/v1/rule",
+							"host": [
+								"{{supportRulesengineUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"rule"
+							]
+						},
+						"description": "Add a new rule. ServcieException (HTTP 503) for unknown or unanticipated issue"
+					},
+					"response": []
+				},
 				{
 					"name": "List all rule",
 					"event": [
@@ -257,7 +298,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportRulesengineUrl}}/api/v1/rule",
 							"host": [
@@ -270,61 +314,6 @@
 							]
 						},
 						"description": "Return all rule names. ServcieException (HTTP 503) for unknown or unanticipated issues."
-					},
-					"response": []
-				},
-				{
-					"name": "Create a rule",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "83932fdb-a4dc-4671-a7cb-e8094decb2f7",
-								"type": "text/javascript",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Response time is less than 1000ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
-									"});",
-									"",
-									"pm.test(\"Content-Type is present\", function () {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
-									"",
-									"pm.test(\"Response body is correct\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"true\");",
-									"});"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n   \"name\":\"motortoofastsignal\", \n   \"condition\": \n   {\n         \"device\":\"57f73d70e4b060e27309e45e\",\n         \"checks\":[ \n            {\n               \"parameter\":\"CurrentRPM\", \n               \"operand1\":\"Float.parseFloat(value)\", \n               \"operation\":\">\",\"operand2\":\"1\" \n            } ] \n   }, \n   \"action\" : \n   {\n         \"device\":\"57f73d70e4b060e27309e45e\",\n         \"command\":\"57f73d6ce4b060e27309e45b\",\n         \"body\":\"{\\\\\\\"value\\\\\\\":\\\\\\\"3\\\\\\\"}\"},\n         \"log\":\"Warning triggered for engine speed too high\" \n   }\n}"
-						},
-						"url": {
-							"raw": "{{supportRulesengineUrl}}/api/v1/rule",
-							"host": [
-								"{{supportRulesengineUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"rule"
-							]
-						},
-						"description": "Add a new rule. ServcieException (HTTP 503) for unknown or unanticipated issue"
 					},
 					"response": []
 				},
@@ -374,7 +363,10 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportRulesengineUrl}}/api/v1/rule/name/{{ruleName}}",
 							"host": [
