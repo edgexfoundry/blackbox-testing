@@ -50,6 +50,7 @@ loggingTest() {
 	$(dirname "$0")/flushLoggingDataDump.sh
 
 }
+
 supportNotificationTest(){
 	$(dirname "$0")/importSupportNotificationDump.sh
 	$(dirname "$0")/supportNotificationsTest.sh
@@ -95,18 +96,18 @@ case ${option} in
 	loggingTest	| tee $LOGGINGLOGSPATH
 	;;
    	-sn)
-      	echo "Info: Initiating SupportNotifications Test"
+    echo "Info: Initiating SupportNotifications Test"
 	supportNotificationTest	| tee $SUPPORT_NOTIFICATION_LOG_PATH
-      	;;
+    ;;
    	-all)
-      	echo "Info: Initiating EdgeX Test"
+    echo "Info: Initiating EdgeX Test"
 	testAll		| tee $EDGEXLOGSPATH
-      	;;
+    ;;
    	*)
-      	echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-all All]"
-      	echo
-      	exit 0
-      	;;
+    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-all All]"
+    echo
+    exit 0
+    ;;
 esac
 
 
