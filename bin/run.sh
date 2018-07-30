@@ -15,6 +15,7 @@ METADATALOGSPATH=$BASEPATH/metaData$TIMESTAMPFORMAT.log
 COMMANDLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
 LOGGINGLOGSPATH=$BASEPATH/logging$TIMESTAMPFORMAT.log
 SUPPORT_NOTIFICATION_LOG_PATH=$BASEPATH/supportNotification$TIMESTAMPFORMAT.log
+RULESENGINELOGSPATH=$BASEPATH/rulesengine$TIMESTAMPFORMAT.log
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 coreDataTest() {
@@ -58,6 +59,10 @@ supportNotificationTest(){
 
 }
 
+rulesengineTest() {
+	$(dirname "$0")/rulesengineTest.sh
+}
+
 testAll() {
 
 	coreDataTest
@@ -65,6 +70,7 @@ testAll() {
 	commandTest
 	loggingTest
 	supportNotificationTest
+	rulesengineTest
 
 }
 
@@ -99,12 +105,16 @@ case ${option} in
     echo "Info: Initiating SupportNotifications Test"
 	supportNotificationTest	| tee $SUPPORT_NOTIFICATION_LOG_PATH
     ;;
+    -ru)
+    echo "Info: Initiating SupportRulesengine Test"
+    rulesengineTest	| tee $RULESENGINELOGSPATH
+    ;;
    	-all)
     echo "Info: Initiating EdgeX Test"
 	testAll		| tee $EDGEXLOGSPATH
     ;;
    	*)
-    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-all All]"
+    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] [-lo Logging] | [-ru Rulesengine] | [-all All]"
     echo
     exit 0
     ;;
