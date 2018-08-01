@@ -1,0 +1,3066 @@
+{
+	"info": {
+		"_postman_id": "3cb479be-48f0-41d0-82ae-8af034ab9223",
+		"name": "support-notifications",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "subscription",
+			"description": "",
+			"item": [
+				{
+					"name": "Create a subscription",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5c82bea1-bc93-40f8-aa81-40f121a18013",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.response.to.have.body(\"sys-admin\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"slug\": \"sys-admin\",\n\t\"receiver\": \"System Administrator\",\n\t\"subscribedCategories\": [\n\t\t\"HW_HEALTH\"\n\t],\n\t\"subscribedLabels\": [\n\t\t\"temperature\",\n\t\t\"humidity\"\n    ],\n\t\"channels\": [\n\t\t{\n\t\t\t\"type\": \"REST\",\n\t\t\t\"url\": \"http://abc.def/alert\"\n\t\t},\n\t\t{\n\t\t\t\"type\": \"EMAIL\",\n\t\t\t\"mailAddresses\": [\n\t\t\t\t\"cloud@abc.def\",\n\t\t\t\t\"jack@abc.def\"\n\t    \t]\n\t\t}\n\t]\n}"
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to create a subscription with a duplicated slug",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "66ee6d52-a817-4b98-bb21-45776277f5c2",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {",
+									"    pm.response.to.have.status(409);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"slug\": \"group-a-member\",\n\t\"receiver\": \"Group A Member\",\n\t\"subscribedCategories\": [\n\t\t\"HW_HEALTH\"\n\t],\n\t\"subscribedLabels\": [\n\t\t\"temperature\",\n\t\t\"humidity\"\n    ],\n\t\"channels\": [\n\t\t{\n\t\t\t\"type\": \"EMAIL\",\n\t\t\t\"mailAddresses\": [\n\t\t\t\t\"andy@abc.def\",\n\t\t\t\t\"tom@abc.def\"\n\t    \t]\n\t\t}\n\t]\n}\n"
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Deleted Subscription can be removed by slug",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e36d9252-1823-4d64-8edc-cc52f94156a4",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/slug/group-b-member",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription",
+								"slug",
+								"group-b-member"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to delete a subscription by an inexistent slug",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0fd4faed-58cf-4e15-899d-8b5acb21cd41",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "991f88c3-b8a1-410c-9fff-04bcdd5e1832",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/slug/non-exist-test-slug",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription",
+								"slug",
+								"non-exist-test-slug"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Modify a subscription",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0bc75a11-4897-48c0-98e0-8edd632ec7b2",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"slug\": \"group-c-member\",\n        \"receiver\": \"Group C Member\",\n        \"subscribedCategories\": [\n            \"HW_HEALTH\"\n        ],\n        \"subscribedLabels\": [\n            \"temperature\",\n            \"humidity\"\n        ],\n        \"channels\": [\n            {\n                \"type\": \"EMAIL\",\n                \"_class\" : \"org.edgexfoundry.support.domain.notifications.EmailChannel\" ,\n                \"mailAddresses\": [\n                    \"karl@abc.def\",\n                    \"jeff@abc.def\"\n                ]\n            }\n        ]\n    }"
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to modify subscription by an inexistent slug",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5f84b52c-ec21-4f3f-8bb4-afb183108f2c",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"slug\": \"non-exist-test-slug\",\n        \"receiver\": \"Non Exist Receiver\",\n        \"subscribedCategories\": [\n            \"HW_HEALTH\"\n        ],\n        \"subscribedLabels\": [\n            \"temperature\",\n            \"humidity\"\n        ],\n        \"channels\": [\n            {\n                \"type\": \"EMAIL\",\n                \"_class\" : \"org.edgexfoundry.support.domain.notifications.EmailChannel\" ,\n                \"mailAddresses\": [\n                    \"karl@abc.def\",\n                    \"jeff@abc.def\"\n                ]\n            }\n        ]\n    }"
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "List all subscriptions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2da16840-9d34-47e7-9e6d-0992354ca777",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").SubscriptionArray;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "33e2653f-8f22-4d3d-9c60-1e4f7a30d274",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription"
+							]
+						},
+						"description": "List all Subscriptions."
+					},
+					"response": []
+				},
+				{
+					"name": "Query a specific subscription by slug",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "40464bb6-5356-48ed-8f71-adec0553b739",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").Subscription;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.slug===\"group-f-member\").to.be.true; ",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/slug/group-f-member",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription",
+								"slug",
+								"group-f-member"
+							]
+						},
+						"description": "List all Subscriptions."
+					},
+					"response": []
+				},
+				{
+					"name": "Query subscriptions by matched categories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2ebb6fba-7b74-4d84-890a-1ff461fa0a8e",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").SubscriptionArray;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 400ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.subscribedCategories.includes(\"SW_HEALTH\") || data.subscribedCategories.includes(\"HW_HEALTH\")).to.be.true; ",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/categories/SW_HEALTH,HW_HEALTH",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription",
+								"categories",
+								"SW_HEALTH,HW_HEALTH"
+							]
+						},
+						"description": "List all Subscriptions."
+					},
+					"response": []
+				},
+				{
+					"name": "Query subscriptions by matched labels",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "55d402e9-d4b4-4df3-8d05-ef00cd1e4f58",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").SubscriptionArray;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.subscribedLabels.includes(\"sensor\")).to.be.true; ",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/labels/sensor",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription",
+								"labels",
+								"sensor"
+							]
+						},
+						"description": "List all Subscriptions."
+					},
+					"response": []
+				},
+				{
+					"name": "Query subscriptions by matched categories and labels",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "10538e3f-270c-466b-85ed-c6b5562e8bb1",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").SubscriptionArray;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.subscribedCategories.includes(\"HW_HEALTH\") || data.subscribedLabels.includes(\"sensor\") || data.subscribedLabels.includes(\"cpu\")).to.be.true; ",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/categories/HW_HEALTH/labels/sensor,cpu",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription",
+								"categories",
+								"HW_HEALTH",
+								"labels",
+								"sensor,cpu"
+							]
+						},
+						"description": "List all Subscriptions."
+					},
+					"response": []
+				},
+				{
+					"name": "Query subscriptions by receiver name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ce31e295-fe00-4496-ba21-c1f796e8d2b1",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").SubscriptionArray;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.receiver===\"Group M Member\").to.be.true; ",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/receiver/Group M Member",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"subscription",
+								"receiver",
+								"Group M Member"
+							]
+						},
+						"description": "List all Subscriptions."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "notification",
+			"description": "",
+			"item": [
+				{
+					"name": "Create a normal notification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c599a3d6-3dab-40f7-abe2-5939f6df06d4",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.response.to.have.body(\"notice-test-001\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"slug\": \"notice-test-001\",\n\t\"sender\": \"System Management\",\n\t\"category\": \"SECURITY\",\n\t\"severity\": \"NORMAL\",\n\t\"content\": \"Hello, Notification!\",\n\t\"labels\": [\n\t\t\"cool\",\n\t\t\"test\"\n\t]\n}"
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to create a normal notification with a duplicated slug",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "93ca51fc-641f-42a7-946e-06d4fb2b15d2",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {",
+									"    pm.response.to.have.status(409);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"slug\": \"notice-001\",\n    \"sender\": \"System Management\",\n    \"category\": \"HW_HEALTH\",\n    \"severity\": \"NORMAL\",\n    \"content\": \" [ INFO ] Room's temperature is 82 °F\",\n    \"labels\": [\n        \"room\",\n        \"temperature\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Create a critical notification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9d683071-0fed-4709-9370-d60c23b4c69f",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Critical notification had been proceessed and transmissions are created.  \", function(){",
+									"    setTimeout(()=>{ ",
+									"        var supportNotificationsUrl = pm.environment.get(\"supportNotificationsUrl\");",
+									"        pm.sendRequest(supportNotificationsUrl+\"/api/v1/transmission/slug/notice-002/5\", function (err, response) {",
+									"            var res = response.json();",
+									"            pm.expect(res.length > 0).to.be.true;",
+									"        });",
+									"    }",
+									"    , 1000);",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.response.to.have.body(\"notice-002\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"slug\": \"notice-002\",\n    \"sender\": \"System Management\",\n    \"category\": \"HW_HEALTH\",\n    \"severity\": \"CRITICAL\",\n    \"content\": \" [ WARNING ] Room's temperature is 103 °F , it's over upper limit 100 °F.\",\n    \"labels\": [\n        \"room\",\n        \"temperature\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a specific notification by slug",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9ec1305a-b7ba-434a-8406-3187a1de7f7f",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 400ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/slug/notice-003",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"slug",
+								"notice-003"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to delete a specific notification by an inexistent slug",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c8ba719f-67cc-42c7-bbcf-9fa45c5e1c81",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 400ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/slug/non-exist-test-slug",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"slug",
+								"non-exist-test-slug"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete the processed notifications and the corresponding transmissions by age",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "077757b2-b687-4e11-b543-d4a91ee4b3d8",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 400ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/age/100000",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"age",
+								"100000"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Query a specific notification by slug",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "171084eb-6523-40b4-8ca7-20e585044daa",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").Notification;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.slug==='notice-004').to.be.true;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/slug/notice-004",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"slug",
+								"notice-004"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Query notifications by sender name with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "247bc61d-e597-4c86-bc4a-3e102cd46cb5",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").NotificationArray;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.sender==='Room System Management').to.be.true; ",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/sender/Room System Management/2",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"sender",
+								"Room System Management",
+								"2"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Query notifications by creation timestamp between start date and end date with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "977b0c2e-0a3b-4e6f-bad1-51ec5a876bc4",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").NotificationArray;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.created > 1300000 && data.created<1400000).to.be.true;",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/1300000/1400000/2",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"1300000",
+								"1400000",
+								"2"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Query notifications by creation timestamp after start date with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2bd711e8-a09a-4bcd-b6a5-0de70bba5c2e",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").NotificationArray;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.created > 1500000).to.be.true;",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/start/1500000/1",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"start",
+								"1500000",
+								"1"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Query notifications by creation timestamp before end date with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0e32973d-e2c4-4768-a4f2-bcd710aaa6a4",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").NotificationArray;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.created < 1600000).to.be.true;",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/end/1600000/1",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"end",
+								"1600000",
+								"1"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Query notifications by labels matching any one of them with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba39ddaa-018c-44dc-9424-94eaa658c718",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").NotificationArray;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 400ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.labels.includes(\"power-meter\")).to.be.true; ",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/labels/power-meter/10",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"labels",
+								"power-meter",
+								"10"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Query the unprocessed notifications (status = NEW) with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8cd830d9-a8f2-4c31-a80c-b142489a767f",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").NotificationArray;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.status==='NEW').to.be.true;",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/new/10",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"new",
+								"10"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete notifications when the current timestamp minus their last modification timestamp is less than a default age setting, and the corresponding transmissions will also be deleted",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0ddd2895-dd04-4950-967a-130648d76d55",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/cleanup",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cleanup"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete notifications if the current timestamp minus their last modification timestamp is less than the age parameter, and the corresponding transmissions will also be deleted",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "af35356e-e818-4c99-8844-3ddcab301369",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/cleanup/age/123456",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cleanup",
+								"age",
+								"123456"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "transmission",
+			"description": "",
+			"item": [
+				{
+					"name": "Query transmissions by associating notification’s slug with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6193cd2b-2480-4aae-9e8e-f668bde35a96",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").TransmissionArray;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 400ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.notification.slug==='notice-015').to.be.true;",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/slug/notice-015/2",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"slug",
+								"notice-015",
+								"2"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Query transmissions by creation timestamp between start date and end date. with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0f27d89d-a68a-4506-81fd-f0e2cd6d3b87",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").TransmissionArray;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 400ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.created > 100000 && data.created<100020).to.be.true;",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/100000/100020/5",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"100000",
+								"100020",
+								"5"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Query transmissions by creation timestamp after start date with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "688d5dec-15aa-458a-940e-864380e01e58",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").TransmissionArray;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 400ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.created > 140000).to.be.true;",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/start/140000/5",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"start",
+								"140000",
+								"5"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Query transmissions by creation timestamp before end date with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b36490a-30bd-42ec-addf-9496db6a760a",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").TransmissionArray;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 400ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.created < 100000).to.be.true;",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/end/100000/5",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"end",
+								"100000",
+								"5"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Query the escalated transmissions (status = ESCALATED) with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "25e8278b-f312-4a1a-8dfd-b5ed0f2d5350",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").TransmissionArray;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 400ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.status==='ESCALATED').to.be.true;",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/escalated/10",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"escalated",
+								"10"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Query the failed transmissions (status = FAILED) with limited returned records",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6203da22-13fb-491d-bb80-0c914fa58471",
+								"type": "text/javascript",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").TransmissionArray;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 400ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.status==='FAILED').to.be.true;",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/failed/10",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"failed",
+								"10"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete the sent transmissions (status = SENT) when the current timestamp minus their last modification timestamp is less than the age parameter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "da14b10d-9648-4a20-83ee-c395b8ce0ad3",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Transmissions are been deleted , use specific notification slug to query will return empty array .  \", function(){",
+									"    var supportNotificationsUrl = pm.environment.get(\"supportNotificationsUrl\");",
+									"    pm.sendRequest(supportNotificationsUrl+\"/api/v1/transmission/slug/notice-016/5\", function (err, response) {",
+									"                var res = response.json();",
+									"                pm.expect(res.length === 0).to.be.true;",
+									"    });",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/sent/age/100000",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"sent",
+								"age",
+								"100000"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete the escalated transmissions (status = ESCALATED) when the current timestamp minus their last modification timestamp is less than the age parameter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1b0260f8-d33b-47bc-8e71-d51462ee9a4d",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Transmissions are been deleted , use specific notification slug to query will return empty array .  \", function(){",
+									"    var supportNotificationsUrl = pm.environment.get(\"supportNotificationsUrl\");",
+									"    pm.sendRequest(supportNotificationsUrl+\"/api/v1/transmission/slug/notice-017/5\", function (err, response) {",
+									"                var res = response.json();",
+									"                pm.expect(res.length === 0).to.be.true;",
+									"    });",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/escalated/age/100000",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"escalated",
+								"age",
+								"100000"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete the acknowledged tTransmissions (status = ACKNOWLEDGED) when the current timestamp minus their last modification timestamp is less than the age parameter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9033ec7a-070d-4686-be3c-23562726195e",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Transmissions are been deleted , use specific notification slug to query will return empty array .  \", function(){",
+									"    var supportNotificationsUrl = pm.environment.get(\"supportNotificationsUrl\");",
+									"    pm.sendRequest(supportNotificationsUrl+\"/api/v1/transmission/slug/notice-018/5\", function (err, response) {",
+									"                var res = response.json();",
+									"                pm.expect(res.length === 0).to.be.true;",
+									"    });",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/acknowledged/age/100000",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"acknowledged",
+								"age",
+								"100000"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete the failed transmissions (status = FAILED and resendCount >= resend limit) when the current timestamp minus their last modification timestamp is less than the age parameter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c7581379-49e2-481e-95f4-5db9e6c12bd4",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Transmissions are been deleted , use specific notification slug to query will return empty array .  \", function(){",
+									"    var supportNotificationsUrl = pm.environment.get(\"supportNotificationsUrl\");",
+									"    pm.sendRequest(supportNotificationsUrl+\"/api/v1/transmission/slug/notice-019/5\", function (err, response) {",
+									"                var res = response.json();",
+									"                pm.expect(res.length === 0).to.be.true;",
+									"    });",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/failed/age/100000",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"failed",
+								"age",
+								"100000"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ping",
+			"description": "",
+			"item": [
+				{
+					"name": "Test service providing an indication that the service is available.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a59b549d-59c2-4b89-aa18-a0c9a322c221",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('text/plain');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.response.to.have.body(\"pong\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/ping",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ping"
+							]
+						},
+						"description": "Test service providing an indication that the service is available."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "666c1b06-59c6-439c-bae1-c5a90ab634df",
+				"type": "text/javascript",
+				"exec": [
+					"var schemas = {} ; ",
+					"",
+					"schemas.Notification = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"Notification Schema\",",
+					"        \"type\": \"object\",",
+					"        \"properties\": {",
+					"          \"id\": {",
+					"              \"description\": \"generated and used by system, and users can ignore this property\",",
+					"              \"type\": \"string\"",
+					"          },",
+					"          \"slug\": {",
+					"              \"description\": \"A meaningful identifier provided by client\",",
+					"              \"type\": \"string\"",
+					"          },",
+					"          \"sender\": {",
+					"            \"type\": \"string\"",
+					"          },",
+					"          \"category\": {",
+					"            \"enum\": [\"SECURITY\",\"HW_HEALTH\",\"SW_HEALTH\"]",
+					"          },",
+					"          \"severity\": {",
+					"            \"enum\": [\"CRITICAL\",\"NORMAL\"]",
+					"          },",
+					"          \"content\": {",
+					"              \"type\": \"string\"",
+					"          },",
+					"          \"description\": {",
+					"              \"type\": [\"string\",\"null\"]",
+					"          },",
+					"          \"status\": {",
+					"            \"enum\": [\"NEW\",\"PROCESSED\",\"ESCALATED\"]",
+					"          },",
+					"          \"labels\": {",
+					"              \"type\": \"array\",",
+					"              \"items\": { \"type\": \"string\" },",
+					"              \"uniqueItems\": true",
+					"          },",
+					"          \"created\": {",
+					"              \"description\": \"The creation timestamp\",",
+					"              \"type\": \"integer\",",
+					"              \"minimum\": 0",
+					"          },",
+					"          \"modified\": {",
+					"              \"description\": \"The last modification timestamp\",",
+					"              \"type\": \"integer\",",
+					"              \"minimum\": 0",
+					"          }",
+					"        },",
+					"        \"required\": [\"slug\",\"sender\",\"category\",\"severity\",\"content\"]",
+					"      };",
+					"      ",
+					"schemas.NotificationArray = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"The Array of Notification\",",
+					"        \"type\": \"array\",",
+					"        \"items\": {",
+					"          \"$ref\": \"#/definitions/Notification\"",
+					"        },",
+					"        \"definitions\": {",
+					"          \"Notification\":",
+					"            {",
+					"              \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"              \"title\": \"Notification Schema\",",
+					"              \"type\": \"object\",",
+					"              \"properties\": {",
+					"                \"id\": {",
+					"                    \"description\": \"generated and used by system, and users can ignore this property\",",
+					"                    \"type\": \"string\"",
+					"                },",
+					"                \"slug\": {",
+					"                    \"description\": \"A meaningful identifier provided by client\",",
+					"                    \"type\": \"string\"",
+					"                },",
+					"                \"sender\": {",
+					"                  \"type\": \"string\"",
+					"                },",
+					"                \"category\": {",
+					"                  \"enum\": [\"SECURITY\",\"HW_HEALTH\",\"SW_HEALTH\"]",
+					"                },",
+					"                \"severity\": {",
+					"                  \"enum\": [\"CRITICAL\",\"NORMAL\"]",
+					"                },",
+					"                \"content\": {",
+					"                    \"type\": \"string\"",
+					"                },",
+					"                \"description\": {",
+					"                    \"type\": [\"string\",\"null\"]",
+					"                },",
+					"                \"status\": {",
+					"                  \"enum\": [\"NEW\",\"PROCESSED\",\"ESCALATED\"]",
+					"                },",
+					"                \"labels\": {",
+					"                    \"type\": \"array\",",
+					"                    \"items\": { \"type\": \"string\" },",
+					"                    \"uniqueItems\": true",
+					"                },",
+					"                \"created\": {",
+					"                    \"description\": \"The creation timestamp\",",
+					"                    \"type\": \"integer\",",
+					"                    \"minimum\": 0",
+					"                },",
+					"                \"modified\": {",
+					"                    \"description\": \"The last modification timestamp\",",
+					"                    \"type\": \"integer\",",
+					"                    \"minimum\": 0",
+					"                }",
+					"              },",
+					"              \"required\": [\"slug\",\"sender\",\"category\",\"severity\",\"content\"]",
+					"            }",
+					"        }",
+					"      };",
+					"      ",
+					"schemas.Subscription = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"Subscription Schema\",",
+					"        \"type\": \"object\",",
+					"        \"properties\": {",
+					"          \"id\": {",
+					"              \"type\": \"string\"",
+					"          },",
+					"          \"slug\": {",
+					"              \"description\": \"A meaningful identifier provided by client\",",
+					"              \"type\": \"string\"",
+					"          },",
+					"          \"receiver\": {",
+					"            \"type\": \"string\"",
+					"          },",
+					"          \"description\": {",
+					"              \"type\": [\"string\",\"null\"]",
+					"          },",
+					"          \"subscribedCategories\": {",
+					"            \"type\": \"array\",",
+					"            \"items\": { \"enum\": [\"SECURITY\",\"HW_HEALTH\",\"SW_HEALTH\"] },",
+					"            \"uniqueItems\": true",
+					"          },",
+					"          \"subscribedLabels\": {",
+					"            \"type\": \"array\",",
+					"            \"items\": { \"type\": \"string\" },",
+					"            \"uniqueItems\": true",
+					"          },",
+					"          \"channels\": {",
+					"            \"type\": \"array\",",
+					"            \"items\": {",
+					"              \"type\": \"object\",",
+					"              \"anyOf\": [",
+					"                { \"$ref\": \"#/definitions/RESTfulChannel\" },",
+					"                { \"$ref\": \"#/definitions/EMAILChannel\" }",
+					"              ]",
+					"            },",
+					"            \"uniqueItems\": true",
+					"          },",
+					"          \"created\": {",
+					"              \"description\": \"The creation timestamp\",",
+					"              \"type\": \"integer\",",
+					"              \"minimum\": 0",
+					"          },",
+					"          \"modified\": {",
+					"              \"description\": \"The last modification timestamp\",",
+					"              \"type\": \"integer\",",
+					"              \"minimum\": 0",
+					"          }",
+					"        },",
+					"        \"required\": [\"slug\",\"receiver\",\"channels\"],",
+					"        \"definitions\": {",
+					"          \"RESTfulChannel\": {",
+					"            \"type\": \"object\",",
+					"            \"properties\": {",
+					"              \"type\": {",
+					"                \"enum\": [\"REST\"]",
+					"              },",
+					"              \"url\": {",
+					"                \"type\": \"string\"",
+					"              },",
+					"              \"httpMethod\": {",
+					"                \"enum\": [\"POST\",\"PUT\"]",
+					"              },",
+					"              \"contentType\": {",
+					"                \"type\": \"string\"",
+					"              }",
+					"            },",
+					"            \"required\": [\"type\",\"url\"]",
+					"          },",
+					"          \"EMAILChannel\": {",
+					"            \"type\": \"object\",",
+					"            \"properties\": {",
+					"              \"type\": {",
+					"                \"enum\": [\"EMAIL\"]",
+					"              },",
+					"              \"mailAddresses\": {",
+					"                \"type\": \"array\",",
+					"                \"minItems\": 1,",
+					"                \"items\": { \"type\": \"string\" },",
+					"                \"uniqueItems\": true",
+					"              }",
+					"            },",
+					"            \"required\": [\"type\",\"mailAddresses\"]",
+					"          }",
+					"        }",
+					"      };",
+					" ",
+					"schemas.SubscriptionArray = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"The Array of Subscription\",",
+					"        \"type\": \"array\",",
+					"        \"items\": {",
+					"          \"$ref\": \"#/definitions/Subscription\"",
+					"        },",
+					"        \"definitions\": {",
+					"            \"Subscription\":",
+					"              {",
+					"                \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"                \"title\": \"Subscription Schema\",",
+					"                \"type\": \"object\",",
+					"                \"properties\": {",
+					"                  \"id\": {",
+					"                      \"type\": \"string\"",
+					"                  },",
+					"                  \"slug\": {",
+					"                      \"description\": \"A meaningful identifier provided by client\",",
+					"                      \"type\": \"string\"",
+					"                  },",
+					"                  \"receiver\": {",
+					"                    \"type\": \"string\"",
+					"                  },",
+					"                  \"description\": {",
+					"                      \"type\": [\"string\",\"null\"]",
+					"                  },",
+					"                  \"subscribedCategories\": {",
+					"                    \"type\": \"array\",",
+					"                    \"items\": { \"enum\": [\"SECURITY\",\"HW_HEALTH\",\"SW_HEALTH\"] },",
+					"                    \"uniqueItems\": true",
+					"                  },",
+					"                  \"subscribedLabels\": {",
+					"                    \"type\": \"array\",",
+					"                    \"items\": { \"type\": \"string\" },",
+					"                    \"uniqueItems\": true",
+					"                  },",
+					"                  \"channels\": {",
+					"                    \"type\": \"array\",",
+					"                    \"items\": {",
+					"                      \"type\": \"object\",",
+					"                      \"anyOf\": [",
+					"                        { \"$ref\": \"#/definitions/RESTfulChannel\" },",
+					"                        { \"$ref\": \"#/definitions/EMAILChannel\" }",
+					"                      ]",
+					"                    },",
+					"                    \"uniqueItems\": true",
+					"                  },",
+					"                  \"created\": {",
+					"                      \"description\": \"The creation timestamp\",",
+					"                      \"type\": \"integer\",",
+					"                      \"minimum\": 0",
+					"                  },",
+					"                  \"modified\": {",
+					"                      \"description\": \"The last modification timestamp\",",
+					"                      \"type\": \"integer\",",
+					"                      \"minimum\": 0",
+					"                  }",
+					"                },",
+					"                \"required\": [\"slug\",\"receiver\",\"channels\"]",
+					"              },",
+					"              \"RESTfulChannel\": {",
+					"                \"type\": \"object\",",
+					"                \"properties\": {",
+					"                  \"type\": {",
+					"                    \"enum\": [\"REST\"]",
+					"                  },",
+					"                  \"url\": {",
+					"                    \"type\": \"string\"",
+					"                  },",
+					"                  \"httpMethod\": {",
+					"                    \"enum\": [\"POST\",\"PUT\"]",
+					"                  },",
+					"                  \"contentType\": {",
+					"                    \"type\": \"string\"",
+					"                  }",
+					"                },",
+					"                \"required\": [\"type\",\"url\"]",
+					"              },",
+					"              \"EMAILChannel\": {",
+					"                \"type\": \"object\",",
+					"                \"properties\": {",
+					"                  \"type\": {",
+					"                    \"enum\": [\"EMAIL\"]",
+					"                  },",
+					"                  \"mailAddresses\": {",
+					"                    \"type\": \"array\",",
+					"                    \"minItems\": 1,",
+					"                    \"items\": { \"type\": \"string\" },",
+					"                    \"uniqueItems\": true",
+					"                  }",
+					"                },",
+					"                \"required\": [\"type\",\"mailAddresses\"]",
+					"              }",
+					"        }",
+					"      }; ",
+					" ",
+					"schemas.Transmission = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"Transmission Schema\",",
+					"        \"type\": \"object\",",
+					"        \"properties\": {",
+					"          \"id\": {",
+					"              \"type\": \"string\"",
+					"          },",
+					"          \"notification\": {",
+					"            \"$ref\": \"#/definitions/Notification\"",
+					"          },",
+					"          \"receiver\": {",
+					"            \"type\": \"string\"",
+					"          },",
+					"          \"channel\": {",
+					"            \"type\": \"object\",",
+					"            \"oneOf\": [",
+					"              { \"$ref\": \"#/definitions/RESTfulChannel\" },",
+					"              { \"$ref\": \"#/definitions/EMAILChannel\" }",
+					"            ]",
+					"          },",
+					"          \"status\": {",
+					"            \"enum\": [\"FAILED\",\"SENT\",\"ACKNOWLEDGED\",\"ESCALATED\"]",
+					"          },",
+					"          \"resendCount\": {",
+					"              \"type\": \"integer\",",
+					"              \"minimum\": 0",
+					"          },",
+					"          \"records\": {",
+					"            \"type\": \"array\",",
+					"            \"minItems\": 1,",
+					"            \"items\": {",
+					"              \"$ref\": \"#/definitions/TransmissionRecord\"",
+					"            },",
+					"            \"uniqueItems\": true",
+					"          },",
+					"          \"created\": {",
+					"              \"description\": \"The creation timestamp\",",
+					"              \"type\": \"integer\",",
+					"              \"minimum\": 0",
+					"          },",
+					"          \"modified\": {",
+					"              \"description\": \"The last modification timestamp\",",
+					"              \"type\": \"integer\",",
+					"              \"minimum\": 0",
+					"          }",
+					"        },",
+					"        \"required\": [\"notification\",\"receiver\",\"channel\",\"status\",\"resendCount\",\"records\"],",
+					"        \"definitions\": {",
+					"          \"Notification\": { \"$ref\": \"Notification.json\" },",
+					"          \"RESTfulChannel\": {",
+					"            \"type\": \"object\",",
+					"            \"properties\": {",
+					"              \"type\": {",
+					"                \"enum\": [\"REST\"]",
+					"              },",
+					"              \"url\": {",
+					"                \"type\": \"string\"",
+					"              },",
+					"              \"httpMethod\": {",
+					"                \"enum\": [\"POST\",\"PUT\"]",
+					"              }",
+					"            },",
+					"            \"required\": [\"type\",\"url\"]",
+					"          },",
+					"          \"EMAILChannel\": {",
+					"            \"type\": \"object\",",
+					"            \"properties\": {",
+					"              \"type\": {",
+					"                \"enum\": [\"EMAIL\"]",
+					"              },",
+					"              \"mailAddresses\": {",
+					"                \"type\": \"array\",",
+					"                \"minItems\": 1,",
+					"                \"items\": { \"type\": \"string\" },",
+					"                \"uniqueItems\": true",
+					"              }",
+					"            },",
+					"            \"required\": [\"type\",\"mailAddresses\"]",
+					"          },",
+					"          \"TransmissionRecord\": {",
+					"            \"type\": \"object\",",
+					"            \"properties\": {",
+					"              \"status\": {",
+					"                \"enum\": [\"FAILED\",\"SENT\",\"ACKNOWLEDGED\"]",
+					"              },",
+					"              \"response\": {",
+					"                \"type\": \"string\"",
+					"              },",
+					"              \"sent\": {",
+					"                \"description\": \"The sending timestamp\",",
+					"                \"type\": \"integer\",",
+					"                \"minimum\": 0",
+					"              }",
+					"            },",
+					"            \"required\": [\"status\",\"sent\"]",
+					"          }",
+					"        }",
+					"      };",
+					" ",
+					"schemas.TransmissionArray = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"The Array of Transmission\",",
+					"        \"type\": \"array\",",
+					"        \"items\": {",
+					"          \"$ref\": \"types/Transmission.json\"",
+					"        },",
+					"        \"definitions\": {",
+					"          \"Transmission\": {",
+					"              \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"              \"title\": \"Transmission Schema\",",
+					"              \"type\": \"object\",",
+					"              \"properties\": {",
+					"                \"id\": {",
+					"                    \"type\": \"string\"",
+					"                },",
+					"                \"notification\": {",
+					"                  \"$ref\": \"#/definitions/Notification\"",
+					"                },",
+					"                \"receiver\": {",
+					"                  \"type\": \"string\"",
+					"                },",
+					"                \"channel\": {",
+					"                  \"type\": \"object\",",
+					"                  \"oneOf\": [",
+					"                    { \"$ref\": \"#/definitions/RESTfulChannel\" },",
+					"                    { \"$ref\": \"#/definitions/EMAILChannel\" }",
+					"                  ]",
+					"                },",
+					"                \"status\": {",
+					"                  \"enum\": [\"FAILED\",\"SENT\",\"ACKNOWLEDGED\",\"ESCALATED\"]",
+					"                },",
+					"                \"resendCount\": {",
+					"                    \"type\": \"integer\",",
+					"                    \"minimum\": 0",
+					"                },",
+					"                \"records\": {",
+					"                  \"type\": \"array\",",
+					"                  \"minItems\": 1,",
+					"                  \"items\": {",
+					"                    \"$ref\": \"#/definitions/TransmissionRecord\"",
+					"                  },",
+					"                  \"uniqueItems\": true",
+					"                },",
+					"                \"created\": {",
+					"                    \"description\": \"The creation timestamp\",",
+					"                    \"type\": \"integer\",",
+					"                    \"minimum\": 0",
+					"                },",
+					"                \"modified\": {",
+					"                    \"description\": \"The last modification timestamp\",",
+					"                    \"type\": \"integer\",",
+					"                    \"minimum\": 0",
+					"                }",
+					"              },",
+					"              \"required\": [\"notification\",\"receiver\",\"channel\",\"status\",\"resendCount\",\"records\"]",
+					"            },",
+					"            \"Notification\":",
+					"              {",
+					"                \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"                \"title\": \"Notification Schema\",",
+					"                \"type\": \"object\",",
+					"                \"properties\": {",
+					"                  \"id\": {",
+					"                      \"description\": \"generated and used by system, and users can ignore this property\",",
+					"                      \"type\": \"string\"",
+					"                  },",
+					"                  \"slug\": {",
+					"                      \"description\": \"A meaningful identifier provided by client\",",
+					"                      \"type\": \"string\"",
+					"                  },",
+					"                  \"sender\": {",
+					"                    \"type\": \"string\"",
+					"                  },",
+					"                  \"category\": {",
+					"                    \"enum\": [\"SECURITY\",\"HW_HEALTH\",\"SW_HEALTH\"]",
+					"                  },",
+					"                  \"severity\": {",
+					"                    \"enum\": [\"CRITICAL\",\"NORMAL\"]",
+					"                  },",
+					"                  \"content\": {",
+					"                      \"type\": \"string\"",
+					"                  },",
+					"                  \"description\": {",
+					"                      \"type\": \"string\"",
+					"                  },",
+					"                  \"status\": {",
+					"                    \"enum\": [\"NEW\",\"PROCESSED\",\"ESCALATED\"]",
+					"                  },",
+					"                  \"labels\": {",
+					"                      \"type\": \"array\",",
+					"                      \"items\": { \"type\": \"string\" },",
+					"                      \"uniqueItems\": true",
+					"                  },",
+					"                  \"created\": {",
+					"                      \"description\": \"The creation timestamp\",",
+					"                      \"type\": \"integer\",",
+					"                      \"minimum\": 0",
+					"                  },",
+					"                  \"modified\": {",
+					"                      \"description\": \"The last modification timestamp\",",
+					"                      \"type\": \"integer\",",
+					"                      \"minimum\": 0",
+					"                  }",
+					"                },",
+					"                \"required\": [\"slug\",\"sender\",\"category\",\"severity\",\"content\"]",
+					"              },",
+					"            \"RESTfulChannel\": {",
+					"              \"type\": \"object\",",
+					"              \"properties\": {",
+					"                \"type\": {",
+					"                  \"enum\": [\"REST\"]",
+					"                },",
+					"                \"url\": {",
+					"                  \"type\": \"string\"",
+					"                },",
+					"                \"httpMethod\": {",
+					"                  \"enum\": [\"POST\",\"PUT\"]",
+					"                }",
+					"              },",
+					"              \"required\": [\"type\",\"url\"]",
+					"            },",
+					"            \"EMAILChannel\": {",
+					"              \"type\": \"object\",",
+					"              \"properties\": {",
+					"                \"type\": {",
+					"                  \"enum\": [\"EMAIL\"]",
+					"                },",
+					"                \"mailAddresses\": {",
+					"                  \"type\": \"array\",",
+					"                  \"minItems\": 1,",
+					"                  \"items\": { \"type\": \"string\" },",
+					"                  \"uniqueItems\": true",
+					"                }",
+					"              },",
+					"              \"required\": [\"type\",\"mailAddresses\"]",
+					"            },",
+					"            \"TransmissionRecord\": {",
+					"              \"type\": \"object\",",
+					"              \"properties\": {",
+					"                \"status\": {",
+					"                  \"enum\": [\"FAILED\",\"SENT\",\"ACKNOWLEDGED\"]",
+					"                },",
+					"                \"response\": {",
+					"                  \"type\": \"string\"",
+					"                },",
+					"                \"sent\": {",
+					"                  \"description\": \"The sending timestamp\",",
+					"                  \"type\": \"integer\",",
+					"                  \"minimum\": 0",
+					"                }",
+					"              },",
+					"              \"required\": [\"status\",\"sent\"]",
+					"            }",
+					"        }",
+					"      };",
+					"    ",
+					"pm.globals.set(\"schemas\", schemas);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9153ea09-1bf4-4ca0-97e6-7cc2d491db2a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
