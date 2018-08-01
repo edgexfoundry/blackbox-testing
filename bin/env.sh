@@ -2,16 +2,16 @@
 
 export volume=nexus3.edgexfoundry.org:10004/docker-edgex-volume:0.6.0
 export consul=consul:1.1.0
-export coreMetadata=nexus3.edgexfoundry.org:10004/docker-core-metadata-go:0.6.0
-export coreConfigseed=nexus3.edgexfoundry.org:10004/docker-core-config-seed-go:0.6.0
+export coreMetadata=nexus3.edgexfoundry.org:10004/docker-core-metadata-go:0.6.1
+export coreConfigseed=nexus3.edgexfoundry.org:10004/docker-core-config-seed-go:0.6.1
 export mongo=nexus3.edgexfoundry.org:10004/docker-edgex-mongo:0.6.0
-export supportLogging=nexus3.edgexfoundry.org:10004/docker-support-logging-go:0.6.0
-export coreData=nexus3.edgexfoundry.org:10004/docker-core-data-go:0.6.0
-export coreCommand=nexus3.edgexfoundry.org:10004/docker-core-command-go:0.6.0
+export supportLogging=nexus3.edgexfoundry.org:10004/docker-support-logging-go:0.6.1
+export coreData=nexus3.edgexfoundry.org:10004/docker-core-data-go:0.6.1
+export coreCommand=nexus3.edgexfoundry.org:10004/docker-core-command-go:0.6.1
 export supportScheduler=nexus3.edgexfoundry.org:10004/docker-support-scheduler:0.6.0
-export exportClient=nexus3.edgexfoundry.org:10004/docker-export-client-go:0.6.0
-export exportDistro=nexus3.edgexfoundry.org:10004/docker-export-distro-go:0.6.0
+export exportClient=nexus3.edgexfoundry.org:10004/docker-export-client-go:0.6.1
+export exportDistro=nexus3.edgexfoundry.org:10004/docker-export-distro-go:0.6.1
 export supportRulesengine=nexus3.edgexfoundry.org:10004/docker-support-rulesengine:0.6.0
 export deviceVirtual=nexus3.edgexfoundry.org:10004/docker-device-virtual:0.6.0
-export supportNotifications=nexus3.edgexfoundry.org:10004/docker-support-notifications:0.6.0
+export supportNotifications=nexus3.edgexfoundry.org:10004/docker-support-notifications-go:0.6.1
 export postman=postman/newman_ubuntu1404
