@@ -14,4 +14,4 @@ export exportDistro=nexus3.edgexfoundry.org:10004/docker-export-distro-go:0.6.1
 export supportRulesengine=nexus3.edgexfoundry.org:10004/docker-support-rulesengine:0.6.0
 export deviceVirtual=nexus3.edgexfoundry.org:10004/docker-device-virtual:0.6.0
 export supportNotifications=nexus3.edgexfoundry.org:10004/docker-support-notifications-go:0.6.1
-export postman=postman/newman_ubuntu1404
+export postman=postman/newman_ubuntu1404:3.10.0
