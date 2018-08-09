@@ -3,7 +3,7 @@
 export volume=nexus3.edgexfoundry.org:10004/docker-edgex-volume:master
 export consul=consul:1.1.0
 export configSeed=nexus3.edgexfoundry.org:10004/docker-core-config-seed-go:0.7.0
-export mongo=nexus3.edgexfoundry.org:10004/docker-edgex-mongo:master
+export mongo=nexus3.edgexfoundry.org:10004/docker-edgex-mongo:0.6.0
 
 export coreData=nexus3.edgexfoundry.org:10004/docker-core-data-go:0.7.0
 export coreMetadata=nexus3.edgexfoundry.org:10004/docker-core-metadata-go:0.7.0
