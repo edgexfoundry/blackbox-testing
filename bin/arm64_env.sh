@@ -10,7 +10,7 @@ export coreMetadata=nexus3.edgexfoundry.org:10004/docker-core-metadata-go-arm64:
 export coreCommand=nexus3.edgexfoundry.org:10004/docker-core-command-go-arm64:0.7.0
 
 export supportLogging=nexus3.edgexfoundry.org:10004/docker-support-logging-go-arm64:0.7.0
-export supportNotifications=nexus3.edgexfoundry.org:10004/docker-support-notifications-arm64:0.7.0
+export supportNotifications=nexus3.edgexfoundry.org:10004/docker-support-notifications-go-arm64:0.7.0
 export supportScheduler=nexus3.edgexfoundry.org:10004/docker-support-scheduler-arm64:0.5.0
 export supportRulesengine=nexus3.edgexfoundry.org:10004/docker-support-rulesengine-arm64:0.5.0
 
