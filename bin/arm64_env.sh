@@ -17,3 +17,4 @@ export supportRulesengine=nexus3.edgexfoundry.org:10004/docker-support-rulesengi
 export exportClient=nexus3.edgexfoundry.org:10004/docker-export-client-go-arm64:0.7.0
 export exportDistro=nexus3.edgexfoundry.org:10004/docker-export-distro-go-arm64:0.7.0
 export deviceVirtual=nexus3.edgexfoundry.org:10004/docker-device-virtual-arm64:0.6.0
+export postman=nexus3.edgexfoundry.org:10004/postman-newman-arm64:3.9.4
