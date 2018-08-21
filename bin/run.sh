@@ -16,6 +16,7 @@ COMMANDLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
 LOGGINGLOGSPATH=$BASEPATH/logging$TIMESTAMPFORMAT.log
 SUPPORT_NOTIFICATION_LOG_PATH=$BASEPATH/supportNotification$TIMESTAMPFORMAT.log
 EXPORTCLIENTLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
+RULESENGINELOGSPATH=$BASEPATH/rulesengine$TIMESTAMPFORMAT.log
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 coreDataTest() {
@@ -66,6 +67,10 @@ exportClientTest() {
 
 }
 
+rulesengineTest() {
+	$(dirname "$0")/rulesengineTest.sh
+}
+
 testAll() {
 
 	coreDataTest
@@ -74,6 +79,7 @@ testAll() {
 	loggingTest
 	supportNotificationTest
 	exportClientTest
+	rulesengineTest
 
 }
 
@@ -112,12 +118,16 @@ case ${option} in
     echo "Info: Initiating ExportClient Test"
     exportClientTest | tee $EXPORTCLIENTLOGSPATH
     ;;
+    -ru)
+    echo "Info: Initiating SupportRulesengine Test"
+    rulesengineTest	| tee $RULESENGINELOGSPATH
+    ;;
    	-all)
     echo "Info: Initiating EdgeX Test"
 	testAll		| tee $EDGEXLOGSPATH
     ;;
    	*)
-    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-exc Export Client] | [-all All]"
+    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-exc Export Client] | [-ru Rulesengine] | [-all All]"
     echo
     exit 0
     ;;

@@ -79,9 +79,6 @@ services:
     volumes_from:
       - volume
     depends_on:
-      - volume
-      - consul
-      - mongo
       - logging
 
   metadata:
@@ -96,9 +93,6 @@ services:
     volumes_from:
       - volume
     depends_on:
-      - volume
-      - consul
-      - mongo
       - logging
 
   data:
@@ -113,11 +107,7 @@ services:
     volumes_from:
       - volume
     depends_on:
-      - volume
-      - consul
-      - mongo
       - logging
-      - notifications
 
   command:
     image: ${coreCommand}
@@ -130,10 +120,6 @@ services:
     volumes_from:
       - volume
     depends_on:
-      - volume
-      - consul
-      - mongo
-      - logging
       - metadata
 
   scheduler:
@@ -147,12 +133,7 @@ services:
     volumes_from:
       - volume
     depends_on:
-      - volume
-      - consul
-      - mongo
-      - logging
       - metadata
-      - command
 
   export-client:
     image: ${exportClient}
@@ -165,12 +146,6 @@ services:
     volumes_from:
       - volume
     depends_on:
-      - volume
-      - consul
-      - mongo
-      - logging
-      - notifications
-      - metadata
       - data
 
   export-distro:
@@ -185,13 +160,6 @@ services:
     volumes_from:
       - volume
     depends_on:
-      - volume
-      - consul
-      - mongo
-      - logging
-      - notifications
-      - metadata
-      - data
       - export-client
 
   rulesengine:
@@ -205,12 +173,6 @@ services:
     volumes_from:
       - volume
     depends_on:
-      - volume
-      - consul
-      - mongo
-      - logging
-      - metadata
-      - command
       - export-distro
 
 #################################################################
@@ -228,11 +190,6 @@ services:
     volumes_from:
       - volume
     depends_on:
-      - volume
-      - consul
-      - mongo
-      - logging
-      - metadata
       - data
       - command
 
