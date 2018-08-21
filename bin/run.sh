@@ -15,6 +15,7 @@ METADATALOGSPATH=$BASEPATH/metaData$TIMESTAMPFORMAT.log
 COMMANDLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
 LOGGINGLOGSPATH=$BASEPATH/logging$TIMESTAMPFORMAT.log
 SUPPORT_NOTIFICATION_LOG_PATH=$BASEPATH/supportNotification$TIMESTAMPFORMAT.log
+EXPORTCLIENTLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 coreDataTest() {
@@ -58,6 +59,13 @@ supportNotificationTest(){
 
 }
 
+exportClientTest() {
+	$(dirname "$0")/importExportClientDataDump.sh
+	$(dirname "$0")/exportClientTest.sh
+	$(dirname "$0")/flushExportClientDataDump.sh
+
+}
+
 testAll() {
 
 	coreDataTest
@@ -65,6 +73,7 @@ testAll() {
 	commandTest
 	loggingTest
 	supportNotificationTest
+	exportClientTest
 
 }
 
@@ -99,12 +108,16 @@ case ${option} in
     echo "Info: Initiating SupportNotifications Test"
 	supportNotificationTest	| tee $SUPPORT_NOTIFICATION_LOG_PATH
     ;;
+  	-exc)
+    echo "Info: Initiating ExportClient Test"
+    exportClientTest | tee $EXPORTCLIENTLOGSPATH
+    ;;
    	-all)
     echo "Info: Initiating EdgeX Test"
 	testAll		| tee $EDGEXLOGSPATH
     ;;
    	*)
-    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-all All]"
+    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-exc Export Client] | [-all All]"
     echo
     exit 0
     ;;
