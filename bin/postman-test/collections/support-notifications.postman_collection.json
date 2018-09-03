@@ -1315,7 +1315,7 @@
 						],
 						"body": {},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/notification/1300000/1400000/2",
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/start/1300000/end/1400000/2",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -1323,7 +1323,9 @@
 								"api",
 								"v1",
 								"notification",
+								"start",
 								"1300000",
+								"end",
 								"1400000",
 								"2"
 							]
@@ -1867,7 +1869,7 @@
 						],
 						"body": {},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/100000/100020/5",
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/start/100000/end/100020/5",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -1875,7 +1877,9 @@
 								"api",
 								"v1",
 								"transmission",
+								"start",
 								"100000",
+								"end",
 								"100020",
 								"5"
 							]
