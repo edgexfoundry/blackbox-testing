@@ -1757,7 +1757,7 @@
 									"});",
 									"",
 									"pm.test(\"Response body is correct\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"Payload Too Large\");",
+									"    pm.expect(pm.response.text()).to.include(\"than configured limit\");",
 									"});"
 								]
 							}
