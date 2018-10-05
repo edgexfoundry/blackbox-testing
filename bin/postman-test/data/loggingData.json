@@ -1,6 +1,7 @@
 [
   {
     "limit": 10,
+    "readMaxLimit": 100,
     "overLimit": 101,
     "start": 0,
     "end": 10000000000000,
