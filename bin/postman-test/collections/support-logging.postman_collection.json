@@ -1,13 +1,12 @@
 {
 	"info": {
-		"_postman_id": "be31e168-4888-4889-aa8d-72ab23c44bae",
+		"_postman_id": "54a01c87-14ad-4156-af53-a0226859aeee",
 		"name": "support-logging",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "logs",
-			"description": "",
 			"item": [
 				{
 					"name": "Create a logEntry",
@@ -129,7 +128,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/{{limit}}",
 							"host": [
@@ -215,7 +217,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/{{start}}/{{end}}/{{limit}}",
 							"host": [
@@ -314,7 +319,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/labels/{{loggingLabel}}/{{start}}/{{end}}/{{limit}}",
 							"host": [
@@ -415,7 +423,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/originServices/{{loggingService}}/{{start}}/{{end}}/{{limit}}",
 							"host": [
@@ -517,7 +528,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/keywords/{{loggingKeyword}}/{{start}}/{{end}}/{{limit}}",
 							"host": [
@@ -619,7 +633,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevel}}/{{start}}/{{end}}/{{limit}}",
 							"host": [
@@ -724,7 +741,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevel}}/originServices/{{loggingService}}/{{start}}/{{end}}/{{limit}}",
 							"host": [
@@ -835,7 +855,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevel}}/originServices/{{loggingService}}/labels/{{loggingLabel}}/{{start}}/{{end}}/{{limit}}",
 							"host": [
@@ -951,7 +974,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevel}}/originServices/{{loggingService}}/labels/{{loggingLabel}}/keywords/{{loggingKeyword}}/{{start}}/{{end}}/{{limit}}",
 							"host": [
@@ -975,6 +1001,98 @@
 							]
 						},
 						"description": "list a collection of LogEntry whose message containing any of the specified keywords, matching any of the specified logLevels, originServices, labels, and also being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "LogEntry collection's size should not exceed the configured ReadMaxLimit.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8675b656-ddf7-4522-a28a-d17ecc252653",
+								"type": "text/javascript",
+								"exec": [
+									" /*",
+									" * Test Case:  aapi/v1/logs/{{overLimit}} - GET",
+									" * Version: Alpha",
+									" */",
+									" ",
+									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
+									"var jsonData = pm.response.json();",
+									"var readMaxLimit = pm.environment.get(\"readMaxLimit\");",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"application/json\");",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Collection's size should not exceed the configured ReadMaxLimit.\", function () {",
+									"     pm.expect(jsonData.length<=readMaxLimit).to.be.true;",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bdf4e7d6-260c-4041-bd44-c84cbf106498",
+								"type": "text/javascript",
+								"exec": [
+									"// handle iteration data",
+									"if(!data.loggingLabel){",
+									"    //Test assumes the default limit is 100 ",
+									"    pm.environment.set(\"overLimit\", \"101\");",
+									"    pm.environment.set(\"readMaxLimit\", \"100\");",
+									"}else{",
+									"    pm.environment.set(\"overLimit\", data.overLimit);",
+									"    pm.environment.set(\"readMaxLimit\", data.readMaxLimit);",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/{{overLimit}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"{{overLimit}}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1042,7 +1160,10 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/{{start}}/{{end}}",
 							"host": [
@@ -1125,7 +1246,10 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/labels/{{loggingLabelDel}}/{{start}}/{{end}}",
 							"host": [
@@ -1208,7 +1332,10 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/originServices/{{loggingServiceDel1}}/{{start}}/{{end}}",
 							"host": [
@@ -1291,7 +1418,10 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/keywords/{{loggingKeywordDel}}/{{start}}/{{end}}",
 							"host": [
@@ -1376,7 +1506,10 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/originServices/{{loggingServiceDel4}}/{{start}}/{{end}}",
 							"host": [
@@ -1465,7 +1598,10 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/originServices/{{loggingServiceDel3}}/labels/{{loggingLabelDel}}/{{start}}/{{end}}",
 							"host": [
@@ -1558,7 +1694,10 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/originServices/{{loggingServiceDel2}}/labels/{{loggingLabelDel}}/keywords/{{loggingKeywordDel}}/{{start}}/{{end}}",
 							"host": [
@@ -1646,7 +1785,10 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/{{start}}/{{end}}",
 							"host": [
@@ -1668,7 +1810,6 @@
 		},
 		{
 			"name": "logs_error_4xx",
-			"description": "",
 			"item": [
 				{
 					"name": "Fail to create logEntry by an inexistent log level",
@@ -1727,77 +1868,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Fail to query logs by the number of logs exceeds the current max limit",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "d6663a73-8c1a-4d3b-b907-2a834042432e",
-								"type": "text/javascript",
-								"exec": [
-									"/**",
-									" * Test Case:  api/v1/logs/{overLimit}",
-									" * Version: Alpha",
-									" * @Author: Tom Fleming",
-									" *",
-									" **/",
-									"",
-									"pm.test(\"Status code is 413\", function () {",
-									"    pm.response.to.have.status(413);",
-									"});",
-									"",
-									"pm.test(\"Response time is less than 200ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);",
-									"}); ",
-									"",
-									"pm.test(\"Content-Type is present\", function () {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
-									"",
-									"pm.test(\"Response body is correct\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"Payload Too Large\");",
-									"});"
-								]
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "75a10485-5e41-419d-a735-2838d349238b",
-								"type": "text/javascript",
-								"exec": [
-									"// handle iteration data",
-									"if(!data.loggingLabel){",
-									"    //Test assumes the default limit is 100 ",
-									"    pm.environment.set(\"overLimit\", \"101\");",
-									"}else{",
-									"    pm.environment.set(\"overLimit\", data.overLimit);",
-									"}",
-									""
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "{{supportLoggingUrl}}/api/v1/logs/{{overLimit}}",
-							"host": [
-								"{{supportLoggingUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"logs",
-								"{{overLimit}}"
-							]
-						}
-					},
-					"response": []
 				}
 			],
 			"event": [
@@ -1825,7 +1895,6 @@
 		},
 		{
 			"name": "ping",
-			"description": null,
 			"item": [
 				{
 					"name": "Test service providing an indication that the service is available.",
@@ -1858,7 +1927,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/ping",
 							"host": [
