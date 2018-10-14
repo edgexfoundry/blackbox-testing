@@ -1,0 +1,126 @@
+[
+  {
+    "slugName":"notice-003",
+    "slugName2":"notice-004",
+    "noneExistSlugName":"none-exist-slug",
+    "age":"100000",
+    "senderName":"Room System Management",
+    "startDate":"1300000",
+    "startDate2":"1500000",
+    "endDate":"1400000",
+    "endDate2":"1600000",
+    "labels":"power-meter",
+    "status":"new",
+    "limit":"2",
+    "cleanUpAge":"123456",
+    "schema":{
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "title": "The Array of Notification",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Notification"
+      },
+      "definitions": {
+        "Notification":
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "title": "Notification Schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "generated and used by system, and users can ignore this property",
+              "type": "string"
+            },
+            "slug": {
+              "description": "A meaningful identifier provided by client",
+              "type": "string"
+            },
+            "sender": {
+              "type": "string"
+            },
+            "category": {
+              "enum": ["SECURITY","HW_HEALTH","SW_HEALTH"]
+            },
+            "severity": {
+              "enum": ["CRITICAL","NORMAL"]
+            },
+            "content": {
+              "type": "string"
+            },
+            "description": {
+              "type": ["string","null"]
+            },
+            "status": {
+              "enum": ["NEW","PROCESSED","ESCALATED"]
+            },
+            "labels": {
+              "type": "array",
+              "items": { "type": "string" },
+              "uniqueItems": true
+            },
+            "created": {
+              "description": "The creation timestamp",
+              "type": "integer",
+              "minimum": 0
+            },
+            "modified": {
+              "description": "The last modification timestamp",
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": ["slug","sender","category","severity","content"]
+        }
+      }
+    },
+    "objectSchema":{
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "title": "Notification Schema",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "generated and used by system, and users can ignore this property",
+          "type": "string"
+        },
+        "slug": {
+          "description": "A meaningful identifier provided by client",
+          "type": "string"
+        },
+        "sender": {
+          "type": "string"
+        },
+        "category": {
+          "enum": ["SECURITY","HW_HEALTH","SW_HEALTH"]
+        },
+        "severity": {
+          "enum": ["CRITICAL","NORMAL"]
+        },
+        "content": {
+          "type": "string"
+        },
+        "description": {
+          "type": ["string","null"]
+        },
+        "status": {
+          "enum": ["NEW","PROCESSED","ESCALATED"]
+        },
+        "labels": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "created": {
+          "description": "The creation timestamp",
+          "type": "integer",
+          "minimum": 0
+        },
+        "modified": {
+          "description": "The last modification timestamp",
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": ["slug","sender","category","severity","content"]
+    }
+  }
+]

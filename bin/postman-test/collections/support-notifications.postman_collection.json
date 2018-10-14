@@ -1,13 +1,12 @@
 {
 	"info": {
-		"_postman_id": "3cb479be-48f0-41d0-82ae-8af034ab9223",
+		"_postman_id": "2bb18eee-fbd2-440b-a640-04acf8cc3f40",
 		"name": "support-notifications",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "subscription",
-			"description": "",
 			"item": [
 				{
 					"name": "Create a subscription",
@@ -150,6 +149,21 @@
 									""
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d50548b4-76ea-4a45-9b14-18528c18479f",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.slugName){",
+									"    pm.environment.set(\"slugName\", \"group-b-member\");",
+									"}else{",
+									"    pm.environment.set(\"slugName\", data.slugName); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -161,9 +175,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/slug/group-b-member",
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/slug/{{slugName}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -172,7 +189,7 @@
 								"v1",
 								"subscription",
 								"slug",
-								"group-b-member"
+								"{{slugName}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -206,9 +223,14 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "991f88c3-b8a1-410c-9fff-04bcdd5e1832",
+								"id": "a6e70adc-deb4-4cc9-ad67-5b2c7c0f1e9b",
 								"type": "text/javascript",
 								"exec": [
+									"if(!data.noneExistSlugName){",
+									"    pm.environment.set(\"noneExistSlugName\", \"non-exist-test-slug\");",
+									"}else{",
+									"    pm.environment.set(\"noneExistSlugName\", data.noneExistSlugName); ",
+									"}",
 									""
 								]
 							}
@@ -223,9 +245,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/slug/non-exist-test-slug",
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/slug/{{noneExistSlugName}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -234,7 +259,7 @@
 								"v1",
 								"subscription",
 								"slug",
-								"non-exist-test-slug"
+								"{{noneExistSlugName}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -398,7 +423,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/subscription",
 							"host": [
@@ -458,14 +486,32 @@
 									""
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "df3eff1c-f994-4931-bb71-471ce81c2b15",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.slugName2){",
+									"    pm.environment.set(\"slugName2\", \"group-f-member\");",
+									"}else{",
+									"    pm.environment.set(\"slugName2\", data.slugName2); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/slug/group-f-member",
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/slug/{{slugName2}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -474,7 +520,7 @@
 								"v1",
 								"subscription",
 								"slug",
-								"group-f-member"
+								"{{slugName2}}"
 							]
 						},
 						"description": "List all Subscriptions."
@@ -527,14 +573,32 @@
 									""
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7743900c-d586-4aaf-ab0f-ee550a713b74",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.categories){",
+									"    pm.environment.set(\"categories\", \"SW_HEALTH,HW_HEALTH\");",
+									"}else{",
+									"    pm.environment.set(\"categories\", data.categories); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/categories/SW_HEALTH,HW_HEALTH",
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/categories/{{categories}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -543,7 +607,7 @@
 								"v1",
 								"subscription",
 								"categories",
-								"SW_HEALTH,HW_HEALTH"
+								"{{categories}}"
 							]
 						},
 						"description": "List all Subscriptions."
@@ -595,14 +659,32 @@
 									"});"
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "83c55c0d-8610-40ae-9c71-8ab33f06108f",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.labels){",
+									"    pm.environment.set(\"labels\", \"sensor\");",
+									"}else{",
+									"    pm.environment.set(\"labels\", data.labels); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/labels/sensor",
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/labels/{{labels}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -611,7 +693,7 @@
 								"v1",
 								"subscription",
 								"labels",
-								"sensor"
+								"{{labels}}"
 							]
 						},
 						"description": "List all Subscriptions."
@@ -663,14 +745,34 @@
 									"});"
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "96f58a72-072d-4b6d-a23a-3e788985d784",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.categories2){",
+									"    pm.environment.set(\"categories2\", \"HW_HEALTH\");",
+									"    pm.environment.set(\"labels2\", \"sensor,cpu\");",
+									"}else{",
+									"    pm.environment.set(\"categories2\", data.categories2); ",
+									"    pm.environment.set(\"labels2\", data.labels2); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/categories/HW_HEALTH/labels/sensor,cpu",
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/categories/{{categories2}}/labels/{{labels2}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -679,9 +781,9 @@
 								"v1",
 								"subscription",
 								"categories",
-								"HW_HEALTH",
+								"{{categories2}}",
 								"labels",
-								"sensor,cpu"
+								"{{labels2}}"
 							]
 						},
 						"description": "List all Subscriptions."
@@ -733,14 +835,32 @@
 									"});"
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c8017872-c17e-485b-9d58-30f5d1f90e11",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.receiverName){",
+									"    pm.environment.set(\"receiverName\", \"Group M Member\");",
+									"}else{",
+									"    pm.environment.set(\"receiverName\", data.receiverName); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/receiver/Group M Member",
+							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/receiver/{{receiverName}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -749,7 +869,7 @@
 								"v1",
 								"subscription",
 								"receiver",
-								"Group M Member"
+								"{{receiverName}}"
 							]
 						},
 						"description": "List all Subscriptions."
@@ -760,7 +880,6 @@
 		},
 		{
 			"name": "notification",
-			"description": "",
 			"item": [
 				{
 					"name": "Create a normal notification",
@@ -974,6 +1093,21 @@
 									""
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a13e56ca-eb2e-4000-8b24-d490071add59",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.slugName){",
+									"    pm.environment.set(\"slugName\", \"notice-003\");",
+									"}else{",
+									"    pm.environment.set(\"slugName\", data.slugName); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -985,9 +1119,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/notification/slug/notice-003",
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/slug/{{slugName}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -996,7 +1133,7 @@
 								"v1",
 								"notification",
 								"slug",
-								"notice-003"
+								"{{slugName}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -1026,6 +1163,21 @@
 									""
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "482f484d-bd82-400a-a555-f8c3f3f1aeb2",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.noneExistSlugName){",
+									"    pm.environment.set(\"noneExistSlugName\", \"none-exist-slug\");",
+									"}else{",
+									"    pm.environment.set(\"noneExistSlugName\", data.noneExistSlugName); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -1037,9 +1189,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/notification/slug/non-exist-test-slug",
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/slug/{{noneExistSlugName}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -1048,7 +1203,7 @@
 								"v1",
 								"notification",
 								"slug",
-								"non-exist-test-slug"
+								"{{noneExistSlugName}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -1078,6 +1233,21 @@
 									""
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "41fb7710-424e-4b80-94fd-3da70c50e26c",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.age){",
+									"    pm.environment.set(\"age\", \"100000\");",
+									"}else{",
+									"    pm.environment.set(\"age\", data.age); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -1089,9 +1259,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/notification/age/100000",
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/age/{{age}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -1100,7 +1273,7 @@
 								"v1",
 								"notification",
 								"age",
-								"100000"
+								"{{age}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -1151,6 +1324,21 @@
 									"});"
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ac30e70f-02d4-4f71-a363-2c9fe6a7c1fe",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.slugName2){",
+									"    pm.environment.set(\"slugName2\", \"notice-004\");",
+									"}else{",
+									"    pm.environment.set(\"slugName2\", data.slugName2); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -1162,9 +1350,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/notification/slug/notice-004",
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/slug/{{slugName2}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -1173,7 +1364,7 @@
 								"v1",
 								"notification",
 								"slug",
-								"notice-004"
+								"{{slugName2}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -1226,6 +1417,23 @@
 									""
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "57d6af4e-0157-46a7-b03d-13095268c2d0",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.senderName){",
+									"    pm.environment.set(\"senderName\", \"Room System Management\");",
+									"    pm.environment.set(\"limit\", \"2\");",
+									"}else{",
+									"    pm.environment.set(\"senderName\", data.senderName); ",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -1237,9 +1445,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/notification/sender/Room System Management/2",
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/sender/{{senderName}}/{{limit}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -1248,8 +1459,8 @@
 								"v1",
 								"notification",
 								"sender",
-								"Room System Management",
-								"2"
+								"{{senderName}}",
+								"{{limit}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -1302,6 +1513,25 @@
 									""
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "840e3709-064c-4f04-88d0-ab00fe3b213c",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.startDate){",
+									"    pm.environment.set(\"startDate\", \"1300000\");",
+									"    pm.environment.set(\"endDate\", \"1400000\");",
+									"    pm.environment.set(\"limit\", \"2\");",
+									"}else{",
+									"    pm.environment.set(\"startDate\", data.startDate); ",
+									"    pm.environment.set(\"endDate\", data.endDate); ",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -1313,9 +1543,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/notification/start/1300000/end/1400000/2",
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/start/{{startDate}}/end/{{endDate}}/{{limit}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -1324,10 +1557,10 @@
 								"v1",
 								"notification",
 								"start",
-								"1300000",
+								"{{startDate}}",
 								"end",
-								"1400000",
-								"2"
+								"{{endDate}}",
+								"{{limit}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -1380,6 +1613,23 @@
 									""
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "829fc3ab-98ec-45e2-b98e-7682fdf5109e",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.startDate2){",
+									"    pm.environment.set(\"startDate2\", \"1500000\");",
+									"    pm.environment.set(\"limit\", \"2\");",
+									"}else{",
+									"    pm.environment.set(\"startDate2\", data.startDate2); ",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -1391,9 +1641,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/notification/start/1500000/1",
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/start/{{startDate2}}/{{limit}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -1402,8 +1655,8 @@
 								"v1",
 								"notification",
 								"start",
-								"1500000",
-								"1"
+								"{{startDate2}}",
+								"{{limit}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -1456,6 +1709,23 @@
 									""
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b95f8561-afda-468c-bdfb-a0226a0d7700",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.endDate2){",
+									"    pm.environment.set(\"endDate2\", \"1600000\");",
+									"    pm.environment.set(\"limit\", \"2\");",
+									"}else{",
+									"    pm.environment.set(\"endDate2\", data.endDate2); ",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -1467,9 +1737,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/notification/end/1600000/1",
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/end/{{endDate2}}/{{limit}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -1478,8 +1751,8 @@
 								"v1",
 								"notification",
 								"end",
-								"1600000",
-								"1"
+								"{{endDate2}}",
+								"{{limit}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -1532,6 +1805,23 @@
 									""
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "53d1e17a-7f63-4650-bbd6-e091f347f5de",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.labels){",
+									"    pm.environment.set(\"labels\", \"power-meter\");",
+									"    pm.environment.set(\"limit\", \"2\");",
+									"}else{",
+									"    pm.environment.set(\"labels\", data.labels); ",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -1543,9 +1833,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/notification/labels/power-meter/10",
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/labels/{{labels}}/{{limit}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -1554,8 +1847,8 @@
 								"v1",
 								"notification",
 								"labels",
-								"power-meter",
-								"10"
+								"{{labels}}",
+								"{{limit}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -1608,6 +1901,23 @@
 									""
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2d431ebb-24a4-4d15-9a8c-47facfb27efc",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.status){",
+									"    pm.environment.set(\"status\", \"new\");",
+									"    pm.environment.set(\"limit\", \"2\");",
+									"}else{",
+									"    pm.environment.set(\"status\", data.status); ",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -1619,9 +1929,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/notification/new/10",
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/{{status}}/{{limit}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -1629,8 +1942,8 @@
 								"api",
 								"v1",
 								"notification",
-								"new",
-								"10"
+								"{{status}}",
+								"{{limit}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -1667,7 +1980,10 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/cleanup",
 							"host": [
@@ -1701,6 +2017,21 @@
 									"});"
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ae561638-9a4b-4fa7-97cc-e986ac9ffb93",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.cleanUpAge){",
+									"    pm.environment.set(\"cleanUpAge\", \"123456\");",
+									"}else{",
+									"    pm.environment.set(\"cleanUpAge\", data.cleanUpAge); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -1712,9 +2043,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/cleanup/age/123456",
+							"raw": "{{supportNotificationsUrl}}/api/v1/cleanup/age/{{cleanUpAge}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -1723,7 +2057,7 @@
 								"v1",
 								"cleanup",
 								"age",
-								"123456"
+								"{{cleanUpAge}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -1734,7 +2068,6 @@
 		},
 		{
 			"name": "transmission",
-			"description": "",
 			"item": [
 				{
 					"name": "Query transmissions by associating notification’s slug with limited returned records",
@@ -1781,6 +2114,23 @@
 									"});"
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "83cf50c7-4134-4acc-9672-02811fcf9764",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.slugName){",
+									"    pm.environment.set(\"slugName\", \"notice-015\");",
+									"    pm.environment.set(\"limit\", \"2\");",
+									"}else{",
+									"    pm.environment.set(\"slugName\", data.slugName); ",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -1792,9 +2142,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/slug/notice-015/2",
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/slug/{{slugName}}/{{limit}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -1803,8 +2156,8 @@
 								"v1",
 								"transmission",
 								"slug",
-								"notice-015",
-								"2"
+								"{{slugName}}",
+								"{{limit}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -1856,6 +2209,25 @@
 									"});"
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d055a086-3fbf-405c-8e2a-478a396fee04",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.startDate){",
+									"    pm.environment.set(\"startDate\", \"100000\");",
+									"    pm.environment.set(\"endDate\", \"100020\");",
+									"    pm.environment.set(\"limit\", \"2\");",
+									"}else{",
+									"    pm.environment.set(\"startDate\", data.startDate); ",
+									"    pm.environment.set(\"endDate\", data.endDate); ",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -1867,9 +2239,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/start/100000/end/100020/5",
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/start/{{startDate}}/end/{{endDate}}/{{limit}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -1878,10 +2253,10 @@
 								"v1",
 								"transmission",
 								"start",
-								"100000",
+								"{{startDate}}",
 								"end",
-								"100020",
-								"5"
+								"{{endDate}}",
+								"{{limit}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -1933,6 +2308,23 @@
 									"});"
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4bb0c0f5-c433-49e3-afc7-68a74611d876",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.startDate2){",
+									"    pm.environment.set(\"startDate2\", \"140000\");",
+									"    pm.environment.set(\"limit\", \"2\");",
+									"}else{",
+									"    pm.environment.set(\"startDate2\", data.startDate2); ",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -1944,9 +2336,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/start/140000/5",
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/start/{{startDate2}}/{{limit}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -1955,8 +2350,8 @@
 								"v1",
 								"transmission",
 								"start",
-								"140000",
-								"5"
+								"{{startDate2}}",
+								"{{limit}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -2009,6 +2404,23 @@
 									""
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4a107294-633a-41aa-95c3-9614d74cda30",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.endDate2){",
+									"    pm.environment.set(\"endDate2\", \"140000\");",
+									"    pm.environment.set(\"limit\", \"2\");",
+									"}else{",
+									"    pm.environment.set(\"endDate2\", data.endDate2); ",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -2020,9 +2432,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/end/100000/5",
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/end/{{endDate2}}/{{limit}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -2031,8 +2446,8 @@
 								"v1",
 								"transmission",
 								"end",
-								"100000",
-								"5"
+								"{{endDate2}}",
+								"{{limit}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -2084,6 +2499,23 @@
 									"});"
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "50f4368b-8c0c-434c-b93c-d87ecdf2b012",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.endDate2){",
+									"    pm.environment.set(\"escalatedStatus\", \"escalated\");",
+									"    pm.environment.set(\"limit\", \"2\");",
+									"}else{",
+									"    pm.environment.set(\"escalatedStatus\", data.escalatedStatus); ",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -2095,9 +2527,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/escalated/10",
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/{{escalatedStatus}}/{{limit}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -2105,8 +2540,8 @@
 								"api",
 								"v1",
 								"transmission",
-								"escalated",
-								"10"
+								"{{escalatedStatus}}",
+								"{{limit}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -2158,6 +2593,23 @@
 									"});"
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "975fdbe1-7565-485e-9a55-e011e62d8f43",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.failedStatus){",
+									"    pm.environment.set(\"failedStatus\", \"failed\");",
+									"    pm.environment.set(\"limit\", \"2\");",
+									"}else{",
+									"    pm.environment.set(\"failedStatus\", data.failedStatus); ",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -2169,9 +2621,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/failed/10",
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/{{failedStatus}}/{{limit}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -2179,8 +2634,8 @@
 								"api",
 								"v1",
 								"transmission",
-								"failed",
-								"10"
+								"{{failedStatus}}",
+								"{{limit}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -2218,6 +2673,23 @@
 									""
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3e3100c5-7ca5-48bf-80c7-9384400f616e",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.sentStatus){",
+									"    pm.environment.set(\"sentStatus\", \"sent\");",
+									"    pm.environment.set(\"age\", \"100000\");",
+									"}else{",
+									"    pm.environment.set(\"sentStatus\", data.sentStatus); ",
+									"    pm.environment.set(\"age\", data.age); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -2229,9 +2701,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/sent/age/100000",
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/{{sentStatus}}/age/{{age}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -2239,9 +2714,9 @@
 								"api",
 								"v1",
 								"transmission",
-								"sent",
+								"{{sentStatus}}",
 								"age",
-								"100000"
+								"{{age}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -2279,6 +2754,23 @@
 									""
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "96d56f4c-9361-40dd-8ef6-26dfe5cb0135",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.escalatedStatus){",
+									"    pm.environment.set(\"escalatedStatus\", \"escalated\");",
+									"    pm.environment.set(\"age\", \"100000\");",
+									"}else{",
+									"    pm.environment.set(\"escalatedStatus\", data.escalatedStatus); ",
+									"    pm.environment.set(\"age\", data.age); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -2290,9 +2782,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/escalated/age/100000",
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/{{escalatedStatus}}/age/{{age}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -2300,9 +2795,9 @@
 								"api",
 								"v1",
 								"transmission",
-								"escalated",
+								"{{escalatedStatus}}",
 								"age",
-								"100000"
+								"{{age}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -2339,6 +2834,23 @@
 									"});"
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c8bf6b67-7720-4700-9286-9efd701feacd",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.acknowledgedStatus){",
+									"    pm.environment.set(\"acknowledgedStatus\", \"acknowledged\");",
+									"    pm.environment.set(\"age\", \"100000\");",
+									"}else{",
+									"    pm.environment.set(\"acknowledgedStatus\", data.acknowledgedStatus); ",
+									"    pm.environment.set(\"age\", data.age); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -2350,9 +2862,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/acknowledged/age/100000",
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/{{acknowledgedStatus}}/age/{{age}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -2360,9 +2875,9 @@
 								"api",
 								"v1",
 								"transmission",
-								"acknowledged",
+								"{{acknowledgedStatus}}",
 								"age",
-								"100000"
+								"{{age}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -2399,6 +2914,23 @@
 									"});"
 								]
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e9b68188-d2a5-478d-90b1-2d7f7ae49072",
+								"type": "text/javascript",
+								"exec": [
+									"if(!data.failedStatus){",
+									"    pm.environment.set(\"failedStatus\", \"failedStatus\");",
+									"    pm.environment.set(\"age\", \"100000\");",
+									"}else{",
+									"    pm.environment.set(\"failedStatus\", data.failedStatus); ",
+									"    pm.environment.set(\"age\", data.age); ",
+									"}",
+									""
+								]
+							}
 						}
 					],
 					"request": {
@@ -2410,9 +2942,12 @@
 								"disabled": true
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/failed/age/100000",
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/{{failedStatus}}/age/{{age}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -2420,9 +2955,9 @@
 								"api",
 								"v1",
 								"transmission",
-								"failed",
+								"{{failedStatus}}",
 								"age",
-								"100000"
+								"{{age}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
@@ -2433,7 +2968,6 @@
 		},
 		{
 			"name": "ping",
-			"description": "",
 			"item": [
 				{
 					"name": "Test service providing an indication that the service is available.",
@@ -2471,7 +3005,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/ping",
 							"host": [
