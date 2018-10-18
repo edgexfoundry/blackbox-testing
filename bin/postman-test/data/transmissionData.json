@@ -1,0 +1,270 @@
+[
+  {
+    "slugName":"notice-015",
+    "limit":"2",
+    "startDate":"100000",
+    "startDate2":"140000",
+    "endDate":"100020",
+    "endDate2":"100000",
+    "escalatedStatus":"escalated",
+    "failedStatus":"failed",
+    "sentStatus":"sent",
+    "acknowledgedStatus":"acknowledged",
+    "age":"100000",
+    "schema":{
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "title": "The Array of Transmission",
+      "type": "array",
+      "items": {
+        "$ref": "types/Transmission.json"
+      },
+      "definitions": {
+        "Transmission": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "title": "Transmission Schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "notification": {
+              "$ref": "#/definitions/Notification"
+            },
+            "receiver": {
+              "type": "string"
+            },
+            "channel": {
+              "type": "object",
+              "oneOf": [
+                { "$ref": "#/definitions/RESTfulChannel" },
+                { "$ref": "#/definitions/EMAILChannel" }
+              ]
+            },
+            "status": {
+              "enum": ["FAILED","SENT","ACKNOWLEDGED","ESCALATED"]
+            },
+            "resendCount": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "records": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/definitions/TransmissionRecord"
+              },
+              "uniqueItems": true
+            },
+            "created": {
+              "description": "The creation timestamp",
+              "type": "integer",
+              "minimum": 0
+            },
+            "modified": {
+              "description": "The last modification timestamp",
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": ["notification","receiver","channel","status","resendCount","records"]
+        },
+        "Notification":
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "title": "Notification Schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "generated and used by system, and users can ignore this property",
+              "type": "string"
+            },
+            "slug": {
+              "description": "A meaningful identifier provided by client",
+              "type": "string"
+            },
+            "sender": {
+              "type": "string"
+            },
+            "category": {
+              "enum": ["SECURITY","HW_HEALTH","SW_HEALTH"]
+            },
+            "severity": {
+              "enum": ["CRITICAL","NORMAL"]
+            },
+            "content": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "status": {
+              "enum": ["NEW","PROCESSED","ESCALATED"]
+            },
+            "labels": {
+              "type": "array",
+              "items": { "type": "string" },
+              "uniqueItems": true
+            },
+            "created": {
+              "description": "The creation timestamp",
+              "type": "integer",
+              "minimum": 0
+            },
+            "modified": {
+              "description": "The last modification timestamp",
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": ["slug","sender","category","severity","content"]
+        },
+        "RESTfulChannel": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "enum": ["REST"]
+            },
+            "url": {
+              "type": "string"
+            },
+            "httpMethod": {
+              "enum": ["POST","PUT"]
+            }
+          },
+          "required": ["type","url"]
+        },
+        "EMAILChannel": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "enum": ["EMAIL"]
+            },
+            "mailAddresses": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string" },
+              "uniqueItems": true
+            }
+          },
+          "required": ["type","mailAddresses"]
+        },
+        "TransmissionRecord": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": ["FAILED","SENT","ACKNOWLEDGED"]
+            },
+            "response": {
+              "type": "string"
+            },
+            "sent": {
+              "description": "The sending timestamp",
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": ["status","sent"]
+        }
+      }
+    },
+    "objectSchema":{
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "title": "Transmission Schema",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "notification": {
+          "$ref": "#/definitions/Notification"
+        },
+        "receiver": {
+          "type": "string"
+        },
+        "channel": {
+          "type": "object",
+          "oneOf": [
+            { "$ref": "#/definitions/RESTfulChannel" },
+            { "$ref": "#/definitions/EMAILChannel" }
+          ]
+        },
+        "status": {
+          "enum": ["FAILED","SENT","ACKNOWLEDGED","ESCALATED"]
+        },
+        "resendCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "records": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/TransmissionRecord"
+          },
+          "uniqueItems": true
+        },
+        "created": {
+          "description": "The creation timestamp",
+          "type": "integer",
+          "minimum": 0
+        },
+        "modified": {
+          "description": "The last modification timestamp",
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": ["notification","receiver","channel","status","resendCount","records"],
+      "definitions": {
+        "Notification": { "$ref": "Notification.json" },
+        "RESTfulChannel": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "enum": ["REST"]
+            },
+            "url": {
+              "type": "string"
+            },
+            "httpMethod": {
+              "enum": ["POST","PUT"]
+            }
+          },
+          "required": ["type","url"]
+        },
+        "EMAILChannel": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "enum": ["EMAIL"]
+            },
+            "mailAddresses": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string" },
+              "uniqueItems": true
+            }
+          },
+          "required": ["type","mailAddresses"]
+        },
+        "TransmissionRecord": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": ["FAILED","SENT","ACKNOWLEDGED"]
+            },
+            "response": {
+              "type": "string"
+            },
+            "sent": {
+              "description": "The sending timestamp",
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": ["status","sent"]
+        }
+      }
+    }
+  }
+]
