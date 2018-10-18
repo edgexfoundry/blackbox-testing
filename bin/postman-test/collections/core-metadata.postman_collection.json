@@ -4117,7 +4117,8 @@
                 {
                   "key": "file",
                   "type": "file",
-                  "value": ""
+                  "src": "sample_profile.yaml",
+                  "enabled": true
                 }
               ]
             },
@@ -4951,7 +4952,8 @@
                 {
                   "key": "file",
                   "type": "file",
-                  "value": ""
+                  "src": "sample_profile_duplicated_command.yaml",
+                  "enabled": true
                 }
               ]
             },
@@ -5008,7 +5010,8 @@
                 {
                   "key": "file",
                   "type": "file",
-                  "value": ""
+                  "src": "sample_profile_empty.yaml",
+                  "enabled": true
                 }
               ]
             },
