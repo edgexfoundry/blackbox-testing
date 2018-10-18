@@ -1,0 +1,195 @@
+[
+  {
+    "slugName":"group-b-member",
+    "slugName2":"group-f-member",
+    "noneExistSlugName":"non-exist-test-slug",
+    "categories":"SW_HEALTH,HW_HEALTH",
+    "labels":"sensor",
+    "categories2":"HW_HEALTH",
+    "labels2":"sensor,cpu",
+    "receiverName":"Group M Member",
+    "schema":{
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "title": "The Array of Subscription",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Subscription"
+      },
+      "definitions": {
+        "Subscription":
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "title": "Subscription Schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "slug": {
+              "description": "A meaningful identifier provided by client",
+              "type": "string"
+            },
+            "receiver": {
+              "type": "string"
+            },
+            "description": {
+              "type": ["string","null"]
+            },
+            "subscribedCategories": {
+              "type": "array",
+              "items": { "enum": ["SECURITY","HW_HEALTH","SW_HEALTH"] },
+              "uniqueItems": true
+            },
+            "subscribedLabels": {
+              "type": "array",
+              "items": { "type": "string" },
+              "uniqueItems": true
+            },
+            "channels": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "anyOf": [
+                  { "$ref": "#/definitions/RESTfulChannel" },
+                  { "$ref": "#/definitions/EMAILChannel" }
+                ]
+              },
+              "uniqueItems": true
+            },
+            "created": {
+              "description": "The creation timestamp",
+              "type": "integer",
+              "minimum": 0
+            },
+            "modified": {
+              "description": "The last modification timestamp",
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": ["slug","receiver","channels"]
+        },
+        "RESTfulChannel": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "enum": ["REST"]
+            },
+            "url": {
+              "type": "string"
+            },
+            "httpMethod": {
+              "enum": ["POST","PUT"]
+            },
+            "contentType": {
+              "type": "string"
+            }
+          },
+          "required": ["type","url"]
+        },
+        "EMAILChannel": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "enum": ["EMAIL"]
+            },
+            "mailAddresses": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string" },
+              "uniqueItems": true
+            }
+          },
+          "required": ["type","mailAddresses"]
+        }
+      }
+    },
+    "objectSchema":{
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "title": "Subscription Schema",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "slug": {
+          "description": "A meaningful identifier provided by client",
+          "type": "string"
+        },
+        "receiver": {
+          "type": "string"
+        },
+        "description": {
+          "type": ["string","null"]
+        },
+        "subscribedCategories": {
+          "type": "array",
+          "items": { "enum": ["SECURITY","HW_HEALTH","SW_HEALTH"] },
+          "uniqueItems": true
+        },
+        "subscribedLabels": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "anyOf": [
+              { "$ref": "#/definitions/RESTfulChannel" },
+              { "$ref": "#/definitions/EMAILChannel" }
+            ]
+          },
+          "uniqueItems": true
+        },
+        "created": {
+          "description": "The creation timestamp",
+          "type": "integer",
+          "minimum": 0
+        },
+        "modified": {
+          "description": "The last modification timestamp",
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": ["slug","receiver","channels"],
+      "definitions": {
+        "RESTfulChannel": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "enum": ["REST"]
+            },
+            "url": {
+              "type": "string"
+            },
+            "httpMethod": {
+              "enum": ["POST","PUT"]
+            },
+            "contentType": {
+              "type": "string"
+            }
+          },
+          "required": ["type","url"]
+        },
+        "EMAILChannel": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "enum": ["EMAIL"]
+            },
+            "mailAddresses": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string" },
+              "uniqueItems": true
+            }
+          },
+          "required": ["type","mailAddresses"]
+        }
+      }
+    }
+  }
+]
