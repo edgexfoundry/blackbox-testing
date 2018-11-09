@@ -1,400 +1,983 @@
 {
-  "id": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b",
-  "name": "core-command",
-  "description": null,
-  "order": [],
-  "folders": [
-    {
-      "owner": "1042075",
-      "lastUpdatedBy": "1042075",
-      "lastRevision": 603729612,
-      "id": "587d600e-325c-e5f5-db20-2703d19349e5",
-      "name": "device",
-      "description": "Folder for device",
-      "order": [
-        "2783e5be-b682-3710-3b16-769a226db977",
-        "449ac932-325b-bc74-bfb2-3e54f4d582ab",
-        "2ad5c979-b3c6-9a81-dae3-4a0b0ef2ac5b",
-        "f536509e-1b5a-72da-fd32-9714a840f510",
-        "db29a509-9c29-7d05-411c-c46d46bfd61c",
-        "952f15c2-15b1-f3d8-1fa1-4dd491c8db72",
-        "a3d9af13-e3a0-2ed9-31d9-2a9556cd1ac1"
-      ]
-    },
-    {
-      "owner": "1042075",
-      "name": "device_error_4xx",
-      "description": "",
-      "order": [
-        "b9ff8fdb-70b9-3ff4-3385-b144dfc700d0",
-        "bf964fe0-9769-ce18-e60c-84e5e1364863",
-        "b581548a-9b79-ae34-0485-ae9483848d70",
-        "18605d09-675e-340b-8a74-0bf0b6a881be",
-        "cfb645ab-eea1-1d4c-3776-2b68440b77fb",
-        "45d978a6-d3e1-16b7-afe8-140439705515",
-        "305c3532-79c3-2b03-18f9-8f81ee0f6808",
-        "09a1ec64-9161-2bda-5f1e-754216788522",
-        "5f1babbb-be69-008a-ff6b-451991364bdd",
-        "a1b5ff41-7cd3-ca4e-d530-e1897f93e5c8"
-      ],
-      "id": "7d57226e-9489-e351-d760-d309367fdfa9",
-      "lastUpdatedBy": "1046531"
-    },
-    {
-      "owner": "1042075",
-      "lastUpdatedBy": "1042075",
-      "lastRevision": 603729611,
-      "id": "bb7e3f0b-4c4f-754a-b6ca-e710db29a12f",
-      "name": "ping",
-      "description": "Folder for ping",
-      "order": [
-        "ee81d6c7-f51f-0868-5020-30101cebbc33"
-      ]
-    }
-  ],
-  "timestamp": 0,
-  "owner": "1042075",
-  "public": false,
-  "published": false,
-  "requests": [
-    {
-      "id": "09a1ec64-9161-2bda-5f1e-754216788522",
-      "headers": "",
-      "url": "{{baseUrl}}/api/v1/device/{{deviceIdNotPresent}}/command/{{commandId}}",
-      "preRequestScript": "",
-      "pathVariables": {},
-      "method": "GET",
-      "data": [],
-      "dataMode": "params",
-      "tests": "/*\n * Test Case:  /device/{{deviceIdNotPresent}}/command/{{commandId}}- Error 404 - GET\n * Version: Alpha\n * @Author: Tata Elxsi\n *\n */\n\nif(responseCode.code === 404){\n    tests[\"Status code is 404\"] = responseCode.code === 404;\n    tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n    tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n    if (contentTypeHeaderExists) {\n    tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);\n    }\n }",
-      "currentHelper": "normal",
-      "helperAttributes": {},
-      "time": 1475726986720,
-      "name": "4 http://localhost:48082/api/v1/device/:id/command/{commandId}",
-      "description": "Issue the put command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service. ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided. Throws LockedException (HTTP 423) if the device is LOCKED (admin state).",
-      "collectionId": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b"
-    },
-    {
-      "id": "18605d09-675e-340b-8a74-0bf0b6a881be",
-      "headers": "",
-      "url": "{{baseUrl}}/api/v1/device/{{deviceNameNotPresent}}/opstate/{opState}",
-      "preRequestScript": "",
-      "pathVariables": {},
-      "method": "PUT",
-      "data": [],
-      "dataMode": "params",
-      "tests": "    /**\n     * Test Case:  /device/{{deviceNameNotFound}}//opstate/{opState}  - PUT\n     * Version: Alpha\n     * @Author: Tata Elxsi\n     *\n     **/\n    if(responseCode.code === 404){\n        tests[\"Status code is 404\"] = responseCode.code === 404;\n        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n        tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n        if (contentTypeHeaderExists) {\n        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");\n        }\n }",
-      "currentHelper": "normal",
-      "helperAttributes": "{}",
-      "name": "24  http://localhost:48082/api/v1/device/name/:name/opstate/{opState}",
-      "description": "Set the admin state of the device (as referenced by the database generated id of the device) to the state provided (either LOCKED or UNLOCKED). ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided.",
-      "folder": "7d57226e-9489-e351-d760-d309367fdfa9",
-      "collectionId": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b",
-      "rawModeData": null,
-      "descriptionFormat": null
-    },
-    {
-      "id": "2783e5be-b682-3710-3b16-769a226db977",
-      "folder": "587d600e-325c-e5f5-db20-2703d19349e5",
-      "name": "17 http://localhost:48082/api/v1/device/:id",
-      "dataMode": "params",
-      "data": [],
-      "rawModeData": null,
-      "descriptionFormat": "html",
-      "description": "Retrieve a device (by database generated id) and its command offerings. Throws ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided.",
-      "headers": "",
-      "method": "GET",
-      "pathVariables": {},
-      "url": "{{baseUrl}}/api/v1/device/{{getDeviceById}}",
-      "preRequestScript": "",
-      "tests": "/**\n * Test Case:  /api/v1/device/:id - GET\n * Version: Alpha\n * Service: Command\n * @Author: Tata Elxsi\n *\n **/\n \n    tests[\"Status code is 200\"] = responseCode.code === 200;\n    if(responseCode.code === 200){\n        tests[\"Response time is less than 1200 ms\"] = responseTime < 1200;\n        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n        tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n        if (contentTypeHeaderExists) {\n            tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);\n        }\n         //Test body parameters\n        var deviceService;\n        try{\n            //Parse json response\n            deviceService = JSON.parse(responseBody);\n        }catch(e) {\n            console.log(\"Exception while parsing json response\");\n        }\n        \n        if(deviceService.length !== 0) {\n         tests[\"Is Valid Response Schema\"] = tv4.validate(deviceService, data.schema);\n            console.log(\"Validation failed: \", tv4.error);\n        } else {\n            //Shows message when event list is empty\n            console.log(\"Device List Empty\");\n            tests[\"DeviceService list empty\"] = deviceService.length === 0\n        }\n    }",
-      "currentHelper": "normal",
-      "helperAttributes": "{}",
-      "responses": [],
-      "collectionId": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b"
-    },
-    {
-      "id": "2ad5c979-b3c6-9a81-dae3-4a0b0ef2ac5b",
-      "headers": "",
-      "url": "{{baseUrl}}/api/v1/device/name/{{getDeviceByName}}/opstate/DISABLED",
-      "preRequestScript": "",
-      "pathVariables": {},
-      "method": "PUT",
-      "data": [],
-      "dataMode": "params",
-      "tests": "/**\n * Test Case:  /device/{{deviceName}}/opstate/{{opState}} - PUT\n * Version: Alpha\n * @Author: Tata Elxsi\n *\n **/\n\n  tests[\"Status code is 200\"] = responseCode.code === 200;\n  if(responseCode.code === 200){\n        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n        tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n      }",
-      "currentHelper": "normal",
-      "helperAttributes": {},
-      "time": 1476418486090,
-      "name": "23 http://localhost:48082/api/v1/device/name/:name/opstate/{opState}",
-      "description": "Set the op state of the device (by name of the device) to the state provided (either ENABLED or DISABLED). ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the name provided.",
-      "collectionId": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b",
-      "responses": []
-    },
-    {
-      "id": "305c3532-79c3-2b03-18f9-8f81ee0f6808",
-      "headers": "",
-      "url": "{{baseUrl}}/api/v1/device/{{getDeviceByInvalidId}}",
-      "preRequestScript": "",
-      "pathVariables": {},
-      "method": "GET",
-      "data": [],
-      "dataMode": "params",
-      "tests": "/**\n * Test Case:  /api/v1/device/:id- Error 404 - GET\n * Version: Alpha\n * Service: Command\n * @Author: Tata Elxsi\n *\n **/\n  tests[\"Status code is 404\"] = responseCode.code === 404;\n  if(responseCode.code === 404){\n        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n        tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n        if (contentTypeHeaderExists) {\n            tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);\n        }\n }",
-      "currentHelper": "normal",
-      "helperAttributes": "{}",
-      "time": 1476418848322,
-      "name": "18  http://localhost:48082/api/v1/device/:id",
-      "description": "Retrieve a device (by database generated id) and its command offerings. Throws ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided.",
-      "collectionId": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b",
-      "rawModeData": null,
-      "descriptionFormat": "html",
-      "folder": "7d57226e-9489-e351-d760-d309367fdfa9"
-    },
-    {
-      "id": "449ac932-325b-bc74-bfb2-3e54f4d582ab",
-      "folder": "587d600e-325c-e5f5-db20-2703d19349e5",
-      "name": "20 http://localhost:48082/api/v1/device/name/:name/adminstate/{adminState}",
-      "dataMode": "raw",
-      "data": [],
-      "rawModeData": "",
-      "descriptionFormat": "html",
-      "description": "Set the admin state of the device (by name of the device) to the state provided (either LOCKED or UNLOCKED). ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the name provided.",
-      "headers": "",
-      "method": "PUT",
-      "pathVariables": {},
-      "url": "{{baseUrl}}/api/v1/device/name/{{updateDeviceByNameByAdminState}}/adminstate/{{updateDeviceAdminState}}",
-      "preRequestScript": "",
-      "tests": "/**\n * Test Case:  /api/v1/device/name/{name}/adminstate/{adminState} - PUT\n * Services: Coredata\n * Version: Alpha\n * @Author: Tata Elxsi\n *\n **/\n\n  tests[\"Status code is 200\"] = responseCode.code === 200;\n  if(responseCode.code === 200){\n        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n        tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n          }",
-      "currentHelper": "normal",
-      "helperAttributes": "{}",
-      "responses": [],
-      "collectionId": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b"
-    },
-    {
-      "id": "45d978a6-d3e1-16b7-afe8-140439705515",
-      "headers": "Content-Type: application/json\n",
-      "url": "{{baseUrl}}/api/v1/device/{{deviceGetRequestIdWithStateLocked}}/command/{{commandGetRequestIdWithStateLocked}}",
-      "preRequestScript": "",
-      "pathVariables": {},
-      "method": "PUT",
-      "data": [],
-      "dataMode": "raw",
-      "tests": "/*\n * Test Case:  /device/{{deviceGetRequestIdWithStateLocked}}/command/{{commandId}} - PUT\n * Version: Alpha\n * @Author: Tata Elxsi\n *\n */\nif(responseCode.code === 423){\n    tests[\"Status code is 423\"] = responseCode.code === 423;\n}",
-      "currentHelper": "normal",
-      "helperAttributes": "{}",
-      "name": "9 http://localhost:48082/api/v1/device/:id/command/{commandId}",
-      "description": "Issue the put command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service. ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided. Throws LockedException (HTTP 423) if the device is LOCKED (admin state).",
-      "folder": "7d57226e-9489-e351-d760-d309367fdfa9",
-      "rawModeData": "{\"temp\":74}",
-      "descriptionFormat": null,
-      "collectionId": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b"
-    },
-    {
-      "id": "5f1babbb-be69-008a-ff6b-451991364bdd",
-      "headers": "",
-      "url": "{{baseUrl}}/api/v1/device/{{deviceLockedId}}/command/{{commandGetRequestIdForLockdedState}}",
-      "preRequestScript": "",
-      "pathVariables": {},
-      "method": "GET",
-      "data": [],
-      "dataMode": "params",
-      "tests": "/*\n * Test Case:  /device/{{deviceIdNotPresent}}/command/{{commandId}} -Error 423 - GET\n * Version: Alpha\n * @Author: Tata Elxsi\n *\n */\n\nif(responseCode.code === 423){\n    tests[\"Status code is 423\"] = responseCode.code === 423;\n    tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n    tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n    if (contentTypeHeaderExists) {\n    tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);\n    }\n}",
-      "currentHelper": "normal",
-      "helperAttributes": {},
-      "time": 1475732806884,
-      "name": "5 http://localhost:48082/api/v1/device/:id/command/{commandId}",
-      "description": "Issue the put command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service. ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided. Throws LockedException (HTTP 423) if the device is LOCKED (admin state).",
-      "collectionId": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b"
-    },
-    {
-      "id": "952f15c2-15b1-f3d8-1fa1-4dd491c8db72",
-      "headers": "",
-      "url": "{{baseUrl}}/api/v1/device/{{deviceIdPresent}}/adminstate/{{adminStateChange}}",
-      "pathVariables": {},
-      "preRequestScript": "",
-      "method": "PUT",
-      "data": [],
-      "dataMode": "params",
-      "name": "11 http://localhost:48082/api/v1/device/:id/adminstate/{adminState}",
-      "description": "Set the admin state of the device (as referenced by the database generated id of the device) to the state provided (either LOCKED or UNLOCKED). ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided.",
-      "descriptionFormat": "html",
-      "tests": " /**\n * Test Case:  /device/{{deviceIdPresent}}/adminstate/{{adminStateChange}} - PUT\n * Version: Alpha\n * @Author: Tata Elxsi\n *\n **/\n\n  tests[\"Status code is 200\"] = responseCode.code === 200;\n  if(responseCode.code === 200){\n        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n        tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n     }",
-      "currentHelper": "normal",
-      "helperAttributes": "{}",
-      "folder": "587d600e-325c-e5f5-db20-2703d19349e5",
-      "collectionId": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b",
-      "rawModeData": null
-    },
-    {
-      "id": "a1b5ff41-7cd3-ca4e-d530-e1897f93e5c8",
-      "headers": "",
-      "url": "{{baseUrl}}/api/v1/device/name/{{getDeviceByInvalidName}}",
-      "preRequestScript": "",
-      "pathVariables": {},
-      "method": "GET",
-      "data": [],
-      "dataMode": "params",
-      "tests": "//Assert 404 status if no Addressable match on the name provided.\ntests[\"Status code is 404\"] = responseCode.code === 404;\ntests[\"Response time is less than 200ms\"] = responseTime < 200;",
-      "currentHelper": "normal",
-      "helperAttributes": "{}",
-      "name": "27  http://localhost:48082/api/v1/device/name/{name}",
-      "description": "Retrieve a device (by database generated id) and its command offerings. Throws ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided.",
-      "folder": "7d57226e-9489-e351-d760-d309367fdfa9",
-      "collectionId": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b",
-      "rawModeData": null,
-      "descriptionFormat": null
-    },
-    {
-      "headers": "",
-      "url": "{{baseUrl}}/api/v1/device/{{deviceIdPresent}}/opstate/{{opStateChange}}",
-      "pathVariables": {},
-      "preRequestScript": "",
-      "method": "PUT",
-      "data": [],
-      "dataMode": "params",
-      "name": "14 http://localhost:48082/api/v1/device/:id/opstate/{opState}",
-      "description": "Set the op state of the device (as referenced by the database generated id of the device) to the state provided (either ENABLED or DISABLED). ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided.",
-      "descriptionFormat": "html",
-      "tests": " /**\n * Test Case:  /device/{{deviceIdPresent}}/opstate/{{opStateChange}} - PUT\n * Version: Alpha\n * @Author: Tata Elxsi\n *\n **/\n\n  tests[\"Status code is 200\"] = responseCode.code === 200;\n  if(responseCode.code === 200){\n        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n        tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n   }",
-      "currentHelper": "normal",
-      "helperAttributes": {},
-      "folder": "587d600e-325c-e5f5-db20-2703d19349e5",
-      "id": "a3d9af13-e3a0-2ed9-31d9-2a9556cd1ac1",
-      "collectionId": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b"
-    },
-    {
-      "id": "b581548a-9b79-ae34-0485-ae9483848d70",
-      "folder": "7d57226e-9489-e351-d760-d309367fdfa9",
-      "name": "21  http://localhost:48082/api/v1/device/name/:name/adminstate/{adminState}",
-      "dataMode": "params",
-      "data": [],
-      "rawModeData": null,
-      "descriptionFormat": "html",
-      "description": "Set the admin state of the device (as referenced by the database generated id of the device) to the state provided (either LOCKED or UNLOCKED). ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided.",
-      "headers": "",
-      "method": "PUT",
-      "pathVariables": {},
-      "url": "{{baseUrl}}/api/v1/device/{{deviceNameNotFound}}/adminstate/{{adminStateChange}}",
-      "preRequestScript": "",
-      "tests": "    /**\n     * Test Case:  /device/{{deviceNameNotFound}}/adminstate/{{adminStateChange}} - PUT\n     * Version: Alpha\n     * @Author: Tata Elxsi\n     *\n     **/\n    if(responseCode.code === 404){\n        tests[\"Status code is 404\"] = responseCode.code === 404;\n        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n        tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n        if (contentTypeHeaderExists) {\n        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");\n        }\n }",
-      "currentHelper": "normal",
-      "helperAttributes": "{}",
-      "collectionId": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b"
-    },
-    {
-      "headers": "",
-      "url": "{{baseUrl}}/api/v1/device/{{deviceIdNotPresent}}/adminstate/{{adminStateChange}}",
-      "pathVariables": {},
-      "preRequestScript": "",
-      "method": "PUT",
-      "data": [],
-      "dataMode": "params",
-      "name": "12  http://localhost:48082/api/v1/device/:id/adminstate/{adminState}",
-      "description": "Set the admin state of the device (as referenced by the database generated id of the device) to the state provided (either LOCKED or UNLOCKED). ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided.",
-      "descriptionFormat": "html",
-      "tests": "    /**\n     * Test Case:  /device/{{deviceIdNotPresent}}/adminstate/{{adminStateChange}} - PUT\n     * Version: Alpha\n     * @Author: Tata Elxsi\n     *\n     **/\n    if(responseCode.code === 404){\n        tests[\"Status code is 404\"] = responseCode.code === 404;\n        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n        tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n        if (contentTypeHeaderExists) {\n        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");\n        }\n }",
-      "currentHelper": "normal",
-      "helperAttributes": {},
-      "folder": "7d57226e-9489-e351-d760-d309367fdfa9",
-      "id": "b9ff8fdb-70b9-3ff4-3385-b144dfc700d0",
-      "collectionId": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b"
-    },
-    {
-      "id": "bf964fe0-9769-ce18-e60c-84e5e1364863",
-      "headers": "",
-      "url": "{{baseUrl}}/api/v1/device/{{deviceIdNotPresent}}/opstate/{{opStateChange}}",
-      "pathVariables": {},
-      "preRequestScript": "",
-      "method": "PUT",
-      "data": [],
-      "dataMode": "raw",
-      "name": "15 http://localhost:48082/api/v1/device/:id/opstate/{opState}",
-      "description": "Set the op state of the device (as referenced by the database generated id of the device) to the state provided (either ENABLED or DISABLED). ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided.",
-      "descriptionFormat": "html",
-      "tests": "    /**\n     * Test Case:  /device/{{deviceIdNotPresent}}/opstate/{{opStateChange}} - PUT\n     * Version: Alpha\n     * @Author: Tata Elxsi\n     *\n     **/\n    if(responseCode.code === 404){\n        tests[\"Status code is 404\"] = responseCode.code === 404;\n        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n        tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n        if (contentTypeHeaderExists) {\n        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");\n        }\n  }",
-      "currentHelper": "normal",
-      "helperAttributes": "{}",
-      "folder": "7d57226e-9489-e351-d760-d309367fdfa9",
-      "collectionId": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b",
-      "rawModeData": ""
-    },
-    {
-      "id": "cfb645ab-eea1-1d4c-3776-2b68440b77fb",
-      "headers": "Content-Type: application/json\n",
-      "url": "{{baseUrl}}/api/v1/device/{{deviceIdNotPresent}}/command/{{invalidCommandId}}",
-      "pathVariables": {},
-      "preRequestScript": "",
-      "method": "PUT",
-      "data": [],
-      "dataMode": "raw",
-      "name": "8 http://localhost:48082/api/v1/device/:id/command/{commandId}",
-      "description": "Issue the put command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service. ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided. Throws LockedException (HTTP 423) if the device is LOCKED (admin state).",
-      "descriptionFormat": "html",
-      "tests": "/*\n * Test Case:  /device/{{deviceIdNotPresent}}/command/{{commandId}} - PUT\n * Version: Alpha\n * @Author: Tata Elxsi\n *\n */\n\nif(responseCode.code === 404){\n    tests[\"Status code is 404\"] = responseCode.code === 404;\n    tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n    tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n    if (contentTypeHeaderExists) {\n    tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");\n    }\n  }",
-      "currentHelper": "normal",
-      "helperAttributes": "{}",
-      "folder": "7d57226e-9489-e351-d760-d309367fdfa9",
-      "collectionId": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b",
-      "rawModeData": "{\"temp\":74}"
-    },
-    {
-      "id": "db29a509-9c29-7d05-411c-c46d46bfd61c",
-      "folder": "587d600e-325c-e5f5-db20-2703d19349e5",
-      "name": "http://localhost:48082/api/v1/device",
-      "dataMode": "params",
-      "data": [],
-      "rawModeData": null,
-      "descriptionFormat": "html",
-      "description": "Retrieve a list of (all) devices and their command offerings. Throws ServiceException (HTTP 503) for unanticipated or unknown issues encountered.",
-      "headers": "",
-      "method": "GET",
-      "pathVariables": {},
-      "url": "{{baseUrl}}/api/v1/device",
-      "preRequestScript": "",
-      "tests": "/*\n * Test Case:  /api/v1/device - GET\n * Version: Alpha\n * Service: Metadata\n * @Author: Tata Elxsi\n *\n */\n\n//Test Case for status : 200\ntests[\"Status code is 200\"] = responseCode.code === 200;\n//Test response time\ntests[\"Response time is less than \"+data.responseTime] = responseTime < data.responseTime;\n\nif(responseCode.code === 200) {\n    //Test content type should present in header\n    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n    tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n    \n    if (contentTypeHeaderExists) {\n        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);\n    }\n    \n    //Test body parameters\n    var actualEventData;\n    try{\n        //Parse json response\n        actualEventData = JSON.parse(responseBody);\n    }catch(e) {\n        console.log(\"Exception while parsing json response\");\n    }\n    if(actualEventData.length !== 0 ) {\n        //Test response schema\n        // tests[\"Is Valid Response Schema\"] = tv4.validate(actualEventData, data.schema);\n        // console.log(\"Validation failed: \", tv4.error);\n    } else {\n        console.log(\"Device list and expected list length doesnt match\");\n        tests[\"Is actual and expected Device list matching\"] = actualEventData.length === 0;\n    }\n}",
-      "currentHelper": "normal",
-      "helperAttributes": "{}",
-      "responses": [],
-      "collectionId": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b"
-    },
-    {
-      "id": "ee81d6c7-f51f-0868-5020-30101cebbc33",
-      "headers": "",
-      "url": "{{baseUrl}}/api/v1/ping",
-      "preRequestScript": "",
-      "pathVariables": {},
-      "method": "GET",
-      "data": [],
-      "dataMode": "params",
-      "tests": " /**\n * Test Case:  /ping - GET\n * Version: Alpha\n * @Author: Tata Elxsi\n * \n **/\n \n tests[\"Ping Success\"] = responseCode.code === 200;\n tests[\"Response time is less than 200ms\"] = responseTime < 200;\n if(responseCode.code === 200){\n        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n        tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n        if (contentTypeHeaderExists) {\n        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");\n        }\n        if(responseBody.length!== 0){\n            tests[\"Body is correct\"] = responseBody === \"pong\";\n        }\n    }",
-      "currentHelper": "normal",
-      "helperAttributes": {},
-      "time": 1475583914416,
-      "name": "http://localhost:48082/api/v1/ping",
-      "description": "Test service providing an indication that the service is available.",
-      "collectionId": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b",
-      "responses": []
-    },
-    {
-      "id": "f536509e-1b5a-72da-fd32-9714a840f510",
-      "folder": "587d600e-325c-e5f5-db20-2703d19349e5",
-      "name": "http://localhost:48082/api/v1/device/name/:name",
-      "dataMode": "params",
-      "data": [],
-      "rawModeData": null,
-      "descriptionFormat": "html",
-      "description": "Retrieve a device (by name) and its command offerings. Throws ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the name provided.",
-      "headers": "",
-      "method": "GET",
-      "pathVariables": {},
-      "url": "{{baseUrl}}/api/v1/device/name/{{getDeviceByName}}",
-      "preRequestScript": "",
-      "tests": "/**\n * Test Case:  /api/v1/device/name/:name - GET\n *  Version: Alpha\n * Service: Metadata\n * @Author: Tata Elxsi\n *\n **/\n    tests[\"Status code is 200\"] = responseCode.code === 200;\n    tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;\n    if(responseCode.code === 200){\n        if(responseBody.length === 0){\n            tests[\"Response body Empty\"] = responseBody === null;\n        } else{\n            var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");\n            \n            tests[\"Has Content-Type\"] = contentTypeHeaderExists;\n            \n            if (contentTypeHeaderExists) {\n                tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);\n            }\n             //Test body parameters\n            var actualValueDescriptorName;\n            try{\n                //Parse json response\n                actualValueDescriptorName = JSON.parse(responseBody);\n            }catch(e) {\n                console.log(\"Exception while parsing json response\");\n            }\n            \n            if(actualValueDescriptorName !== null) {\n             tests[\"Is Valid Response Schema\"] = tv4.validate(actualValueDescriptorName, data.schema);\n                console.log(\"Validation failed: \", tv4.error);\n            } else {\n                //Shows message when event list is empty\n                console.log(\"Device List Empty\");\n                tests[\"Is Device list empty\"] = actualValueDescriptorName.length === 0\n            }\n        }\n    }",
-      "currentHelper": "normal",
-      "helperAttributes": "{}",
-      "responses": [],
-      "collectionId": "3b5ccf5c-51dc-8d94-641d-1969bca94d9b"
-    }
-  ]
+	"info": {
+		"_postman_id": "882f97cc-a5c0-401d-98cb-8e8958300dec",
+		"name": "core-command",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "device",
+			"item": [
+				{
+					"name": "17 http://localhost:48082/api/v1/device/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  /api/v1/device/:id - GET",
+									" * Version: Alpha",
+									" * Service: Command",
+									" * @Author: Tata Elxsi",
+									" *",
+									" **/",
+									" ",
+									"    tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"    if(responseCode.code === 200){",
+									"        tests[\"Response time is less than 1200 ms\"] = responseTime < 1200;",
+									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"        if (contentTypeHeaderExists) {",
+									"            tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"        }",
+									"         //Test body parameters",
+									"        var deviceService;",
+									"        try{",
+									"            //Parse json response",
+									"            deviceService = JSON.parse(responseBody);",
+									"        }catch(e) {",
+									"            console.log(\"Exception while parsing json response\");",
+									"        }",
+									"        ",
+									"        if(deviceService.length !== 0) {",
+									"         tests[\"Is Valid Response Schema\"] = tv4.validate(deviceService, data.schema);",
+									"            console.log(\"Validation failed: \", tv4.error);",
+									"        } else {",
+									"            //Shows message when event list is empty",
+									"            console.log(\"Device List Empty\");",
+									"            tests[\"DeviceService list empty\"] = deviceService.length === 0",
+									"        }",
+									"    }"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/{{getDeviceById}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"{{getDeviceById}}"
+							]
+						},
+						"description": "Retrieve a device (by database generated id) and its command offerings. Throws ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided."
+					},
+					"response": []
+				},
+				{
+					"name": "20 http://localhost:48082/api/v1/device/name/:name/adminstate/{adminState}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  /api/v1/device/name/{name}/adminstate/{adminState} - PUT",
+									" * Services: Coredata",
+									" * Version: Alpha",
+									" * @Author: Tata Elxsi",
+									" *",
+									" **/",
+									"",
+									"  tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"  if(responseCode.code === 200){",
+									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"          }"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/name/{{updateDeviceByNameByAdminState}}/adminstate/{{updateDeviceAdminState}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"name",
+								"{{updateDeviceByNameByAdminState}}",
+								"adminstate",
+								"{{updateDeviceAdminState}}"
+							]
+						},
+						"description": "Set the admin state of the device (by name of the device) to the state provided (either LOCKED or UNLOCKED). ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the name provided."
+					},
+					"response": []
+				},
+				{
+					"name": "23 http://localhost:48082/api/v1/device/name/:name/opstate/{opState}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  /device/{{deviceName}}/opstate/{{opState}} - PUT",
+									" * Version: Alpha",
+									" * @Author: Tata Elxsi",
+									" *",
+									" **/",
+									"",
+									"  tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"  if(responseCode.code === 200){",
+									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"      }"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/name/{{getDeviceByName}}/opstate/DISABLED",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"name",
+								"{{getDeviceByName}}",
+								"opstate",
+								"DISABLED"
+							]
+						},
+						"description": "Set the op state of the device (by name of the device) to the state provided (either ENABLED or DISABLED). ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the name provided."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:48082/api/v1/device/name/:name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  /api/v1/device/name/:name - GET",
+									" *  Version: Alpha",
+									" * Service: Metadata",
+									" * @Author: Tata Elxsi",
+									" *",
+									" **/",
+									"    tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"    tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"    if(responseCode.code === 200){",
+									"        if(responseBody.length === 0){",
+									"            tests[\"Response body Empty\"] = responseBody === null;",
+									"        } else{",
+									"            var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"            ",
+									"            tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"            ",
+									"            if (contentTypeHeaderExists) {",
+									"                tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"            }",
+									"             //Test body parameters",
+									"            var actualValueDescriptorName;",
+									"            try{",
+									"                //Parse json response",
+									"                actualValueDescriptorName = JSON.parse(responseBody);",
+									"            }catch(e) {",
+									"                console.log(\"Exception while parsing json response\");",
+									"            }",
+									"            ",
+									"            if(actualValueDescriptorName !== null) {",
+									"             tests[\"Is Valid Response Schema\"] = tv4.validate(actualValueDescriptorName, data.schema);",
+									"                console.log(\"Validation failed: \", tv4.error);",
+									"            } else {",
+									"                //Shows message when event list is empty",
+									"                console.log(\"Device List Empty\");",
+									"                tests[\"Is Device list empty\"] = actualValueDescriptorName.length === 0",
+									"            }",
+									"        }",
+									"    }"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/name/{{getDeviceByName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"name",
+								"{{getDeviceByName}}"
+							]
+						},
+						"description": "Retrieve a device (by name) and its command offerings. Throws ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the name provided."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:48082/api/v1/device",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/*",
+									" * Test Case:  /api/v1/device - GET",
+									" * Version: Alpha",
+									" * Service: Metadata",
+									" * @Author: Tata Elxsi",
+									" *",
+									" */",
+									"",
+									"//Test Case for status : 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime] = responseTime < data.responseTime;",
+									"",
+									"if(responseCode.code === 200) {",
+									"    //Test content type should present in header",
+									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"    ",
+									"    if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"    }",
+									"    ",
+									"    //Test body parameters",
+									"    var actualEventData;",
+									"    try{",
+									"        //Parse json response",
+									"        actualEventData = JSON.parse(responseBody);",
+									"    }catch(e) {",
+									"        console.log(\"Exception while parsing json response\");",
+									"    }",
+									"    if(actualEventData.length !== 0 ) {",
+									"        //Test response schema",
+									"        // tests[\"Is Valid Response Schema\"] = tv4.validate(actualEventData, data.schema);",
+									"        // console.log(\"Validation failed: \", tv4.error);",
+									"    } else {",
+									"        console.log(\"Device list and expected list length doesnt match\");",
+									"        tests[\"Is actual and expected Device list matching\"] = actualEventData.length === 0;",
+									"    }",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device"
+							]
+						},
+						"description": "Retrieve a list of (all) devices and their command offerings. Throws ServiceException (HTTP 503) for unanticipated or unknown issues encountered."
+					},
+					"response": []
+				},
+				{
+					"name": "11 http://localhost:48082/api/v1/device/:id/adminstate/{adminState}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /device/{{deviceIdPresent}}/adminstate/{{adminStateChange}} - PUT",
+									" * Version: Alpha",
+									" * @Author: Tata Elxsi",
+									" *",
+									" **/",
+									"",
+									"  tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"  if(responseCode.code === 200){",
+									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"     }"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/{{deviceIdPresent}}/adminstate/{{adminStateChange}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"{{deviceIdPresent}}",
+								"adminstate",
+								"{{adminStateChange}}"
+							]
+						},
+						"description": "Set the admin state of the device (as referenced by the database generated id of the device) to the state provided (either LOCKED or UNLOCKED). ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided."
+					},
+					"response": []
+				},
+				{
+					"name": "14 http://localhost:48082/api/v1/device/:id/opstate/{opState}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /device/{{deviceIdPresent}}/opstate/{{opStateChange}} - PUT",
+									" * Version: Alpha",
+									" * @Author: Tata Elxsi",
+									" *",
+									" **/",
+									"",
+									"  tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"  if(responseCode.code === 200){",
+									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"   }"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/{{deviceIdPresent}}/opstate/{{opStateChange}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"{{deviceIdPresent}}",
+								"opstate",
+								"{{opStateChange}}"
+							]
+						},
+						"description": "Set the op state of the device (as referenced by the database generated id of the device) to the state provided (either ENABLED or DISABLED). ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for device"
+		},
+		{
+			"name": "device_error_4xx",
+			"item": [
+				{
+					"name": "12  http://localhost:48082/api/v1/device/:id/adminstate/{adminState}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "06b18135-3f33-41dd-b032-0fd643d4edb1",
+								"exec": [
+									"/**",
+									"* Test Case:  /device/{{deviceIdNotPresent}}/adminstate/{{adminStateChange}} - PUT",
+									"* Version: Alpha",
+									"* @Author: Tata Elxsi",
+									"*",
+									"**/",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/{{deviceIdNotPresent}}/adminstate/{{adminStateChange}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"{{deviceIdNotPresent}}",
+								"adminstate",
+								"{{adminStateChange}}"
+							]
+						},
+						"description": "Set the admin state of the device (as referenced by the database generated id of the device) to the state provided (either LOCKED or UNLOCKED). ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided."
+					},
+					"response": []
+				},
+				{
+					"name": "15 http://localhost:48082/api/v1/device/:id/opstate/{opState}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0d7ebee8-b55f-41cc-91ea-ac7cfa4c5e1d",
+								"exec": [
+									"/**",
+									" * Test Case:  /device/{{deviceIdNotPresent}}/opstate/{{opStateChange}} - PUT",
+									" * Version: Alpha",
+									" * @Author: Tata Elxsi",
+									" *",
+									" **/",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/{{deviceIdNotPresent}}/opstate/{{opStateChange}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"{{deviceIdNotPresent}}",
+								"opstate",
+								"{{opStateChange}}"
+							]
+						},
+						"description": "Set the op state of the device (as referenced by the database generated id of the device) to the state provided (either ENABLED or DISABLED). ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided."
+					},
+					"response": []
+				},
+				{
+					"name": "21  http://localhost:48082/api/v1/device/name/:name/adminstate/{adminState}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f14dc031-a2e2-4b0d-8e32-3e50d8ad5c02",
+								"exec": [
+									"/**",
+									"* Test Case:  /device/{{deviceNameNotFound}}/adminstate/{{adminStateChange}} - PUT",
+									"* Version: Alpha",
+									"* @Author: Tata Elxsi",
+									"*",
+									"**/",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/{{deviceNameNotFound}}/adminstate/{{adminStateChange}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"{{deviceNameNotFound}}",
+								"adminstate",
+								"{{adminStateChange}}"
+							]
+						},
+						"description": "Set the admin state of the device (as referenced by the database generated id of the device) to the state provided (either LOCKED or UNLOCKED). ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided."
+					},
+					"response": []
+				},
+				{
+					"name": "24  http://localhost:48082/api/v1/device/name/:name/opstate/{opState}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e4171fdc-7689-4256-b71e-9fa242b53e7e",
+								"exec": [
+									"/**",
+									"* Test Case:  /device/{{deviceNameNotFound}}//opstate/{opState}  - PUT",
+									"* Version: Alpha",
+									"* @Author: Tata Elxsi",
+									"*",
+									"**/",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/{{deviceNameNotPresent}}/opstate/{opState}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"{{deviceNameNotPresent}}",
+								"opstate",
+								"{opState}"
+							]
+						},
+						"description": "Set the admin state of the device (as referenced by the database generated id of the device) to the state provided (either LOCKED or UNLOCKED). ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided."
+					},
+					"response": []
+				},
+				{
+					"name": "8 http://localhost:48082/api/v1/device/:id/command/{commandId}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ec1d8976-ea8a-4d8b-8aec-5fcdea3e6d98",
+								"exec": [
+									"/*",
+									" * Test Case:  /device/{{deviceIdNotPresent}}/command/{{commandId}} - PUT",
+									" * Version: Alpha",
+									" * @Author: Tata Elxsi",
+									" *",
+									" */",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"temp\":74}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/{{deviceIdNotPresent}}/command/{{invalidCommandId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"{{deviceIdNotPresent}}",
+								"command",
+								"{{invalidCommandId}}"
+							]
+						},
+						"description": "Issue the put command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service. ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided. Throws LockedException (HTTP 423) if the device is LOCKED (admin state)."
+					},
+					"response": []
+				},
+				{
+					"name": "9 http://localhost:48082/api/v1/device/:id/command/{commandId}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7e299788-fc6c-4afb-9ad3-e7714dace00d",
+								"exec": [
+									"/*",
+									" * Test Case:  /device/{{deviceGetRequestIdWithStateLocked}}/command/{{commandId}} - PUT",
+									" * Version: Alpha",
+									" * @Author: Tata Elxsi",
+									" *",
+									" */",
+									"tests[\"Status code is 423\"] = responseCode.code === 423;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"temp\":74}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/{{deviceGetRequestIdWithStateLocked}}/command/{{commandGetRequestIdWithStateLocked}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"{{deviceGetRequestIdWithStateLocked}}",
+								"command",
+								"{{commandGetRequestIdWithStateLocked}}"
+							]
+						},
+						"description": "Issue the put command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service. ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided. Throws LockedException (HTTP 423) if the device is LOCKED (admin state)."
+					},
+					"response": []
+				},
+				{
+					"name": "18  http://localhost:48082/api/v1/device/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  /api/v1/device/:id- Error 404 - GET",
+									" * Version: Alpha",
+									" * Service: Command",
+									" * @Author: Tata Elxsi",
+									" *",
+									" **/",
+									"  tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"  if(responseCode.code === 404){",
+									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"        if (contentTypeHeaderExists) {",
+									"            tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
+									"        }",
+									" }"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/{{getDeviceByInvalidId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"{{getDeviceByInvalidId}}"
+							]
+						},
+						"description": "Retrieve a device (by database generated id) and its command offerings. Throws ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided."
+					},
+					"response": []
+				},
+				{
+					"name": "4 http://localhost:48082/api/v1/device/:id/command/{commandId}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e4816dfe-0210-41e5-b12a-1ffa3f9f2e86",
+								"exec": [
+									"/*",
+									" * Test Case:  /device/{{deviceIdNotPresent}}/command/{{commandId}}- Error 404 - GET",
+									" * Version: Alpha",
+									" * @Author: Tata Elxsi",
+									" *",
+									" */",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/{{deviceIdNotPresent}}/command/{{commandId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"{{deviceIdNotPresent}}",
+								"command",
+								"{{commandId}}"
+							]
+						},
+						"description": "Issue the put command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service. ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided. Throws LockedException (HTTP 423) if the device is LOCKED (admin state)."
+					},
+					"response": []
+				},
+				{
+					"name": "5 http://localhost:48082/api/v1/device/:id/command/{commandId}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "75541308-ff72-40bd-8e08-000bac2b9dce",
+								"exec": [
+									"/*",
+									" * Test Case:  /device/{{deviceIdNotPresent}}/command/{{commandId}} -Error 423 - GET",
+									" * Version: Alpha",
+									" * @Author: Tata Elxsi",
+									" *",
+									" */",
+									"tests[\"Status code is 423\"] = responseCode.code === 423;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is \"+data.TextPlainContentType] = responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/{{deviceLockedId}}/command/{{commandGetRequestIdForLockdedState}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"{{deviceLockedId}}",
+								"command",
+								"{{commandGetRequestIdForLockdedState}}"
+							]
+						},
+						"description": "Issue the put command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service. ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided. Throws LockedException (HTTP 423) if the device is LOCKED (admin state)."
+					},
+					"response": []
+				},
+				{
+					"name": "27  http://localhost:48082/api/v1/device/name/{name}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//Assert 404 status if no Addressable match on the name provided.",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/name/{{getDeviceByInvalidName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"name",
+								"{{getDeviceByInvalidName}}"
+							]
+						},
+						"description": "Retrieve a device (by database generated id) and its command offerings. Throws ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ping",
+			"item": [
+				{
+					"name": "http://localhost:48082/api/v1/ping",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /ping - GET",
+									" * Version: Alpha",
+									" * @Author: Tata Elxsi",
+									" * ",
+									" **/",
+									" ",
+									" tests[\"Ping Success\"] = responseCode.code === 200;",
+									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									" if(responseCode.code === 200){",
+									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"        if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+									"        }",
+									"        if(responseBody.length!== 0){",
+									"            tests[\"Body is correct\"] = responseBody === \"pong\";",
+									"        }",
+									"    }"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/ping",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ping"
+							]
+						},
+						"description": "Test service providing an indication that the service is available."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for ping"
+		}
+	]
 }
