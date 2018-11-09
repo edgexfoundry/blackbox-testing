@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "8fc04a43-765d-4a29-a87e-62accd46e78c",
+    "_postman_id": "5ed664ce-0c91-4d1c-bd72-31cc3a5d03ac",
     "name": "core-metadata",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -2847,25 +2847,24 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "e55a8551-7ae0-43a6-a09c-0430d41700fb",
                 "exec": [
-                  "    /**",
-                  "     * Test Case: /api/v1/device/id/:id - DELETE",
-                  "     * Version: Alpha",
-                  "     * @Author: Tata Elxsi",
-                  "     *",
-                  "     **/",
-                  "    if(responseCode.code === 404){",
-                  "        tests[\"Status code is 404\"] = responseCode.code === 404;",
-                  "        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  "        // the value descriptor cannot be located by the identifier.",
-                  "        }"
-                ]
+                  "/**",
+                  " * Test Case: /api/v1/device/id/:id - DELETE",
+                  " * Version: Alpha",
+                  " * @Author: Tata Elxsi",
+                  " *",
+                  " **/",
+                  "tests[\"Status code is 404\"] = responseCode.code === 404;",
+                  "tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}",
+                  "// the value descriptor cannot be located by the identifier."
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -2899,7 +2898,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "538b3a6b-e143-45e3-8909-9cf541af20da",
                 "exec": [
                   "/**",
                   " * Test Case:  /api/v1/device/name/:name/opstate/{updateOpState} - PUT",
@@ -2915,10 +2914,11 @@
                   "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
                   "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
                   "        if (contentTypeHeaderExists) {",
-                  "            tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
+                  "            tests[\"Content-Type is \"+data.TextPlainContentType] = responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
                   "        }",
-                  "        }"
-                ]
+                  "    }"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -2960,7 +2960,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "eca7fc7b-9693-4412-b4cb-5ee2009ffd85",
                 "exec": [
                   "/**",
                   " * Test Case:  /api/v1/device/name/:name/adminstate/{updateAdminState} - PUT",
@@ -2976,10 +2976,11 @@
                   "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
                   "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
                   "        if (contentTypeHeaderExists) {",
-                  "            tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
+                  "            tests[\"Content-Type is \"+data.TextPlainContentType] = responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
                   "        }",
-                  "        }"
-                ]
+                  "    }"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3021,7 +3022,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "868a7d49-1fb4-4a9f-a1bb-9f0744b123d8",
                 "exec": [
                   "/**",
                   " * Test Case:  /api/v1/device/name/:name/lastreported/{time} - PUT",
@@ -3037,10 +3038,11 @@
                   "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
                   "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
                   "        if (contentTypeHeaderExists) {",
-                  "            tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
+                  "            tests[\"Content-Type is \"+data.TextPlainContentType] = responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
                   "        }",
-                  "        }"
-                ]
+                  "    }"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3076,7 +3078,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "76201527-e3a7-40e7-9a56-6962dea9975f",
                 "exec": [
                   "/**",
                   " * Test Case:  /api/v1/devicename/:name/lastconnected/{time} - PUT",
@@ -3092,10 +3094,11 @@
                   "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
                   "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
                   "        if (contentTypeHeaderExists) {",
-                  "            tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
+                  "            tests[\"Content-Type is \"+data.TextPlainContentType] = responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
                   "        }",
-                  "        }"
-                ]
+                  "    }"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3131,7 +3134,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "3acdcea2-ce4b-4f22-aa98-f5f31772a62b",
                 "exec": [
                   "    /**",
                   "     * Test Case:  /api/v1/device/name/{name} - DELETE",
@@ -3145,10 +3148,11 @@
                   "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
                   "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
                   "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "        tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
                   "        }",
-                  "        }"
-                ]
+                  "    }"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3182,7 +3186,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "32395199-067d-44cc-8c65-bbbfc609c3d5",
                 "exec": [
                   "/**",
                   " * Test Case:  /api/v1/device/:id/opState/{updateOpState} - PUT",
@@ -3200,8 +3204,9 @@
                   "        if (contentTypeHeaderExists) {",
                   "            tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
                   "        }",
-                  "        }"
-                ]
+                  "    }"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3236,7 +3241,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "f632a4ba-73f2-4b0c-8594-9407fca6ad28",
                 "exec": [
                   "/**",
                   " * Test Case:  /api/v1/device/:id/adminState/{updateAdminState} - PUT",
@@ -3254,8 +3259,9 @@
                   "        if (contentTypeHeaderExists) {",
                   "            tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
                   "        }",
-                  "        }"
-                ]
+                  "    }"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3290,7 +3296,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "11cbfbd3-45ee-4405-95b5-f5e8c307d4fe",
                 "exec": [
                   "/**",
                   " * Test Case:  /api/v1/device/:id/lastreported/{time} - PUT",
@@ -3307,9 +3313,10 @@
                   "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
                   "        if (contentTypeHeaderExists) {",
                   "            tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType)",
-                  "            }",
-                  "        }"
-                ]
+                  "        }",
+                  "    }"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3344,7 +3351,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "9fecf87a-e7f5-475d-b75c-5cc7f5b71a87",
                 "exec": [
                   "/**",
                   " * Test Case:  /api/v1/device/:id/lastconnected/{time} - PUT",
@@ -3362,8 +3369,9 @@
                   "        if (contentTypeHeaderExists) {",
                   "            tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
                   "        }",
-                  "        }"
-                ]
+                  "    }"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3398,7 +3406,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "cc5c6e8b-f940-4b31-b305-5c4e8df3fea3",
                 "exec": [
                   "    /**",
                   "     * Test Case: /api/v1/device/profile/:profileId - GET",
@@ -3412,10 +3420,11 @@
                   "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
                   "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
                   "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "            tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
                   "        }",
-                  "        }"
-                ]
+                  "    }"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3449,7 +3458,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "e3bbaad0-b4c7-4e1b-8bdc-36f5e72fdc33",
                 "exec": [
                   "    /**",
                   "     * Test Case: /api/v1/device/service/:serviceId - GET",
@@ -3463,10 +3472,11 @@
                   "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
                   "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
                   "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "            tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
                   "        }",
-                  "        }"
-                ]
+                  "    }"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3500,7 +3510,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "b5b3620e-bf72-4ab5-ad0c-abe686d0dc47",
                 "exec": [
                   "    /**",
                   "     * Test Case: /api/v1/device/servicename/:servicename - GET",
@@ -3514,10 +3524,11 @@
                   "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
                   "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
                   "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "            tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
                   "        }",
-                  "        }"
-                ]
+                  "    }"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3551,7 +3562,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "8d25ba2c-5b0b-4af6-9d80-43ebd44aaf23",
                 "exec": [
                   "    /**",
                   "     * Test Case: /api/v1/device/addressablename/:addressablename - GET",
@@ -3565,10 +3576,11 @@
                   "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
                   "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
                   "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "            tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
                   "        }",
-                  "        }"
-                ]
+                  "    }"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3602,7 +3614,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "f268704f-f618-42c9-95bb-949310b99ebf",
                 "exec": [
                   "    /**",
                   "     * Test Case: /api/v1/device/profilename/:profilename - GET",
@@ -3616,10 +3628,11 @@
                   "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
                   "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
                   "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "        tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
                   "        }",
-                  "        }"
-                ]
+                  "    }"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3653,7 +3666,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "2ae66676-2f8e-4670-9892-8a4fab4cca0b",
                 "exec": [
                   "  /**",
                   "     * Test Case: /api/v1/device/addressable/:addressableId - GET",
@@ -3667,11 +3680,12 @@
                   "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
                   "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
                   "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "            tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
                   "        }",
                   "        // the value descriptor cannot be located by the identifier.",
                   "    }"
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3705,7 +3719,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "ba687a89-f177-4d53-a053-e866455f109c",
                 "exec": [
                   "/**",
                   " * Test Case:  /api/v1/device - PUT",
@@ -3721,10 +3735,11 @@
                   "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
                   "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
                   "        if (contentTypeHeaderExists) {",
-                  "            tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
+                  "            tests[\"Content-Type is \"+data.TextPlainContentType] = responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
                   "        }",
-                  "        }"
-                ]
+                  "    }"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3761,7 +3776,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "047b9a1a-3afc-458c-bc06-93e85871aafb",
                 "exec": [
                   "    /**",
                   "     * Test Case:  /api/v1/device - POST",
@@ -3774,10 +3789,11 @@
                   "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
                   "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
                   "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "            tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
                   "        }",
-                  "           }"
-                ]
+                  "   }"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4082,24 +4098,23 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "c88e8601-6eb4-4ef1-9284-3291b3525a8d",
                 "exec": [
-                  "    /**",
-                  "     * Test Case:  /api/v1/deviceprofile - POST",
-                  "     * Version: Alpha",
-                  "     * @Author: Tata Elxsi",
-                  "     *",
-                  "     **/",
-                  "    if(responseCode.code === 200){",
-                  "        tests[\"Status code is 200\"] = responseCode.code === 200;",
-                  "        tests[\"Response time is less than 800ms\"] = responseTime < 800;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  "                }"
-                ]
+                  "/**",
+                  "* Test Case:  /api/v1/deviceprofile - POST",
+                  "* Version: Alpha",
+                  "* @Author: Tata Elxsi",
+                  "*",
+                  "**/",
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;",
+                  "tests[\"Response time is less than 800ms\"] = responseTime < 800;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4708,25 +4723,25 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "065c5f79-0cf9-4b7e-9d92-9f191fdddd7f",
                 "exec": [
-                  "    /**",
-                  "     * Test Case:  /deviceprofile/id/{{dpPresentDelete}} - DELETE",
-                  "     * Version: Alpha",
-                  "     * @Author: Tata Elxsi",
-                  "     *",
-                  "     **/",
-                  "    if(responseCode.code === 404){",
-                  "        tests[\"Status code is 404\"] = responseCode.code === 404;",
-                  "        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  "        // the device Profile cannot be located by the identifier.",
-                  "        }"
-                ]
+                  "/**",
+                  "* Test Case:  /deviceprofile/id/{{dpPresentDelete}} - DELETE",
+                  "* Version: Alpha",
+                  "* @Author: Tata Elxsi",
+                  "*",
+                  "**/",
+                  "tests[\"Status code is 404\"] = responseCode.code === 404;",
+                  "tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}",
+                  "// the device Profile cannot be located by the identifier.",
+                  ""
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4760,25 +4775,24 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "a9190c7c-38bf-4d6c-aa36-992fb002743d",
                 "exec": [
-                  "    /**",
-                  "     * Test Case:  /api/v1/deviceprofile - POST",
-                  "     * Version: Alpha",
-                  "     * @Author: Tata Elxsi",
-                  "     *",
-                  "     **/",
-                  "    if(responseCode.code === 409){",
-                  "        tests[\"Status code is 404\"] = responseCode.code === 409;",
-                  "        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  "        // the device Profile cannot be located by the identifier.",
-                  "        }"
-                ]
+                  "/**",
+                  "* Test Case:  /api/v1/deviceprofile - POST",
+                  "* Version: Alpha",
+                  "* @Author: Tata Elxsi",
+                  "*",
+                  "**/",
+                  "tests[\"Status code is 404\"] = responseCode.code === 409;",
+                  "tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}",
+                  "// the device Profile cannot be located by the identifier."
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4815,24 +4829,23 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "3911f4f8-70c8-4e0c-a7cd-700e7e440aa7",
                 "exec": [
-                  "    /**",
-                  "     * Test Case:  /deviceprofile - PUT",
-                  "     * Version: Alpha",
-                  "     * @Author: Tata Elxsi",
-                  "     *",
-                  "     **/",
-                  "    if(responseCode.code === 404){",
-                  "        tests[\"Status code is 404\"] = responseCode.code === 404;",
-                  "        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  "        }"
-                ]
+                  "/**",
+                  "* Test Case:  /deviceprofile - PUT",
+                  "* Version: Alpha",
+                  "* @Author: Tata Elxsi",
+                  "*",
+                  "**/",
+                  "tests[\"Status code is 404\"] = responseCode.code === 404;",
+                  "tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4869,25 +4882,24 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "fa0a7bd7-80d0-422c-a731-6d0f8ec31dd6",
                 "exec": [
-                  "    /**",
-                  "     * Test Case:  /deviceprofile/id/{{dpPresentDelete}} - DELETE",
-                  "     * Version: Alpha",
-                  "     * @Author: Tata Elxsi",
-                  "     *",
-                  "     **/",
-                  "    if(responseCode.code === 404){",
-                  "        tests[\"Status code is 404\"] = responseCode.code === 404;",
-                  "        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  "        // the device Profile cannot be located by the identifier.",
-                  "        }"
-                ]
+                  "/**",
+                  "* Test Case:  /deviceprofile/id/{{dpPresentDelete}} - DELETE",
+                  "* Version: Alpha",
+                  "* @Author: Tata Elxsi",
+                  "*",
+                  "**/",
+                  "tests[\"Status code is 404\"] = responseCode.code === 404;",
+                  "tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}",
+                  "// the device Profile cannot be located by the identifier."
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4921,25 +4933,24 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "9997a40e-abc0-4207-8177-4b0b1b40f900",
                 "exec": [
-                  "    /**",
-                  "     * Test Case:  /api/v1/deviceprofile - POST",
-                  "     * Version: Alpha",
-                  "     * @Author: Tata Elxsi",
-                  "     *",
-                  "     **/",
-                  "    if(responseCode.code === 409){",
-                  "        tests[\"Status code is 409\"] = responseCode.code === 409;",
-                  "        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  "        // the device Profile cannot be located by the identifier.",
-                  "        }"
-                ]
+                  "/**",
+                  "* Test Case:  /api/v1/deviceprofile - POST",
+                  "* Version: Alpha",
+                  "* @Author: Tata Elxsi",
+                  "*",
+                  "**/",
+                  "tests[\"Status code is 409\"] = responseCode.code === 409;",
+                  "tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}",
+                  "// the device Profile cannot be located by the identifier."
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4979,25 +4990,23 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "242ab5c8-6d90-472f-a454-123878b5a571",
                 "exec": [
-                  "    /**",
-                  "     * Test Case:  /api/v1/deviceprofile - POST",
-                  "     * Version: Alpha",
-                  "     * @Author: Tata Elxsi",
-                  "     *",
-                  "     **/",
-                  "    if(responseCode.code === 400){",
-                  "        tests[\"Status code is 400\"] = responseCode.code === 400;",
-                  "        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  "        ",
-                  "    }"
-                ]
+                  "/**",
+                  "* Test Case:  /api/v1/deviceprofile - POST",
+                  "* Version: Alpha",
+                  "* @Author: Tata Elxsi",
+                  "*",
+                  "**/",
+                  "tests[\"Status code is 400\"] = responseCode.code === 400;",
+                  "tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -5037,25 +5046,24 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "92b5d540-2463-4d37-8ea9-494e28e01bf5",
                 "exec": [
-                  "    /**",
-                  "     * Test Case:  /api/v1/deviceprofile - POST",
-                  "     * Version: Alpha",
-                  "     * @Author: Tata Elxsi",
-                  "     *",
-                  "     **/",
-                  "    if(responseCode.code === 409){",
-                  "        tests[\"Status code is 409\"] = responseCode.code === 409;",
-                  "        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  "        // the device Profile cannot be located by the identifier.",
-                  "        }"
-                ]
+                  "/**",
+                  "* Test Case:  /api/v1/deviceprofile - POST",
+                  "* Version: Alpha",
+                  "* @Author: Tata Elxsi",
+                  "*",
+                  "**/",
+                  "tests[\"Status code is 409\"] = responseCode.code === 409;",
+                  "tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}",
+                  "// the device Profile cannot be located by the identifier."
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -5439,25 +5447,24 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "c9561946-9fc7-4885-90db-a08acd741ff3",
                 "exec": [
-                  "    /**",
-                  "     * Test Case:  /devicereport/id/{{drPresentDelByID}} - DELETE",
-                  "     * Version: Alpha",
-                  "     * @Author: Tata Elxsi",
-                  "     *",
-                  "     **/",
-                  "    if(responseCode.code === 404){",
-                  "        tests[\"Status code is 404\"] = responseCode.code === 404;",
-                  "        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  "        // the device Profile cannot be located by the identifier.",
-                  "        }"
-                ]
+                  "/**",
+                  "* Test Case:  /devicereport/id/{{drPresentDelByID}} - DELETE",
+                  "* Version: Alpha",
+                  "* @Author: Tata Elxsi",
+                  "*",
+                  "**/",
+                  "tests[\"Status code is 404\"] = responseCode.code === 404;",
+                  "tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}",
+                  "// the device Profile cannot be located by the identifier."
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -5491,25 +5498,24 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "0b74dc5f-33ec-4eff-9a2c-80e4da0ae7ee",
                 "exec": [
-                  "    /**",
-                  "     * Test Case:  /devicereport/name/{{drNotPresentDelByName}} - DELETE",
-                  "     * Version: Alpha",
-                  "     * @Author: Tata Elxsi",
-                  "     *",
-                  "     **/",
-                  "    if(responseCode.code === 404){",
-                  "        tests[\"Status code is 404\"] = responseCode.code === 404;",
-                  "        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  "        // the device Profile cannot be located by the identifier.",
-                  "        }"
-                ]
+                  "/**",
+                  "* Test Case:  /devicereport/name/{{drNotPresentDelByName}} - DELETE",
+                  "* Version: Alpha",
+                  "* @Author: Tata Elxsi",
+                  "*",
+                  "**/",
+                  "tests[\"Status code is 404\"] = responseCode.code === 404;",
+                  "tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}",
+                  "// the device Profile cannot be located by the identifier."
+                ],
+                "type": "text/javascript"
               }
             }
           ],

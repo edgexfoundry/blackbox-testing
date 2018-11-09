@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "3fe56e20-08ac-4166-9fa9-d8952d65dc85",
+    "_postman_id": "8b7f05bf-fd0d-428f-98aa-28772288819c",
     "name": "core-data",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -1810,7 +1810,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "dee2f964-b15f-41c9-8f3a-befd177f9b4e",
                 "exec": [
                   "/*",
                   " * Test Case:  /api/v1/reading - POST",
@@ -1818,19 +1818,18 @@
                   " * @Author: Tata Elxsi",
                   " *",
                   " */",
-                  "    if(responseCode.code === 200){",
-                  "        tests[\"Status code is 200\"] = responseCode.code === 200;",
-                  "        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "            tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  "        if(null !== responseBody){",
-                  "            tests[\"Response Object id\"] = responseBody.length === 24;",
-                  "        }",
-                  "    }"
-                ]
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;",
+                  "tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}",
+                  "if(null !== responseBody){",
+                  "    tests[\"Response Object id\"] = responseBody.length === 24;",
+                  "}"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -2479,7 +2478,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "db25524e-da7b-4c28-99b4-97800b1b8fe0",
                 "exec": [
                   "/*",
                   " * Test Case:  /api/v1/reading - POST",
@@ -2487,19 +2486,18 @@
                   " * @Author: Tata Elxsi",
                   " *",
                   " */",
-                  "    if(responseCode.code === 200){",
-                  "        tests[\"Status code is 200\"] = responseCode.code === 200;",
-                  "        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "            tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  "        if(null !== responseBody){",
-                  "            tests[\"Response Object id\"] = responseBody.length === 24;",
-                  "        }",
-                  "    }"
-                ]
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;",
+                  "tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}",
+                  "if(null !== responseBody){",
+                  "    tests[\"Response Object id\"] = responseBody.length === 24;",
+                  "}"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -2825,7 +2823,7 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "820658ea-da17-4998-a989-0dcc19797cae",
                 "exec": [
                   "/**",
                   " * Test Case:  api/v1/valuedescriptor - POST",
@@ -2833,19 +2831,18 @@
                   " * @Author: Tata Elxsi",
                   " *",
                   " **/",
-                  "    if(responseCode.code === 200){",
-                  "        tests[\"Status code is 200\"] = responseCode.code === 200;",
-                  "        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "            tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  "        if(null !== responseBody){",
-                  "            tests[\"Response Object id\"] = responseBody.length === 24;",
-                  "        }",
-                  "    }"
-                ]
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;",
+                  "tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}",
+                  "if(null !== responseBody){",
+                  "    tests[\"Response Object id\"] = responseBody.length === 24;",
+                  "}"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3270,24 +3267,24 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "40ca2844-144d-42fd-9217-77726bdf79c6",
                 "exec": [
-                  "    /**",
-                  "     * Test Case:  /valuedescriptor - PUT",
-                  "     * Version: Alpha",
-                  "     * @Author: Tata Elxsi",
-                  "     *",
-                  "     **/",
-                  "    if(responseCode.code === 404){",
-                  "        tests[\"Status code is 404\"] = responseCode.code === 404;",
-                  "        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  " }"
-                ]
+                  "/**",
+                  " * Test Case:  /valuedescriptor - PUT",
+                  " * Version: Alpha",
+                  " * @Author: Tata Elxsi",
+                  " *",
+                  " **/",
+                  "tests[\"Status code is 404\"] = responseCode.code === 404;",
+                  "tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}",
+                  ""
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3324,25 +3321,24 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "5e03003e-313e-4958-ab79-54a260cfc66b",
                 "exec": [
-                  "    /**",
-                  "     * Test Case:  /valuedescriptor - POST",
-                  "     * Version: Alpha",
-                  "     * @Author: Tata Elxsi",
-                  "     *",
-                  "     **/",
-                  "    if(responseCode.code === 409){",
-                  "        tests[\"Status code is 409\"] = responseCode.code === 409;",
-                  "        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  "        // the a formatting string of the value descriptor is not a valid printf format",
-                  "  }"
-                ]
+                  "/**",
+                  " * Test Case:  /valuedescriptor - POST",
+                  " * Version: Alpha",
+                  " * @Author: Tata Elxsi",
+                  " *",
+                  " **/",
+                  "tests[\"Status code is 409\"] = responseCode.code === 409;",
+                  "tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}",
+                  "// the a formatting string of the value descriptor is not a valid printf format"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3379,25 +3375,24 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "a8fb0289-199f-491e-b85b-e77f9bbe50a1",
                 "exec": [
-                  "    /**",
-                  "     * Test Case:  /valuedescriptor/id/{id} - DELETE",
-                  "     * Version: Alpha",
-                  "     * @Author: Tata Elxsi",
-                  "     *",
-                  "     **/",
-                  "    if(responseCode.code === 404){",
-                  "        tests[\"Status code is 404\"] = responseCode.code === 404;",
-                  "        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  "        // the value descriptor cannot be located by the identifier.",
-                  "  }"
-                ]
+                  "/**",
+                  " * Test Case:  /valuedescriptor/id/{id} - DELETE",
+                  " * Version: Alpha",
+                  " * @Author: Tata Elxsi",
+                  " *",
+                  " **/",
+                  "tests[\"Status code is 404\"] = responseCode.code === 404;",
+                  "tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}",
+                  "// the value descriptor cannot be located by the identifier."
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3535,25 +3530,24 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "1896a84b-3244-465e-a994-29b8ffc70b71",
                 "exec": [
-                  "    /**",
-                  "     * Test Case:  /valuedescriptor/name/{name} - DELETE",
-                  "     * Version: Alpha",
-                  "     * @Author: Tata Elxsi",
-                  "     *",
-                  "     **/",
-                  "    if(responseCode.code === 409){",
-                  "        tests[\"Status code is 409\"] = responseCode.code === 409;",
-                  "        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  "        // the value descriptor is still referenced in Readings",
-                  "  }"
-                ]
+                  "/**",
+                  " * Test Case:  /valuedescriptor/name/{name} - DELETE",
+                  " * Version: Alpha",
+                  " * @Author: Tata Elxsi",
+                  " *",
+                  " **/",
+                  "tests[\"Status code is 409\"] = responseCode.code === 409;",
+                  "tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}",
+                  "// the value descriptor is still referenced in Readings"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3587,25 +3581,24 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
+                "id": "8370a143-0caa-4cdf-8212-e7454f1920d5",
                 "exec": [
-                  "    /**",
-                  "     * Test Case:  /valuedescriptor - PUT",
-                  "     * Version: Alpha",
-                  "     * @Author: Tata Elxsi",
-                  "     *",
-                  "     **/",
-                  "    if(responseCode.code === 409){",
-                  "        tests[\"Status code is 409\"] = responseCode.code === 409;",
-                  "        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-                  "        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-                  "        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-                  "        if (contentTypeHeaderExists) {",
-                  "        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-                  "        }",
-                  "        // the a formatting string of the value descriptor is not a valid printf format",
-                  " }"
-                ]
+                  "/**",
+                  " * Test Case:  /valuedescriptor - PUT",
+                  " * Version: Alpha",
+                  " * @Author: Tata Elxsi",
+                  " *",
+                  " **/",
+                  "tests[\"Status code is 409\"] = responseCode.code === 409;",
+                  "tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+                  "var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+                  "tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+                  "if (contentTypeHeaderExists) {",
+                  "    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+                  "}",
+                  "// the a formatting string of the value descriptor is not a valid printf format"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
