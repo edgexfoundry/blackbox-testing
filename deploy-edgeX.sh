@@ -27,7 +27,6 @@
 
 run_service () {
 	echo "\033[0;32mStarting.. $1\033[0m"
-  docker login nexus3.edgexfoundry.org:10004 -u docker -p docker
 	docker-compose up -d $1
 }
 
