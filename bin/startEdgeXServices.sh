@@ -2,7 +2,6 @@
 
 echo "Info: Starting Docker.."
 
-docker login
 
 if [ $? -ne 0 ]; then
 
