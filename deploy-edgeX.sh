@@ -31,40 +31,33 @@ run_service () {
 }
 
 run_service volume
-sleep 10
 run_service consul
 
-while ! $(docker-compose exec -T consul nc -z edgex-core-consul 8500);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
+while ! $(docker-compose exec -T consul nc -z edgex-core-consul 8500);do echo "not already startup… wait for 5 second reconnect." ; done
 
 run_service config-seed
 run_service mongo
 
-sleep 10
 
 run_service logging
 
-while ! $(docker-compose exec -T consul nc -z edgex-support-logging 48061);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
+while ! $(docker-compose exec -T consul nc -z edgex-support-logging 48061);do echo "not already startup… wait for 5 second reconnect." ; done
 
 run_service notifications
 
-while ! $(docker-compose exec -T consul nc -z edgex-support-notifications 48060);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
+while ! $(docker-compose exec -T consul nc -z edgex-support-notifications 48060);do echo "not already startup… wait for 5 second reconnect." ; done
 
 run_service metadata
 
-while ! $(docker-compose exec -T consul nc -z edgex-core-metadata 48081);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
+while ! $(docker-compose exec -T consul nc -z edgex-core-metadata 48081);do echo "not already startup… wait for 5 second reconnect." ; done
 
 run_service data
 
-while ! $(docker-compose exec -T consul nc -z edgex-core-data 48080);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
+while ! $(docker-compose exec -T consul nc -z edgex-core-data 48080);do echo "not already startup… wait for 5 second reconnect." ; done
 
 run_service command
 
-while ! $(docker-compose exec -T consul nc -z edgex-core-command 48082);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
+while ! $(docker-compose exec -T consul nc -z edgex-core-command 48082);do echo "not already startup… wait for 5 second reconnect." ; done
 
 #run_service scheduler
 
@@ -73,17 +66,14 @@ sleep 5
 
 run_service export-client
 
-while ! $(docker-compose exec -T consul nc -z edgex-export-client 48071);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
+while ! $(docker-compose exec -T consul nc -z edgex-export-client 48071);do echo "not already startup… wait for 5 second reconnect." ; done
 
 run_service export-distro
 
-while ! $(docker-compose exec -T consul nc -z edgex-export-distro 48070);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
+while ! $(docker-compose exec -T consul nc -z edgex-export-distro 48070);do echo "not already startup… wait for 5 second reconnect." ; done
 
 run_service rulesengine
 
-while ! $(docker-compose exec -T consul nc -z edgex-support-rulesengine 48075);do echo "not already startup… wait for 5 second reconnect." ;sleep 5; done
-sleep 5
+while ! $(docker-compose exec -T consul nc -z edgex-support-rulesengine 48075);do echo "not already startup… wait for 5 second reconnect." ; done
 
 #run_service device-virtual
