@@ -172,7 +172,7 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 24;",
+									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 36;",
 									"}"
 								]
 							}
@@ -1000,7 +1000,7 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 24;",
+									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 36;",
 									"}"
 								]
 							}
@@ -1061,7 +1061,7 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 24;",
+									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 36;",
 									"}"
 								]
 							}
@@ -1122,7 +1122,7 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 24;",
+									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 36;",
 									"}"
 								]
 							}
@@ -1826,7 +1826,7 @@
 									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
 									"}",
 									"if(null !== responseBody){",
-									"    tests[\"Response Object id\"] = responseBody.length === 24;",
+									"    tests[\"Response Object id\"] = responseBody.length === 36;",
 									"}"
 								],
 								"type": "text/javascript"
@@ -2494,7 +2494,7 @@
 									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
 									"}",
 									"if(null !== responseBody){",
-									"    tests[\"Response Object id\"] = responseBody.length === 24;",
+									"    tests[\"Response Object id\"] = responseBody.length === 36;",
 									"}"
 								],
 								"type": "text/javascript"
@@ -2839,7 +2839,7 @@
 									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
 									"}",
 									"if(null !== responseBody){",
-									"    tests[\"Response Object id\"] = responseBody.length === 24;",
+									"    tests[\"Response Object id\"] = responseBody.length === 36;",
 									"}"
 								],
 								"type": "text/javascript"
