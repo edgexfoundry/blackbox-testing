@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export volume=nexus3.edgexfoundry.org:10004/docker-edgex-volume-arm64:0.6.0
-export consul=nexus3.edgexfoundry.org:10001/arm64v8/consul:1.1.0
+export consul=nexus3.edgexfoundry.org:10001/arm64v8/consul:1.3.1
 export configSeed=nexus3.edgexfoundry.org:10004/docker-core-config-seed-go-arm64:1.0.0
 export mongo=nexus3.edgexfoundry.org:10004/docker-edgex-mongo-arm64:0.6.0
 
