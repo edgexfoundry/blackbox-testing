@@ -3,10 +3,7 @@
     "responseTime": 400,
     "ApplicationJsonContentType": "application/json",
     "TextPlainContentType": "text/plain",
-    "commandDelRequestId": "57f39773e4b060e2071a5c2f",
-    "commandGetRequestId": "57f396d4e4b060e2071a5c2c",
     "commandGetRequestName": "coordinates",
-    "commandDelRequestIderr": "57f5e077e4b060e2071a5c36",
     "objectSchema": {
       "type": "object",
       "$schema": "http://json-schema.org/draft-03/schema#",

@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "c3fe6294-0a25-40d9-8f19-b4bd82e8edb7",
+		"name": "\b\bsupport-logging-importer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Import logs",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8fbfbf8d-1505-48ae-af9e-dc6b532889b4",
+						"exec": [
+							"// Prepare test data",
+							"var data = [",
+							"{",
+							"    \"logLevel\" : \"TRACE\",",
+							"    \"labels\" : [",
+							"        \"testLabel\"",
+							"    ],",
+							"    \"originService\" : \"testService\",",
+							"    \"message\" : \"Hello, this is testService !\"",
+							"},",
+							"{",
+							"    \"logLevel\" : \"DEBUG\",",
+							"    \"labels\" : [",
+							"        \"testLabel\"",
+							"    ],",
+							"    \"originService\" : \"testService\",",
+							"    \"message\" : \"Hello, this is testService !\"",
+							"},",
+							"{",
+							"    \"logLevel\" : \"INFO\",",
+							"    \"labels\" : [",
+							"        \"testLabel\"",
+							"    ],",
+							"    \"originService\" : \"testService\",",
+							"    \"message\" : \"Hello, this is testService !\"",
+							"},",
+							"{",
+							"    \"logLevel\" : \"WARN\",",
+							"    \"labels\" : [",
+							"        \"testLabel\"",
+							"    ],",
+							"    \"originService\" : \"testService\",",
+							"    \"message\" : \"Hello, this is testService !\"",
+							"},",
+							"{",
+							"    \"logLevel\" : \"ERROR\",",
+							"    \"labels\" : [",
+							"        \"testLabel\"",
+							"    ],",
+							"    \"originService\" : \"testService\",",
+							"    \"message\" : \"Hello, this is testService !\"",
+							"},",
+							"{",
+							"    \"logLevel\" : \"WARN\",",
+							"    \"labels\" : [",
+							"        \"label1\",",
+							"        \"label2\",",
+							"        \"label3\"",
+							"    ],",
+							"    \"originService\" : \"service2\",",
+							"    \"message\" : \"Hello, Logging Service!\"",
+							"},",
+							"{",
+							"    \"logLevel\" : \"WARN\",",
+							"    \"labels\" : [",
+							"        \"label1\",",
+							"        \"label2\",",
+							"        \"label3\"",
+							"    ],",
+							"    \"originService\" : \"service2\",",
+							"    \"message\" : \"Hello, Logging Service!\"",
+							"},",
+							"{",
+							"    \"logLevel\" : \"WARN\",",
+							"    \"labels\" : [",
+							"        \"label1\",",
+							"        \"label2\"",
+							"    ],",
+							"    \"originService\" : \"service3\",",
+							"    \"message\" : \"Hello, KeyWordTest Service!\"",
+							"    ",
+							"},",
+							"{",
+							"    \"logLevel\" : \"ERROR\",",
+							"    \"labels\" : [",
+							"        \"label1\",",
+							"        \"label2\"",
+							"    ],",
+							"    \"originService\" : \"service4\",",
+							"    \"message\" : \"Hello, Logging Service!\"",
+							"},",
+							"{",
+							"    \"logLevel\" : \"ERROR\",",
+							"    \"labels\" : [",
+							"        \"label1\",",
+							"        \"label2\",",
+							"        \"label3\"",
+							"    ],",
+							"    \"originService\" : \"service5\",",
+							"    \"message\" : \"Hello, KeyWordTest Service!\"",
+							"},",
+							"{",
+							"    \"logLevel\" : \"ERROR\",",
+							"    \"labels\" : [",
+							"        \"label1\",",
+							"        \"label2\",",
+							"        \"label3\"",
+							"    ],",
+							"    \"originService\" : \"service6\",",
+							"    \"message\" : \"Hello, Logging Service!\"",
+							"},",
+							"{",
+							"    \"logLevel\" : \"ERROR\",",
+							"    \"labels\" : [",
+							"        \"label1\",",
+							"        \"label2\"",
+							"    ],",
+							"    \"originService\" : \"service7\",",
+							"    \"message\" : \"Hello, Logging Service!\"",
+							"},",
+							"{",
+							"    \"logLevel\" : \"WARN\",",
+							"    \"labels\" : [",
+							"        \"label1\",",
+							"        \"label2\"",
+							"    ],",
+							"    \"originService\" : \"service8\",",
+							"    \"message\" : \"Hello, Logging Service!\"",
+							"},",
+							"{",
+							"    \"logLevel\" : \"INFO\",",
+							"    \"labels\" : [",
+							"        \"label1\"",
+							"    ],",
+							"    \"originService\" : \"service10\",",
+							"    \"message\" : \"Hello, Logging Service!\"",
+							"}",
+							"];",
+							"",
+							"pm.environment.set(\"data\", data);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "47de7093-d096-4c92-83f4-3f06215ecf31",
+						"exec": [
+							"var baseUrl = pm.environment.get(\"supportLoggingUrl\");",
+							"var data = pm.environment.get(\"data\");",
+							"var request = {",
+							"  url: baseUrl+'/api/v1/logs',",
+							"  method: 'POST',",
+							"  body: {",
+							"    mode: 'raw',",
+							"    raw: 'json string'",
+							"  }",
+							"};",
+							"",
+							"var count = 0;",
+							"var failedCount = 0;",
+							"data.forEach(function(item, index) { ",
+							"    request.body.raw = JSON.stringify(item)",
+							"    pm.sendRequest(request, function (err, res) {",
+							"        if (res.code!=202 ) {",
+							"            console.log(index, res.stream.toString());",
+							"            failedCount++",
+							"        }else{",
+							"            count++",
+							"        }",
+							"    });",
+							"});",
+							"",
+							"// Wait for API calls finish.",
+							"var interval = setInterval(function(){",
+							"    if(count+failedCount == data.length){",
+							"        clearInterval(interval);",
+							"        console.log(count +\" rows imported\");",
+							"        console.log(failedCount +\" rows import failed\");",
+							"    }",
+							"}, 500);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{supportLoggingUrl}}/api/v1/ping",
+					"host": [
+						"{{supportLoggingUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9895fac7-3c08-4435-a3d4-f8e49206b681",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "0ac20a84-512f-47d0-8ede-206fda755218",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

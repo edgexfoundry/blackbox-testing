@@ -1,27 +1,11 @@
 #!/bin/bash
 
-NAMESFILE=$(dirname "$0")/files.sh
-CONFIGDUMPJS=/etc/newman/javascript/exportclient/exportConfiguration.js
+COLLECTION_PATH="collections/export-client-cleaner.postman_collection.json"
+ENV_PATH="environment/export-client-docker.postman_environment.json"
 
 
+echo "Info: Clean ExportClient's test data."
 
-if [ -f $NAMESFILE ]; then 
+docker-compose run --rm postman run ${COLLECTION_PATH} --environment=${ENV_PATH}
 
-	. $NAMESFILE
-
-else 
-	echo "Error: Names file does not exist."
-	exit $?
-
-fi
-
-DATA_BASE="exportclient"
-FLUSH_SCRIPTS=( $CONFIGDUMPJS )
-
-for index in "${!FLUSH_SCRIPTS[@]}"
-do
-    docker-compose exec -T mongo /bin/bash -c "mongo ${DATA_BASE} ${FLUSH_SCRIPTS[index]}"
-
-    echo "Info: ${FLUSH_SCRIPTS[index]} data flushed"
-
-done
+echo "Info: ExportClient's test data Cleaned"

@@ -2,8 +2,6 @@
   {
     "getName": "OSIClient",
     "deleteName": "OSIClient3",
-    "regID": "5b0eb384fd4ca80001df4fa9",
-    "regDeleteID": "5b0eb384fd4ca80001df4fa2",
     "regIDNotFound": "thisregisnotthere",
     "nameNotFound": "OSIClientNotThere",
     "schema":

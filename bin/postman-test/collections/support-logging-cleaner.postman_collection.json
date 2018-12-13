@@ -1,0 +1,56 @@
+{
+	"info": {
+		"_postman_id": "8584e0fb-996d-4f57-a3fd-f80daf478ca4",
+		"name": "support-logging-cleaner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "clean logs",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6f14431e-4e6a-462a-bf9b-b3cf28e3456a",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f1038d15-eba5-4afb-94aa-9f8929b28cf6",
+						"exec": [
+							"console.log(pm.response.stream.toString() +\" rows removed\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{supportLoggingUrl}}/api/v1/logs/0/10000000000000",
+					"host": [
+						"{{supportLoggingUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"logs",
+						"0",
+						"10000000000000"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

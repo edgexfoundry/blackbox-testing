@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "54a01c87-14ad-4156-af53-a0226859aeee",
+		"_postman_id": "89ae48ea-e481-44c8-8185-a7603bc0da9b",
 		"name": "support-logging",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -236,110 +236,6 @@
 							]
 						},
 						"description": "list a collection of LogEntry created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues."
-					},
-					"response": []
-				},
-				{
-					"name": "Query logs by matched labels  ,which creation timestamp between start date and end date with limited returned records",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "5495dd21-c823-44c0-a17d-5853cbab57de",
-								"type": "text/javascript",
-								"exec": [
-									" /*",
-									" * Test Case:  api/v1/logs/labels/{labels}/{start}/{end}/{limit}- GET",
-									" * Version: Alpha",
-									" * @Author: Tom Fleming",
-									" *",
-									" */",
-									"",
-									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
-									"var jsonData = pm.response.json();",
-									"",
-									"var expectLabel = pm.environment.get(\"loggingLabel\");",
-									"    ",
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Response time is less than 200ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);",
-									"});",
-									"",
-									"pm.test(\"Content-Type is present\", function () {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
-									"",
-									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
-									"    pm.expect(contentType).to.include(\"application/json\");",
-									"});",
-									"",
-									"pm.test(\"Is valid response schema\", function () {",
-									"     var result = tv4.validate(jsonData, schema);",
-									"     if(!result){",
-									"         console.log(tv4.error);",
-									"     }",
-									"     pm.expect(result).to.be.true;",
-									"});",
-									"",
-									"pm.test(\"Response body is correct\", function () {",
-									"    pm.expect(jsonData.length>0).to.be.true;",
-									"    jsonData.forEach(function(data) {",
-									"      pm.expect(data.labels.includes(expectLabel)).to.be.true; ",
-									"    });",
-									"});"
-								]
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "5cf6fb3c-a81c-4de4-bb74-26e205207180",
-								"type": "text/javascript",
-								"exec": [
-									"if(!data.loggingLabel){",
-									"    pm.environment.set(\"loggingLabel\", \"testLabel\");",
-									"    pm.environment.set(\"start\", \"0\");",
-									"    pm.environment.set(\"end\", \"2145916800000\");",
-									"    pm.environment.set(\"limit\", \"10\");",
-									"}else{",
-									"    pm.environment.set(\"loggingLabel\", data.loggingLabel);",
-									"    pm.environment.set(\"start\", data.start);",
-									"    pm.environment.set(\"end\", data.end);",
-									"    pm.environment.set(\"limit\", data.limit); ",
-									"}",
-									""
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{supportLoggingUrl}}/api/v1/logs/labels/{{loggingLabel}}/{{start}}/{{end}}/{{limit}}",
-							"host": [
-								"{{supportLoggingUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"logs",
-								"labels",
-								"{{loggingLabel}}",
-								"{{start}}",
-								"{{end}}",
-								"{{limit}}"
-							]
-						},
-						"description": "list a collection of LogEntry matching any of the specified labels and being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues."
 					},
 					"response": []
 				},
@@ -768,243 +664,6 @@
 					"response": []
 				},
 				{
-					"name": "Query logs by matched logLevels  and originServices and labels,which creation timestamp between start date and end date with limited returned records",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "8a5b89da-dfca-4d84-a42e-7ab8b7839f47",
-								"type": "text/javascript",
-								"exec": [
-									" /*",
-									" * Test Case:  api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{labels}/{start}/{end}/{limit}- GET",
-									" * Version: Alpha",
-									" * @Author: Tom Fleming",
-									" *",
-									" */",
-									" ",
-									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
-									"var jsonData = pm.response.json();",
-									"",
-									"var expectLoggingLevel = pm.environment.get(\"loggingLevel\");",
-									"var expectLoggingService = pm.environment.get(\"loggingService\");",
-									"var expectLoggingLabel = pm.environment.get(\"loggingLabel\");",
-									" ",
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Response time is less than 200ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);",
-									"});",
-									"",
-									"pm.test(\"Content-Type is present\", function () {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
-									"",
-									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
-									"    pm.expect(contentType).to.include(\"application/json\");",
-									"});",
-									"",
-									"pm.test(\"Is valid response schema\", function () {",
-									"     var result = tv4.validate(jsonData, schema);",
-									"     if(!result){",
-									"         console.log(tv4.error);",
-									"     }",
-									"     pm.expect(result).to.be.true;",
-									"});",
-									"",
-									"pm.test(\"Response body is correct\", function () {",
-									"    pm.expect(jsonData.length>0).to.be.true;",
-									"    jsonData.forEach(function(data) {",
-									"      var matched = data.logLevel.includes(expectLoggingLevel) || data.originService.includes(expectLoggingService) || data.labels.includes(expectLoggingLabel);",
-									"      pm.expect(matched).to.be.true; ",
-									"    });",
-									"});"
-								]
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "a5b01e85-e668-4ff5-b994-c402b51dcf63",
-								"type": "text/javascript",
-								"exec": [
-									"// handle iteration data",
-									"if(!data.loggingLabel){",
-									"    pm.environment.set(\"loggingLevel\", \"WARN\");",
-									"    pm.environment.set(\"loggingService\", \"testService\");",
-									"    pm.environment.set(\"loggingLabel\", \"testLabel\");",
-									"    pm.environment.set(\"start\", \"0\");",
-									"    pm.environment.set(\"end\", \"2145916800000\");",
-									"    pm.environment.set(\"limit\", \"10\");",
-									"}else{",
-									"    pm.environment.set(\"loggingLevel\", data.loggingLevel);",
-									"    pm.environment.set(\"loggingService\", data.loggingService);",
-									"    pm.environment.set(\"loggingLabel\", data.loggingLabel);",
-									"    pm.environment.set(\"start\", data.start);",
-									"    pm.environment.set(\"end\", data.end);",
-									"    pm.environment.set(\"limit\", data.limit); ",
-									"}",
-									""
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevel}}/originServices/{{loggingService}}/labels/{{loggingLabel}}/{{start}}/{{end}}/{{limit}}",
-							"host": [
-								"{{supportLoggingUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"logs",
-								"logLevels",
-								"{{loggingLevel}}",
-								"originServices",
-								"{{loggingService}}",
-								"labels",
-								"{{loggingLabel}}",
-								"{{start}}",
-								"{{end}}",
-								"{{limit}}"
-							]
-						},
-						"description": "list a collection of LogEntry whose message matching any of the specified logLevels, originServices, labels, and also being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues."
-					},
-					"response": []
-				},
-				{
-					"name": "Query logs by matched logLevels  and originServices and labels and keywords ,which creation timestamp between start date and end date with limited returned records",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "584032a1-8f0c-4b0a-8aee-d78c7e65d7a4",
-								"type": "text/javascript",
-								"exec": [
-									" /*",
-									" * Test Case:  api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{labels}/keywords/{keywords}/{start}/{end}/{limit}- GET",
-									" * Version: Alpha",
-									" * @Author: Tom Fleming",
-									" *",
-									" */",
-									" ",
-									"var schema = pm.globals.get(\"schemas\").LogEntryArray;",
-									"var jsonData = pm.response.json();",
-									"",
-									"var expectLoggingLevel = pm.environment.get(\"loggingLevel\");",
-									"var expectLoggingService = pm.environment.get(\"loggingService\");",
-									"var expectLoggingLabel = pm.environment.get(\"loggingLabel\");",
-									"var expectLoggingKeyword = pm.environment.get(\"loggingKeyword\");",
-									" ",
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Response time is less than 200ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);",
-									"});",
-									"",
-									"pm.test(\"Content-Type is present\", function () {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
-									"",
-									"pm.test(\"Content-Type is application/json\", function(){",
-									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
-									"    pm.expect(contentType).to.include(\"application/json\");",
-									"});",
-									"",
-									"pm.test(\"Is valid response schema\", function () {",
-									"     var result = tv4.validate(jsonData, schema);",
-									"     if(!result){",
-									"         console.log(tv4.error);",
-									"     }",
-									"     pm.expect(result).to.be.true;",
-									"});",
-									"",
-									"pm.test(\"Response body is correct\", function () {",
-									"    pm.expect(jsonData.length>0).to.be.true;",
-									"    jsonData.forEach(function(data) {",
-									"      var matched = data.logLevel.includes(expectLoggingLevel) || data.originService.includes(expectLoggingService) || data.labels.includes(expectLoggingLabel) || data.message.includes(expectLoggingKeyword);",
-									"      pm.expect(matched).to.be.true; ",
-									"    });",
-									"});"
-								]
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "02d7d539-10f9-4115-9b14-df52bb717e9b",
-								"type": "text/javascript",
-								"exec": [
-									"// handle iteration data",
-									"if(!data.loggingLabel){",
-									"    pm.environment.set(\"loggingLevel\", \"WARN\");",
-									"    pm.environment.set(\"loggingService\", \"testService\");",
-									"    pm.environment.set(\"loggingLabel\", \"testLabel\");",
-									"    pm.environment.set(\"loggingKeyword\", \"Hello\");",
-									"    pm.environment.set(\"start\", \"0\");",
-									"    pm.environment.set(\"end\", \"2145916800000\");",
-									"    pm.environment.set(\"limit\", \"10\");",
-									"}else{",
-									"    pm.environment.set(\"loggingLevel\", data.loggingLevel);",
-									"    pm.environment.set(\"loggingService\", data.loggingService);",
-									"    pm.environment.set(\"loggingLabel\", data.loggingLabel);",
-									"    pm.environment.set(\"loggingKeyword\", data.loggingKeyword);",
-									"    pm.environment.set(\"start\", data.start);",
-									"    pm.environment.set(\"end\", data.end);",
-									"    pm.environment.set(\"limit\", data.limit); ",
-									"}",
-									""
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevel}}/originServices/{{loggingService}}/labels/{{loggingLabel}}/keywords/{{loggingKeyword}}/{{start}}/{{end}}/{{limit}}",
-							"host": [
-								"{{supportLoggingUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"logs",
-								"logLevels",
-								"{{loggingLevel}}",
-								"originServices",
-								"{{loggingService}}",
-								"labels",
-								"{{loggingLabel}}",
-								"keywords",
-								"{{loggingKeyword}}",
-								"{{start}}",
-								"{{end}}",
-								"{{limit}}"
-							]
-						},
-						"description": "list a collection of LogEntry whose message containing any of the specified keywords, matching any of the specified logLevels, originServices, labels, and also being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues."
-					},
-					"response": []
-				},
-				{
 					"name": "LogEntry collection's size should not exceed the configured ReadMaxLimit.",
 					"event": [
 						{
@@ -1103,7 +762,6 @@
 							"listen": "test",
 							"script": {
 								"id": "e2e52a9f-94f4-42c5-b72a-7eb1d35ccb27",
-								"type": "text/javascript",
 								"exec": [
 									" /**",
 									" * Test Case:  /api/v1/logs/logLevels/{logLevels}/{start}/{end} - DELETE",
@@ -1133,27 +791,39 @@
 									"    pm.expect(pm.response.text().length>0).to.be.true;",
 									"});",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "43254381-a2c7-4633-9d5b-ec4f74f650be",
-								"type": "text/javascript",
 								"exec": [
-									"// handle iteration data",
-									"if(!data.loggingLabel){",
+									"var baseUrl = pm.environment.get(\"supportLoggingUrl\");",
+									"var data = {",
+									"  \"logLevel\": \"ERROR\",",
+									"  \"originService\": \"service1\",",
+									"  \"message\": \"Hello, Logging Service!\"",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/logs',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"loggingLevelDel\", \"ERROR\");",
 									"    pm.environment.set(\"start\", \"0\");",
-									"    pm.environment.set(\"end\", \"2145916800000\");",
-									"}else{",
-									"    pm.environment.set(\"loggingLevelDel\", data.loggingLevelDel);",
-									"    pm.environment.set(\"start\", data.start);",
-									"    pm.environment.set(\"end\", data.end);",
-									"}",
+									"    pm.environment.set(\"end\", new Date().getTime());",
+									"});",
+									"",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1184,99 +854,12 @@
 					"response": []
 				},
 				{
-					"name": "Delete logs by labels ,which creation timestamp between start date and end date",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "63956969-a704-47c6-b9c4-e0cb4401f507",
-								"type": "text/javascript",
-								"exec": [
-									" /**",
-									" * Test Case:  /api/v1/logs/labels/{labels}/{start}/{end} - DELETE",
-									" * Version: Alpha",
-									" * @Author: Tom Fleming",
-									" * ",
-									" **/",
-									" ",
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Response time is less than 200ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);",
-									"});",
-									"",
-									"pm.test(\"Content-Type is present\", function () {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
-									"",
-									"pm.test(\"Content-Type is text/plain\", function(){",
-									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
-									"    pm.expect(contentType).to.include(\"text/plain\");",
-									"});",
-									"",
-									"pm.test(\"Response body is correct\", function () {",
-									"    pm.expect(pm.response.text().length>0).to.be.true;",
-									"});"
-								]
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "641e46c2-8797-47e8-81d6-8084cf43b26f",
-								"type": "text/javascript",
-								"exec": [
-									"// handle iteration data",
-									"if(!data.loggingLabel){",
-									"    pm.environment.set(\"loggingLabelDel\", \"label3\");",
-									"    pm.environment.set(\"start\", \"0\");",
-									"    pm.environment.set(\"end\", \"2145916800000\");",
-									"}else{",
-									"    pm.environment.set(\"loggingLabelDel\", data.loggingLabelDel);",
-									"    pm.environment.set(\"start\", data.start);",
-									"    pm.environment.set(\"end\", data.end);",
-									"}",
-									""
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{supportLoggingUrl}}/api/v1/logs/labels/{{loggingLabelDel}}/{{start}}/{{end}}",
-							"host": [
-								"{{supportLoggingUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"logs",
-								"labels",
-								"{{loggingLabelDel}}",
-								"{{start}}",
-								"{{end}}"
-							]
-						},
-						"description": "Delete "
-					},
-					"response": []
-				},
-				{
 					"name": "Delete logs by originServices ,which creation timestamp between start date and end date",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "5f7b65e6-e71e-4b30-9869-f79f02860f02",
-								"type": "text/javascript",
 								"exec": [
 									" /**",
 									" * Test Case:  /api/v1/logs/originServices/{originServices}/{start}/{end} - DELETE",
@@ -1305,27 +888,39 @@
 									"pm.test(\"Response body is correct\", function () {",
 									"    pm.expect(pm.response.text().length>0).to.be.true;",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "029be17b-9ca9-4863-ac08-56a74eb52354",
-								"type": "text/javascript",
 								"exec": [
-									"// handle iteration data",
-									"if(!data.loggingLabel){",
-									"    pm.environment.set(\"loggingServiceDel1\", \"service8\");",
+									"var baseUrl = pm.environment.get(\"supportLoggingUrl\");",
+									"var data = {",
+									"  \"logLevel\": \"ERROR\",",
+									"  \"originService\": \"service1\",",
+									"  \"message\": \"Hello, Logging Service!\"",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/logs',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"loggingServiceDel1\", \"service1\");",
 									"    pm.environment.set(\"start\", \"0\");",
-									"    pm.environment.set(\"end\", \"2145916800000\");",
-									"}else{",
-									"    pm.environment.set(\"loggingServiceDel1\", data.loggingServiceDel1);",
-									"    pm.environment.set(\"start\", data.start);",
-									"    pm.environment.set(\"end\", data.end);",
-									"}",
+									"    pm.environment.set(\"end\", new Date().getTime());",
+									"});",
+									"",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1362,7 +957,6 @@
 							"listen": "test",
 							"script": {
 								"id": "eccbb1ea-8f30-401d-bbd4-db0dd8c826e1",
-								"type": "text/javascript",
 								"exec": [
 									" /**",
 									" * Test Case:  /api/v1/logs/keywords/{keywords}/{start}/{end} - DELETE",
@@ -1391,27 +985,39 @@
 									"pm.test(\"Response body is correct\", function () {",
 									"    pm.expect(pm.response.text().length>0).to.be.true;",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "5e848539-419e-4210-93c1-92fe4fe8b18f",
-								"type": "text/javascript",
 								"exec": [
-									"// handle iteration data",
-									"if(!data.loggingLabel){",
+									"var baseUrl = pm.environment.get(\"supportLoggingUrl\");",
+									"var data = {",
+									"  \"logLevel\": \"ERROR\",",
+									"  \"originService\": \"service1\",",
+									"  \"message\": \"Hello, Logging Service! ,KeyWordTest\"",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/logs',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"loggingKeywordDel\", \"KeyWordTest\");",
 									"    pm.environment.set(\"start\", \"0\");",
-									"    pm.environment.set(\"end\", \"2145916800000\");",
-									"}else{",
-									"    pm.environment.set(\"loggingKeywordDel\", data.loggingKeywordDel);",
-									"    pm.environment.set(\"start\", data.start);",
-									"    pm.environment.set(\"end\", data.end);",
-									"}",
+									"    pm.environment.set(\"end\", new Date().getTime());",
+									"});",
+									"",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1448,7 +1054,6 @@
 							"listen": "test",
 							"script": {
 								"id": "aa25c392-cecc-4c00-a77b-24d87636c4f9",
-								"type": "text/javascript",
 								"exec": [
 									" /**",
 									" * Test Case:  /api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/{start}/{end} - DELETE",
@@ -1477,29 +1082,40 @@
 									"pm.test(\"Response body is correct\", function () {",
 									"    pm.expect(pm.response.text().length>0).to.be.true;",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "46a52b4f-df33-48ce-b40c-c503c55fa1ea",
-								"type": "text/javascript",
 								"exec": [
-									"// handle iteration data",
-									"if(!data.loggingLabel){",
-									"    pm.environment.set(\"loggingLabelDel\", \"label3\");",
-									"    pm.environment.set(\"loggingServiceDel4\", \"service7\");",
+									"var baseUrl = pm.environment.get(\"supportLoggingUrl\");",
+									"var data = {",
+									"  \"logLevel\": \"ERROR\",",
+									"  \"originService\": \"service1\",",
+									"  \"message\": \"Hello, Logging Service!\"",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/logs',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"loggingLevelDel\", \"ERROR\");",
+									"    pm.environment.set(\"loggingServiceDel4\", \"service1\");",
 									"    pm.environment.set(\"start\", \"0\");",
-									"    pm.environment.set(\"end\", \"2145916800000\");",
-									"}else{",
-									"    pm.environment.set(\"loggingLabelDel\", data.loggingLabelDel);",
-									"    pm.environment.set(\"loggingServiceDel4\", data.loggingServiceDel4);",
-									"    pm.environment.set(\"start\", data.start);",
-									"    pm.environment.set(\"end\", data.end);",
-									"}",
+									"    pm.environment.set(\"end\", new Date().getTime());",
+									"});",
+									"",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1532,205 +1148,12 @@
 					"response": []
 				},
 				{
-					"name": "Delete logs by logLevels and originServices and labels ,which creation timestamp between start date and end date",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "0bba6c98-4fc2-40ae-b49a-9a00523c5d4a",
-								"type": "text/javascript",
-								"exec": [
-									" /**",
-									" * Test Case:  /api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{lables}/{start}/{end} - DELETE",
-									" * Version: Alpha",
-									" * @Author: Tom Fleming",
-									" * ",
-									" **/",
-									" ",
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Response time is less than 200ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);",
-									"});",
-									"",
-									"pm.test(\"Content-Type is present\", function () {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
-									"",
-									"pm.test(\"Content-Type is text/plain\", function(){",
-									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
-									"    pm.expect(contentType).to.include(\"text/plain\");",
-									"});",
-									"",
-									"pm.test(\"Response body is correct\", function () {",
-									"    pm.expect(pm.response.text().length>0).to.be.true;",
-									"});"
-								]
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "4ac17ea4-baa7-4055-8cb0-401d5a68abb1",
-								"type": "text/javascript",
-								"exec": [
-									"// handle iteration data",
-									"if(!data.loggingLabel){",
-									"    pm.environment.set(\"loggingLabelDel\", \"label3\");",
-									"    pm.environment.set(\"loggingServiceDel3\", \"service6\");",
-									"    pm.environment.set(\"loggingLabelDel\", \"label3\");",
-									"    pm.environment.set(\"start\", \"0\");",
-									"    pm.environment.set(\"end\", \"2145916800000\");",
-									"}else{",
-									"    pm.environment.set(\"loggingLabelDel\", data.loggingLabelDel);",
-									"    pm.environment.set(\"loggingServiceDel3\", data.loggingServiceDel3);",
-									"    pm.environment.set(\"loggingLabelDel\", data.loggingLabelDel);",
-									"    pm.environment.set(\"start\", data.start);",
-									"    pm.environment.set(\"end\", data.end);",
-									"}",
-									""
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/originServices/{{loggingServiceDel3}}/labels/{{loggingLabelDel}}/{{start}}/{{end}}",
-							"host": [
-								"{{supportLoggingUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"logs",
-								"logLevels",
-								"{{loggingLevelDel}}",
-								"originServices",
-								"{{loggingServiceDel3}}",
-								"labels",
-								"{{loggingLabelDel}}",
-								"{{start}}",
-								"{{end}}"
-							]
-						},
-						"description": "Delete a collection of LogEntry whose message matching any of the specified logLevels, originServices, labels, and also being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
-					},
-					"response": []
-				},
-				{
-					"name": "Delete logs by logLevels and originServices and labels and keywords  ,which creation timestamp between start date and end date",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "c526956a-4212-4423-9de2-0f2b539f5c40",
-								"type": "text/javascript",
-								"exec": [
-									" /**",
-									" * Test Case:  /api/v1/logs/logLevels/{logLevels}/originServices/{originServices}/labels/{lables}/keywords/{keywords}/{start}/{end} - DELETE",
-									" * Version: Alpha",
-									" * @Author: Tom Fleming",
-									" * ",
-									" **/",
-									" ",
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Response time is less than 200ms\", function () {",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);",
-									"});",
-									"",
-									"pm.test(\"Content-Type is present\", function () {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
-									"",
-									"pm.test(\"Content-Type is text/plain\", function(){",
-									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
-									"    pm.expect(contentType).to.include(\"text/plain\");",
-									"});",
-									"",
-									"pm.test(\"Response body is correct\", function () {",
-									"    pm.expect(pm.response.text().length>0).to.be.true;",
-									"});"
-								]
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "d2eb0182-70ff-495d-a35e-5112fa3e2055",
-								"type": "text/javascript",
-								"exec": [
-									"// handle iteration data",
-									"if(!data.loggingLabel){",
-									"    pm.environment.set(\"loggingLabelDel\", \"label3\");",
-									"    pm.environment.set(\"loggingServiceDel2\", \"service5\");",
-									"    pm.environment.set(\"loggingLabelDel\", \"label3\");",
-									"    pm.environment.set(\"loggingKeywordDel\", \"KeyWordTest\");",
-									"    pm.environment.set(\"start\", \"0\");",
-									"    pm.environment.set(\"end\", \"2145916800000\");",
-									"}else{",
-									"    pm.environment.set(\"loggingLabelDel\", data.loggingLabelDel);",
-									"    pm.environment.set(\"loggingServiceDel2\", data.loggingServiceDel2);",
-									"    pm.environment.set(\"loggingLabelDel\", data.loggingLabelDel);",
-									"    pm.environment.set(\"loggingKeywordDel\", data.loggingKeywordDel);",
-									"    pm.environment.set(\"start\", data.start);",
-									"    pm.environment.set(\"end\", data.end);",
-									"}",
-									""
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevelDel}}/originServices/{{loggingServiceDel2}}/labels/{{loggingLabelDel}}/keywords/{{loggingKeywordDel}}/{{start}}/{{end}}",
-							"host": [
-								"{{supportLoggingUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"logs",
-								"logLevels",
-								"{{loggingLevelDel}}",
-								"originServices",
-								"{{loggingServiceDel2}}",
-								"labels",
-								"{{loggingLabelDel}}",
-								"keywords",
-								"{{loggingKeywordDel}}",
-								"{{start}}",
-								"{{end}}"
-							]
-						},
-						"description": "Delete a collection of LogEntry whose message containing any of the specified keywords, matching any of the specified logLevels, originServices, labels, and also being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
-					},
-					"response": []
-				},
-				{
 					"name": "Delete logs by creation timestamp between start date and end date",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "1cfc7d9b-c7df-4a67-97a6-ad06df13c07c",
-								"type": "text/javascript",
 								"exec": [
 									" /**",
 									" * Test Case:  /api/v1/logs/{start}/{end} - DELETE",
@@ -1760,25 +1183,38 @@
 									"    pm.expect(pm.response.text().length>0).to.be.true;",
 									"});",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "561dd395-aaab-4655-8444-5b48884c538a",
-								"type": "text/javascript",
 								"exec": [
-									"// handle iteration data",
-									"if(!data.loggingLabel){",
+									"var baseUrl = pm.environment.get(\"supportLoggingUrl\");",
+									"var data = {",
+									"  \"logLevel\": \"ERROR\",",
+									"  \"originService\": \"service1\",",
+									"  \"message\": \"Hello, Logging Service!\"",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/logs',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"start\", \"0\");",
-									"    pm.environment.set(\"end\", \"2145916800000\");",
-									"}else{",
-									"    pm.environment.set(\"start\", data.start);",
-									"    pm.environment.set(\"end\", data.end);",
-									"}",
+									"    pm.environment.set(\"end\", new Date().getTime());",
+									"});",
+									"",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],

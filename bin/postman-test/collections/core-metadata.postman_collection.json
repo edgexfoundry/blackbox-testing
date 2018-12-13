@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ffcdf9ee-7b9f-4c52-b60b-cfd601a0675f",
+		"_postman_id": "b2942f9c-d1d3-49fb-a25d-49e96e2a84df",
 		"name": "core-metadata",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "493fa960-334f-4f97-a768-3b96680246d4",
 								"exec": [
 									"/*",
 									" * Test Case:  /addressable/id/:id - DEL",
@@ -41,7 +41,26 @@
 									"        tests[\"Body has True\"] = responseBody === \"true\";",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d84e577a-2e4f-4c20-9cfd-ad19d2fb4a7f",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/addressable/name/powerScotMeter\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"addressableDelRequestId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -75,7 +94,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "92ff7e3f-e3e1-4f3a-9902-d42db054ad53",
 								"exec": [
 									"/*",
 									" * Test Case:  /addressable/:id - GET",
@@ -115,7 +134,26 @@
 									"        tests[\"Is Event empty\"] = actualAddressableData.length === 0;",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ebc63275-44bd-4199-9bf3-530aacda8b53",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/addressable/name/smartmeter\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"addressableGetRequestId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -148,7 +186,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "1774695a-5cf4-411b-b55f-13bdd0b7bd14",
 								"exec": [
 									"/*",
 									" * Test Case:  /addressable/name/:name - GET",
@@ -188,7 +226,18 @@
 									"        tests[\"Is Event empty\"] = actualAddressableData.length === 0;",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f56c2dad-4e74-4cc8-af9e-c8758d719bb9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -222,7 +271,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "b3b8770f-59a8-4eec-989a-094ebfda190f",
 								"exec": [
 									"/*",
 									" * Test Case:  /addressable/name/:name - DEL",
@@ -249,7 +298,18 @@
 									"        tests[\"Body has True\"] = responseBody === \"true\";",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e6f5e915-59da-47da-a0ac-58c1985e9bfd",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -651,7 +711,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "9619b589-74b0-40cf-8e8f-86d1a9174168",
 								"exec": [
 									"/*",
 									" * Test Case:  /addressable - PUT",
@@ -678,7 +738,26 @@
 									"        tests[\"Body has True\"] = responseBody === \"true\";",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c63afc5c-ecc8-46e2-a1e4-b157054e4034",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/addressable/name/gasmeter\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"addressableId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -692,7 +771,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"57f335fce4b060e27b9d5f60\",\r\n    \"created\": 1475556860463,\r\n    \"modified\": 1475556860463,\r\n    \"origin\": 1471806386924,\r\n    \"name\": \"gasmeter\",\r\n    \"protocol\": \"HTTP\",\r\n    \"address\": \"172.17.0.6\",\r\n    \"port\": 48093,\r\n    \"path\": \"/gasmeter\",\r\n    \"publisher\": \"DELLPUB\",\r\n    \"user\": \"test\",\r\n    \"password\": \"test123\",\r\n    \"topic\": \"kWhData\"\r\n}"
+							"raw": "{\r\n    \"id\": \"{{addressableId}}\",\r\n    \"created\": 1475556860463,\r\n    \"modified\": 1475556860463,\r\n    \"origin\": 1471806386924,\r\n    \"name\": \"gasmeter\",\r\n    \"protocol\": \"HTTP\",\r\n    \"address\": \"172.17.0.6\",\r\n    \"port\": 48093,\r\n    \"path\": \"/gasmeter\",\r\n    \"publisher\": \"DELLPUB\",\r\n    \"user\": \"test\",\r\n    \"password\": \"test123\",\r\n    \"topic\": \"kWhData\"\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/addressable",
@@ -932,7 +1011,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "8010d25d-4950-41ee-82df-d5f815e30055",
 								"exec": [
 									"/*",
 									" * Test Case:  /command/id/:id - DEL",
@@ -959,7 +1038,26 @@
 									"        tests[\"Body has True\"] = responseBody === \"true\";",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "12efadbf-e6e2-4d86-8a8a-aab73bbd3658",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/command/name/oxygen\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"commandDelRequestId\", res.json()[0].id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -993,7 +1091,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "7371af20-430d-44b2-8b0d-463f39d7eedc",
 								"exec": [
 									"/*",
 									" * Test Case:  /command/:id - GET",
@@ -1033,7 +1131,26 @@
 									"        tests[\"Is Event empty\"] = actualCommandData.length === 0;",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ef69a895-baee-4dce-ae15-e5a35344a6e6",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/command/name/coordinates\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"commandGetRequestId\", res.json()[0].id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1212,7 +1329,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "79941c1e-8924-427d-83fc-5c9ae68514a9",
 								"exec": [
 									"/*",
 									" * Test Case:  /command - PUT",
@@ -1235,7 +1352,26 @@
 									"        tests[\"Body has True\"] = responseBody === \"true\";",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7a18ce93-08f1-48c7-ab40-203c390b36af",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/command/name/current\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"commandId\", res.json()[0].id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1249,7 +1385,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"57f396f8e4b060e2071a5c2d\",\n    \"name\": \"current\",\n    \"put\": {\n      \"path\": \"/current\",\n      \"response\": {\n        \"code\": \"200\",\n        \"errorDescription\": \"not in amps\",\n        \"expectedValues\": \"amps\"\n      }\n    }\n}"
+							"raw": "{\n    \"id\": \"{{commandId}}\",\n    \"name\": \"current\",\n    \"put\": {\n      \"path\": \"/current\",\n      \"response\": {\n        \"code\": \"200\",\n        \"errorDescription\": \"not in amps\",\n        \"expectedValues\": \"amps\"\n      }\n    }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/command",
@@ -1272,7 +1408,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "23321779-8dfc-4ad7-b477-5ebab3c77cf7",
 								"exec": [
 									"/*",
 									" * Test Case:  /command - POST",
@@ -1296,7 +1432,8 @@
 									"    //Test body value",
 									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 24;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1310,7 +1447,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\":\"coolingpoint\",\r\n   \"get\":{  \r\n      \"path\":\"/cooling\",\r\n      \"response\":{  \r\n         \"code\":\"200\",\r\n         \"errorDescription\":\"not afloat\",\r\n         \"expectedValues\":\"temperature\"\r\n      }\r\n   },\r\n   \"put\":{  \r\n      \"path\":\"/cooling\"\r\n   }\r\n}\r\n"
+							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\":\"test command\",\r\n   \"get\":{  \r\n      \"path\":\"/cooling\",\r\n      \"response\":{  \r\n         \"code\":\"200\",\r\n         \"errorDescription\":\"not afloat\",\r\n         \"expectedValues\":\"temperature\"\r\n      }\r\n   },\r\n   \"put\":{  \r\n      \"path\":\"/cooling\"\r\n   }\r\n}\r\n"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/command",
@@ -1339,7 +1476,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "eed610b6-f5d2-4443-b924-d4fd322cb66f",
 								"exec": [
 									"/*",
 									" * Test Case:  /command - 409 Error - DEL ",
@@ -1352,7 +1489,26 @@
 									"tests[\"Status code is 409\"] = responseCode.code === 409;",
 									"//Test response time",
 									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "355c096f-7da1-4ac7-b787-be1fdf6931e0",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/command/name/cooling point\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"commandDelRequestIderr\", res.json()[0].id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1436,7 +1592,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "1fbe55fb-87c4-48c1-8c91-f8f50e941294",
 								"exec": [
 									"/*",
 									" * Test Case:  /command - 409 Error - PUT ",
@@ -1449,7 +1605,26 @@
 									"tests[\"Status code is 409\"] = responseCode.code === 409;",
 									"//Test response time",
 									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "47891f42-3588-48ce-82c8-8bdd74e13a28",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/command/name/temp\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"commandId\", res.json()[0].id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1463,7 +1638,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\n    \"id\": \"57f39efde4b060e268aeb06e\",\n    \"created\": 1476349573318,\n    \"modified\": 1476349573318,\n    \"origin\": 1471806386919,\n    \"name\": \"boilingpoint\",\n    \"get\": {\n      \"path\": \"/boiling\",\n      \"response\": {\n        \"code\": \"200\",\n        \"errorDescription\": \"not afloat\",\n        \"expectedValues\": \"temperature\"\n      }\n    },\n    \"put\": {\n      \"path\": \"/boiling\",\n      \"response\": null,\n      \"parameters\": null\n    }\n }"
+							"raw": " {\n    \"id\": \"{{commandId}}\",\n    \"created\": 1476349573318,\n    \"modified\": 1476349573318,\n    \"origin\": 1471806386919,\n    \"name\": \"boilingpoint\",\n    \"get\": {\n      \"path\": \"/boiling\",\n      \"response\": {\n        \"code\": \"200\",\n        \"errorDescription\": \"not afloat\",\n        \"expectedValues\": \"temperature\"\n      }\n    },\n    \"put\": {\n      \"path\": \"/boiling\",\n      \"response\": null,\n      \"parameters\": null\n    }\n }"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/command",
@@ -1492,7 +1667,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "93549552-9fc1-4887-8deb-abeb521880a7",
 								"exec": [
 									"/*",
 									" * Test Case: api/v1/device/id  DELETE",
@@ -1517,7 +1692,26 @@
 									"        tests[\"Body has True\"] = responseBody === \"true\";",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ae061bf6-49f1-4304-96db-7d87bec24c00",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/device/name/AWS IOT Button\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"deleteDeviceId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1908,7 +2102,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "63f00cad-2d72-498f-9f51-94042342a63a",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/device/:id/opState/{opState} - PUT",
@@ -1928,7 +2122,26 @@
 									"            tests[\"Device updated\"] = responseBody === \"true\";",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d1e103cc-f1c9-4db5-8ecf-3bb871451aef",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/device/name/CUJO\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"getDeviceId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1963,7 +2176,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "c72cb70e-f1f7-4212-9fa1-05daba7604fc",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/device/:id/adminstate/{adminState} - PUT",
@@ -1983,7 +2196,26 @@
 									"            tests[\"Device updated\"] = responseBody === \"true\";",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5836f2ba-e04b-4582-9575-220f839f89b4",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/device/name/CUJO\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"getDeviceId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2018,7 +2250,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "9c8e96b2-ef7b-4f42-8905-9dbb3f8b1d68",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/device/:id/adminstate/{adminState} - PUT",
@@ -2038,7 +2270,26 @@
 									"            tests[\"Device updated\"] = responseBody === \"true\";",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1069e7c0-55ab-48ba-ad06-31a620a126f1",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/device/name/CUJO\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"getDeviceId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2073,7 +2324,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "4ea27521-439b-4034-a924-d3d6becd62c8",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/device/:id/lastconnected/{time} - PUT",
@@ -2094,7 +2345,26 @@
 									"            tests[\"Device updated\"] = responseBody === \"true\";",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "aa54d06a-62a6-4138-8bba-819dfb74fd7f",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/device/name/CUJO\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"getDeviceId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2129,7 +2399,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "77deed4e-0874-46ec-8710-e78d36779a79",
 								"exec": [
 									"/*",
 									" * Test api : /api/v1/device/{{deviceId}}",
@@ -2169,7 +2439,26 @@
 									"        tests[\"Is Reading empty\"] = actualDeviceData.length === 0;",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "24d75ea1-c7a2-4582-86e4-1ee009b1105a",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/device/name/CUJO\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"getDeviceId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2271,7 +2560,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "dd9a4e3c-1391-49b3-965f-519fbb068032",
 								"exec": [
 									"/*",
 									" * Test Case:  /api/v1/device/profile/:profileId - GET",
@@ -2312,7 +2601,26 @@
 									"        tests[\"Is Reading empty\"] = actualDeviceData.length === 0;",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "24b38a6d-f073-4c81-b6a7-b96c668fd7b7",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/deviceprofile/name/Google Home profile\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"getProfileId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2346,7 +2654,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "ab820048-3086-47fa-b6e1-3b225b605508",
 								"exec": [
 									"/*",
 									" * Test Case:  /api/v1/device/service/:serviceId - GET",
@@ -2387,7 +2695,26 @@
 									"        tests[\"Is Reading empty\"] = actualDeviceData.length === 0;",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "04311fed-9f84-42a3-b4fb-364d497ae2ba",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/deviceservice/name/Gogle Home device service\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"getServiceId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2571,7 +2898,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "dec9ecbc-45af-48f1-ab4a-7f83e9fb20be",
 								"exec": [
 									"/*",
 									" * Test Case:  /api/v1/device/addressable/:addressableId - GET",
@@ -2612,7 +2939,26 @@
 									"            }",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "20db1125-f0e7-4b43-ae02-45870534ac84",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/addressable/name/Nest Cam\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"getAddressableId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3818,7 +4164,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "20db1a68-f1a0-4d3b-9e13-219a1cf12d92",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/deviceprofile/id/{{dpPresentDelete}} - DELETE",
@@ -3840,7 +4186,26 @@
 									"            tests[\"Request Objec Deleted\"] = responseBody === \"true\";",
 									"        }",
 									"  }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1e34c3b4-fa18-4367-88a9-edf3fa29e61b",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/deviceprofile/name/DeviceProfileDeleteByID\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"dpPresentDeleteByID\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -4114,8 +4479,8 @@
 								{
 									"key": "file",
 									"type": "file",
-                  "src": "sample_profile.yaml",
-                  "enabled": true
+									"src": "sample_profile.yaml",
+									"enabled": true
 								}
 							]
 						},
@@ -4141,7 +4506,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "c4d16098-f705-44e4-9499-1dcc6a8748e5",
 								"exec": [
 									"/**",
 									" * Test Case:  /deviceprofile/manufacturer/{{dpByManufacturerName}} - GET",
@@ -4181,7 +4546,26 @@
 									"        tests[\"Is Event empty\"] = responseDeviceProfileData.length === 0;",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "df71e365-9584-49e2-b571-b9c1cfcbc73b",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/deviceprofile/name/DeviceProfileGetById\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"dpById\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -4274,7 +4658,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "23596842-d19d-4b9c-a94c-99175b8046f6",
 								"exec": [
 									"    /**",
 									"     * Test Case:  /deviceprofile/yaml/{{dpById}} - GET",
@@ -4299,7 +4683,26 @@
 									"        tests[\"contains model\"] = responseBody.has(\"model\");",
 									"        tests[\"contains name\"] = responseBody.has(\"DeviceProfileGetById\");",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "31875d3e-89f5-49a3-8f5c-df6733c78529",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/deviceprofile/name/DeviceProfileGetById\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"dpById\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -4543,7 +4946,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "52932744-112f-4687-a08e-0dcf2acddba4",
 								"exec": [
 									" /**",
 									" * Test Case:  /deviceprofile - PUT",
@@ -4565,7 +4968,26 @@
 									"            tests[\"Body has True\"] = responseBody === \"true\";",
 									"        }",
 									"  }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "59f4e893-a594-492c-ada8-9cc2b9176f22",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/deviceprofile/name/TestProfileToPut\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"deviceprofileId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -4579,7 +5001,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"57f4995be4b060e268aeb085\",\n    \"description\": \"Test DeviceProfile after PUT\",\n    \"commands\": [\n      {\n        \"id\": \"57f4995be4b060e268aeb084\",\n        \"get\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        },\n        \"put\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        }\n      }\n    ]\n}"
+							"raw": "{\n    \"id\": \"{{deviceprofileId}}\",\n    \"description\": \"Test DeviceProfile after PUT\",\n    \"commands\": [\n      {\n        \"id\": \"57f4995be4b060e268aeb084\",\n        \"get\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        },\n        \"put\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        }\n      }\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/deviceprofile",
@@ -4944,8 +5366,8 @@
 								{
 									"key": "file",
 									"type": "file",
-                  "src": "sample_profile_duplicated_command.yaml",
-                  "enabled": true
+									"src": "sample_profile_duplicated_command.yaml",
+									"enabled": true
 								}
 							]
 						},
@@ -5000,8 +5422,8 @@
 								{
 									"key": "file",
 									"type": "file",
-                  "src": "sample_profile_empty.yaml",
-                  "enabled": true
+									"src": "sample_profile_empty.yaml",
+									"enabled": true
 								}
 							]
 						},
@@ -5185,7 +5607,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "409737cb-7e46-490a-b673-a504cf60e931",
 								"exec": [
 									"/**",
 									" * Test Case:  /devicereport/id/{{drDelByID}} - DELETE",
@@ -5207,7 +5629,26 @@
 									"            tests[\"Request Objec Deleted\"] = responseBody === \"true\";",
 									"        }",
 									"  }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ebe21613-6edc-474a-9981-c29ff7ad1408",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/devicereport/name/TestDeviceReportDelByID\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"drPresentDelByID\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -5319,6 +5760,26 @@
 				},
 				{
 					"name": "174 http://localhost:48081/api/v1/devicereport/{DeviceReportId}",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7ff12ee1-1680-4cfd-b888-cd785a4d4896",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/devicereport/name/livingroom collection report\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"DeviceReportId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -5457,7 +5918,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/devicereport/id/{{drPresentDelByID}}",
+							"raw": "{{baseUrl}}/api/v1/devicereport/id/{{drPresentDelByIDErr}}",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -5466,7 +5927,7 @@
 								"v1",
 								"devicereport",
 								"id",
-								"{{drPresentDelByID}}"
+								"{{drPresentDelByIDErr}}"
 							]
 						},
 						"description": "Remove the DevicReport designated by database generated id. ServiceException (HTTP 503) for unknown or unanticipated issues. NotFoundException (HTTP 404) if no DeviceReport is found with the provided id."
@@ -5623,7 +6084,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "40fabbf6-947a-4edd-9212-3fec8a1f3f6b",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/deviceservice/id/:id - DELETE",
@@ -5646,7 +6107,26 @@
 									"            tests[\"Request Object Deleted\"] = responseBody === \"true\";",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a3aeaf62-504a-41fe-b2ae-7730d64d7fa6",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/deviceservice/name/dinning thermostat deviceservice\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"deleteDeviceServiceById\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -6002,7 +6482,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "9a4349f7-e7fc-4779-bc61-a92f9b31c5cf",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/deviceservice/:id/opstate/{opState} - GET",
@@ -6025,7 +6505,26 @@
 									"            tests[\"DeviceService updated\"] = responseBody === \"true\";",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "55178880-7fa4-46cd-a832-345646fc7de5",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/deviceservice/name/home thermostat deviceservice\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"updateDeviceServiceOpStateByID\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -6065,7 +6564,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "3ae81fd2-3914-4443-91a7-ad416bc37f06",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/:id/adminState/{adminState} - PUT",
@@ -6088,7 +6587,26 @@
 									"            tests[\"DeviceService updated\"] = responseBody === \"true\";",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9c925858-899e-47f3-94de-70b52bf785bb",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/deviceservice/name/home thermostat deviceservice\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"updateDeviceServiceAdminStateByID\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -6123,7 +6641,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "5d2d30b7-236c-4ce4-9ee0-4eedf62a69c3",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/:id/lastreported/{time} - PUT",
@@ -6146,7 +6664,26 @@
 									"            tests[\"DeviceService updated\"] = responseBody === \"true\";",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bd160650-5192-4275-9998-78f4b8390c46",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/deviceservice/name/home thermostat deviceservice\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"updateDeviceServiceByLastReportedTimeById\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -6181,7 +6718,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "48fb4e5b-2be8-4833-b302-04b18e40d956",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/:id/lastconnected/{time} - PUT",
@@ -6204,7 +6741,26 @@
 									"            tests[\"DeviceService updated\"] = responseBody === \"true\";",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "617343dd-fd83-4289-b3d2-97f1c037a30b",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/deviceservice/name/home thermostat deviceservice\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"updateDeviceServiceLastConnTimeById\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -6309,7 +6865,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "d0994fb5-a859-4a89-af37-dc7a59c8c62c",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/deviceservice/:id - GET",
@@ -6340,7 +6896,26 @@
 									"            tests[\"DeviceService list empty\"] = deviceService.length === 0",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "95769fd2-36e8-4022-aa93-5da86b15c8ac",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/deviceservice/name/Common room thermostat deviceservice\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"getDeviceServiceById\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -6373,7 +6948,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "6ac878fb-17ad-4e90-9e7f-3078ad9d01e1",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/deviceservice/addressable/:addressableId - GET",
@@ -6409,7 +6984,26 @@
 									"            tests[\"DeviceService list empty\"] = deviceService.length === 0",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "845a36ca-48f6-4d7a-b3dc-34b61ff5bbe1",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/addressable/name/hvac thermo address\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"getDeviceServiceByAddressableId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -6580,7 +7174,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "499e2acf-4b4a-41a6-afb0-039723ef45f9",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/deviceservice - PUT",
@@ -6600,7 +7194,26 @@
 									"            tests[\"DeviceService updated\"] = responseBody === \"true\";",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "13f46579-39ac-49e2-ac1d-50f2ce963ca4",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/deviceservice/name/To update thermostat deviceservice\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"deviceserviceId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -6614,7 +7227,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": \"57f79ca1e4b060e2730a58fc\",\r\n  \"origin\":1471806386920,\r\n  \"name\":\"To update thermostat deviceservice\",\r\n  \"description\":\"manage homethermostats\",\r\n  \"labels\":[\r\n    \"hvac\",\"thermostat\"\r\n    ],\r\n  \"adminState\":\"LOCKED\",\r\n  \"operatingState\":\"ENABLED\",\r\n  \"addressable\":{\r\n    \"name\":\"hvac thermo address\"\r\n    }\r\n}"
+							"raw": "{\r\n  \"id\": \"{{deviceserviceId}}\",\r\n  \"origin\":1471806386920,\r\n  \"name\":\"To update thermostat deviceservice\",\r\n  \"description\":\"manage homethermostats\",\r\n  \"labels\":[\r\n    \"hvac\",\"thermostat\"\r\n    ],\r\n  \"adminState\":\"LOCKED\",\r\n  \"operatingState\":\"ENABLED\",\r\n  \"addressable\":{\r\n    \"name\":\"hvac thermo address\"\r\n    }\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/deviceservice",
@@ -6699,7 +7312,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "7a79d5be-03ef-4a13-a72b-ed86c1a55518",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/deviceservice - PUT",
@@ -6719,7 +7332,18 @@
 									"            tests[\"DeviceService updated\"] = responseBody === \"true\";",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c1e70939-ccfe-42f8-ac06-2cacbde0ae46",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -7184,7 +7808,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "a06b4dac-bfbe-4ff3-ad7e-62f00febab9f",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/:id/opstate/{opState} - PUT",
@@ -7203,7 +7827,18 @@
 									"            tests[\"Content-Type is \"+data.ApplicationTextPlainType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationTextPlainType);",
 									"        }",
 									"        }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "72fee0b8-44de-4f0a-8d81-009874b5030a",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -7895,7 +8530,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "54dd5f40-c39e-4296-abe1-5afeca7e690f",
 								"exec": [
 									"/*",
 									" * Test Case:  /provisionwatcher/id/:id - DEL",
@@ -7923,7 +8558,26 @@
 									"        tests[\"Body has True\"] = responseBody === \"true\";",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7d014685-79e4-4a49-9af2-335f91777bed",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/provisionwatcher/name/lonmark watcher\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"provisionWatcherDelRequestId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -7957,7 +8611,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "4e9da2ce-d6e3-4913-a2fb-fc377f56b736",
 								"exec": [
 									"/*",
 									" * Test Case:  /provisionwatcher/:id - GET",
@@ -8001,7 +8655,26 @@
 									"    }",
 									"}",
 									""
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9251d36e-5fef-47b3-ab06-e2257f2d907c",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/provisionwatcher/name/modbus watcher\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"provisionWatcherGetRequestId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -8174,7 +8847,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "e080a9fc-5ce2-4014-a266-d254c1b7880d",
 								"exec": [
 									"/*",
 									" * Test Case:  /provisionwatcher/profile/:profileId - GET",
@@ -8218,7 +8891,26 @@
 									"    }",
 									"}",
 									""
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4bb286be-be07-4d63-8066-0944c175141c",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/deviceprofile/name/variable speed motor profile\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"provisionWatcherGetByProfileRequestId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -8330,7 +9022,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "20a33d8c-53b7-4468-974a-3ec65d0c6bf9",
 								"exec": [
 									"/*",
 									" * Test Case:  /provisionwatcher/provisionwatcher/service/:serviceId - GET",
@@ -8374,7 +9066,26 @@
 									"    }",
 									"}",
 									""
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "764b41dd-4757-4088-bf44-c91929dccbeb",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/deviceservice/name/home variable speed motor device service\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"provisionWatcherGetByServiceRequestId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -9163,7 +9874,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "ef2f4eb6-b1cf-487f-9a75-683fb87160fa",
 								"exec": [
 									"/*",
 									" * Test Case:  /schedule/id/:id - DEL",
@@ -9191,7 +9902,26 @@
 									"        tests[\"Body has True\"] = responseBody === \"true\";",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2db3e69a-c383-4b6e-a470-1d5e5f32a937",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/schedule/name/1:15 am daily\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"scheduleDelRequestId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -9225,7 +9955,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "9963b27f-7cd7-4d0c-bcbb-2923ed780c1f",
 								"exec": [
 									"/*",
 									" * Test Case:  /schedule/id - GET",
@@ -9266,7 +9996,26 @@
 									"        tests[\"Is Schedule empty\"] = actualScheduleData.length === 0;",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "006406c3-a57d-4b04-866e-90653fe191ee",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/schedule/name/daily noon DM\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"scheduleId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -9278,7 +10027,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/schedule/57fe00fae4b060e2c8236439",
+							"raw": "{{baseUrl}}/api/v1/schedule/{{scheduleId}}",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -9286,7 +10035,7 @@
 								"api",
 								"v1",
 								"schedule",
-								"57fe00fae4b060e2c8236439"
+								"{{scheduleId}}"
 							]
 						},
 						"description": "Fetch a specific Schedule by database generated id. May return null if no schedule with the id is found. Returns ServiceException (HTTP 503) for unknown or unanticipated issues."
@@ -9512,7 +10261,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "f5f28d2b-6d3c-472d-918b-ddd0e9ecfc29",
 								"exec": [
 									"/*",
 									" * Test Case:  /schedule - PUT",
@@ -9538,7 +10287,26 @@
 									"                tests[\"Body has True\"] = responseBody === \"true\";",
 									"      }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c3e62f0b-db05-4b28-9c21-bbcecfd81d0c",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/schedule/name/12:15 am daily\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"scheduleId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -9552,7 +10320,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"id\":\"57f49350e4b060e2bff6c52d\",\"start\":\"1503360000\",\"end\":\"1503390000\",\"frequency\":\"60000\"}"
+							"raw": "{\"id\":\"{{scheduleId}}\",\"start\":\"1503360000\",\"end\":\"1503390000\",\"frequency\":\"60000\"}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/schedule",
@@ -9751,7 +10519,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "e7c93708-cf48-49e7-b8e3-250adf455e1a",
 								"exec": [
 									"/*",
 									" * Test Case:  /api/v1/scheduleevent/id/:id - DELETE",
@@ -9774,7 +10542,26 @@
 									"            tests[\"Request Object Deleted\"] = responseBody === \"true\";",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "606061b0-8a9c-4cd0-8ac2-9ca0cf00b469",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/scheduleevent/name/scooter engine revolution collection\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"scheduleEventDelRequestId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -9943,7 +10730,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "f7e342c8-7734-4605-a034-c5938c60c3a5",
 								"exec": [
 									"/*",
 									" * Test Case:  /scheduleevent/id - GET",
@@ -9984,7 +10771,26 @@
 									"        tests[\"Is Schedule empty\"] = actualScheduleEventData.length === 0;",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c5342682-a8e7-4abb-882a-7595b5cdd61c",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/scheduleevent/name/bike engine revolution collection\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"scheduleEventGetRequestId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -10087,7 +10893,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "8bf63700-4174-4542-8b51-1e586e57b0bf",
 								"exec": [
 									"/*",
 									" * Test Case:  /scheduleevent - PUT",
@@ -10117,7 +10923,26 @@
 									"            }",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f335eb3e-732d-46f9-90e0-b7d8acff32ce",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/scheduleevent/name/bike engine revolution collection\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"scheduleeventId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -10131,7 +10956,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"id\":\"57f72b79e4b060e27309e453\",\"action\":\"http://localhost:48089/settemp\"}"
+							"raw": "{\"id\":\"{{scheduleeventId}}\",\"action\":\"http://localhost:48089/settemp\"}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/scheduleevent",
@@ -10418,7 +11243,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "fbe6b7d1-7ab0-4de1-916f-81f9297e0042",
 								"exec": [
 									"/*",
 									" * Test Case:  /scheduleevent - PUT",
@@ -10431,7 +11256,26 @@
 									"tests[\"Status code is 409\"] = responseCode.code === 409;",
 									"//Test response time",
 									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8c93d2a4-d613-48a5-b8a4-6d0a2b7ea902",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/scheduleevent/name/aeroplane engine revolution collection\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"scheduleeventId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -10445,7 +11289,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"id\":\"57f72b79e4b060e27309e453\",\"name\":\"namegettingchanges\"}"
+							"raw": "{\"id\":\"{{scheduleeventId}}\",\"name\":\"namegettingchanges\"}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/scheduleevent",

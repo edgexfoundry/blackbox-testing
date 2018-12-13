@@ -1,24 +1,11 @@
 #!/bin/bash
 
-NAMESFILE=$(dirname "$0")/files.sh
+COLLECTION_PATH="collections/core-data-importer.postman_collection.json"
+ENV_PATH="environment/CoredataEnv.postman_environment.json"
 
-if [ -f $NAMESFILE ]; then 
 
-	. $NAMESFILE
+echo "Info: import Coredata's test data."
 
-else 
-	echo "Error: Names file does not exist."
-	exit $?
+docker-compose run --rm postman run ${COLLECTION_PATH} --environment=${ENV_PATH}
 
-fi
-
-DATA_BASE="coredata"
-COLLECTIONS=( "event" "reading" "valueDescriptor" )
-DUMP_FILES=( $EVENTDATADUMP $READINGDATADUMP $VDDATADUMP)
-
-for index in "${!DUMP_FILES[@]}"
-do
-    docker-compose exec -T mongo /bin/bash -c "mongoimport -d ${DATA_BASE} -c ${COLLECTIONS[index]} --file ${DUMP_FILES[index]}"
-
-    echo "Info: ${DUMP_FILES[index]} data imported"
-done
+echo "Info: Coredata's test data imported"

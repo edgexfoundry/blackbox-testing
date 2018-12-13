@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "882f97cc-a5c0-401d-98cb-8e8958300dec",
+		"_postman_id": "49bc4acb-128a-4ea7-a500-af1aedd20113",
 		"name": "core-command",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "fb6f6139-ba3a-45ef-a703-7035d35aa019",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/device/:id - GET",
@@ -50,7 +50,26 @@
 									"            tests[\"DeviceService list empty\"] = deviceService.length === 0",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9d95e2ba-4083-48a7-aa37-e3d9bd799bce",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/device/name/Livingroom automation\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"getDeviceById\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -83,7 +102,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "3b5dc56d-9fe6-4340-9b82-4ce7d565db27",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/device/name/{name}/adminstate/{adminState} - PUT",
@@ -99,7 +118,18 @@
 									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 									"          }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4af4abf2-d34b-4fc3-8d18-df99527b32b9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -157,7 +187,10 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device/name/{{getDeviceByName}}/opstate/DISABLED",
 							"host": [
@@ -331,7 +364,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "69a65f08-9d29-40b2-b44e-03ffa8c4289d",
 								"exec": [
 									" /**",
 									" * Test Case:  /device/{{deviceIdPresent}}/adminstate/{{adminStateChange}} - PUT",
@@ -346,14 +379,36 @@
 									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 									"     }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "eef8edd1-b0ee-4bcc-ae01-6ff562919bc8",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/device/name/nebulizer\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"deviceIdPresent\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device/{{deviceIdPresent}}/adminstate/{{adminStateChange}}",
 							"host": [
@@ -378,7 +433,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "cac8f820-424e-4e26-bac6-5f2a7d858f10",
 								"exec": [
 									" /**",
 									" * Test Case:  /device/{{deviceIdPresent}}/opstate/{{opStateChange}} - PUT",
@@ -393,14 +448,36 @@
 									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 									"   }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a0eedbbe-1c54-4dfb-b565-750fd8ec7a66",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/device/name/nebulizer\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"deviceIdPresent\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device/{{deviceIdPresent}}/opstate/{{opStateChange}}",
 							"host": [
@@ -454,7 +531,10 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device/{{deviceIdNotPresent}}/adminstate/{{adminStateChange}}",
 							"host": [
@@ -553,7 +633,10 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device/{{deviceNameNotFound}}/adminstate/{{adminStateChange}}",
 							"host": [
@@ -601,7 +684,10 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device/{{deviceNameNotPresent}}/opstate/{opState}",
 							"host": [
@@ -691,6 +777,24 @@
 									" *",
 									" */",
 									"tests[\"Status code is 423\"] = responseCode.code === 423;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e3cfadfb-3b0e-46b6-b9dd-691f98184704",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/device/name/aeroplanetachometer\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"deviceGetRequestIdWithStateLocked\", res.json().id);",
+									"    }",
+									"});"
 								],
 								"type": "text/javascript"
 							}

@@ -1,26 +1,11 @@
 #!/bin/bash
 
-NAMESFILE=$(dirname "$0")/files.sh
-LOGGINGDUMPJS=/etc/newman/javascript/logging/logEntry.js
+COLLECTION_PATH="collections/support-logging-cleaner.postman_collection.json"
+ENV_PATH="environment/support-logging-docker.postman_environment.json"
 
 
-if [ -f $NAMESFILE ]; then 
+echo "Info: Clean Logging's test data."
 
-	. $NAMESFILE
+docker-compose run --rm postman run ${COLLECTION_PATH} --environment=${ENV_PATH}
 
-else 
-	echo "Error: Names file does not exist."
-	exit $?
-
-fi
-
-DATA_BASE="logging"
-FLUSH_SCRIPTS=( $LOGGINGDUMPJS )
-
-for index in "${!FLUSH_SCRIPTS[@]}"
-do
-    docker-compose exec -T mongo /bin/bash -c "mongo ${DATA_BASE} ${FLUSH_SCRIPTS[index]}"
-
-    echo "Info: ${FLUSH_SCRIPTS[index]} data flushed"
-
-done
+echo "Info: Logging's test data cleaned"
