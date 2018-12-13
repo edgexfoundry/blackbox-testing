@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b2942f9c-d1d3-49fb-a25d-49e96e2a84df",
+		"_postman_id": "768c5fa7-6335-4c69-9298-0ee72225c90e",
 		"name": "core-metadata",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -4479,8 +4479,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "sample_profile.yaml",
-									"enabled": true
+									"src": null
 								}
 							]
 						},
@@ -5366,8 +5365,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "sample_profile_duplicated_command.yaml",
-									"enabled": true
+									"src": null
 								}
 							]
 						},
@@ -5422,8 +5420,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "sample_profile_empty.yaml",
-									"enabled": true
+									"src": null
 								}
 							]
 						},
@@ -10320,7 +10317,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"id\":\"{{scheduleId}}\",\"start\":\"1503360000\",\"end\":\"1503390000\",\"frequency\":\"60000\"}"
+							"raw": "{\"id\":\"{{scheduleId}}\",\"start\":\"1503360000\",\"end\":\"1503390000\",\"frequency\":\"PT5S\"}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/schedule",
@@ -10343,7 +10340,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "e125ede9-deb8-447d-9b26-82fd3291e9c5",
 								"exec": [
 									"/*",
 									" * Test Case: /schedule - POST",
@@ -10370,7 +10367,8 @@
 									"    //Validate the body for Id",
 									"    tests[\"Does body contains Id\"] = responseBody.length === 24;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -10384,7 +10382,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"origin\":1471806386919,\"name\":\"at midnight4\",\"frequency\":\"2\", \"cron\":\"0 15 10 * * ?\", \"runOnce\":true} \r\n"
+							"raw": "{\"origin\":1471806386919,\"name\":\"at midnight4\",\"frequency\":\"PT10S\", \"cron\":\"0 15 10 * * ?\", \"runOnce\":true} \r\n"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/schedule",
