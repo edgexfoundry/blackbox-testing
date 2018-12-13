@@ -209,7 +209,7 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 36;",
+									"    tests[\"Is Body Contains Id\"] = responseBody.length === 36;",
 									"}"
 								]
 							}
@@ -1021,7 +1021,7 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 36;",
+									"    tests[\"Is Body Contains Id\"] = responseBody.length === 36;",
 									"}"
 								]
 							}
@@ -1082,7 +1082,7 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 36;",
+									"    tests[\"Is Body Contains Id\"] = responseBody.length === 36;",
 									"}"
 								]
 							}
@@ -1143,7 +1143,7 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 36;",
+									"    tests[\"Is Body Contains Id\"] = responseBody.length === 36;",
 									"}"
 								]
 							}

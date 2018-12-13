@@ -816,7 +816,7 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 24;",
+									"    tests[\"Is Body Contains Id\"] = responseBody.length === 24;",
 									"}"
 								]
 							}
@@ -1048,13 +1048,33 @@
 								"id": "12efadbf-e6e2-4d86-8a8a-aab73bbd3658",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {  ",
+									"   \"origin\":1471806386919,",
+									"   \"name\":\"test command\",",
+									"   \"get\":{  ",
+									"      \"path\":\"/cooling\",",
+									"      \"response\":{  ",
+									"         \"code\":\"200\",",
+									"         \"errorDescription\":\"not afloat\",",
+									"         \"expectedValues\":\"temperature\"",
+									"      }",
+									"   },",
+									"   \"put\":{  ",
+									"      \"path\":\"/cooling\"",
+									"   }",
+									"};",
 									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/command/name/oxygen\", function (err, res) {",
-									"    if (err) {",
-									"        console.log(err);",
-									"    } else {",
-									"        pm.environment.set(\"commandDelRequestId\", res.json()[0].id);",
-									"    }",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/command',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"commandDelRequestId\", res.stream.toString());",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1362,13 +1382,33 @@
 								"id": "7a18ce93-08f1-48c7-ab40-203c390b36af",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {  ",
+									"   \"origin\":1471806386919,",
+									"   \"name\":\"test command\",",
+									"   \"get\":{  ",
+									"      \"path\":\"/cooling\",",
+									"      \"response\":{  ",
+									"         \"code\":\"200\",",
+									"         \"errorDescription\":\"not afloat\",",
+									"         \"expectedValues\":\"temperature\"",
+									"      }",
+									"   },",
+									"   \"put\":{  ",
+									"      \"path\":\"/cooling\"",
+									"   }",
+									"};",
 									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/command/name/current\", function (err, res) {",
-									"    if (err) {",
-									"        console.log(err);",
-									"    } else {",
-									"        pm.environment.set(\"commandId\", res.json()[0].id);",
-									"    }",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/command',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"commandId\", res.stream.toString());",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1430,7 +1470,7 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 24;",
+									"    tests[\"Is Body Contains Id\"] = responseBody.length === 24;",
 									"}"
 								],
 								"type": "text/javascript"
@@ -3148,7 +3188,7 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 24;",
+									"    tests[\"Is Body Contains Id\"] = responseBody.length === 24;",
 									"}"
 								]
 							}
@@ -4479,7 +4519,8 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": null
+									"src": "sample_profile.yaml",
+									"enabled": true
 								}
 							]
 						},
@@ -5365,7 +5406,8 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": null
+									"src": "sample_profile_duplicated_command.yaml",
+									"enabled": true
 								}
 							]
 						},
@@ -5420,7 +5462,8 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": null
+									"src": "sample_profile_empty.yaml",
+									"enabled": true
 								}
 							]
 						},
