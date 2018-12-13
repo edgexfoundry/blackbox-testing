@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "882f97cc-a5c0-401d-98cb-8e8958300dec",
+		"_postman_id": "23c178cd-ea8f-4c51-aa3f-db16762820d9",
 		"name": "core-command",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -83,7 +83,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "2a651e78-5c45-4608-b414-3b3e2cd5038d",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/device/name/{name}/adminstate/{adminState} - PUT",
@@ -96,10 +96,9 @@
 									"  tests[\"Status code is 200\"] = responseCode.code === 200;",
 									"  if(responseCode.code === 200){",
 									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 									"          }"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -135,7 +134,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "47a83034-8dd9-45a2-b97f-b42df3a0b3c5",
 								"exec": [
 									"/**",
 									" * Test Case:  /device/{{deviceName}}/opstate/{{opState}} - PUT",
@@ -147,17 +146,19 @@
 									"  tests[\"Status code is 200\"] = responseCode.code === 200;",
 									"  if(responseCode.code === 200){",
 									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 									"      }"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device/name/{{getDeviceByName}}/opstate/DISABLED",
 							"host": [
@@ -331,7 +332,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "441c3a9d-ee8d-4d34-b389-196aef73da75",
 								"exec": [
 									" /**",
 									" * Test Case:  /device/{{deviceIdPresent}}/adminstate/{{adminStateChange}} - PUT",
@@ -343,17 +344,19 @@
 									"  tests[\"Status code is 200\"] = responseCode.code === 200;",
 									"  if(responseCode.code === 200){",
 									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 									"     }"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device/{{deviceIdPresent}}/adminstate/{{adminStateChange}}",
 							"host": [
@@ -378,7 +381,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "97ad2bc8-61d6-41ae-abb2-f14cf47268d1",
 								"exec": [
 									" /**",
 									" * Test Case:  /device/{{deviceIdPresent}}/opstate/{{opStateChange}} - PUT",
@@ -390,17 +393,19 @@
 									"  tests[\"Status code is 200\"] = responseCode.code === 200;",
 									"  if(responseCode.code === 200){",
 									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 									"   }"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device/{{deviceIdPresent}}/opstate/{{opStateChange}}",
 							"host": [
@@ -454,7 +459,10 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device/{{deviceIdNotPresent}}/adminstate/{{adminStateChange}}",
 							"host": [
@@ -553,7 +561,10 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device/{{deviceNameNotFound}}/adminstate/{{adminStateChange}}",
 							"host": [
@@ -601,7 +612,10 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device/{{deviceNameNotPresent}}/opstate/{opState}",
 							"host": [
