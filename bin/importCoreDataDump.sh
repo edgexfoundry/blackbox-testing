@@ -1,7 +1,7 @@
 #!/bin/bash
 
 COLLECTION_PATH="collections/core-data-importer.postman_collection.json"
-ENV_PATH="environment/CoredataEnv.postman_environment.json"
+ENV_PATH="environment/core-data-docker.postman_environment.json"
 
 
 echo "Info: import Coredata's test data."
