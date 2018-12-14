@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "49bc4acb-128a-4ea7-a500-af1aedd20113",
+		"_postman_id": "45bd3d8a-1ef4-4bcf-a213-92a74aa8eaab",
 		"name": "core-command",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -112,12 +112,15 @@
 									" *",
 									" **/",
 									"",
-									"  tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"  if(responseCode.code === 200){",
-									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"          }"
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than \"+data.responseTime+\"ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(data.responseTime);",
+									"});",
+									"          ",
+									"          "
 								],
 								"type": "text/javascript"
 							}
@@ -165,22 +168,24 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "061c3a8e-c977-4e5f-b144-79bc50ee06d3",
 								"exec": [
 									"/**",
-									" * Test Case:  /device/{{deviceName}}/opstate/{{opState}} - PUT",
+									" * Test Case:  /device/name/:name/opstate/{opState} - PUT",
 									" * Version: Alpha",
 									" * @Author: Tata Elxsi",
 									" *",
 									" **/",
 									"",
-									"  tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"  if(responseCode.code === 200){",
-									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"      }"
-								]
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than \"+ data.responseTime +\"ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(data.responseTime);",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -367,18 +372,19 @@
 								"id": "69a65f08-9d29-40b2-b44e-03ffa8c4289d",
 								"exec": [
 									" /**",
-									" * Test Case:  /device/{{deviceIdPresent}}/adminstate/{{adminStateChange}} - PUT",
+									" * Test Case: /device/:id/adminstate/{adminState} - PUT",
 									" * Version: Alpha",
 									" * @Author: Tata Elxsi",
 									" *",
 									" **/",
 									"",
-									"  tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"  if(responseCode.code === 200){",
-									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"     }"
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than \"+data.responseTime+\"ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(data.responseTime);",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -436,18 +442,19 @@
 								"id": "cac8f820-424e-4e26-bac6-5f2a7d858f10",
 								"exec": [
 									" /**",
-									" * Test Case:  /device/{{deviceIdPresent}}/opstate/{{opStateChange}} - PUT",
+									" * Test Case:  /device/:id/opstate/{opState} - PUT",
 									" * Version: Alpha",
 									" * @Author: Tata Elxsi",
 									" *",
 									" **/",
 									"",
-									"  tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"  if(responseCode.code === 200){",
-									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"   }"
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than \"+data.responseTime+\"ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(data.responseTime);",
+									"});"
 								],
 								"type": "text/javascript"
 							}
