@@ -1470,7 +1470,7 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Contains Id\"] = responseBody.length === 24;",
+									"    tests[\"Is Body Contains Id\"] = responseBody.length === 36;",
 									"}"
 								],
 								"type": "text/javascript"
