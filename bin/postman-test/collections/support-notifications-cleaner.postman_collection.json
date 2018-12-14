@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "f10f3821-a053-4453-892d-3575992c3ac9",
+		"name": "support-notifications-cleaner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "clean subscriptions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "195d88f2-c6f4-4a51-8297-2d1daa5c6935",
+						"exec": [
+							"var baseUrl = pm.environment.get(\"supportNotificationsUrl\");",
+							"",
+							"pm.sendRequest(baseUrl+\"/api/v1/subscription\", function (err, res) {",
+							"    removeData(res.json())",
+							"});",
+							"",
+							"function removeData(data){",
+							"    var request = {",
+							"      method: 'DELETE'",
+							"    };",
+							"    ",
+							"    var count = 0;",
+							"    var failedCount = 0;",
+							"    data.forEach(function(item, index) { ",
+							"        request.url = baseUrl+'/api/v1/subscription/slug/'+item.slug;",
+							"        pm.sendRequest(request, function (err, res) {",
+							"          if (res.code!=200) {",
+							"                console.log(index, res.stream.toString());",
+							"                failedCount++",
+							"            }else{",
+							"                count++",
+							"            }",
+							"        });",
+							"    });",
+							"",
+							"    var interval = setInterval(function(){",
+							"        if(count+failedCount == data.length){",
+							"            clearInterval(interval);",
+							"            console.log(count +\" rows removed\");",
+							"            console.log(failedCount +\" rows remove failed\");",
+							"        }",
+							"    }, 500);",
+							"    ",
+							"}",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{supportNotificationsUrl}}/api/v1/ping",
+					"host": [
+						"{{supportNotificationsUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "clean notifications",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "195d88f2-c6f4-4a51-8297-2d1daa5c6935",
+						"exec": [
+							"var baseUrl = pm.environment.get(\"supportNotificationsUrl\");",
+							"",
+							"pm.sendRequest(baseUrl+\"/api/v1/notification/start/0/100\", function (err, res) {",
+							"    removeData(res.json())",
+							"});",
+							"",
+							"function removeData(data){",
+							"    var request = {",
+							"      method: 'DELETE'",
+							"    };",
+							"    ",
+							"    var count = 0;",
+							"    var failedCount = 0;",
+							"    data.forEach(function(item, index) { ",
+							"        request.url = baseUrl+'/api/v1/notification/slug/'+item.slug;",
+							"        pm.sendRequest(request, function (err, res) {",
+							"          if (res.code!=200) {",
+							"                console.log(index, res.stream.toString());",
+							"                failedCount++",
+							"            }else{",
+							"                count++",
+							"            }",
+							"        });",
+							"    });",
+							"",
+							"    var interval = setInterval(function(){",
+							"        if(count+failedCount == data.length){",
+							"            clearInterval(interval);",
+							"            console.log(count +\" rows removed\");",
+							"            console.log(failedCount +\" rows remove failed\");",
+							"        }",
+							"    }, 500);",
+							"    ",
+							"}",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{supportNotificationsUrl}}/api/v1/ping",
+					"host": [
+						"{{supportNotificationsUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "clean transmissions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "195d88f2-c6f4-4a51-8297-2d1daa5c6935",
+						"exec": [
+							"var baseUrl = pm.environment.get(\"supportNotificationsUrl\");",
+							"",
+							"var request = {",
+							"  method: 'DELETE'",
+							"};",
+							"",
+							"request.url = baseUrl+'/api/v1/transmission/sent/age/0';",
+							"pm.sendRequest(request, function (err, res) {",
+							"  console.log(\"Sent transmission removed\");",
+							"});",
+							"",
+							"request.url = baseUrl+'/api/v1/transmission/escalated/age/0';",
+							"pm.sendRequest(request, function (err, res) {",
+							"  console.log(\"Escalated transmission removed\");",
+							"});",
+							"",
+							"request.url = baseUrl+'/api/v1/transmission/acknowledged/age/0';",
+							"pm.sendRequest(request, function (err, res) {",
+							"  console.log(\"Acknowledged transmission removed\");",
+							"});",
+							"",
+							"request.url = baseUrl+'/api/v1/transmission/failed/age/0';",
+							"pm.sendRequest(request, function (err, res) {",
+							"  console.log(\"Failed transmission removed\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{supportNotificationsUrl}}/api/v1/ping",
+					"host": [
+						"{{supportNotificationsUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

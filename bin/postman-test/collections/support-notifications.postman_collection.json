@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2bb18eee-fbd2-440b-a640-04acf8cc3f40",
+		"_postman_id": "ccb21bb8-fb9a-47cb-b83b-d738c0e30553",
 		"name": "support-notifications",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2461,7 +2461,6 @@
 							"listen": "test",
 							"script": {
 								"id": "25e8278b-f312-4a1a-8dfd-b5ed0f2d5350",
-								"type": "text/javascript",
 								"exec": [
 									"var schema = pm.globals.get(\"schemas\").TransmissionArray;",
 									"",
@@ -2485,7 +2484,7 @@
 									"pm.test(\"Response body is correct\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    jsonData.forEach(function(data) {",
-									"      pm.expect(data.status==='ESCALATED').to.be.true;",
+									"      pm.expect(data.status==='TRXESCALATED').to.be.true;",
 									"    });",
 									"});",
 									"",
@@ -2497,14 +2496,14 @@
 									"     }",
 									"     pm.expect(result).to.be.true;",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "50f4368b-8c0c-434c-b93c-d87ecdf2b012",
-								"type": "text/javascript",
 								"exec": [
 									"if(!data.endDate2){",
 									"    pm.environment.set(\"escalatedStatus\", \"escalated\");",
@@ -2514,7 +2513,8 @@
 									"    pm.environment.set(\"limit\", data.limit); ",
 									"}",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],

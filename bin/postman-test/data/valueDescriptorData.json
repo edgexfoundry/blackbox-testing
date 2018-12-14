@@ -2,16 +2,13 @@
   {
     "responseTime": 800,
     "ApplicationJsonContentType": "application/json",
-    "ValuedescriptorDeleteById": "57ea0061e4b0f1b53f534137",
-    "ValuedescriptorByName": "co2",
+    "ValuedescriptorByName": "pressure",
     "ValuedescriptorByInvalidName": "HC",
     "ValuedescriptorDeleteByName": "O2",
-    "ValuedescriptorById": "57b9fbb2189b95b8afcdafd2",
     "ValuedescriptorByUmo": "degreecel",
     "ValuedescriptorByLabel": "hvac",
-    "ValuedescriptorDeleteInavlidId": "57e5036fe4b0f1b53f5340fe2",
+    "ValuedescriptorDeleteInavlidId": "8cf9858a-33d5-488d-b2ef-6ae8508f2ba6",
     "ValuedescriptorByDeleteInvalidName": "HC",
-    "ValuedescriptorDeleteReferReadingId": "57b9fbb2189b95b8afcdafd4",
     "ValuedescriptorDeleteReferReadingName": "RPM",
     "schema": {
       "type": "array",

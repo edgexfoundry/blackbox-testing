@@ -1,13 +1,12 @@
 {
 	"info": {
-		"_postman_id": "94d01352-09d4-46f1-a1a6-00b92a5170af",
+		"_postman_id": "a70a0517-8f4c-488d-a592-1f8d749bfc64",
 		"name": "export-client",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "registration",
-			"description": "",
 			"item": [
 				{
 					"name": "Create a registration",
@@ -212,7 +211,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{exportClientUrl}}/api/v1/registration/name/{{getName}}",
@@ -238,7 +237,6 @@
 							"listen": "test",
 							"script": {
 								"id": "dd27c513-464f-4576-81a5-d17921984635",
-								"type": "text/javascript",
 								"exec": [
 									"/**",
 									" * Test Case:  api/v1/registration/id - GET",
@@ -281,21 +279,26 @@
 									"    pm.expect(jsonData.id===expectRegistrationId).to.be.true; ",
 									"});",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "67686c79-2d26-463c-a38e-dc42fd876bc4",
-								"type": "text/javascript",
 								"exec": [
-									"if(!data.regID){",
-									"    pm.environment.set(\"regID\", \"5b0eb384fd4ca80001df4fa9\");",
-									"}else{",
-									"    pm.environment.set(\"regID\", data.regID);",
-									"}"
-								]
+									"var baseUrl = pm.environment.get(\"exportClientUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/registration/name/TestClient\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"regID\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -304,7 +307,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\":\"OSIClient\",\n  \"enable\":false\n}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{exportClientUrl}}/api/v1/registration/{{regID}}",
@@ -375,7 +378,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{exportClientUrl}}/api/v1/registration",
@@ -434,7 +437,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{exportClientUrl}}/api/v1/registration/reference/algorithms",
@@ -495,7 +498,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{exportClientUrl}}/api/v1/registration/reference/compressions",
@@ -556,7 +559,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{exportClientUrl}}/api/v1/registration/reference/formats",
@@ -617,7 +620,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{exportClientUrl}}/api/v1/registration/reference/destinations",
@@ -643,7 +646,6 @@
 							"listen": "test",
 							"script": {
 								"id": "0066d782-d4cc-4ee9-9154-caf04fda1bce",
-								"type": "text/javascript",
 								"exec": [
 									"/**",
 									" * Test Case:  api/v1/registration/id/id - DELETE",
@@ -667,21 +669,26 @@
 									"pm.test(\"Response body is correct\", function () {",
 									"    pm.expect(pm.response.text() === 'true' ).to.be.true;",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "0ff0d2c6-abb7-4cc7-b917-a3b2bc94c514",
-								"type": "text/javascript",
 								"exec": [
-									"if(!data.loggingLabel){",
-									"    pm.environment.set(\"regDeleteID\", \"5b0eb384fd4ca80001df4fa2\");",
-									"}else{",
-									"    pm.environment.set(\"regDeleteID\", data.regDeleteID);",
-									"}"
-								]
+									"var baseUrl = pm.environment.get(\"exportClientUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/registration/name/TestClient2\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"regDeleteID\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -786,7 +793,6 @@
 		},
 		{
 			"name": "registration_error_4xx",
-			"description": "",
 			"item": [
 				{
 					"name": "Fail to create a registration by empty name",
@@ -1015,7 +1021,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\":\"OSIClient\",\n  \"enable\":false\n}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{exportClientUrl}}/api/v1/registration/name/{{nameNotFound}}",
@@ -1084,7 +1090,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{exportClientUrl}}/api/v1/registration/{{regIDNotFound}}",
@@ -1138,7 +1144,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\":false\n}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{exportClientUrl}}/api/v1/registration/reference/invalid",
@@ -1299,7 +1305,6 @@
 		},
 		{
 			"name": "ping",
-			"description": "",
 			"item": [
 				{
 					"name": "Test service providing an indication that the service is available.",
@@ -1339,7 +1344,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{exportClientUrl}}/api/v1/ping",
 							"host": [

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8cb53c83-65f6-458a-9a99-c72a04fa2c54",
+		"_postman_id": "b53ec894-ecb6-44f7-937b-f9602df24bc2",
 		"name": "core-data",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "879fc84a-a4a2-4770-a99b-e6bdf1ad1e3c",
 								"exec": [
 									"/*",
 									" * Test Case:  /event - GET",
@@ -22,6 +22,8 @@
 									" * @Author: Tata Elxsi",
 									" *",
 									" */",
+									"",
+									"var schema = pm.globals.get(\"eventSchema\").array;",
 									"",
 									"//Test Case for status : 200",
 									"tests[\"Status code is 200\"] = responseCode.code === 200;",
@@ -47,14 +49,15 @@
 									"    }",
 									"    if(actualEventData.length !== 0 ) {",
 									"        //Test response schema",
-									"        tests[\"Is Valid Response Schema\"] = tv4.validate(actualEventData, data.schema);",
+									"        tests[\"Is Valid Response Schema\"] = tv4.validate(actualEventData, schema);",
 									"        console.log(\"Validation failed: \", tv4.error);",
 									"    } else {",
 									"        console.log(\"Event list and expected list length doesnt match\");",
 									"        tests[\"Is actual and expected Event list matching\"] = actualEventData.length === 0;",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -86,7 +89,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "13432074-b352-495a-8308-8bdd738a7f6e",
 								"exec": [
 									"/*",
 									" * Test Case:  /event - PUT",
@@ -113,7 +116,41 @@
 									"            tests[\"Body has True\"] = responseBody === \"true\";",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a1ea6209-73a1-4050-92c7-da553dba75dd",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"    \"origin\": 471806386920,",
+									"    \"device\": \"powerScoutMeter\",",
+									"    \"readings\": [",
+									"        {",
+									"          \"origin\": 1471806386918,",
+									"          \"name\": \"power\",",
+									"          \"value\": \"39\"",
+									"        }",
+									"    ]",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/event',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"eventID\", res.stream.toString());",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -127,7 +164,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"id\":\"57ba04a1189b95b8afcdafd7\",\"pushed\":1471806399999}"
+							"raw": "{\"id\":\"{{eventID}}\",\"pushed\":1471806399999}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/event",
@@ -172,7 +209,7 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 36;",
+									"    tests[\"Is Body Contains Id\"] = responseBody.length === 36;",
 									"}"
 								]
 							}
@@ -211,7 +248,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "64abc700-cba9-433b-9ea4-b11cceb906b5",
 								"exec": [
 									"/*",
 									" * Test Case:  /event/id - GET",
@@ -251,7 +288,41 @@
 									"        tests[\"Is Event empty\"] = actualEventData.length === 0;",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "be253b63-b1d1-4bb5-ae57-9c42085f0c31",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"    \"origin\": 471806386920,",
+									"    \"device\": \"powerScoutMeter\",",
+									"    \"readings\": [",
+									"        {",
+									"          \"origin\": 1471806386918,",
+									"          \"name\": \"power\",",
+									"          \"value\": \"39\"",
+									"        }",
+									"    ]",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/event',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"eventGetRequestId\", res.stream.toString());",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -284,7 +355,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "c0d12c94-26ab-4127-b477-061cbd7c3895",
 								"exec": [
 									"/*",
 									" * Test Case:  /event/id - PUT",
@@ -311,7 +382,41 @@
 									"        tests[\"Body has True\"] = responseBody === \"true\";",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c5ca2f23-f6b8-4d9c-82ce-069d17661824",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"    \"origin\": 471806386920,",
+									"    \"device\": \"powerScoutMeter\",",
+									"    \"readings\": [",
+									"        {",
+									"          \"origin\": 1471806386918,",
+									"          \"name\": \"power\",",
+									"          \"value\": \"39\"",
+									"        }",
+									"    ]",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/event',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"eventPutRequestId\", res.stream.toString());",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -350,7 +455,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "abd79b93-f4de-4046-ab43-d897a4750d51",
 								"exec": [
 									"/*",
 									" * Test Case:  /event/id - PUT",
@@ -377,7 +482,41 @@
 									"        tests[\"Body has True\"] = responseBody === \"true\";",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d795ea87-8a2d-49e3-b945-61b03d678897",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"    \"origin\": 471806386920,",
+									"    \"device\": \"powerScoutMeter\",",
+									"    \"readings\": [",
+									"        {",
+									"          \"origin\": 1471806386918,",
+									"          \"name\": \"power\",",
+									"          \"value\": \"39\"",
+									"        }",
+									"    ]",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/event',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"eventDelRequestId\", res.stream.toString());",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -782,7 +921,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "192600c4-9da1-4ca0-b512-6054d21a3cf3",
 								"exec": [
 									"/*",
 									" * Test Case:  /event/id - GET",
@@ -822,7 +961,8 @@
 									"        tests[\"Is Event empty\"] = actualEventData.length === 0;",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -854,125 +994,6 @@
 					"response": []
 				},
 				{
-					"name": "30 http://localhost:48080/api/v1/event/removeold/age/:age",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"/*",
-									" * Test Case:  /event/removeold/age/:age - DEL",
-									" * Version: Alpha",
-									" * @Author: Tata Elxsi",
-									" *",
-									" */",
-									"",
-									"//If request success with response code is 200",
-									"tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"//Test Response time",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"",
-									"if(responseCode.code === 200) {",
-									"    //Test Content type in header",
-									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"    ",
-									"    if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
-									"    }",
-									"    var jsonData = JSON.parse(responseBody);",
-									"    tests[\"Is items deleted\"] = responseBody > 0;",
-									"}",
-									""
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/event/removeold/age/{{age}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"event",
-								"removeold",
-								"age",
-								"{{age}}"
-							]
-						},
-						"description": "Remove all old events (and associated readings) based on delimiting age.  ServiceException (HTTP 503) for unknown or unanticipated issues.  Should only be used by the scrubber micro service"
-					},
-					"response": []
-				},
-				{
-					"name": "32 http://localhost:48080/api/v1/event/scrub",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"/*",
-									" * Test Case:  /event/scrub - DEL",
-									" * Version: Alpha",
-									" * @Author: Tata Elxsi",
-									" *",
-									" */",
-									"",
-									"//If request success with response code is 200",
-									"tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"//Test Response time",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"",
-									"if(responseCode.code === 200) {",
-									"    //Test Content type in header",
-									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"    ",
-									"    if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
-									"    }",
-									"    var jsonData = JSON.parse(responseBody);",
-									"    tests[\"Is items deleted\"] = responseBody > 0;",
-									"}"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/event/scrub",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"event",
-								"scrub"
-							]
-						},
-						"description": "Remove all pushed events and their associated readings.ServiceException (HTTP 503) for unknown or unanticipated issues.  Should only be used by the scrubber micro service"
-					},
-					"response": []
-				},
-				{
 					"name": "01 http://localhost:48080/api/v1/event",
 					"event": [
 						{
@@ -1000,7 +1021,7 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 36;",
+									"    tests[\"Is Body Contains Id\"] = responseBody.length === 36;",
 									"}"
 								]
 							}
@@ -1061,7 +1082,7 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 36;",
+									"    tests[\"Is Body Contains Id\"] = responseBody.length === 36;",
 									"}"
 								]
 							}
@@ -1122,7 +1143,7 @@
 									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"    }",
 									"    //Test body value",
-									"    tests[\"Is Body Conatins Id\"] = responseBody.length === 36;",
+									"    tests[\"Is Body Contains Id\"] = responseBody.length === 36;",
 									"}"
 								]
 							}
@@ -1152,6 +1173,187 @@
 							]
 						},
 						"description": "Given a new event (with its associated readings),and device field is device name,and a reading is associated to a non-existent value descriptor 'xxx', and configuration file sets ValidateCheck = false ;when use api post this event ; then the event object can be created with the returned status code 200."
+					},
+					"response": []
+				},
+				{
+					"name": "32 http://localhost:48080/api/v1/event/scrub",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0e3ce332-ed55-4d1c-9785-58839549f69c",
+								"exec": [
+									"/*",
+									" * Test Case:  /event/scrub - DEL",
+									" * Version: Alpha",
+									" * @Author: Tata Elxsi",
+									" *",
+									" */",
+									"",
+									"//If request success with response code is 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//Test Response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"",
+									"if(responseCode.code === 200) {",
+									"    //Test Content type in header",
+									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"    ",
+									"    if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"    }",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    tests[\"Is items deleted\"] = responseBody > 0;",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "faf89019-7cf8-4a8d-b80d-44a42fa37c5e",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"    \"origin\": 471806386920,",
+									"    \"device\": \"powerScoutMeter\",",
+									"    \"readings\": [",
+									"        {",
+									"          \"origin\": 1471806386918,",
+									"          \"name\": \"power\",",
+									"          \"value\": \"39\"",
+									"        }",
+									"    ]",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/event',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/event/scrub",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"event",
+								"scrub"
+							]
+						},
+						"description": "Remove all pushed events and their associated readings.ServiceException (HTTP 503) for unknown or unanticipated issues.  Should only be used by the scrubber micro service"
+					},
+					"response": []
+				},
+				{
+					"name": "30 http://localhost:48080/api/v1/event/removeold/age/:age",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1e3c1596-7f3f-451d-b3ce-3f6acaa9e306",
+								"exec": [
+									"/*",
+									" * Test Case:  /event/removeold/age/:age - DEL",
+									" * Version: Alpha",
+									" * @Author: Tata Elxsi",
+									" *",
+									" */",
+									"",
+									"//If request success with response code is 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//Test Response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"",
+									"if(responseCode.code === 200) {",
+									"    //Test Content type in header",
+									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"    ",
+									"    if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"    }",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    tests[\"Is items deleted\"] = responseBody > 0;",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f242bd6c-1d57-4fab-b3b5-4e1f89f8f01b",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"    \"origin\": 471806386920,",
+									"    \"device\": \"powerScoutMeter\",",
+									"    \"readings\": [",
+									"        {",
+									"          \"origin\": 1471806386918,",
+									"          \"name\": \"power\",",
+									"          \"value\": \"39\"",
+									"        }",
+									"    ]",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/event',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/event/removeold/age/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"event",
+								"removeold",
+								"age",
+								"0"
+							]
+						},
+						"description": "Remove all old events (and associated readings) based on delimiting age.  ServiceException (HTTP 503) for unknown or unanticipated issues.  Should only be used by the scrubber micro service"
 					},
 					"response": []
 				}
@@ -1582,89 +1784,6 @@
 			"description": "Folder for event"
 		},
 		{
-			"name": "ping",
-			"item": [
-				{
-					"name": "92 http://localhost:48080/api/v1/ping",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									" /**",
-									" * Test Case:  /api/v1/ping - GET",
-									" * Version: Alpha",
-									" * @Author: Tata Elxsi",
-									" * ",
-									" **/",
-									" ",
-									" tests[\"Ping Success\"] = responseCode.code === 200;",
-									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-									" if(responseCode.code === 200){",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"        if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-									"        }",
-									"        if(responseBody.length!== 0){",
-									"            tests[\"Body is correct\"] = responseBody === \"pong\";",
-									"        }",
-									"    }"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/ping",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"ping"
-							]
-						},
-						"description": "Test service providing an indication that the service is available."
-					},
-					"response": []
-				},
-				{
-					"name": "93 http://localhost:48080/api/v1/ping",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/ping",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"ping"
-							]
-						},
-						"description": "Test service providing an indication that the service is available."
-					},
-					"response": []
-				}
-			],
-			"description": "Folder for ping"
-		},
-		{
 			"name": "reading",
 			"item": [
 				{
@@ -1746,7 +1865,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "99125a4a-6dbb-48bc-9e47-2937c3c0dcab",
 								"exec": [
 									"/*",
 									" * Test Case:  /api/v1/reading - PUT",
@@ -1773,7 +1892,35 @@
 									"            tests[\"Body has True\"] = responseBody === \"true\";",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "36c2f6cd-818b-41a1-aa89-22bb99612a5b",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"    \"origin\":1471806366619,",
+									"    \"name\":\"co2\",",
+									"    \"value\":\"12\"",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/reading',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"readingID\", res.stream.toString());",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1787,7 +1934,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"57e866d4e4b0ca8e6d73a4b9\",\n    \"created\": 1474848468971,\n    \"modified\": 1474848468971,\n    \"origin\": 1471806386918,\n    \"pushed\": 0,\n    \"name\": \"ohm\",\n    \"value\": \"6\"\n }"
+							"raw": "{\n    \"id\": \"{{readingID}}\",\n    \"name\": \"ohm\",\n    \"value\": \"6\"\n }"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading",
@@ -1866,7 +2013,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "ae452cf2-7d0a-4006-a06a-75759897cd57",
 								"exec": [
 									"//Test Case for status : 200",
 									"tests[\"Status code is 200\"] = responseCode.code === 200;",
@@ -1899,7 +2046,27 @@
 									"        tests[\"Is Reading empty\"] = actualEventData.length === 0;",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9a7568d1-69d8-4a79-9f13-85e6ad093aae",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/reading/0/10000000000000/1\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"readingGetRequestId\", res.json()[0].id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1932,7 +2099,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "4bb0fded-d4ef-4823-8f6f-331179e70143",
 								"exec": [
 									" /*",
 									" * Test Case:  /api/v1/reading/id/:id - DELETE",
@@ -1954,7 +2121,35 @@
 									"            tests[\"Request Objec Deleted\"] = responseBody === \"true\";",
 									"        }",
 									"  }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e421cc29-fd07-48e8-8969-a7d5a714bab3",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"    \"origin\":1471806366619,",
+									"    \"name\":\"co2\",",
+									"    \"value\":\"12\"",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/reading',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"readingDelRequestId\", res.stream.toString());",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2157,7 +2352,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "dea49113-ab40-4f95-bb48-414bae2b964d",
 								"exec": [
 									"/*",
 									" * Test Case:  api/v1/reading/uomlabel/:uomLabel/{limit}- GET",
@@ -2206,7 +2401,21 @@
 									"    }",
 									"}",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "aa531137-b658-4aeb-b938-e0ffb1096515",
+								"exec": [
+									"if(!data.readingValueDescriptorUom){",
+									"    pm.environment.set(\"readingValueDescriptorUom\", \"ohm\");",
+									"    pm.environment.set(\"limit\", \"100\");",
+									"}"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2241,7 +2450,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "e7dffd02-30b8-425f-8b54-ae9961db7dfe",
 								"exec": [
 									" /*",
 									" * Test Case:  api/v1/reading/name/:name/{limit}- GET",
@@ -2285,7 +2494,21 @@
 									"        }",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2d8bf02a-f21e-4251-acf7-0fa0cfb3d7cc",
+								"exec": [
+									"if(!data.readingValueDescriptorUom){",
+									"    pm.environment.set(\"readingValueDescriptorLabel\", \"temp\");",
+									"    pm.environment.set(\"limit\", \"100\");",
+									"}"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2534,7 +2757,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "61fb1a41-8a78-4a56-99eb-76aeb7519afd",
 								"exec": [
 									"/*",
 									" * Test Case:  /api/v1/reading - PUT",
@@ -2561,7 +2784,26 @@
 									"            tests[\"Body has True\"] = responseBody === \"true\";",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c5606c01-2a27-4719-b1a1-b30999ee76e8",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/reading/0/10000000000000/1\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"readingID\", res.json()[0].id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2575,7 +2817,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"57e866d4e4b0ca8e6d73a4b1\",\n    \"created\": 1475227393375,\n    \"modified\": 1475227393375,\n    \"origin\": 1471806366619,\n    \"pushed\": 0,\n    \"name\": \"xxx\",\n    \"value\": \"12\"\n}"
+							"raw": "{\n    \"id\": \"{{readingID}}\",\n    \"created\": 1475227393375,\n    \"modified\": 1475227393375,\n    \"origin\": 1471806366619,\n    \"pushed\": 0,\n    \"name\": \"xxx\",\n    \"value\": \"12\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading",
@@ -2648,12 +2890,25 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "f3c739cc-371e-4e5c-801f-466a5f61936b",
 								"exec": [
 									"//Assert 404 status if the reading cannot be found by id",
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
 									"tests[\"Response time is less than 200ms\"] = responseTime < 200;"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "46d7a1a7-1fff-43f4-987b-f4e3ce99edcc",
+								"exec": [
+									"if(!data.invalidId){",
+									"    pm.environment.set(\"invalidId\", \"57e866d4e4b0ca8e6d73a412\");",
+									"}"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2764,7 +3019,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "c836e996-e3a7-4d17-afa0-897e6bd9e7f6",
 								"exec": [
 									" /**",
 									" * Test Case:  /valuedescriptor - PUT",
@@ -2786,7 +3041,26 @@
 									"            tests[\"Body has True\"] = responseBody === \"true\";",
 									"        }",
 									"  }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d735b23c-4c8f-4775-9086-d623e4e3f364",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/valuedescriptor\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"valuedescriptorID\", res.json()[0].id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2800,7 +3074,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\":\"57b9fbb2189b95b8afcdafd3\",\n  \"min\":\"-800\",\n  \"max\":\"200\"\n}"
+							"raw": "{\n  \"id\":\"{{valuedescriptorID}}\",\n  \"min\":\"-800\",\n  \"max\":\"200\",\n  \"defaultValue\": \"0\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/valuedescriptor",
@@ -2879,7 +3153,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "4e53a2ed-e6a1-41e9-9e05-9c0f1652ac46",
 								"exec": [
 									"/**",
 									" * Test Case:  api/v1/valuedescriptor/id/:id - DELETE",
@@ -2901,7 +3175,26 @@
 									"            tests[\"Request Objec Deleted\"] = responseBody === \"true\";",
 									"        }",
 									"  }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0284f488-fa2d-40d8-92f0-c1e0222b72ea",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/valuedescriptor/name/temp\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"ValuedescriptorDeleteById\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2935,7 +3228,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "66c15d53-d7bd-4673-9200-3a53064e5267",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/valuedescriptor/name/:name - GET",
@@ -2943,39 +3236,48 @@
 									" * @Author: Tata Elxsi",
 									" *",
 									" **/",
-									"    tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"    tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"    if(responseCode.code === 200){",
-									"        if(responseBody.length === 0){",
-									"            tests[\"Response body Empty\"] = responseBody === null;",
-									"        } else{",
-									"            var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"            ",
-									"            tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"            ",
-									"            if (contentTypeHeaderExists) {",
-									"                tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
-									"            }",
-									"             //Test body parameters",
-									"            var actualValueDescriptorName;",
-									"            try{",
-									"                //Parse json response",
-									"                actualValueDescriptorName = JSON.parse(responseBody);",
-									"            }catch(e) {",
-									"                console.log(\"Exception while parsing json response\");",
-									"            }",
-									"            ",
-									"            if(actualValueDescriptorName.length !== 0) {",
-									"             tests[\"Is Valid Response Schema\"] = tv4.validate(actualValueDescriptorName, data.ObjectSchema);",
-									"                console.log(\"Validation failed: \", tv4.error);",
-									"            } else {",
-									"                //Shows message when event list is empty",
-									"                console.log(\"Valuedescriptor List Empty\");",
-									"                tests[\"Is ValueDescriptor list empty\"] = actualValueDescriptorName.length === 0",
-									"            }",
-									"        }",
-									"    }"
-								]
+									" ",
+									"var schema = pm.globals.get(\"valueDescriptorSchema\").object;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than \"+ data.responseTime +\"ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(data.responseTime);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2bf859d7-4f51-4b50-8c52-d06f4e75ce47",
+								"exec": [
+									"if (!data.ValuedescriptorByName){",
+									"    pm.environment.set(\"ValuedescriptorByName\", \"pressure\");",
+									"}"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3009,7 +3311,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "5232da28-3a84-4a83-a7b0-4cf79b66241a",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/valuedescriptor/name/:name - DELETE",
@@ -3032,7 +3334,8 @@
 									"            tests[\"Record Deleted\"] = responseBody === \"true\";",
 									"        }",
 									"  }"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3066,7 +3369,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "4b5d196a-36a3-4625-af1d-ab3018fa87d4",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/valuedescriptor - GET",
@@ -3074,25 +3377,53 @@
 									" * @Author: Tata Elxsi",
 									" *",
 									" **/",
-									"    tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"    tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"    if(responseCode.code === 200){",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"        if (contentTypeHeaderExists) {",
-									"            tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
-									"        }  ",
-									"        var actualValueDescriptorId;",
-									"        try{",
-									"            //Parse json response",
-									"            actualValueDescriptorId = JSON.parse(responseBody);",
-									"        }catch(e) {",
-									"            console.log(\"Exception while parsing json response\");",
-									"        }",
-									"        ",
-									"        tests[\"Is Valid Response Schema\"] = tv4.validate(actualValueDescriptorId, data.ObjectSchema);",
-									"    }"
-								]
+									"var schema = pm.globals.get(\"valueDescriptorSchema\").object;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than \"+ data.responseTime +\"ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(data.responseTime);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d3443af7-64b9-42a6-b5c6-16f7d56b6206",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/valuedescriptor/name/ohm\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"ValuedescriptorById\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3476,7 +3807,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "674bfc77-56f5-4ecd-b722-3bb7874c9520",
 								"exec": [
 									"    /**",
 									"     * Test Case:  /valuedescriptor/id/{id} - DELETE",
@@ -3495,7 +3826,26 @@
 									"        }",
 									"        // the value descriptor is still referenced in Readings",
 									" }"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "cdbdb49f-7294-42fb-b9ae-4bb3d34b6acb",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/valuedescriptor/name/ohm\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"ValuedescriptorDeleteReferReadingId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3685,6 +4035,317 @@
 				}
 			],
 			"description": "Folder for valuedescriptor"
+		},
+		{
+			"name": "ping",
+			"item": [
+				{
+					"name": "92 http://localhost:48080/api/v1/ping",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/ping - GET",
+									" * Version: Alpha",
+									" * @Author: Tata Elxsi",
+									" * ",
+									" **/",
+									" ",
+									" tests[\"Ping Success\"] = responseCode.code === 200;",
+									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									" if(responseCode.code === 200){",
+									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"        if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+									"        }",
+									"        if(responseBody.length!== 0){",
+									"            tests[\"Body is correct\"] = responseBody === \"pong\";",
+									"        }",
+									"    }"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/ping",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ping"
+							]
+						},
+						"description": "Test service providing an indication that the service is available."
+					},
+					"response": []
+				},
+				{
+					"name": "93 http://localhost:48080/api/v1/ping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/ping",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ping"
+							]
+						},
+						"description": "Test service providing an indication that the service is available."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for ping"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "44f085b0-a56c-430d-b010-e3203e79f6f9",
+				"type": "text/javascript",
+				"exec": [
+					"var eventSchema = {};",
+					"var readingSchema = {};",
+					"var valueDescriptorSchema = {};",
+					"",
+					"eventSchema.object = {",
+					"      \"type\": \"object\",",
+					"      \"$schema\": \"http://json-schema.org/draft-03/schema#\",",
+					"      \"description\": \"EdgeXCore device/sensorevent\",",
+					"      \"title\": \"event\",",
+					"      \"properties\": {",
+					"        \"id\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"id\"",
+					"        },",
+					"        \"created\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"created\"",
+					"        },",
+					"        \"modified\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"modified\"",
+					"        },",
+					"        \"origin\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"origin\"",
+					"        },",
+					"        \"pushed\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"pushed\"",
+					"        },",
+					"        \"device\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"device\"",
+					"        },",
+					"        \"readings\": {",
+					"          \"type\": \"array\",",
+					"          \"required\": false,",
+					"          \"title\": \"readings\",",
+					"          \"items\": {",
+					"            \"type\": \"object\",",
+					"            \"$ref\": \"#/schemas/reading\"",
+					"          },",
+					"          \"uniqueItems\": false",
+					"        }",
+					"      }",
+					"    };",
+					"eventSchema.array = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"The array of event\",",
+					"        \"type\": \"array\",",
+					"        \"items\": {",
+					"          \"$ref\": \"#/definitions/event\"",
+					"        },",
+					"        \"definitions\": {",
+					"          \"event\": eventSchema.object",
+					"        }",
+					"      };",
+					"      ",
+					"readingSchema.object = {",
+					"      \"type\": \"object\",",
+					"      \"$schema\": \"http://json-schema.org/draft-03/schema#\",",
+					"      \"description\": \"EdgeX Core device/sensor reading\",",
+					"      \"title\": \"reading\",",
+					"      \"properties\": {",
+					"        \"id\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"id\"",
+					"        },",
+					"        \"created\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"created\"",
+					"        },",
+					"        \"modified\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"modified\"",
+					"        },",
+					"        \"origin\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"origin\"",
+					"        },",
+					"        \"pushed\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"pushed\"",
+					"        },",
+					"        \"name\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"name\"",
+					"        },",
+					"        \"value\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"value\"",
+					"        }",
+					"      }",
+					"    };",
+					"readingSchema.array = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"The array of reading\",",
+					"        \"type\": \"array\",",
+					"        \"items\": {",
+					"          \"$ref\": \"#/definitions/reading\"",
+					"        },",
+					"        \"definitions\": {",
+					"          \"reading\": readingSchema.object",
+					"        }",
+					"      };",
+					"",
+					"valueDescriptorSchema.object = {",
+					"      \"type\": \"object\",",
+					"      \"$schema\": \"http://json-schema.org/draft-03/schema#\",",
+					"      \"description\": \"EdgeX Core and MetaData value descriptor -describes device/sensor data sent and received\",",
+					"      \"title\": \"valueDescriptor\",",
+					"      \"properties\": {",
+					"        \"id\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"id\"",
+					"        },",
+					"        \"created\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"created\"",
+					"        },",
+					"        \"modified\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"modified\"",
+					"        },",
+					"        \"origin\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"origin\"",
+					"        },",
+					"        \"name\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"name\"",
+					"        },",
+					"        \"min\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"min\"",
+					"        },",
+					"        \"max\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"max\"",
+					"        },",
+					"        \"type\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"type\"",
+					"        },",
+					"        \"uomLabel\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"uomLabel\"",
+					"        },",
+					"        \"defaultValue\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"defaultValue\"",
+					"        },",
+					"        \"formatting\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"formatting\"",
+					"        },",
+					"        \"labels\": {",
+					"          \"type\": \"array\",",
+					"          \"required\": false,",
+					"          \"title\": \"labels\",",
+					"          \"items\": {",
+					"            \"type\": \"string\",",
+					"            \"title\": \"labels\"",
+					"          },",
+					"          \"uniqueItems\": false",
+					"        }",
+					"      }",
+					"    };",
+					"valueDescriptorSchema.array = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"The array of valueDescriptor\",",
+					"        \"type\": \"array\",",
+					"        \"items\": {",
+					"          \"$ref\": \"#/definitions/valueDescriptor\"",
+					"        },",
+					"        \"definitions\": {",
+					"          \"valueDescriptor\": valueDescriptorSchema.object",
+					"        }",
+					"      };",
+					"    ",
+					"pm.globals.set(\"eventSchema\", eventSchema);",
+					"pm.globals.set(\"readingSchema\", readingSchema);",
+					"pm.globals.set(\"valueDescriptorSchema\", valueDescriptorSchema);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "89aed233-ddc0-44e9-b340-8832c9427a71",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

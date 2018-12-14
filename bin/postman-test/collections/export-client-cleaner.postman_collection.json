@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "afc4780c-7fed-4242-bd2b-92b0b0f3e028",
+		"name": "export-client-cleaner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "clean registration",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6f14431e-4e6a-462a-bf9b-b3cf28e3456a",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f1038d15-eba5-4afb-94aa-9f8929b28cf6",
+						"exec": [
+							"var baseUrl = pm.environment.get(\"exportClientUrl\");",
+							"",
+							"pm.sendRequest(baseUrl+\"/api/v1/registration\", function (err, res) {",
+							"    removeData(res.json())",
+							"});",
+							"",
+							"function removeData(data){",
+							"    var request = {",
+							"      method: 'DELETE'",
+							"    };",
+							"    ",
+							"    var count = 0;",
+							"    var failedCount = 0;",
+							"    data.forEach(function(item, index) { ",
+							"        request.url = baseUrl+'/api/v1/registration/id/'+item.id;",
+							"        pm.sendRequest(request, function (err, res) {",
+							"          if (res.code!=200) {",
+							"                console.log(index, res.stream.toString());",
+							"                failedCount++",
+							"            }else{",
+							"                count++",
+							"            }",
+							"        });",
+							"    });",
+							"",
+							"    var interval = setInterval(function(){",
+							"        if(count+failedCount == data.length){",
+							"            clearInterval(interval);",
+							"            console.log(count +\" rows removed\");",
+							"            console.log(failedCount +\" rows remove failed\");",
+							"        }",
+							"    }, 500);",
+							"    ",
+							"}",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{exportClientUrl}}/api/v1/ping",
+					"host": [
+						"{{exportClientUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

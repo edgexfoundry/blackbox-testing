@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "9f9126a7-1972-48be-934a-d7a54a72f569",
+		"name": "\b\bexport-client-importer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Import registration",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8fbfbf8d-1505-48ae-af9e-dc6b532889b4",
+						"exec": [
+							"// Prepare test data",
+							"var data = [",
+							"{",
+							"    \"origin\" : 1471806386919,",
+							"    \"name\" : \"TestClient\",",
+							"    \"addressable\" : {",
+							"        \"created\" : 0,",
+							"        \"modified\" : 0,",
+							"        \"origin\" : 1471806386919,",
+							"        \"name\" : \"OSIMQTTBroker\",",
+							"        \"protocol\" : \"TCP\",",
+							"        \"method\" : \"\",",
+							"        \"address\" : \"m10.cloudmqtt.com\",",
+							"        \"port\" : 15421,",
+							"        \"path\" : \"\",",
+							"        \"publisher\" : \"EdgeXExportPublisher\",",
+							"        \"user\" : \"hukfgtoh\",",
+							"        \"password\" : \"uP6hJLYW6Ji4\",",
+							"        \"topic\" : \"EdgeXDataTopic\"",
+							"    },",
+							"    \"format\" : \"JSON\",",
+							"    \"filter\" : {",
+							"        \"deviceIdentifiers\" : [ ",
+							"            \"livingroomthermosat\", ",
+							"            \"hallwaythermostat\"",
+							"        ],",
+							"        \"valueDescriptorIdentifiers\" : [ ",
+							"            \"temperature\", ",
+							"            \"humidity\"",
+							"        ]",
+							"    },",
+							"    \"encryption\" : {",
+							"        \"encryptionAlgorithm\" : \"AES\",",
+							"        \"encryptionKey\" : \"123\",",
+							"        \"initializingVector\" : \"123\"",
+							"    },",
+							"    \"compression\" : \"GZIP\",",
+							"    \"enable\" : true,",
+							"    \"destination\" : \"REST_ENDPOINT\"",
+							"},",
+							"{",
+							"    \"origin\" : 1471806386919,",
+							"    \"name\" : \"TestClient2\",",
+							"    \"addressable\" : {",
+							"        \"created\" : 0,",
+							"        \"modified\" : 0,",
+							"        \"origin\" : 1471806386919,",
+							"        \"name\" : \"OSIMQTTBroker\",",
+							"        \"protocol\" : \"TCP\",",
+							"        \"method\" : \"\",",
+							"        \"address\" : \"m10.cloudmqtt.com\",",
+							"        \"port\" : 15421,",
+							"        \"path\" : \"\",",
+							"        \"publisher\" : \"EdgeXExportPublisher\",",
+							"        \"user\" : \"hukfgtoh\",",
+							"        \"password\" : \"uP6hJLYW6Ji4\",",
+							"        \"topic\" : \"EdgeXDataTopic\"",
+							"    },",
+							"    \"format\" : \"JSON\",",
+							"    \"filter\" : {",
+							"        \"deviceIdentifiers\" : [",
+							"            \"livingroomthermosat\",",
+							"            \"hallwaythermostat\"",
+							"        ],",
+							"        \"valueDescriptorIdentifiers\" : [",
+							"            \"temperature\",",
+							"            \"humidity\"",
+							"        ]",
+							"    },",
+							"    \"encryption\" : {",
+							"        \"encryptionAlgorithm\" : \"AES\",",
+							"        \"encryptionKey\" : \"123\",",
+							"        \"initializingVector\" : \"123\"",
+							"    },",
+							"    \"compression\" : \"GZIP\",",
+							"    \"enable\" : true,",
+							"    \"destination\" : \"REST_ENDPOINT\"",
+							"},",
+							"{",
+							"    \"origin\" : 1471806386919,",
+							"    \"name\" : \"OSIClient3\",",
+							"    \"addressable\" : {",
+							"        \"created\" : 0,",
+							"        \"modified\" : 0,",
+							"        \"origin\" : 1471806386919,",
+							"        \"name\" : \"OSIMQTTBroker\",",
+							"        \"protocol\" : \"TCP\",",
+							"        \"method\" : \"\",",
+							"        \"address\" : \"m10.cloudmqtt.com\",",
+							"        \"port\" : 15421,",
+							"        \"path\" : \"\",",
+							"        \"publisher\" : \"EdgeXExportPublisher\",",
+							"        \"user\" : \"hukfgtoh\",",
+							"        \"password\" : \"uP6hJLYW6Ji4\",",
+							"        \"topic\" : \"EdgeXDataTopic\"",
+							"    },",
+							"    \"format\" : \"JSON\",",
+							"    \"filter\" : {",
+							"        \"deviceIdentifiers\" : [",
+							"            \"livingroomthermosat\",",
+							"            \"hallwaythermostat\"",
+							"        ],",
+							"        \"valueDescriptorIdentifiers\" : [",
+							"            \"temperature\",",
+							"            \"humidity\"",
+							"        ]",
+							"    },",
+							"    \"encryption\" : {",
+							"        \"encryptionAlgorithm\" : \"AES\",",
+							"        \"encryptionKey\" : \"123\",",
+							"        \"initializingVector\" : \"123\"",
+							"    },",
+							"    \"compression\" : \"GZIP\",",
+							"    \"enable\" : true,",
+							"    \"destination\" : \"REST_ENDPOINT\"",
+							"}",
+							"];",
+							"",
+							"pm.environment.set(\"data\", data);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "47de7093-d096-4c92-83f4-3f06215ecf31",
+						"exec": [
+							"var baseUrl = pm.environment.get(\"exportClientUrl\");",
+							"var data = pm.environment.get(\"data\");",
+							"var request = {",
+							"  url: baseUrl+'/api/v1/registration',",
+							"  method: 'POST',",
+							"  body: {",
+							"    mode: 'raw',",
+							"    raw: 'json string'",
+							"  }",
+							"};",
+							"",
+							"var count = 0;",
+							"var failedCount = 0;",
+							"data.forEach(function(item, index) { ",
+							"    request.body.raw = JSON.stringify(item)",
+							"    pm.sendRequest(request, function (err, res) {",
+							"        if (res.code!=200) {",
+							"            console.log(index, res.stream.toString());",
+							"            failedCount++",
+							"        }else{",
+							"            count++",
+							"        }",
+							"    });",
+							"});",
+							"",
+							"// Wait for API calls finish.",
+							"var interval = setInterval(function(){",
+							"    if(count+failedCount == data.length){",
+							"        clearInterval(interval);",
+							"        console.log(count +\" rows imported\");",
+							"        console.log(failedCount +\" rows import failed\");",
+							"    }",
+							"}, 500);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{exportClientUrl}}/api/v1/ping",
+					"host": [
+						"{{exportClientUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9895fac7-3c08-4435-a3d4-f8e49206b681",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "0ac20a84-512f-47d0-8ede-206fda755218",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,245 @@
+{
+	"info": {
+		"_postman_id": "97f518a2-0263-4280-b43b-cc878323f2ff",
+		"name": "core-data-cleaner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "clean event",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "195d88f2-c6f4-4a51-8297-2d1daa5c6935",
+						"exec": [
+							"var baseUrl = pm.environment.get(\"baseUrl\");",
+							"",
+							"pm.sendRequest(baseUrl+\"/api/v1/event\", function (err, res) {",
+							"    removeData(res.json())",
+							"});",
+							"",
+							"function removeData(data){",
+							"    var request = {",
+							"      method: 'DELETE'",
+							"    };",
+							"    ",
+							"    var count = 0;",
+							"    var failedCount = 0;",
+							"    data.forEach(function(item, index) { ",
+							"        request.url = baseUrl+'/api/v1/event/id/'+item.id;",
+							"        pm.sendRequest(request, function (err, res) {",
+							"          if (res.code!=200) {",
+							"                console.log(index, res.stream.toString());",
+							"                failedCount++",
+							"            }else{",
+							"                count++",
+							"            }",
+							"        });",
+							"    });",
+							"",
+							"    var interval = setInterval(function(){",
+							"        if(count+failedCount == data.length){",
+							"            clearInterval(interval);",
+							"            console.log(count +\" rows removed\");",
+							"            console.log(failedCount +\" rows remove failed\");",
+							"        }",
+							"    }, 500);",
+							"    ",
+							"}",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/ping",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "clean reading",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6f14431e-4e6a-462a-bf9b-b3cf28e3456a",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f1038d15-eba5-4afb-94aa-9f8929b28cf6",
+						"exec": [
+							"var baseUrl = pm.environment.get(\"baseUrl\");",
+							"",
+							"pm.sendRequest(baseUrl+\"/api/v1/reading\", function (err, res) {",
+							"    removeData(res.json())",
+							"});",
+							"",
+							"function removeData(data){",
+							"    var request = {",
+							"      method: 'DELETE'",
+							"    };",
+							"    ",
+							"    var count = 0;",
+							"    var failedCount = 0;",
+							"    data.forEach(function(item, index) { ",
+							"        request.url = baseUrl+'/api/v1/reading/id/'+item.id;",
+							"        pm.sendRequest(request, function (err, res) {",
+							"          if (res.code!=200) {",
+							"                console.log(index, res.stream.toString());",
+							"                failedCount++",
+							"            }else{",
+							"                count++",
+							"            }",
+							"        });",
+							"    });",
+							"",
+							"    var interval = setInterval(function(){",
+							"        if(count+failedCount == data.length){",
+							"            clearInterval(interval);",
+							"            console.log(count +\" rows removed\");",
+							"            console.log(failedCount +\" rows remove failed\");",
+							"        }",
+							"    }, 500);",
+							"    ",
+							"}",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/ping",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "clean valueDescriptor",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6f14431e-4e6a-462a-bf9b-b3cf28e3456a",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f1038d15-eba5-4afb-94aa-9f8929b28cf6",
+						"exec": [
+							"var baseUrl = pm.environment.get(\"baseUrl\");",
+							"",
+							"pm.sendRequest(baseUrl+\"/api/v1/valuedescriptor\", function (err, res) {",
+							"    removeData(res.json())",
+							"});",
+							"",
+							"function removeData(data){",
+							"    var request = {",
+							"      method: 'DELETE'",
+							"    };",
+							"    ",
+							"    var count = 0;",
+							"    var failedCount = 0;",
+							"    data.forEach(function(item, index) { ",
+							"        request.url = baseUrl+'/api/v1/valuedescriptor/id/'+item.id;",
+							"        pm.sendRequest(request, function (err, res) {",
+							"          if (res.code!=200) {",
+							"                console.log(index, res.stream.toString());",
+							"                failedCount++",
+							"            }else{",
+							"                count++",
+							"            }",
+							"        });",
+							"    });",
+							"",
+							"    var interval = setInterval(function(){",
+							"        if(count+failedCount == data.length){",
+							"            clearInterval(interval);",
+							"            console.log(count +\" rows removed\");",
+							"            console.log(failedCount +\" rows remove failed\");",
+							"        }",
+							"    }, 500);",
+							"    ",
+							"}",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/ping",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
