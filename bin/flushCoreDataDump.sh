@@ -1,28 +1,11 @@
 #!/bin/bash
 
-NAMESFILE=$(dirname "$0")/files.sh
-EVENTDUMPJS=/etc/newman/javascript/coredata/event.js
-READINGDUMPJS=/etc/newman/javascript/coredata/reading.js
-VDDUMPJS=/etc/newman/javascript/coredata/valueDescriptor.js
+COLLECTION_PATH="collections/core-data-cleaner.postman_collection.json"
+ENV_PATH="environment/core-data-docker.postman_environment.json"
 
 
-if [ -f $NAMESFILE ]; then 
+echo "Info: Clean Coredata's test data."
 
-	. $NAMESFILE
+docker-compose run --rm postman run ${COLLECTION_PATH} --environment=${ENV_PATH}
 
-else 
-	echo "Error: Names file does not exist."
-	exit $?
-
-fi
-
-DATA_BASE="coredata"
-FLUSH_SCRIPTS=( $EVENTDUMPJS $READINGDUMPJS $VDDUMPJS)
-
-for index in "${!FLUSH_SCRIPTS[@]}"
-do
-    docker-compose exec -T mongo /bin/bash -c "mongo ${DATA_BASE} ${FLUSH_SCRIPTS[index]}"
-
-    echo "Info: ${FLUSH_SCRIPTS[index]} data flushed"
-
-done
+echo "Info: Coredata's test data Cleaned"

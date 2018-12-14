@@ -3,8 +3,6 @@
     "responseTime": 400,
     "ApplicationJsonContentType": "application/json",
     "TextPlainContentType": "text/plain",
-    "addressableGetRequestId": "57f334d2e4b060e27b9d5f5e",
-    "addressableDelRequestId": "57f333cee4b060e27b9d5f5b",
     "addressableGetRequestName": "tomtom",
     "addressableDelRequestName": "ohmMeter",
     "addressableTopicGetRequestName": "cubicFeetData",

@@ -3,7 +3,7 @@
 NAMESFILE=$(dirname "$0")/files.sh
 
 COLLECTION_PATH="collections/core-data.postman_collection.json"
-ENV_PATH="environment/CoredataEnv.postman_environment.json"
+ENV_PATH="environment/core-data-docker.postman_environment.json"
 
 if [ -f $NAMESFILE ]; then 
 
@@ -20,13 +20,6 @@ echo "Info: Initiating Coredata Test."
 echo "[info] ---------- use docker-compose run newman ----------"
 
 docker-compose run --rm postman run ${COLLECTION_PATH} \
-    --folder="event" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli"
-docker-compose run --rm postman run ${COLLECTION_PATH} \
-    --folder="event_error_4xx" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli"
-
-docker-compose run --rm postman run ${COLLECTION_PATH} \
     --folder="reading" --iteration-data="data/readingData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 docker-compose run --rm postman run ${COLLECTION_PATH} \
@@ -40,6 +33,12 @@ docker-compose run --rm postman run ${COLLECTION_PATH} \
     --folder="valuedescriptor_error_4xx" --iteration-data="data/valueDescriptorData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
+docker-compose run --rm postman run ${COLLECTION_PATH} \
+    --folder="event" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
+    --reporters="junit,cli"
+docker-compose run --rm postman run ${COLLECTION_PATH} \
+    --folder="event_error_4xx" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
+    --reporters="junit,cli"
 
 
 
