@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "89ae48ea-e481-44c8-8185-a7603bc0da9b",
+		"_postman_id": "6b6e0358-9a4b-4f2e-9768-4b2f410c2579",
 		"name": "support-logging",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -15,7 +15,6 @@
 							"listen": "test",
 							"script": {
 								"id": "74f85dc3-21ff-496c-b0bf-6e29e51ff613",
-								"type": "text/javascript",
 								"exec": [
 									"/**",
 									" * Test Case:  api/v1/logs",
@@ -31,7 +30,8 @@
 									"pm.test(\"Response time is less than 200ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -45,7 +45,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"logLevel\": \"WARN\",\n  \"originService\": \"service1\",\n  \"message\": \"Hello, Logging Service!\",\n  \"labels\": [\n    \"label1\",\n    \"label2\"\n  ]\n}\n"
+							"raw": "{\n  \"logLevel\": \"WARN\",\n  \"originService\": \"service1\",\n  \"message\": \"Hello, Logging Service!\"\n}\n"
 						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs",
@@ -1254,7 +1254,6 @@
 							"listen": "test",
 							"script": {
 								"id": "fe53065f-b72e-4747-98ee-6e9124a80d55",
-								"type": "text/javascript",
 								"exec": [
 									"/**",
 									" * Test Case:  api/v1/logs",
@@ -1275,7 +1274,8 @@
 									"    pm.response.to.have.header(\"Content-Type\");",
 									"});",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1289,7 +1289,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"logLevel\": \"XXX\",\n  \"originService\": \"service1\",\n  \"message\": \"Hello, Logging Service!\",\n  \"labels\": [\n    \"label1\",\n    \"label2\"\n  ]\n}\n"
+							"raw": "{\n  \"logLevel\": \"XXX\",\n  \"originService\": \"service1\",\n  \"message\": \"Hello, Logging Service!\"\n}\n"
 						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs",
@@ -1407,11 +1407,6 @@
 					"          },",
 					"          \"logLevel\": {",
 					"            \"enum\": [\"TRACE\",\"DEBUG\",\"INFO\",\"WARN\",\"ERROR\"]",
-					"          },",
-					"          \"labels\": {",
-					"            \"type\": [\"array\",\"null\"],",
-					"            \"items\": { \"type\": \"string\" },",
-					"            \"uniqueItems\": true",
 					"          },",
 					"          \"created\": {",
 					"            \"description\": \"The creation timestamp\",",
