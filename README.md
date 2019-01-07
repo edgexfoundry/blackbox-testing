@@ -1,18 +1,19 @@
-Please note preliminary documentation PDFs have been added to the docs folder.
-[Newman instructions](docs/Blackbox_testing_with_Newman_260618.pdf)
-[Postman instructions](docs/Blackbox_testing_with_Postman_031918.pdf)
+# EdgeX Foundry Blackbox Tests
 
-While both can be used to run blackbox tests for local dev testing, the latter is probably more common.
+This repository contains a series of tests to verify that all EdgeX services are working as expected. There are two testing frameworks used by these tests.
 
-# integration-test
-run integration test
+## Newman
+Newman is a command line tool that is set up to test EdgeX as it is currently deployed to Nexus. This is useful for verifying the current state of the application.
 
+## Postman
+Postman is a GUI based tool that is set up to test arbitrary EdgeX environments and is the easiest method to set up to verify your local EdgeX deployment.
 
-## prerequisite
+## Getting Started
+Please refer to the [documentation in the repository](docs/How-to-run-blackbox-testing.rst).
 
-install docker 
-
-
-## TODO
-
-!! need setup mongoDB container
+# Community
+ - Chat: [https://edgexfoundry.slack.com](https://join.slack.com/t/edgexfoundry/shared_invite/enQtNDgyODM5ODUyODY0LWVhY2VmOTcyOWY2NjZhOWJjOGI1YzQ2NzYzZmIxYzAzN2IzYzY0NTVmMWZhZjNkMjVmODNiZGZmYTkzZDE3MTA)
+ - Mailing lists: https://lists.edgexfoundry.org/mailman/listinfo
+ 
+# License
+ [Apache-2.0](LICENSE)
