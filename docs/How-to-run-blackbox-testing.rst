@@ -206,6 +206,34 @@ You can run bash ./bin/run.sh to list these options:
     [INFO] Init postman test data .
     run.sh:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-exc Export Client] | [-ru Rulesengine] | [-all All]
 
+----------------------------------------------
+Present Test Result Using the Allure Framework
+----------------------------------------------
+
+Install Allure: https://docs.qameta.io/allure/#_get_started
+
+Allure is based on standard xUnit results output. Once we have finished running the Newman script, the built-in JUnit reporter outputs a summary of the collection run to a JUnit compatible XML file. (Path: /blackbox-testing/bin/testResult/)
+
+Generate report using the following command:
+
+.. code-block:: bash
+
+    $ allure serve /path-to-blackbox-testing-directory/blackbox-testing/bin/testResult
+
+After executing the allure serve command, the following information is displayed in the terminal:
+
+1. The location of the generated report
+
+2. The URL to visit the report
+
+3. The operation to stop the local Allure web server (Ctrl+C)
+
+For example:
+
+.. image:: images/allure-serve.png
+
+For more information about the Allure framework, visit https://docs.qameta.io/allure/
+
 ======================
 Run Test Using Postman
 ======================
