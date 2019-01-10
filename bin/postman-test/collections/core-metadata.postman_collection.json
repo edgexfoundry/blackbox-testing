@@ -4943,7 +4943,7 @@
 									"            tests[\"Content-Type is \"+data.ApplicationTextPlainType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationTextPlainType);",
 									"        }",
 									"        if(null !== responseBody){",
-									"            tests[\"Response Object id\"] = responseBody.length === 24;",
+									"            tests[\"Response Object id\"] = responseBody.length === 36;",
 									"        } else{",
 									"            tests[\"Response list is empty\"] = responseBody.length === 0",
 									"        }",
