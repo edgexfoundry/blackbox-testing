@@ -9509,7 +9509,7 @@
 									"    }",
 									"    ",
 									"    //Validate the body for Id",
-									"    tests[\"Does body contains Id\"] = responseBody.length === 24;",
+									"    tests[\"Does body contains Id\"] = responseBody.length === 36;",
 									"}"
 								]
 							}
