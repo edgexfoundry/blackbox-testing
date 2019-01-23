@@ -11,7 +11,7 @@ volumes:
 services:
   volume:
     image: ${volume}
-    container_name: edgex-volume
+    container_name: edgex-files
     networks:
     - edgex-network
     volumes:
