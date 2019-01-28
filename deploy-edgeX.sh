@@ -64,7 +64,7 @@ run_service data
 
 run_service command
 
-#run_service scheduler
+run_service scheduler
 
 run_service export-client
 

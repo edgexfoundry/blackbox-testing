@@ -23,7 +23,6 @@ provisionWatcherReportPath4XXStatus=../report/metadata/status-4XX/provisionWatch
 deviceRepReportPath200Status=../report/metadata/status-200/deviceReport
 deviceRepReportPath4XXStatus=../report/metadata/status-4XX/deviceReport
 scheduleReportPath200Status=../report/metadata/status-200/schedule
-scheduleReportPath4XXStatus=../report/metadata/status-4XX/schedule
 deviceProfileReportPath200Status=../report/metadata/status-200/deviceProfile
 deviceProfileReportPath4XXStatus=../report/metadata/status-4XX/deviceProfile
 scheduleEventReportPath200Status=../report/metadata/status-200/scheduleEvent

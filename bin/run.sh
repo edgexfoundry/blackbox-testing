@@ -17,6 +17,7 @@ LOGGINGLOGSPATH=$BASEPATH/logging$TIMESTAMPFORMAT.log
 SUPPORT_NOTIFICATION_LOG_PATH=$BASEPATH/supportNotification$TIMESTAMPFORMAT.log
 EXPORTCLIENTLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
 RULESENGINELOGSPATH=$BASEPATH/rulesengine$TIMESTAMPFORMAT.log
+SUPPORT_SCHEDULER_LOG_PATH=$BASEPATH/supportScheduler$TIMESTAMPFORMAT.log
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 securityTest() {
@@ -77,6 +78,11 @@ rulesengineTest() {
 	$(dirname "$0")/rulesengineTest.sh
 }
 
+supportSchedulerTest(){
+    $(dirname "$0")/flushSupportSchedulerDataDump.sh
+    $(dirname "$0")/supportSchedulerTest.sh
+}
+
 testAll() {
 
 	coreDataTest
@@ -86,6 +92,7 @@ testAll() {
 	supportNotificationTest
 	exportClientTest
 	rulesengineTest
+	supportSchedulerTest
 
 }
 
@@ -128,6 +135,10 @@ case ${option} in
     echo "Info: Initiating ExportClient Test"
     exportClientTest | tee $EXPORTCLIENTLOGSPATH
     ;;
+    -ss)
+    echo "Info: Initiating SupportScheduler Test"
+    supportSchedulerTest | tee $SUPPORT_SCHEDULER_LOG_PATH
+    ;;
     -ru)
     echo "Info: Initiating SupportRulesengine Test"
     rulesengineTest	| tee $RULESENGINELOGSPATH
@@ -137,7 +148,7 @@ case ${option} in
 	testAll		| tee $EDGEXLOGSPATH
     ;;
    	*)
-    echo "`basename ${0}`:usage: [-sec Security] | [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-exc Export Client] | [-ru Rulesengine] | [-all All]"
+    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-exc Export Client] | [-ss SupportScheduler] | [-ru Rulesengine] | [-all All]"
     echo
     exit 0
     ;;

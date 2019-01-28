@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "50ef75a2-3371-4d03-bad8-4a6650cf41d4",
+		"name": "support-scheduler-cleaner",
+		"description": "Cleans the support scheduler interval(s), and intervalAction(s) test data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "clean intervalAction",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6be00294-4dd9-49d9-94ed-925ffb50a6cb",
+						"exec": [
+							"var baseUrl = pm.environment.get(\"baseUrl\");",
+							"",
+							"pm.sendRequest(baseUrl+\"/api/v1/intervalaction\", function (err, res) {",
+							"    removeData(res.json())",
+							"});",
+							"",
+							"function removeData(data){",
+							"    var request = {",
+							"      method: 'DELETE'",
+							"    };",
+							"    ",
+							"    var count = 0;",
+							"    var failedCount = 0;",
+							"    data.forEach(function(item, index) { ",
+							"        request.url = baseUrl+'/api/v1/intervalaction/'+item.id;",
+							"        pm.sendRequest(request, function (err, res) {",
+							"          if (res.code!=200) {",
+							"                console.log(index, res.stream.toString());",
+							"                failedCount++",
+							"            }else{",
+							"                count++",
+							"            }",
+							"        });",
+							"    });",
+							"",
+							"    var interval = setInterval(function(){",
+							"        if(count+failedCount == data.length){",
+							"            clearInterval(interval);",
+							"            console.log(count +\" rows removed\");",
+							"            console.log(failedCount +\" rows remove failed\");",
+							"        }",
+							"    }, 500);",
+							"    ",
+							"}",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/ping",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"ping"
+					]
+				},
+				"description": "cleans existing interval(s) tests data"
+			},
+			"response": []
+		},
+		{
+			"name": "clean interval",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6be00294-4dd9-49d9-94ed-925ffb50a6cb",
+						"exec": [
+							"var baseUrl = pm.environment.get(\"baseUrl\");",
+							"",
+							"pm.sendRequest(baseUrl+\"/api/v1/interval\", function (err, res) {",
+							"    removeData(res.json())",
+							"});",
+							"",
+							"function removeData(data){",
+							"    var request = {",
+							"      method: 'DELETE'",
+							"    };",
+							"    ",
+							"    var count = 0;",
+							"    var failedCount = 0;",
+							"    data.forEach(function(item, index) { ",
+							"        request.url = baseUrl+'/api/v1/interval/'+item.id;",
+							"        pm.sendRequest(request, function (err, res) {",
+							"          if (res.code!=200) {",
+							"                console.log(index, res.stream.toString());",
+							"                failedCount++",
+							"            }else{",
+							"                count++",
+							"            }",
+							"        });",
+							"    });",
+							"",
+							"    var interval = setInterval(function(){",
+							"        if(count+failedCount == data.length){",
+							"            clearInterval(interval);",
+							"            console.log(count +\" rows removed\");",
+							"            console.log(failedCount +\" rows remove failed\");",
+							"        }",
+							"    }, 500);",
+							"    ",
+							"}",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/ping",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"ping"
+					]
+				},
+				"description": "cleans existing interval(s) tests data"
+			},
+			"response": []
+		}
+	]
+}
