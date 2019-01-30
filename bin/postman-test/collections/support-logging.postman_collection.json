@@ -1241,6 +1241,101 @@
 						"description": "Delete all log entries between two dates specified by start and end. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
 					},
 					"response": []
+				},
+				{
+					"name": "Delete logs by age",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3e7841f2-239d-11e9-ab14-d663bd873d93",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/logs/removeold/age/{age} - DELETE",
+									" * Version: Alpha",
+									" * @Author: Tom Fleming",
+									" * ",
+									" **/",
+									" ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is text/plain\", function(){",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\");",
+									"    pm.expect(contentType).to.include(\"text/plain\");",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    pm.expect(pm.response.text().length>0).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3e7844c2-239d-11e9-ab14-d663bd873d93",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"supportLoggingUrl\");",
+									"var data = {",
+									"  \"logLevel\": \"ERROR\",",
+									"  \"originService\": \"service1\",",
+									"  \"message\": \"Hello, Logging Service!\"",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/logs',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"age\", \"86400000\");",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{supportLoggingUrl}}/api/v1/logs/removeold/age/{{age}}",
+							"host": [
+								"{{supportLoggingUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"removeold",
+								"age",
+								"{{age}}"
+							]
+						},
+						"description": "Delete all log entries older than the specified time. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+					},
+					"response": []
 				}
 			]
 		},
