@@ -144,7 +144,7 @@
 								"{{limit}}"
 							]
 						},
-						"description": "List a collection of LogEntry - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues."
+						"description": "List a collection of LogEntry - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 500 for unknown or unanticipated issues."
 					},
 					"response": []
 				},
@@ -235,7 +235,7 @@
 								"{{limit}}"
 							]
 						},
-						"description": "list a collection of LogEntry created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues."
+						"description": "list a collection of LogEntry created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 500 for unknown or unanticipated issues."
 					},
 					"response": []
 				},
@@ -339,7 +339,7 @@
 								"{{limit}}"
 							]
 						},
-						"description": "list a collection of LogEntry matching any of the specified originServices and being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues."
+						"description": "list a collection of LogEntry matching any of the specified originServices and being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 500 for unknown or unanticipated issues."
 					},
 					"response": []
 				},
@@ -444,7 +444,7 @@
 								"{{limit}}"
 							]
 						},
-						"description": "list a collection of LogEntry whose message containing any of the specified keywords and being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues.."
+						"description": "list a collection of LogEntry whose message containing any of the specified keywords and being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 500 for unknown or unanticipated issues.."
 					},
 					"response": []
 				},
@@ -549,7 +549,7 @@
 								"{{limit}}"
 							]
 						},
-						"description": "list a collection of LogEntry matching any of the specified logLevels and being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues."
+						"description": "list a collection of LogEntry matching any of the specified logLevels and being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 500 for unknown or unanticipated issues."
 					},
 					"response": []
 				},
@@ -659,7 +659,7 @@
 								"{{limit}}"
 							]
 						},
-						"description": "list a collection of LogEntry matching any of the specified logLevels, originServices, and also being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 503 for unknown or unanticipated issues."
+						"description": "list a collection of LogEntry matching any of the specified logLevels, originServices, and also being created between the specified start and end dates - limited in size by the limit parameter. HTTP status code 413 if the number of events exceeds the current max limit. HTTP status code 500 for unknown or unanticipated issues."
 					},
 					"response": []
 				},
@@ -849,7 +849,7 @@
 								"{{end}}"
 							]
 						},
-						"description": "Delete a collection of LogEntry matching any of the specified logLevels and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+						"description": "Delete a collection of LogEntry matching any of the specified logLevels and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 500 for unknown or unanticipated issues."
 					},
 					"response": []
 				},
@@ -946,7 +946,7 @@
 								"{{end}}"
 							]
 						},
-						"description": "Delete a collection of LogEntry matching any of the specified originServices and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+						"description": "Delete a collection of LogEntry matching any of the specified originServices and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 500 for unknown or unanticipated issues."
 					},
 					"response": []
 				},
@@ -1043,7 +1043,7 @@
 								"{{end}}"
 							]
 						},
-						"description": "Delete a collection of LogEntry whose message containing any of the specified keywords and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+						"description": "Delete a collection of LogEntry whose message containing any of the specified keywords and being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 500 for unknown or unanticipated issues."
 					},
 					"response": []
 				},
@@ -1143,7 +1143,7 @@
 								"{{end}}"
 							]
 						},
-						"description": "Delete a collection of LogEntry matching any of the specified logLevels, originServices, and also being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+						"description": "Delete a collection of LogEntry matching any of the specified logLevels, originServices, and also being created between the specified start and end dates. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 500 for unknown or unanticipated issues."
 					},
 					"response": []
 				},
@@ -1238,7 +1238,7 @@
 								"{{end}}"
 							]
 						},
-						"description": "Delete all log entries between two dates specified by start and end. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+						"description": "Delete all log entries between two dates specified by start and end. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 500 for unknown or unanticipated issues."
 					},
 					"response": []
 				},
@@ -1252,8 +1252,7 @@
 								"exec": [
 									" /**",
 									" * Test Case:  /api/v1/logs/removeold/age/{age} - DELETE",
-									" * Version: Alpha",
-									" * @Author: Tom Fleming",
+									" * @Author: Joan Duran",
 									" * ",
 									" **/",
 									" ",
@@ -1333,7 +1332,7 @@
 								"{{age}}"
 							]
 						},
-						"description": "Delete all log entries older than the specified time. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 503 for unknown or unanticipated issues."
+						"description": "Delete all log entries older than the specified time. HTTP status code 200 count of the number of LogEntry being deleted. HTTP status code 500 for unknown or unanticipated issues."
 					},
 					"response": []
 				}
