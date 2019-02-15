@@ -42,7 +42,7 @@
 									"});",
 									"",
 									"pm.test(\"Response body is correct\", function () {",
-									"    pm.expect(pm.response.text().length === 24 ).to.be.true;",
+									"    pm.expect(pm.response.text().length === 36 ).to.be.true;",
 									"});"
 								]
 							}
