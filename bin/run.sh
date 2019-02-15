@@ -19,6 +19,12 @@ EXPORTCLIENTLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
 RULESENGINELOGSPATH=$BASEPATH/rulesengine$TIMESTAMPFORMAT.log
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
+securityTest() {
+#	$(dirname "$0")/importSecurityserviceDump.sh
+	$(dirname "$0")/securityserviceTest.sh
+	$(dirname "$0")/flushSecurityserviceDump.sh
+}
+
 coreDataTest() {
 
 	$(dirname "$0")/importCoreDataDump.sh
@@ -94,6 +100,10 @@ docker cp $(dirname "$0")/postman-test/. "${VOLUME_CONTAINER}":/etc/newman
 
 
 case ${option} in
+	-sec)
+		echo "Info: Initiating Securityservice Test"
+		securityTest | tee $SECURITYLOGSPATH
+	;;
 	-cd)
 	echo "Info: Initiating Coredata Test"
 	coreDataTest | tee $COREDATALOGSPATH
@@ -127,7 +137,7 @@ case ${option} in
 	testAll		| tee $EDGEXLOGSPATH
     ;;
    	*)
-    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-exc Export Client] | [-ru Rulesengine] | [-all All]"
+    echo "`basename ${0}`:usage: [-sec Security] | [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-exc Export Client] | [-ru Rulesengine] | [-all All]"
     echo
     exit 0
     ;;
