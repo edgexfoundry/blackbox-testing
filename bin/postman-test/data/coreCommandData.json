@@ -12,7 +12,6 @@
     "updateDeviceAdminState": "LOCKED",
     "deviceLockedId": "57f5e11fe4b060e2071a5c39",
     "commandGetRequestIdForLockdedState": "57f5e077e4b060e2071a5c36",
-    "deviceIdNotPresent": "1234657898sdssdw",
     "invalidCommandId": "invalid_command_id",
     "commandGetRequestIdWithStateLocked": "57f73d6ce4b060e27309e45b",
     "getDeviceByInvalidId": "57f62ed0e4b060e252ba5ed61",
@@ -20,6 +19,9 @@
     "adminStateChange": "LOCKED",
     "opStateChange": "DISABLED",
     "deviceIdNotPresent": "57f7937ae4AAAAe2d67c20b5",
+    "deviceNameNotFound": "deviceName Not Found",
+    "deviceNameNotPresent": "deviceName Not Present",
+    "opState": "ENABLED",
     "schema": {
       "type": "object",
       "$schema": "http://json-schema.org/draft-03/schema#",
