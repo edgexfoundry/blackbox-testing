@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "45bd3d8a-1ef4-4bcf-a213-92a74aa8eaab",
+		"_postman_id": "c3724c38-7ade-467e-a4ee-782f0e846855",
 		"name": "core-command",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -524,12 +524,7 @@
 									"*",
 									"**/",
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"if (contentTypeHeaderExists) {",
-									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-									"}"
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
 								],
 								"type": "text/javascript"
 							}
@@ -575,12 +570,7 @@
 									" *",
 									" **/",
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"if (contentTypeHeaderExists) {",
-									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-									"}"
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
 								],
 								"type": "text/javascript"
 							}
@@ -626,12 +616,7 @@
 									"*",
 									"**/",
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"if (contentTypeHeaderExists) {",
-									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-									"}"
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
 								],
 								"type": "text/javascript"
 							}
@@ -678,12 +663,7 @@
 									"*",
 									"**/",
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"if (contentTypeHeaderExists) {",
-									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-									"}"
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
 								],
 								"type": "text/javascript"
 							}
@@ -730,12 +710,7 @@
 									" *",
 									" */",
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"if (contentTypeHeaderExists) {",
-									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-									"}"
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
 								],
 								"type": "text/javascript"
 							}
@@ -785,7 +760,8 @@
 									" * @Author: Tata Elxsi",
 									" *",
 									" */",
-									"tests[\"Status code is 423\"] = responseCode.code === 423;"
+									"tests[\"Status code is 423\"] = responseCode.code === 423;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
 								],
 								"type": "text/javascript"
 							}
@@ -845,7 +821,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "5338b0b6-c934-4d73-aa39-8430bac47c99",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/device/:id- Error 404 - GET",
@@ -855,15 +831,9 @@
 									" *",
 									" **/",
 									"  tests[\"Status code is 404\"] = responseCode.code === 404;",
-									"  if(responseCode.code === 404){",
-									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"        if (contentTypeHeaderExists) {",
-									"            tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
-									"        }",
-									" }"
-								]
+									"  tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -905,12 +875,7 @@
 									" *",
 									" */",
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"if (contentTypeHeaderExists) {",
-									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
-									"}"
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
 								],
 								"type": "text/javascript"
 							}
@@ -956,12 +921,7 @@
 									" *",
 									" */",
 									"tests[\"Status code is 423\"] = responseCode.code === 423;",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"if (contentTypeHeaderExists) {",
-									"    tests[\"Content-Type is \"+data.TextPlainContentType] = responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
-									"}"
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
 								],
 								"type": "text/javascript"
 							}
@@ -998,12 +958,15 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "b7dd3640-0c7f-4d33-bebf-74c7af47cd3b",
 								"exec": [
-									"//Assert 404 status if no Addressable match on the name provided.",
+									"/*",
+									" * Test Case:  /device/name/{{devicename}} -Error 404 - GET",
+									" */",
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
-									"tests[\"Response time is less than 200ms\"] = responseTime < 200;"
-								]
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
