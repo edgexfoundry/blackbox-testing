@@ -34,6 +34,24 @@ run_service volume
 run_service consul
 
 run_service config-seed
+
+if [[ ${SECURITY_SERVICE_NEEDED} == "true" ]]; then
+
+	run_service consul
+
+	run_service vault
+
+	run_service vault_worker
+
+	run_service kong-db
+
+	run_service kong-migrations
+
+	run_service kong
+
+	run edgex-proxy
+fi
+
 run_service mongo
 
 run_service logging

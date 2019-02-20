@@ -17,4 +17,10 @@ export supportRulesengine=nexus3.edgexfoundry.org:10004/docker-support-rulesengi
 export exportClient=nexus3.edgexfoundry.org:10004/docker-export-client-go:1.0.0
 export exportDistro=nexus3.edgexfoundry.org:10004/docker-export-distro-go:1.0.0
 export deviceVirtual=nexus3.edgexfoundry.org:10004/docker-device-virtual:0.6.0
+
+export vault=nexus3.edgexfoundry.org:10004/docker-edgex-vault:0.3.0
+export vaultWorker=nexus3.edgexfoundry.org:10004/docker-edgex-vault-worker-go:0.3.0
+export kongdb=postgres:9.5
+export kong=kong:0.13.0
+export edgexProxy=nexus3.edgexfoundry.org:10004/docker-edgex-proxy-go:0.2.1
 export postman=postman/newman_ubuntu1404:3.10.0
