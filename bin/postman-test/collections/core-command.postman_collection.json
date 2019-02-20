@@ -1,5 +1,6 @@
 {
 	"info": {
+
 		"_postman_id": "c3724c38-7ade-467e-a4ee-782f0e846855",
 		"name": "core-command",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -798,7 +799,7 @@
 							"raw": "{\"temp\":74}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/{{deviceGetRequestIdWithStateLocked}}/command/{{commandGetRequestIdWithStateLocked}}",
+							"raw": "{{baseUrl}}/api/v1/device/{{deviceGetRequestIdWithStateLocked}}/command/{{commandGetRequestIdForLockedState}}",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -808,7 +809,7 @@
 								"device",
 								"{{deviceGetRequestIdWithStateLocked}}",
 								"command",
-								"{{commandGetRequestIdWithStateLocked}}"
+								"{{commandGetRequestIdForLockedState}}"
 							]
 						},
 						"description": "Issue the put command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service. ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided. Throws LockedException (HTTP 423) if the device is LOCKED (admin state)."
@@ -925,6 +926,24 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "df2e6cfc-52f5-4db4-bbee-692c2d955c90",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/device/name/test device-2 for command\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"deviceLockedId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -935,7 +954,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/{{deviceLockedId}}/command/{{commandGetRequestIdForLockdedState}}",
+							"raw": "{{baseUrl}}/api/v1/device/{{deviceLockedId}}/command/{{commandGetRequestIdForLockedState}}",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -945,7 +964,7 @@
 								"device",
 								"{{deviceLockedId}}",
 								"command",
-								"{{commandGetRequestIdForLockdedState}}"
+								"{{commandGetRequestIdForLockedState}}"
 							]
 						},
 						"description": "Issue the put command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service. ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided. Throws LockedException (HTTP 423) if the device is LOCKED (admin state)."
