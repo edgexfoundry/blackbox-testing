@@ -1,0 +1,1222 @@
+{
+	"info": {
+		"_postman_id": "75caac77-e281-4969-bfeb-a9f573b75747",
+		"name": "security-apigateway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "reading",
+			"description": "Folder for reading",
+			"item": [
+				{
+					"name": "01 http://localhost:8000/coredata/api/v1/reading",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "14d7c4e1-db68-4815-ac50-72d060450b19",
+								"type": "text/javascript",
+								"exec": [
+									"/*",
+									" * Test Case:  /api/v1/reading - GET",
+									" * Version: Alpha",
+									" * @Author: Tingyu Zeng",
+									" *",
+									" */  ",
+									"  ",
+									"    //Test Case for status : 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+ data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"",
+									"if(responseCode.code === 200) {",
+									"    //Test content type should present in header",
+									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"    ",
+									"    if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"    }",
+									"    ",
+									"         //Test body parameters",
+									"        var actualReadingData;",
+									"        try{",
+									"            //Parse json response",
+									"            actualReadingData = JSON.parse(responseBody);",
+									"        }catch(e) {",
+									"            console.log(\"Exception while parsing json response\");",
+									"        }",
+									"        ",
+									"        if(actualReadingData.length !== 0) {",
+									"         tests[\"Is Valid Response Schema\"] = tv4.validate(actualReadingData, data.schema);",
+									"            console.log(\"Validation failed: \", tv4.error);",
+									"        } else {",
+									"            //Shows message when event list is empty",
+									"            console.log(\"Reading List Empty\");",
+									"            tests[\"Is Reading list empty\"] = actualReadingData.length === 0",
+									"        }",
+									"    }"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "host",
+								"value": "edgex.com"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrlcoredata}}/api/v1/reading",
+							"host": [
+								"{{baseUrlcoredata}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reading"
+							]
+						},
+						"description": "Return list of all readings. Sorts by reading id. LimitExceededException (HTTP 413) if the number of readings exceeds the current max limit. ServiceException (HTTP 503) for unknown or unanticipated issues."
+					},
+					"response": []
+				},
+				{
+					"name": "02 http://localhost:48080/api/v1/reading",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d0f93a20-9b5f-4d7a-b234-1eaf10501e68",
+								"type": "text/javascript",
+								"exec": [
+									"/*",
+									" * Test Case:  /api/v1/reading - PUT",
+									" * Version: Alpha",
+									" * @Author: Tingyu Zeng",
+									" *",
+									" */  ",
+									"  ",
+									"    //Test Case for status : 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+ data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"",
+									"if(responseCode.code === 200) {",
+									"    //Test Content type in header",
+									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"    ",
+									"    if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"    }",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if(jsonData.length !== 0){",
+									"            tests[\"Body has True\"] = responseBody === \"true\";",
+									"    }",
+									"}"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "426796ec-0865-4245-8143-04da02969b1b",
+								"type": "text/javascript",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrlcoredata\");",
+									"var data = {",
+									"    \"origin\":1471806366619,",
+									"    \"name\":\"co2\",",
+									"    \"value\":\"12\"",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/reading',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"readingID\", res.stream.toString());",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "host",
+								"value": "edgex.com"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"{{readingID}}\",\n    \"name\": \"ohm\",\n    \"value\": \"6\"\n }"
+						},
+						"url": {
+							"raw": "{{baseUrlcoredata}}/api/v1/reading",
+							"host": [
+								"{{baseUrlcoredata}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reading"
+							]
+						},
+						"description": "Update the reading.  Reading object needs to contain the database generated id of the existing reading. NotFoundException (HTTP 404) if the reading cannot be found by id. ServiceException (HTTP 503) for unknown or unanticipated issues. DataValidationException if the associated value descriptor is non-existent."
+					},
+					"response": []
+				},
+				{
+					"name": "03 http://localhost:48080/api/v1/reading",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6f7b9896-601f-4461-aa59-300fb8a9824f",
+								"type": "text/javascript",
+								"exec": [
+									"/*",
+									" * Test Case:  /api/v1/reading - POST",
+									" * Version: Alpha",
+									" * @Author: Tingyu Zeng",
+									" *",
+									" */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+									"}",
+									"//if(null !== responseBody){",
+									"//    tests[\"Response Object id\"] = responseBody.length === 36;",
+									"//}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "host",
+								"value": "edgex.com"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"origin\":1471806366619,\"name\":\"co2\",\"value\":\"12\"}"
+						},
+						"url": {
+							"raw": "{{baseUrlcoredata}}/api/v1/reading",
+							"host": [
+								"{{baseUrlcoredata}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reading"
+							]
+						},
+						"description": "Add a new reading. ServiceException (HTTP 503) for unknown or unanticipated issues. DataValidationException (HTTP 409) if the associated value descriptor is non-existent."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reading_error_4xx",
+			"description": "Folder for reading",
+			"item": [
+				{
+					"name": "01 http://localhost:8000/coredata/api/v1/reading",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"//Assert 404 status if the reading cannot be found by id",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "host",
+								"value": "edgex.com"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"57e866d4e4b0ca8e6d73a412\",\n    \"created\": 1475227070170,\n    \"modified\": 1475227070170,\n    \"origin\": 1471806366619,\n    \"pushed\": 0,\n    \"name\": \"co2\",\n    \"value\": \"12\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrlcoredata}}/api/v1/reading",
+							"host": [
+								"{{baseUrlcoredata}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reading"
+							]
+						},
+						"description": "Update the reading.  Reading object needs to contain the database generated id of the existing reading. NotFoundException (HTTP 404) if the reading cannot be found by id. ServiceException (HTTP 503) for unknown or unanticipated issues. DataValidationException if the associated value descriptor is non-existent."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ping",
+			"description": "Folder for ping",
+			"item": [
+				{
+					"name": "01 http://localhost:8000/coredata/api/v1/ping",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "33b870f7-d713-48ed-9c68-496b7ef5beea",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /api/v1/ping - GET",
+									" * Version: Alpha",
+									" * @Author: Tingyu",
+									" * ",
+									" **/",
+									" ",
+									" tests[\"Ping Success\"] = responseCode.code === 200;",
+									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									" if(responseCode.code === 200){",
+									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"        if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+									"        }",
+									"        //if(responseBody.length!== 0){",
+									"          //  tests[\"Body is correct\"] = responseBody === \"pong\";",
+									"        //}",
+									"    }"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "host",
+								"value": "edgex.com"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrlcoredata}}/api/v1/ping",
+							"host": [
+								"{{baseUrlcoredata}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ping"
+							]
+						},
+						"description": "Test service providing an indication that the service is available."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "api-gateway",
+			"description": "",
+			"item": [
+				{
+					"name": "Health Check",
+					"description": "",
+					"item": [
+						{
+							"name": "01 http://localhost:8001/services",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b36ac77f-cc53-41ce-b871-7056ad468733",
+										"type": "text/javascript",
+										"exec": [
+											" /**",
+											" * Test Case:  /services - GET",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" * ",
+											" **/",
+											" ",
+											" tests[\"Ping Success\"] = responseCode.code === 200;",
+											" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+											" if(responseCode.code === 200){",
+											"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+											"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+											"        if (contentTypeHeaderExists) {",
+											"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+											"        }",
+											"        //if(responseBody.length!== 0){",
+											"        //    tests[\"Body is correct\"] = responseBody === \"pong\";",
+											"        //}",
+											"    }"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "host",
+										"value": "edgex.com"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseUrl}}/services",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"services"
+									]
+								},
+								"description": "Test service providing an indication that the service is available."
+							},
+							"response": []
+						},
+						{
+							"name": "02 http://localhost:8001/routes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "41a1010b-84c9-42d6-b469-2ef6b16f0140",
+										"type": "text/javascript",
+										"exec": [
+											" /**",
+											" * Test Case:  /routes - GET",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" * ",
+											" **/",
+											" ",
+											" tests[\"Ping Success\"] = responseCode.code === 200;",
+											" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+											" if(responseCode.code === 200){",
+											"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+											"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+											"        if (contentTypeHeaderExists) {",
+											"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+											"        }",
+											"        //if(responseBody.length!== 0){",
+											"        //    tests[\"Body is correct\"] = responseBody === \"pong\";",
+											"        //}",
+											"    }"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "host",
+										"value": "edgex.com"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseUrl}}/routes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"routes"
+									]
+								},
+								"description": "Test service providing an indication that the service is available."
+							},
+							"response": []
+						},
+						{
+							"name": "03 http://localhost:8200/v1/sys/health",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b36ac77f-cc53-41ce-b871-7056ad468733",
+										"type": "text/javascript",
+										"exec": [
+											" /**",
+											" * Test Case:  /services - GET",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" * ",
+											" **/",
+											" ",
+											" tests[\"Ping Success\"] = responseCode.code === 200;",
+											" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+											" if(responseCode.code === 200){",
+											"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+											"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+											"        if (contentTypeHeaderExists) {",
+											"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+											"        }",
+											"        //if(responseBody.length!== 0){",
+											"        //    tests[\"Body is correct\"] = responseBody === \"pong\";",
+											"        //}",
+											"    }"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/sys/health",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"sys",
+										"health"
+									]
+								},
+								"description": "Test service providing an indication that the service is available."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Proxy Check",
+					"description": "",
+					"item": [
+						{
+							"name": "01 https://localhost:8443/coredata/api/v1/ping",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4ba89122-5c04-4e01-9019-ba669ebbac53",
+										"type": "text/javascript",
+										"exec": [
+											" /**",
+											" * Test Case:  /services - GET",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" * ",
+											" **/",
+											" ",
+											" tests[\"Ping Failure due to missing access token\"] = responseCode.code === 401;",
+											" tests[\"Response time is less than 200ms\"] = responseTime < 200;"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "host",
+										"value": "edgex.com"
+									},
+									{
+										"key": "",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://localhost:8443/coredata/api/v1/ping",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"coredata",
+										"api",
+										"v1",
+										"ping"
+									]
+								},
+								"description": "Test service providing an indication that the service is available."
+							},
+							"response": []
+						},
+						{
+							"name": "02 https://localhost:8443/coredata/api/v1/ping",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4835cce9-7992-43bc-b1cc-1a46ba8192af",
+										"type": "text/javascript",
+										"exec": [
+											" /**",
+											" * Test Case:  /services - GET",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" * ",
+											" **/",
+											" ",
+											" tests[\"Ping success\"] = responseCode.code === 200;",
+											" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+											" if(responseCode.code === 200){",
+											"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+											"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+											"        if (contentTypeHeaderExists) {",
+											"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+											"        }",
+											"        if(responseBody.length!== 0){",
+											"           tests[\"Body is correct\"] = responseBody === \"pong\";",
+											"        }",
+											"    }"
+										]
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "host",
+										"value": "edgex.com"
+									},
+									{
+										"key": "",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://localhost:8443/coredata/api/v1/ping",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"coredata",
+										"api",
+										"v1",
+										"ping"
+									]
+								},
+								"description": "Test service providing an indication that the service is available."
+							},
+							"response": []
+						},
+						{
+							"name": "03 http://localhost:8000/coredata/api/v1/ping",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "2bf5e87d-9b32-4514-b973-934db4f8f7fa",
+										"type": "text/javascript",
+										"exec": [
+											" /**",
+											" * Test Case:  /services - GET",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" * ",
+											" **/",
+											" ",
+											" tests[\"Ping Failure due to missing access token\"] = responseCode.code === 401;",
+											" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+											" //if(responseCode.code === 200){",
+											"   //     var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+											"     //   tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+											"       // if (contentTypeHeaderExists) {",
+											"        //tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+											"        //}",
+											"        //if(responseBody.length!== 0){",
+											"         //   tests[\"Body is correct\"] = responseBody === \"pong\";",
+											"        //}",
+											"    //}"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "host",
+										"value": "edgex.com"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8000/coredata/api/v1/ping",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"coredata",
+										"api",
+										"v1",
+										"ping"
+									]
+								},
+								"description": "Test service providing an indication that the service is available."
+							},
+							"response": []
+						},
+						{
+							"name": "06 http://localhost:8001/services",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "2bf5e87d-9b32-4514-b973-934db4f8f7fa",
+										"type": "text/javascript",
+										"exec": [
+											" /**",
+											" * Test Case:  /services - GET",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" * ",
+											" **/",
+											" ",
+											" tests[\"Ping Failure due to missing access token\"] = responseCode.code === 401;",
+											" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+											" //if(responseCode.code === 200){",
+											"   //     var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+											"     //   tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+											"       // if (contentTypeHeaderExists) {",
+											"        //tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+											"        //}",
+											"        //if(responseBody.length!== 0){",
+											"         //   tests[\"Body is correct\"] = responseBody === \"pong\";",
+											"        //}",
+											"    //}"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "host",
+										"value": "edgex.com"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8001/services",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"services"
+									]
+								},
+								"description": "Test service providing an indication that the service is available."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "SecretStore Check",
+					"description": "",
+					"item": [
+						{
+							"name": "01 http://localhost:8200/v1/sys/health",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b36ac77f-cc53-41ce-b871-7056ad468733",
+										"type": "text/javascript",
+										"exec": [
+											" /**",
+											" * Test Case:  /services - GET",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" * ",
+											" **/",
+											" ",
+											" tests[\"Ping Success\"] = responseCode.code === 200;",
+											" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+											" if(responseCode.code === 200){",
+											"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+											"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+											"        if (contentTypeHeaderExists) {",
+											"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+											"        }",
+											"        //if(responseBody.length!== 0){",
+											"        //    tests[\"Body is correct\"] = responseBody === \"pong\";",
+											"        //}",
+											"    }"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/sys/health",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"sys",
+										"health"
+									]
+								},
+								"description": "Test service providing an indication that the service is available."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "02 https://localhost:8001/services",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2bf5e87d-9b32-4514-b973-934db4f8f7fa",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /services - GET",
+									" * Version: Alpha",
+									" * @Author: Tingyu Zeng",
+									" * ",
+									" **/",
+									" ",
+									" tests[\"Ping Failure due to missing access token\"] = responseCode.code === 401;",
+									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									" //if(responseCode.code === 200){",
+									"   //     var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"     //   tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"       // if (contentTypeHeaderExists) {",
+									"        //tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+									"        //}",
+									"        //if(responseBody.length!== 0){",
+									"         //   tests[\"Body is correct\"] = responseBody === \"pong\";",
+									"        //}",
+									"    //}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "host",
+								"value": "edgex.com"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:8001/services",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"services"
+							]
+						},
+						"description": "Test service providing an indication that the service is available."
+					},
+					"response": []
+				},
+				{
+					"name": "03 http://localhost:8000/coredata/api/v1/ping",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2bf5e87d-9b32-4514-b973-934db4f8f7fa",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /services - GET",
+									" * Version: Alpha",
+									" * @Author: Tingyu Zeng",
+									" * ",
+									" **/",
+									" ",
+									" tests[\"Ping Failure due to missing access token\"] = responseCode.code === 401;",
+									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									" //if(responseCode.code === 200){",
+									"   //     var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"     //   tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"       // if (contentTypeHeaderExists) {",
+									"        //tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+									"        //}",
+									"        //if(responseBody.length!== 0){",
+									"         //   tests[\"Body is correct\"] = responseBody === \"pong\";",
+									"        //}",
+									"    //}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "host",
+								"value": "edgex.com"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/coredata/api/v1/ping",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"coredata",
+								"api",
+								"v1",
+								"ping"
+							]
+						},
+						"description": "Test service providing an indication that the service is available."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "44f085b0-a56c-430d-b010-e3203e79f6f9",
+				"type": "text/javascript",
+				"exec": [
+					"var eventSchema = {};",
+					"var readingSchema = {};",
+					"var valueDescriptorSchema = {};",
+					"",
+					"eventSchema.object = {",
+					"      \"type\": \"object\",",
+					"      \"$schema\": \"http://json-schema.org/draft-03/schema#\",",
+					"      \"description\": \"EdgeXCore device/sensorevent\",",
+					"      \"title\": \"event\",",
+					"      \"properties\": {",
+					"        \"id\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"id\"",
+					"        },",
+					"        \"created\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"created\"",
+					"        },",
+					"        \"modified\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"modified\"",
+					"        },",
+					"        \"origin\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"origin\"",
+					"        },",
+					"        \"pushed\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"pushed\"",
+					"        },",
+					"        \"device\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"device\"",
+					"        },",
+					"        \"readings\": {",
+					"          \"type\": \"array\",",
+					"          \"required\": false,",
+					"          \"title\": \"readings\",",
+					"          \"items\": {",
+					"            \"type\": \"object\",",
+					"            \"$ref\": \"#/schemas/reading\"",
+					"          },",
+					"          \"uniqueItems\": false",
+					"        }",
+					"      }",
+					"    };",
+					"eventSchema.array = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"The array of event\",",
+					"        \"type\": \"array\",",
+					"        \"items\": {",
+					"          \"$ref\": \"#/definitions/event\"",
+					"        },",
+					"        \"definitions\": {",
+					"          \"event\": eventSchema.object",
+					"        }",
+					"      };",
+					"      ",
+					"readingSchema.object = {",
+					"      \"type\": \"object\",",
+					"      \"$schema\": \"http://json-schema.org/draft-03/schema#\",",
+					"      \"description\": \"EdgeX Core device/sensor reading\",",
+					"      \"title\": \"reading\",",
+					"      \"properties\": {",
+					"        \"id\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"id\"",
+					"        },",
+					"        \"created\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"created\"",
+					"        },",
+					"        \"modified\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"modified\"",
+					"        },",
+					"        \"origin\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"origin\"",
+					"        },",
+					"        \"pushed\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"pushed\"",
+					"        },",
+					"        \"name\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"name\"",
+					"        },",
+					"        \"value\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"value\"",
+					"        }",
+					"      }",
+					"    };",
+					"readingSchema.array = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"The array of reading\",",
+					"        \"type\": \"array\",",
+					"        \"items\": {",
+					"          \"$ref\": \"#/definitions/reading\"",
+					"        },",
+					"        \"definitions\": {",
+					"          \"reading\": readingSchema.object",
+					"        }",
+					"      };",
+					"",
+					"valueDescriptorSchema.object = {",
+					"      \"type\": \"object\",",
+					"      \"$schema\": \"http://json-schema.org/draft-03/schema#\",",
+					"      \"description\": \"EdgeX Core and MetaData value descriptor -describes device/sensor data sent and received\",",
+					"      \"title\": \"valueDescriptor\",",
+					"      \"properties\": {",
+					"        \"id\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"id\"",
+					"        },",
+					"        \"created\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"created\"",
+					"        },",
+					"        \"modified\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"modified\"",
+					"        },",
+					"        \"origin\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"origin\"",
+					"        },",
+					"        \"name\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"name\"",
+					"        },",
+					"        \"min\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"min\"",
+					"        },",
+					"        \"max\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"max\"",
+					"        },",
+					"        \"type\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"type\"",
+					"        },",
+					"        \"uomLabel\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"uomLabel\"",
+					"        },",
+					"        \"defaultValue\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"defaultValue\"",
+					"        },",
+					"        \"formatting\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"formatting\"",
+					"        },",
+					"        \"labels\": {",
+					"          \"type\": \"array\",",
+					"          \"required\": false,",
+					"          \"title\": \"labels\",",
+					"          \"items\": {",
+					"            \"type\": \"string\",",
+					"            \"title\": \"labels\"",
+					"          },",
+					"          \"uniqueItems\": false",
+					"        }",
+					"      }",
+					"    };",
+					"valueDescriptorSchema.array = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"The array of valueDescriptor\",",
+					"        \"type\": \"array\",",
+					"        \"items\": {",
+					"          \"$ref\": \"#/definitions/valueDescriptor\"",
+					"        },",
+					"        \"definitions\": {",
+					"          \"valueDescriptor\": valueDescriptorSchema.object",
+					"        }",
+					"      };",
+					"    ",
+					"pm.globals.set(\"eventSchema\", eventSchema);",
+					"pm.globals.set(\"readingSchema\", readingSchema);",
+					"pm.globals.set(\"valueDescriptorSchema\", valueDescriptorSchema);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "89aed233-ddc0-44e9-b340-8832c9427a71",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
