@@ -79,8 +79,9 @@ rulesengineTest() {
 }
 
 supportSchedulerTest(){
-    $(dirname "$0")/flushSupportSchedulerDataDump.sh
+    $(dirname "$0")/importSupportSchedulerDump.sh
     $(dirname "$0")/supportSchedulerTest.sh
+    $(dirname "$0")/flushSupportSchedulerDataDump.sh
 }
 
 testAll() {
