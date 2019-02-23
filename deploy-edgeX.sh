@@ -22,7 +22,7 @@
 #    echo " os =  ${OS}"
 #    . $(dirname "$0")/bin/env-win10.sh
 #else
-#    . $(dirname "$0")/bin/env.sh
+#   . $(dirname "$0")/bin/env.sh
 #fi
 
 run_service () {
@@ -64,7 +64,7 @@ run_service data
 
 run_service command
 
-#run_service scheduler
+run_service scheduler
 
 run_service export-client
 

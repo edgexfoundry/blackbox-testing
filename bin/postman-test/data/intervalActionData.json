@@ -1,0 +1,195 @@
+[
+  {
+    "responseTime": 800,
+    "ApplicationJsonContentType": "application/json",
+    "TextPlainContentType": "text/plain",
+    "start": "1464039919104",
+    "end": "1464039919109",
+    "schema": {
+      "type": "array",
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "description": "a scheduled interval action (what were doing and on what endpoint with what server)",
+      "title": "intervalAction",
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": false,
+          "title": "id"
+        },
+        "created": {
+          "type": "integer",
+          "required": false,
+          "title": "created"
+        },
+        "modified": {
+          "type": "integer",
+          "required": false,
+          "title": "modified"
+        },
+        "origin": {
+          "type": "integer",
+          "required": false,
+          "title": "origin"
+        },
+        "name": {
+          "type": "string",
+          "required": false,
+          "title": "name"
+        },
+        "interval": {
+          "type": "string",
+          "required": false,
+          "title": "action"
+        },
+        "parameters": {
+          "type": "string",
+          "required": false,
+          "title": "parameters"
+        },
+        "target": {
+          "type": "string",
+          "required": false,
+          "title": "schedule"
+        },
+        "protocol": {
+          "type": "string",
+          "required": false,
+          "title": "protocol"
+        },
+        "httpMethod": {
+          "type": "string",
+          "required": false,
+          "title": "httpMethod"
+        },
+        "address": {
+          "type": "string",
+          "required": false,
+          "title": "address"
+        },
+        "port": {
+          "type": "integer",
+          "required": false,
+          "title": "port"
+        },
+        "path": {
+          "type": "string",
+          "required": false,
+          "title": "path"
+        },
+        "publisher": {
+          "type": "string",
+          "required": false,
+          "title": "publisher"
+        },
+        "user": {
+          "type": "string",
+          "required": false,
+          "title": "user"
+        },
+        "password": {
+          "type": "string",
+          "required": false,
+          "title": "password"
+        },
+        "topic": {
+          "type": "string",
+          "required": false,
+          "title": "topic"
+        }
+      }
+    },
+    "objectSchema": {
+      "type": "object",
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "description": "a scheduled interval action (what were doing and on what endpoint with what server)",
+      "title": "intervalAction",
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": false,
+          "title": "id"
+        },
+        "created": {
+          "type": "integer",
+          "required": false,
+          "title": "created"
+        },
+        "modified": {
+          "type": "integer",
+          "required": false,
+          "title": "modified"
+        },
+        "origin": {
+          "type": "integer",
+          "required": false,
+          "title": "origin"
+        },
+        "name": {
+          "type": "string",
+          "required": false,
+          "title": "name"
+        },
+        "interval": {
+          "type": "string",
+          "required": false,
+          "title": "action"
+        },
+        "parameters": {
+          "type": "string",
+          "required": false,
+          "title": "parameters"
+        },
+        "target": {
+          "type": "string",
+          "required": false,
+          "title": "schedule"
+        },
+        "protocol": {
+          "type": "string",
+          "required": false,
+          "title": "protocol"
+        },
+        "httpMethod": {
+          "type": "string",
+          "required": false,
+          "title": "httpMethod"
+        },
+        "address": {
+          "type": "string",
+          "required": false,
+          "title": "address"
+        },
+        "port": {
+          "type": "integer",
+          "required": false,
+          "title": "port"
+        },
+        "path": {
+          "type": "string",
+          "required": false,
+          "title": "path"
+        },
+        "publisher": {
+          "type": "string",
+          "required": false,
+          "title": "publisher"
+        },
+        "user": {
+          "type": "string",
+          "required": false,
+          "title": "user"
+        },
+        "password": {
+          "type": "string",
+          "required": false,
+          "title": "password"
+        },
+        "topic": {
+          "type": "string",
+          "required": false,
+          "title": "topic"
+        }
+      }
+    }
+  }
+]

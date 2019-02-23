@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "36111e23-d2d1-4a53-8790-35610275bceb",
+		"name": "support-scheduler-importer",
+		"description": "Imports data to be used in the integration tests for both Interval(s) and IntervalAction(s)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "import interval",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3d8b1de0-0fbf-4383-b342-caa96797a1ab",
+						"exec": [
+							"// Prepare test data",
+							"// Interval ",
+							"var data = [",
+							"        {",
+							"            \"name\": \"noon\",",
+							"            \"start\": \"20180101T000000\",",
+							"            \"frequency\": \"P1D\",",
+							"            \"origin\": 0",
+							"        },",
+							"        {",
+							"            \"name\": \"fourteen-hundrend-hours\",",
+							"            \"start\": \"20180101T000000\",",
+							"            \"frequency\": \"P1D\",",
+							"            \"origin\": 0",
+							"        }",
+							"];",
+							"pm.environment.set(\"data\", data);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "fc9aab04-f083-4ebd-b5a6-f56351e187e3",
+						"exec": [
+							"/*",
+							" * Import Data:  /ping - GET",
+							" * Version: Alpha",
+							" * @Author: Eric Cotter",
+							" *",
+							" */",
+							"var baseUrl = pm.environment.get(\"baseUrl\");",
+							"var data = pm.environment.get(\"data\");",
+							"var request = {",
+							"  url: baseUrl+'/api/v1/interval',",
+							"  method: 'POST',",
+							"  body: {",
+							"    mode: 'raw',",
+							"    raw: 'json string'",
+							"  }",
+							"};",
+							"",
+							"var count = 0;",
+							"var failedCount = 0;",
+							"data.forEach(function(item, index) { ",
+							"    request.body.raw = JSON.stringify(item)",
+							"    pm.sendRequest(request, function (err, res) {",
+							"        if (res.code!=200) {",
+							"            console.log(index, res.stream.toString());",
+							"            failedCount++",
+							"        }else{",
+							"            count++",
+							"        }",
+							"    });",
+							"});",
+							"",
+							"// Wait for API calls finish.",
+							"var interval = setInterval(function(){",
+							"    if(count+failedCount == data.length){",
+							"        clearInterval(interval);",
+							"        console.log(count +\" rows imported\");",
+							"        console.log(failedCount +\" rows import failed\");",
+							"    }",
+							"}, 500);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/ping",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "import intervalaction",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "aef229d3-b2aa-4f55-a31a-a0c54a427639",
+						"exec": [
+							"// Prepare test data",
+							"// Interval Actoin",
+							"var data = [",
+							"        {",
+							"            \"name\": \"scrub-pushed-event-noon\",",
+							"            \"interval\": \"noon\",",
+							"            \"target\": \"core-data\",",
+							"            \"protocol\": \"http\",",
+							"            \"httpMethod\": \"DELETE\",",
+							"            \"address\": \"localhost\",",
+							"            \"port\": 48080",
+							"        },",
+							"        {",
+							"            \"name\": \"scrub-aged-events-noon\",",
+							"            \"interval\": \"noon\",",
+							"            \"target\": \"core-data\",",
+							"            \"protocol\": \"http\",",
+							"            \"httpMethod\": \"DELETE\",",
+							"            \"address\": \"localhost\",",
+							"            \"port\": 48080",
+							"        },",
+							"        {",
+							"            \"name\": \"test-tsc-action-afternoon\",",
+							"            \"interval\": \"fourteen-hundrend-hours\",",
+							"            \"target\": \"core-data\",",
+							"            \"protocol\": \"http\",",
+							"            \"httpMethod\": \"DELETE\",",
+							"            \"address\": \"localhost\",",
+							"            \"port\": 48080",
+							"        },",
+							"        {",
+							"            \"name\": \"test-bond-actions-afternoon\",",
+							"            \"interval\": \"fourteen-hundrend-hours\",",
+							"            \"target\": \"core-data\",",
+							"            \"protocol\": \"http\",",
+							"            \"httpMethod\": \"DELETE\",",
+							"            \"address\": \"localhost\",",
+							"            \"port\": 48080",
+							"        }",
+							"];",
+							"",
+							"pm.environment.set(\"data\", data);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "e821bdc6-b947-4dff-a17c-527c622ab2da",
+						"exec": [
+							"/*",
+							" * Import Data:  /ping - GET",
+							" * Version: Alpha",
+							" * @Author: Eric Cotter",
+							" *",
+							" */",
+							"var baseUrl = pm.environment.get(\"baseUrl\");",
+							"var data = pm.environment.get(\"data\");",
+							"var request = {",
+							"  url: baseUrl+'/api/v1/intervalaction',",
+							"  method: 'POST',",
+							"  body: {",
+							"    mode: 'raw',",
+							"    raw: 'json string'",
+							"  }",
+							"};",
+							"",
+							"var count = 0;",
+							"var failedCount = 0;",
+							"data.forEach(function(item, index) { ",
+							"    request.body.raw = JSON.stringify(item)",
+							"    pm.sendRequest(request, function (err, res) {",
+							"        if (res.code!=200) {",
+							"            console.log(index, res.stream.toString());",
+							"            failedCount++",
+							"        }else{",
+							"            count++",
+							"        }",
+							"    });",
+							"});",
+							"",
+							"// Wait for API calls finish.",
+							"var interval = setInterval(function(){",
+							"    if(count+failedCount == data.length){",
+							"        clearInterval(interval);",
+							"        console.log(count +\" rows imported\");",
+							"        console.log(failedCount +\" rows import failed\");",
+							"    }",
+							"}, 500);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/ping",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2b00dfd7-8f2f-4fcc-b948-8bd6b8bb83f1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6e9682e0-c48a-4d2c-b7a5-a2cf79c6357f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
