@@ -145,7 +145,7 @@ services:
         - kong-db
 
   edgex-proxy:
-    image: "edgexfoundry/docker-edgex-proxy-go:latest"
+    image: ${edgexProxy}
     container_name: edgex-proxy
     hostname: edgex-proxy
     networks:

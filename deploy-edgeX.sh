@@ -41,7 +41,7 @@ if [[ ${SECURITY_SERVICE_NEEDED} == "true" ]]; then
 
 	run_service vault
 
-	run_service vault_worker
+	run_service vault-worker
 
 	run_service kong-db
 
@@ -49,7 +49,7 @@ if [[ ${SECURITY_SERVICE_NEEDED} == "true" ]]; then
 
 	run_service kong
 
-	run edgex-proxy
+	run_service edgex-proxy
 fi
 
 run_service mongo
