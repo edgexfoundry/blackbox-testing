@@ -287,7 +287,7 @@ services:
     - consul-config:/consul/config
     - consul-data:/consul/data
     depends_on:
-    - metadata
+      - logging
 
   export-client:
     image: ${exportClient}

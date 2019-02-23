@@ -1,0 +1,125 @@
+[
+  {
+    "responseTime": 800,
+    "ApplicationJsonContentType": "application/json",
+    "TextPlainContentType": "text/plain",
+    "start": "1464039919104",
+    "end": "1464039919109",
+    "schema": {
+      "type": "array",
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "description": "meta data around anything that needs to be scheduled (one time, frequently with start and end, or on a CRON defined period).",
+      "title": "interval",
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": false,
+          "title": "id"
+        },
+        "created": {
+          "type": "integer",
+          "required": false,
+          "title": "created"
+        },
+        "modified": {
+          "type": "integer",
+          "required": false,
+          "title": "modified"
+        },
+        "origin": {
+          "type": "integer",
+          "required": false,
+          "title": "origin"
+        },
+        "name": {
+          "type": "string",
+          "required": false,
+          "title": "name"
+        },
+        "start": {
+          "type": "string",
+          "required": false,
+          "title": "start"
+        },
+        "end": {
+          "type": "string",
+          "required": false,
+          "title": "end"
+        },
+        "frequency": {
+          "type": "string",
+          "required": false,
+          "title": "frequency"
+        },
+        "cron": {
+          "type": "string",
+          "required": false,
+          "title": "cron"
+        },
+        "runOnce": {
+          "type": "boolean",
+          "required": false,
+          "title": "runOnce"
+        }
+      }
+    },
+    "objectSchema": {
+      "type": "object",
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "description": "meta data around anything that needs to be scheduled (one time, frequently with start and end, or on a CRON defined period).",
+      "title": "interval",
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": false,
+          "title": "id"
+        },
+        "created": {
+          "type": "integer",
+          "required": false,
+          "title": "created"
+        },
+        "modified": {
+          "type": "integer",
+          "required": false,
+          "title": "modified"
+        },
+        "origin": {
+          "type": "integer",
+          "required": false,
+          "title": "origin"
+        },
+        "name": {
+          "type": "string",
+          "required": false,
+          "title": "name"
+        },
+        "start": {
+          "type": "string",
+          "required": false,
+          "title": "start"
+        },
+        "end": {
+          "type": "string",
+          "required": false,
+          "title": "end"
+        },
+        "frequency": {
+          "type": "string",
+          "required": false,
+          "title": "frequency"
+        },
+        "cron": {
+          "type": "string",
+          "required": false,
+          "title": "cron"
+        },
+        "runOnce": {
+          "type": "boolean",
+          "required": false,
+          "title": "runOnce"
+        }
+      }
+    }
+  }
+]

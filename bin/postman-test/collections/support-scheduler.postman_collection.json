@@ -1,0 +1,1081 @@
+{
+	"info": {
+		"_postman_id": "3f688e68-18fc-4f8f-87f2-4b5b9130dba5",
+		"name": "support-scheduler",
+		"description": "support-scheduler blackbox tests with pre-req scripts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "interval",
+			"item": [
+				{
+					"name": "350 http://localhost:48085/api/v1/interval",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "852c1b3b-95f5-4803-a0f2-1d604715b866",
+								"exec": [
+									"/*",
+									" * Test Case:  /interval - GET",
+									" * Version: Alpha",
+									" * @Author: Eric Cotter",
+									" *",
+									" */",
+									"",
+									"var schema = pm.globals.get(\"intervalSchema\").array;",
+									"",
+									"//Test Case for status : 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"",
+									"if(responseCode.code === 200) {",
+									"    //Test content type should present in header",
+									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"    ",
+									"    if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"    }",
+									"    ",
+									"    //Test body parameters",
+									"    var actualIntervalData;",
+									"    try{",
+									"        //Parse json response",
+									"        actualIntervalData = JSON.parse(responseBody);",
+									"    }catch(e) {",
+									"        console.log(\"Exception while parsing json response\");",
+									"    }",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/interval",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"interval"
+							]
+						},
+						"description": "Get all interval(s)"
+					},
+					"response": []
+				},
+				{
+					"name": "351 http://localhost:48085/api/v1/interval/:id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1f6037b5-e79b-439a-9708-15f2426e1b96",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"        \"name\": \"eightAM\",",
+									"        \"start\": \"20180101T000000\",",
+									"        \"frequency\": \"P1D\"",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/interval',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"intervalGetRequestId\", res.stream.toString());",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e4acd019-eb06-4fe6-ad10-8c56ca40f8b4",
+								"exec": [
+									"/*",
+									" * Test Case:  /interval/id - GET",
+									" * Version: Alpha",
+									" * @Author: Eric Cotter",
+									" *",
+									" */",
+									"",
+									"//Test Case for status : 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"",
+									"if(responseCode.code === 200) {",
+									"    //Test content type should present in header",
+									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"    ",
+									"    if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"    }",
+									"    ",
+									"    //Test body parameters",
+									"    var actualEventData;",
+									"    try{",
+									"        //Parse json response",
+									"        actualEventData = JSON.parse(responseBody);",
+									"    }catch(e) {",
+									"        console.log(\"Exception while parsing json response\");",
+									"    }",
+									"    if(actualEventData !== null) {",
+									"        //Test response schema",
+									"        tests[\"Is Valid Response Schema\"] = tv4.validate(actualEventData, data.objectSchema);",
+									"        console.log(\"Validation failed: \", tv4.error);",
+									"    } else {",
+									"        console.log(\"Event is empty.\");",
+									"        tests[\"Is Event empty\"] = actualEventData.length === 0;",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/interval/{{intervalGetRequestId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"interval",
+								"{{intervalGetRequestId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "352 http://localhost:48085/api/v1/interval",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "89905437-bd98-42fa-a4ef-c8531b71a706",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data ={",
+									"            \"name\": \"tenAM\",",
+									"            \"start\": \"20180101T000000\",",
+									"            \"frequency\": \"P1D\"",
+									"        };",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/interval',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"intervalPutId\", res.stream.toString());",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f8f7462d-1552-45e1-b997-3277012fed5b",
+								"exec": [
+									"/*",
+									" * Test Case:  /interval - PUT",
+									" * Version: Alpha",
+									" * @Author: Eric Cotter",
+									" *",
+									" */",
+									"",
+									"//If request success with response code is 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//Test Response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"",
+									"if(responseCode.code === 200) {",
+									"    //Test Content type in header",
+									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"    ",
+									"    if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"    }",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if(jsonData.length !== 0){",
+									"            tests[\"Body has True\"] = responseBody === \"true\";",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"{{intervalPutId}}\",\n    \"name\": \"tenAM\",\n    \"start\": \"20180101T000000\",\n    \"frequency\": \"P1D\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/interval",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"interval"
+							]
+						},
+						"description": "Update the inteval data"
+					},
+					"response": []
+				},
+				{
+					"name": "353 http://localhost:/48085/api/v1/interval",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "15416bec-d50c-49d9-9eed-b95a2d1c6c00",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"        \"name\": \"elevenAM\",",
+									"        \"start\": \"20180101T000000\",",
+									"        \"frequency\": \"P1D\"",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/interval',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"intervalDeleteId\", res.stream.toString());",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "8fe9de31-b587-4ae7-9e9e-b84ca8f7eeda",
+								"exec": [
+									"/*",
+									" * Test Case:  /interval/id - DELETE",
+									" * Version: Alpha",
+									" * @Author: Eric Cotter",
+									" *",
+									" */",
+									"",
+									"//If request success with response code is 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//Test Response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"",
+									"if(responseCode.code === 200) {",
+									"    //Test Content type in header",
+									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"    ",
+									"    if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"    }",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if(jsonData.length !== 0){",
+									"        tests[\"Body has True\"] = responseBody === \"true\";",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/interval/{{intervalDeleteId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"interval",
+								"{{intervalDeleteId}}"
+							]
+						},
+						"description": "Delete an existing interval"
+					},
+					"response": []
+				},
+				{
+					"name": "354 http://localhost:48085/api/v1/interval",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3a51a3b9-e1cd-47da-862d-996caf0ced51",
+								"exec": [
+									"/*",
+									" * Test Case:  /intervalt - POST",
+									" * Version: Alpha",
+									" * @Author: Eric Cotter",
+									" *",
+									" */",
+									" ",
+									"//Test Case for status : 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//Test response time ",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"if(responseCode.code === 200) {",
+									"    //Test content type should present in header",
+									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"    ",
+									"    if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"afternoon\",\n    \"start\": \"20180101T000000\",\n    \"frequency\": \"P1D\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/interval",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"interval"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "folder for the support-scheduler interval",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1172412d-12ab-4360-961f-9f241a4f05ef",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "b3ed55df-59b1-427b-bc89-5e4d18ad58d8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "intervalAction",
+			"item": [
+				{
+					"name": "360 http://localhost:48085/api/v1/intervalaction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "46355ae1-033a-4203-bbae-4788cfe3f411",
+								"exec": [
+									"/*",
+									" * Test Case:  /interval - GET",
+									" * Version: Alpha",
+									" * @Author: Eric Cotter",
+									" *",
+									" */",
+									"",
+									"var schema = pm.globals.get(\"intervalActionSchema\").array;",
+									"",
+									"//Test Case for status : 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"",
+									"if(responseCode.code === 200) {",
+									"    //Test content type should present in header",
+									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"    ",
+									"    if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"    }",
+									"    ",
+									"    //Test body parameters",
+									"    var actualIntervalData;",
+									"    try{",
+									"        //Parse json response",
+									"        actualIntervalData = JSON.parse(responseBody);",
+									"    }catch(e) {",
+									"        console.log(\"Exception while parsing json response\");",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/intervalaction",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"intervalaction"
+							]
+						},
+						"description": "get all interva action(s)"
+					},
+					"response": []
+				},
+				{
+					"name": "361 http://localhost:48085/api/v1/intervalaction/:id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d6a2d1e2-109d-426b-b757-03de01bfe1c0",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"        \"name\": \"test-get-action\",",
+									"        \"interval\": \"eightAM\",",
+									"        \"target\": \"core-data\",",
+									"        \"protocol\": \"http\",",
+									"        \"httpMethod\": \"DELETE\",",
+									"        \"address\": \"localhost\",",
+									"        \"port\": 48080",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/intervalaction',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"intervalActionGetRequestId\", res.stream.toString());",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "7daa8134-d2c0-48c1-a797-1e52be71b748",
+								"exec": [
+									"/*",
+									" * Test Case:  /intervalaction/id - GET",
+									" * Version: Alpha",
+									" * @Author: Eric Cotter",
+									" *",
+									" */",
+									"",
+									"//Test Case for status : 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"",
+									"if(responseCode.code === 200) {",
+									"    //Test content type should present in header",
+									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"    ",
+									"    if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"    }",
+									"    ",
+									"    //Test body parameters",
+									"    var actualEventData;",
+									"    try{",
+									"        //Parse json response",
+									"        actualEventData = JSON.parse(responseBody);",
+									"    }catch(e) {",
+									"        console.log(\"Exception while parsing json response\");",
+									"    }",
+									"    if(actualEventData !== null) {",
+									"        //Test response schema",
+									"        tests[\"Is Valid Response Schema\"] = tv4.validate(actualEventData, data.objectSchema);",
+									"        console.log(\"Validation failed: \", tv4.error);",
+									"    } else {",
+									"        console.log(\"Event is empty.\");",
+									"        tests[\"Is Event empty\"] = actualEventData.length === 0;",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/intervalaction/{{intervalActionGetRequestId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"intervalaction",
+								"{{intervalActionGetRequestId}}"
+							]
+						},
+						"description": "get interval action based on id"
+					},
+					"response": []
+				},
+				{
+					"name": "362 http://localhost:48085/api/v1/intervalaction",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "aa0c1964-ea95-485d-86f5-968c7800eb07",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data ={",
+									"            \"name\": \"test-put-actions\",",
+									"            \"interval\": \"eightAM\",",
+									"            \"target\": \"core-data\",",
+									"            \"protocol\": \"http\",",
+									"            \"httpMethod\": \"DELETE\",",
+									"            \"address\": \"localhost\",",
+									"            \"port\": 48080",
+									"        };",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/intervalaction',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"intervalActionPutId\", res.stream.toString());",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "652c3e70-2759-45f0-aab7-3005266f97e9",
+								"exec": [
+									"/*",
+									" * Test Case:  /intervalaction - PUT",
+									" * Version: Alpha",
+									" * @Author: Eric Cotter",
+									" *",
+									" */",
+									"",
+									"//If request success with response code is 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//Test Response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"",
+									"if(responseCode.code === 200) {",
+									"    //Test Content type in header",
+									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"    ",
+									"    if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"    }",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if(jsonData.length !== 0){",
+									"            tests[\"Body has True\"] = responseBody === \"true\";",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"{{intervalActionPutId}}\",\n    \"name\": \"test-put-actions\",\n    \"interval\": \"eightAM\",\n    \"target\": \"core-data\",\n    \"protocol\": \"http\",\n    \"httpMethod\": \"DELETE\",\n    \"address\": \"localhost\",\n    \"port\": 48080\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/intervalaction",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"intervalaction"
+							]
+						},
+						"description": "PUT  Update an existing interval action"
+					},
+					"response": []
+				},
+				{
+					"name": "363 http://localhost:48085/api/v1/intervalation",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a604d882-bd3a-4876-8ab7-8dc318c76b87",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"var data = {",
+									"    \"name\": \"test-delete-action\",",
+									"    \"interval\": \"eightAM\",",
+									"    \"target\": \"core-data\",",
+									"    \"protocol\": \"http\",",
+									"    \"httpMethod\": \"DELETE\",",
+									"    \"address\": \"localhost\",",
+									"    \"port\": 48080",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/intervalaction',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    pm.environment.set(\"intervalActionDeleteId\", res.stream.toString());",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "cbc83436-c842-4d8c-8e5c-baa75136c878",
+								"exec": [
+									"/*",
+									" * Test Case:  /intervalaction/id - DELETE",
+									" * Version: Alpha",
+									" * @Author: Eric Cotter",
+									" *",
+									" */",
+									"",
+									"//If request success with response code is 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//Test Response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"",
+									"if(responseCode.code === 200) {",
+									"    //Test Content type in header",
+									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"    ",
+									"    if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"    }",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if(jsonData.length !== 0){",
+									"        tests[\"Body has True\"] = responseBody === \"true\";",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/intervalaction/{{intervalActionDeleteId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"intervalaction",
+								"{{intervalActionDeleteId}}"
+							]
+						},
+						"description": "DELETE intervalaction "
+					},
+					"response": []
+				},
+				{
+					"name": "364 http://localhsot:48085/api/v1/intervalaction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1c0f62a8-1d7b-477c-b083-1a5e4df46bcf",
+								"exec": [
+									"/*",
+									" * Test Case:  /intervalt - POST",
+									" * Version: Alpha",
+									" * @Author: Eric Cotter",
+									" *",
+									" */",
+									" ",
+									"//Test Case for status : 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//Test response time ",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"if(responseCode.code === 200) {",
+									"    //Test content type should present in header",
+									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"    ",
+									"    if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n            \"name\": \"test-post-action\",\n            \"interval\": \"eightAM\",\n            \"target\": \"core-data\",\n            \"protocol\": \"http\",\n            \"httpMethod\": \"DELETE\",\n            \"address\": \"localhost\",\n            \"port\": 48080\n        }"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/intervalaction",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"intervalaction"
+							]
+						},
+						"description": "POST a new interval action"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c22fded8-b675-4812-9076-5510600ab090",
+				"type": "text/javascript",
+				"exec": [
+					"var intervalSchema = {};",
+					"var intervalActionSchema = {};",
+					"",
+					" intervalSchema.object =  {",
+					"      \"type\": \"object\",",
+					"      \"$schema\": \"http://json-schema.org/draft-03/schema#\",",
+					"      \"description\": \"meta data around anything that needs to be scheduled (one time, frequently with start and end, or on a CRON defined period).\",",
+					"      \"title\": \"interval\",",
+					"      \"properties\": {",
+					"        \"id\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"id\"",
+					"        },",
+					"        \"created\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"created\"",
+					"        },",
+					"        \"modified\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"modified\"",
+					"        },",
+					"        \"origin\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"origin\"",
+					"        },",
+					"        \"name\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"name\"",
+					"        },",
+					"        \"start\": {",
+					"          \"type\": [\"integer\",\"null\"],",
+					"          \"required\": false,",
+					"          \"title\": \"start\"",
+					"        },",
+					"        \"end\": {",
+					"          \"type\": [\"integer\",\"null\"],",
+					"          \"required\": false,",
+					"          \"title\": \"end\"",
+					"        },",
+					"        \"frequency\": {",
+					"          \"type\": [\"string\",\"null\"],",
+					"          \"required\": false,",
+					"          \"title\": \"frequency\"",
+					"        },",
+					"        \"cron\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"cron\"",
+					"        },",
+					"        \"runOnce\": {",
+					"          \"type\": \"boolean\",",
+					"          \"required\": false,",
+					"          \"title\": \"runOnce\"",
+					"        }",
+					"      }",
+					"    };",
+					"    ",
+					"    intervalSchema.array = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"The array of interval\",",
+					"        \"type\": \"array\",",
+					"        \"items\": {",
+					"          \"$ref\": \"#/definitions/interval\"",
+					"        },",
+					"        \"definitions\": {",
+					"          \"interval\": intervalSchema.object",
+					"        }",
+					"      };",
+					"      ",
+					"intervalActionSchema.object =  {",
+					"  \"type\": \"object\",",
+					"  \"$schema\": \"http://json-schema.org/draft-03/schema#\",",
+					"  \"description\": \"a scheduled interval action (what were doing and on what endpoint with what server)\",",
+					"  \"title\": \"interval\",",
+					"  \"properties\": {",
+					"    \"id\": {",
+					"      \"type\": \"string\",",
+					"      \"required\": false,",
+					"      \"title\": \"id\"",
+					"    },",
+					"    \"created\": {",
+					"      \"type\": \"integer\",",
+					"      \"required\": false,",
+					"      \"title\": \"created\"",
+					"    },",
+					"    \"modified\": {",
+					"      \"type\": \"integer\",",
+					"      \"required\": false,",
+					"      \"title\": \"modified\"",
+					"    },",
+					"    \"origin\": {",
+					"      \"type\": \"integer\",",
+					"      \"required\": false,",
+					"      \"title\": \"origin\"",
+					"    },",
+					"    \"name\": {",
+					"      \"type\": \"string\",",
+					"      \"required\": false,",
+					"      \"title\": \"name\"",
+					"    },",
+					"    \"interval\": {",
+					"      \"type\": \"string\",",
+					"      \"required\": false,",
+					"      \"title\": \"action\"",
+					"    },",
+					"    \"parameters\": {",
+					"      \"type\": \"string\",",
+					"      \"required\": false,",
+					"      \"title\": \"parameters\"",
+					"    },",
+					"    \"target\": {",
+					"      \"type\": \"string\",",
+					"      \"required\": false,",
+					"      \"title\": \"schedule\"",
+					"    },",
+					"    \"protocol\": {",
+					"      \"type\": \"string\",",
+					"      \"required\": false,",
+					"      \"title\": \"protocol\"",
+					"    },",
+					"    \"httpMethod\": {",
+					"      \"type\": \"string\",",
+					"      \"required\": false,",
+					"      \"title\": \"httpMethod\"",
+					"    },",
+					"    \"address\": {",
+					"      \"type\": \"string\",",
+					"      \"required\": false,",
+					"      \"title\": \"address\"",
+					"    },",
+					"    \"port\": {",
+					"      \"type\": \"integer\",",
+					"      \"required\": false,",
+					"      \"title\": \"port\"",
+					"    },",
+					"    \"path\": {",
+					"      \"type\": \"string\",",
+					"      \"required\": false,",
+					"      \"title\": \"path\"",
+					"    },",
+					"    \"publisher\": {",
+					"      \"type\": \"string\",",
+					"      \"required\": false,",
+					"      \"title\": \"publisher\"",
+					"    },",
+					"    \"user\": {",
+					"      \"type\": \"string\",",
+					"      \"required\": false,",
+					"      \"title\": \"user\"",
+					"    },",
+					"    \"password\": {",
+					"      \"type\": \"string\",",
+					"      \"required\": false,",
+					"      \"title\": \"password\"",
+					"    },",
+					"    \"topic\": {",
+					"      \"type\": \"string\",",
+					"      \"required\": false,",
+					"      \"title\": \"topic\"",
+					"    }",
+					"  }",
+					"};",
+					"",
+					"    intervalActionSchema.array = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"The array of interval action\",",
+					"        \"type\": \"array\",",
+					"        \"items\": {",
+					"          \"$ref\": \"#/definitions/intervalaction\"",
+					"        },",
+					"        \"definitions\": {",
+					"          \"interval\": intervalActionSchema.object",
+					"        }",
+					"      };",
+					"      ",
+					"pm.globals.set(\"intervalSchema\", intervalSchema);",
+					"pm.globals.set(\"intervalActionSchema\", intervalActionSchema);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "0eee4b29-ce90-4959-a185-b1a84c480c24",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
