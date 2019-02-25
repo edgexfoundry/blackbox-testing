@@ -1,0 +1,1093 @@
+{
+	"info": {
+		"_postman_id": "e082c0e5-5e0e-4de9-8dd4-a07a87f796f9",
+		"name": "security-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "secretstore",
+			"description": null,
+			"item": [
+				{
+					"name": "01 health check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "830d8657-5488-4946-82c7-3446d4c10b83",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /services - GET",
+									" * Version: Alpha",
+									" * @Author: Tingyu Zeng",
+									" * ",
+									" **/",
+									" ",
+									" tests[\"Secret store health check\"] = responseCode.code === 200;",
+									" ",
+									" if(responseCode.code === 200){",
+									"       var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"       tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"       if (contentTypeHeaderExists) {",
+									"       tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"       }",
+									"        if(responseBody.length!== 0){",
+									"            obj = JSON.parse(responseBody)",
+									"            tests[\"Vault is inited\"] = obj.initialized === true;",
+									"            tests[\"Vault is unsealed\"] = obj.sealed == false;",
+									"        }",
+									"    }"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:8200/v1/sys/health",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"v1",
+								"sys",
+								"health"
+							]
+						},
+						"description": "Test service providing an indication that the service is available."
+					},
+					"response": []
+				},
+				{
+					"name": "02 mising vault keytest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b896f9ea-3e55-42cc-aa48-ef6d46ce4426",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /services - GET",
+									" * Version: Alpha",
+									" * @Author: Tingyu Zeng",
+									" * ",
+									" **/",
+									" ",
+									" tests[\"Missing secret store access check\"] = responseCode.code === 400;",
+									" ",
+									"  ",
+									" if(responseCode.code === 400){",
+									"       var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"       tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"       if (contentTypeHeaderExists) {",
+									"       tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"       }",
+									"        if(responseBody.length!== 0){",
+									"            obj = JSON.parse(responseBody)",
+									"            tests[\"Missing token error\"] = obj.errors == \"missing client token\";",
+									"            ",
+									"        }",
+									"    }"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:8200/v1/sys/key-status",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"v1",
+								"sys",
+								"key-status"
+							]
+						},
+						"description": "Test service providing an indication that the service is available."
+					},
+					"response": []
+				},
+				{
+					"name": "03 unauthorized vault key test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3d9c1ea2-fa77-4fa3-9cf7-1bac98b75adb",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /services - GET",
+									" * Version: Alpha",
+									" * @Author: Tingyu Zeng",
+									" * ",
+									" **/",
+									" ",
+									" tests[\"Unauthorized secret store access check\"] = responseCode.code === 403;",
+									" ",
+									" if(responseCode.code === 403){",
+									"       var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"       tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"       if (contentTypeHeaderExists) {",
+									"       tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"       }",
+									"        if(responseBody.length!== 0){",
+									"            obj = JSON.parse(responseBody)",
+									"            tests[\"Permission denied test\"] = obj.errors == \"permission denied\";",
+									"            ",
+									"        }",
+									"    }"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Vault-Token",
+								"value": "faked"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:8200/v1/sys/key-status",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"v1",
+								"sys",
+								"key-status"
+							]
+						},
+						"description": "Test service providing an indication that the service is available."
+					},
+					"response": []
+				},
+				{
+					"name": "04 valid vault key test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ce7f05aa-7808-4890-88c7-f10f06d94848",
+								"type": "text/javascript",
+								"exec": [
+									" /**",
+									" * Test Case:  /services - GET",
+									" * Version: Alpha",
+									" * @Author: Tingyu Zeng",
+									" * ",
+									" **/",
+									" ",
+									" tests[\"Unauthorized secret store access check\"] = responseCode.code === 200;",
+									" ",
+									" if(responseCode.code === 200){",
+									"       var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"       tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"       if (contentTypeHeaderExists) {",
+									"       tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"       }",
+									"        if(responseBody.length!== 0){",
+									"            obj = JSON.parse(responseBody)",
+									"            tests[\"vault key term test\"] = obj.term == 1;",
+									"            ",
+									"        }",
+									"    }"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Vault-Token",
+								"value": "{{rootKey}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:8200/v1/sys/key-status",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"v1",
+								"sys",
+								"key-status"
+							]
+						},
+						"description": "Test service providing an indication that the service is available."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "apigateway",
+			"description": null,
+			"item": [
+				{
+					"name": "Health Check",
+					"description": null,
+					"item": [
+						{
+							"name": "01 port 8000 missing token test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "56354e32-2ac1-4253-9a61-26313a54e395",
+										"type": "text/javascript",
+										"exec": [
+											" /**",
+											" * Test Case:  /services - GET",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" * ",
+											" **/",
+											" ",
+											" tests[\"Port 8000 with missing token test\"] = responseCode.code === 401;"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "host",
+										"value": "edgex.com"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8000/coredata/api/v1/ping",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"coredata",
+										"api",
+										"v1",
+										"ping"
+									]
+								},
+								"description": "Test service providing an indication that the service is available."
+							},
+							"response": []
+						},
+						{
+							"name": "02 port 8001 admin port test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e1a59e02-1650-4254-9c2a-f1ff6fa8de92",
+										"type": "text/javascript",
+										"exec": [
+											" /**",
+											" * Test Case:  /routes - GET",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" * ",
+											" **/",
+											" ",
+											" tests[\"Port 8001 served\"] = responseCode.code === 200;",
+											" if(responseCode.code === 200){",
+											"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+											"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+											"        if (contentTypeHeaderExists) {",
+											"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+											"        }",
+											"    }"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "host",
+										"value": "edgex.com"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8001/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										""
+									]
+								},
+								"description": "Test service providing an indication that the service is available."
+							},
+							"response": []
+						},
+						{
+							"name": "03 port 8443 non-existing path test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4bf33d6e-3580-495d-8025-1b6aac8ac4bf",
+										"type": "text/javascript",
+										"exec": [
+											" /**",
+											" * Test Case:  /routes - GET",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" * ",
+											" **/",
+											" ",
+											" tests[\"Port 8443 not served\"] = responseCode.code === 404;",
+											" "
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "host",
+										"value": "edgex.com"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://localhost:8443/",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										""
+									]
+								},
+								"description": "Test service providing an indication that the service is available."
+							},
+							"response": []
+						},
+						{
+							"name": "04 port 8443 SSL missing token test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d00b2d72-d5d2-4f3d-bcc7-dc0a1f0e811a",
+										"type": "text/javascript",
+										"exec": [
+											" /**",
+											" * Test Case:  /routes - GET",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" * ",
+											" **/",
+											" ",
+											" tests[\"Port 8443 with missing token test\"] = responseCode.code === 401;",
+											" "
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "host",
+										"value": "edgex.com"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://localhost:8443/coredata/api/v1/ping",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"coredata",
+										"api",
+										"v1",
+										"ping"
+									]
+								},
+								"description": "Test service providing an indication that the service is available."
+							},
+							"response": []
+						},
+						{
+							"name": "05 port 8444 SSL admin port test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3c312a45-7d5f-4d5e-ad0f-ecf0749e275f",
+										"type": "text/javascript",
+										"exec": [
+											" /**",
+											" * Test Case:  /routes - GET",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" * ",
+											" **/",
+											" ",
+											" tests[\"Port 8444 served\"] = responseCode.code === 200;",
+											" if(responseCode.code === 200){",
+											"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+											"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+											"        if (contentTypeHeaderExists) {",
+											"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+											"        }",
+											"    }"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "host",
+										"value": "edgex.com"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://localhost:8444/",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8444",
+									"path": [
+										""
+									]
+								},
+								"description": "Test service providing an indication that the service is available."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Proxy Check",
+					"description": null,
+					"item": [
+						{
+							"name": "01 Unauthorized token proxy access test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7dc7bbce-e60b-4988-8e2a-46b3986ad64e",
+										"type": "text/javascript",
+										"exec": [
+											" /**",
+											" * Test Case:  /services - GET",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" * ",
+											" **/",
+											" ",
+											" tests[\"Unauthorized Access Failure\"] = responseCode.code === 401;",
+											" "
+										]
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "host",
+										"value": "edgex.com"
+									},
+									{
+										"key": "",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://localhost:8443/coredata/api/v1/ping",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"coredata",
+										"api",
+										"v1",
+										"ping"
+									]
+								},
+								"description": "Test service providing an indication that the service is available."
+							},
+							"response": []
+						},
+						{
+							"name": "02 valid token proxy access test coredata",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "cd28dbc8-e7fa-48ee-a951-899984547683",
+										"type": "text/javascript",
+										"exec": [
+											" /**",
+											" * Test Case:  /services - GET",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" * ",
+											" **/",
+											" ",
+											" tests[\"Ping success\"] = responseCode.code === 200;",
+											" if(responseCode.code === 200){",
+											"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+											"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+											"        if (contentTypeHeaderExists) {",
+											"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+											"        }",
+											"        if(responseBody.length!== 0){",
+											"           tests[\"Body is correct\"] = responseBody === \"pong\";",
+											"        }",
+											"    }"
+										]
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "host",
+										"value": "edgex.com"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://localhost:8443/coredata/api/v1/ping",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"coredata",
+										"api",
+										"v1",
+										"ping"
+									]
+								},
+								"description": "Test service providing an indication that the service is available."
+							},
+							"response": []
+						},
+						{
+							"name": "03 invalid token proxy access test metadata - OauthToken test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "2931833d-6335-4b99-9179-115b53179fec",
+										"type": "text/javascript",
+										"exec": [
+											" /**",
+											" * Test Case:  /services - GET",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" * ",
+											" **/",
+											" // execute this test case when Oauth2 authentication is configured - currently Oauth2 is by defult on apigateway",
+											" tests[\"Unauthorized token access failure test\"] = responseCode.code === 401;",
+											" "
+										]
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "host",
+										"value": "edgex.com"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://localhost:8443/metadata/api/v1/ping",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"metadata",
+										"api",
+										"v1",
+										"ping"
+									]
+								},
+								"description": "Test service providing an indication that the service is available."
+							},
+							"response": []
+						},
+						{
+							"name": "04 reading error test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f7692439-548e-4d86-aa0b-97993f1994df",
+										"type": "text/javascript",
+										"exec": [
+											"//Assert 404 status if the reading cannot be found by id",
+											"tests[\"Status code is 404\"] = responseCode.code === 404;",
+											"",
+											"",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "host",
+										"value": "edgex.com"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"57e866d4e4b0ca8e6d73a412\",\n    \"created\": 1475227070170,\n    \"modified\": 1475227070170,\n    \"origin\": 1471806366619,\n    \"pushed\": 0,\n    \"name\": \"co2\",\n    \"value\": \"12\"\n}"
+								},
+								"url": {
+									"raw": "https://localhost:8443/coredata/api/v1/reading",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"coredata",
+										"api",
+										"v1",
+										"reading"
+									]
+								},
+								"description": "Update the reading.  Reading object needs to contain the database generated id of the existing reading. NotFoundException (HTTP 404) if the reading cannot be found by id. ServiceException (HTTP 503) for unknown or unanticipated issues. DataValidationException if the associated value descriptor is non-existent."
+							},
+							"response": []
+						},
+						{
+							"name": "05 POST reading test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "63988798-3e23-4156-905a-ebf6e8b39ca3",
+										"type": "text/javascript",
+										"exec": [
+											"/*",
+											" * Test Case:  /api/v1/reading - POST",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" *",
+											" */",
+											"tests[\"Status code is 200\"] = responseCode.code === 200;",
+											"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+											"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+											"if (contentTypeHeaderExists) {",
+											"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+											"}",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "host",
+										"value": "edgex.com"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"origin\":1471806366619,\"name\":\"co2\",\"value\":\"12\"}"
+								},
+								"url": {
+									"raw": "https://localhost:8443/coredata/api/v1/reading",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"coredata",
+										"api",
+										"v1",
+										"reading"
+									]
+								},
+								"description": "Add a new reading. ServiceException (HTTP 503) for unknown or unanticipated issues. DataValidationException (HTTP 409) if the associated value descriptor is non-existent."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "44f085b0-a56c-430d-b010-e3203e79f6f9",
+				"type": "text/javascript",
+				"exec": [
+					"var eventSchema = {};",
+					"var readingSchema = {};",
+					"var valueDescriptorSchema = {};",
+					"",
+					"eventSchema.object = {",
+					"      \"type\": \"object\",",
+					"      \"$schema\": \"http://json-schema.org/draft-03/schema#\",",
+					"      \"description\": \"EdgeXCore device/sensorevent\",",
+					"      \"title\": \"event\",",
+					"      \"properties\": {",
+					"        \"id\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"id\"",
+					"        },",
+					"        \"created\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"created\"",
+					"        },",
+					"        \"modified\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"modified\"",
+					"        },",
+					"        \"origin\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"origin\"",
+					"        },",
+					"        \"pushed\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"pushed\"",
+					"        },",
+					"        \"device\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"device\"",
+					"        },",
+					"        \"readings\": {",
+					"          \"type\": \"array\",",
+					"          \"required\": false,",
+					"          \"title\": \"readings\",",
+					"          \"items\": {",
+					"            \"type\": \"object\",",
+					"            \"$ref\": \"#/schemas/reading\"",
+					"          },",
+					"          \"uniqueItems\": false",
+					"        }",
+					"      }",
+					"    };",
+					"eventSchema.array = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"The array of event\",",
+					"        \"type\": \"array\",",
+					"        \"items\": {",
+					"          \"$ref\": \"#/definitions/event\"",
+					"        },",
+					"        \"definitions\": {",
+					"          \"event\": eventSchema.object",
+					"        }",
+					"      };",
+					"      ",
+					"readingSchema.object = {",
+					"      \"type\": \"object\",",
+					"      \"$schema\": \"http://json-schema.org/draft-03/schema#\",",
+					"      \"description\": \"EdgeX Core device/sensor reading\",",
+					"      \"title\": \"reading\",",
+					"      \"properties\": {",
+					"        \"id\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"id\"",
+					"        },",
+					"        \"created\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"created\"",
+					"        },",
+					"        \"modified\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"modified\"",
+					"        },",
+					"        \"origin\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"origin\"",
+					"        },",
+					"        \"pushed\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"pushed\"",
+					"        },",
+					"        \"name\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"name\"",
+					"        },",
+					"        \"value\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"value\"",
+					"        }",
+					"      }",
+					"    };",
+					"readingSchema.array = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"The array of reading\",",
+					"        \"type\": \"array\",",
+					"        \"items\": {",
+					"          \"$ref\": \"#/definitions/reading\"",
+					"        },",
+					"        \"definitions\": {",
+					"          \"reading\": readingSchema.object",
+					"        }",
+					"      };",
+					"",
+					"valueDescriptorSchema.object = {",
+					"      \"type\": \"object\",",
+					"      \"$schema\": \"http://json-schema.org/draft-03/schema#\",",
+					"      \"description\": \"EdgeX Core and MetaData value descriptor -describes device/sensor data sent and received\",",
+					"      \"title\": \"valueDescriptor\",",
+					"      \"properties\": {",
+					"        \"id\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"id\"",
+					"        },",
+					"        \"created\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"created\"",
+					"        },",
+					"        \"modified\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"modified\"",
+					"        },",
+					"        \"origin\": {",
+					"          \"type\": \"integer\",",
+					"          \"required\": false,",
+					"          \"title\": \"origin\"",
+					"        },",
+					"        \"name\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"name\"",
+					"        },",
+					"        \"min\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"min\"",
+					"        },",
+					"        \"max\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"max\"",
+					"        },",
+					"        \"type\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"type\"",
+					"        },",
+					"        \"uomLabel\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"uomLabel\"",
+					"        },",
+					"        \"defaultValue\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"defaultValue\"",
+					"        },",
+					"        \"formatting\": {",
+					"          \"type\": \"string\",",
+					"          \"required\": false,",
+					"          \"title\": \"formatting\"",
+					"        },",
+					"        \"labels\": {",
+					"          \"type\": \"array\",",
+					"          \"required\": false,",
+					"          \"title\": \"labels\",",
+					"          \"items\": {",
+					"            \"type\": \"string\",",
+					"            \"title\": \"labels\"",
+					"          },",
+					"          \"uniqueItems\": false",
+					"        }",
+					"      }",
+					"    };",
+					"valueDescriptorSchema.array = {",
+					"        \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+					"        \"title\": \"The array of valueDescriptor\",",
+					"        \"type\": \"array\",",
+					"        \"items\": {",
+					"          \"$ref\": \"#/definitions/valueDescriptor\"",
+					"        },",
+					"        \"definitions\": {",
+					"          \"valueDescriptor\": valueDescriptorSchema.object",
+					"        }",
+					"      };",
+					"    ",
+					"pm.globals.set(\"eventSchema\", eventSchema);",
+					"pm.globals.set(\"readingSchema\", readingSchema);",
+					"pm.globals.set(\"valueDescriptorSchema\", valueDescriptorSchema);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "89aed233-ddc0-44e9-b340-8832c9427a71",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

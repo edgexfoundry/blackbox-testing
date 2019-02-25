@@ -22,7 +22,7 @@
 #    echo " os =  ${OS}"
 #    . $(dirname "$0")/bin/env-win10.sh
 #else
-#   . $(dirname "$0")/bin/env.sh
+#    . $(dirname "$0")/bin/env.sh	
 #fi
 
 run_service () {
@@ -35,7 +35,7 @@ run_service consul
 
 run_service config-seed
 
-if [[ ${SECURITY_SERVICE_NEEDED} == "true" ]]; then
+if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 
 	run_service consul
 
@@ -45,9 +45,13 @@ if [[ ${SECURITY_SERVICE_NEEDED} == "true" ]]; then
 
 	run_service kong-db
 
-	run_service kong-migrations
+	run_service kong-migration
+
+	sleep 10s
 
 	run_service kong
+
+	sleep 10s
 
 	run_service edgex-proxy
 fi
