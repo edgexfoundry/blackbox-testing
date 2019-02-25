@@ -10,6 +10,7 @@ echo " ${option}"
 
 TIMESTAMPFORMAT=`date +%d-%m-%Y_%H%M%S`
 BASEPATH=$(dirname "$0")/postman-test/scriptLogs
+SECURITYLOGSPATH=$BASEPATH/securityservice$TIMESTAMPFORMAT.log
 COREDATALOGSPATH=$BASEPATH/coreData$TIMESTAMPFORMAT.log
 METADATALOGSPATH=$BASEPATH/metaData$TIMESTAMPFORMAT.log
 COMMANDLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
@@ -21,9 +22,9 @@ SUPPORT_SCHEDULER_LOG_PATH=$BASEPATH/supportScheduler$TIMESTAMPFORMAT.log
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 securityTest() {
-#	$(dirname "$0")/importSecurityserviceDump.sh
-	$(dirname "$0")/securityserviceTest.sh
-	$(dirname "$0")/flushSecurityserviceDump.sh
+	. $(dirname "$0")/setupSecurityserviceTest.sh
+	$(dirname "$0")/runSecurityserviceTest.sh
+	$(dirname "$0")/cleanSecurityserviceTest.sh
 }
 
 coreDataTest() {
