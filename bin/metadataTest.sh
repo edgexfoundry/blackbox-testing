@@ -89,25 +89,25 @@ docker-compose run --rm postman run ${COLLECTION_PATH} \
     --folder="provisionwatcher_error_4xx" --iteration-data="data/provisionWatcherData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
-echo "[info] ======================== Start run metaData test - schedule ========================"
-
-docker-compose run --rm postman run ${COLLECTION_PATH} \
-    --folder="schedule" --iteration-data="data/scheduleData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli"
-
-docker-compose run --rm postman run ${COLLECTION_PATH} \
-    --folder="schedule_error_4xx" --iteration-data="data/scheduleData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli"
-
-echo "[info] ======================== Start run metaData test - scheduleevent ========================"
-
-docker-compose run --rm postman run ${COLLECTION_PATH} \
-    --folder="scheduleevent" --iteration-data="data/scheduleEventData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli"
-
-docker-compose run --rm postman run ${COLLECTION_PATH} \
-    --folder="scheduleevent_error_4xx" --iteration-data="data/scheduleEventData.json" --environment=${ENV_PATH} \
-    --reporters="junit,cli"
+#echo "[info] ======================== Start run metaData test - schedule ========================"
+#
+#docker-compose run --rm postman run ${COLLECTION_PATH} \
+#    --folder="schedule" --iteration-data="data/scheduleData.json" --environment=${ENV_PATH} \
+#    --reporters="junit,cli"
+#
+#docker-compose run --rm postman run ${COLLECTION_PATH} \
+#    --folder="schedule_error_4xx" --iteration-data="data/scheduleData.json" --environment=${ENV_PATH} \
+#    --reporters="junit,cli"
+#
+#echo "[info] ======================== Start run metaData test - scheduleevent ========================"
+#
+#docker-compose run --rm postman run ${COLLECTION_PATH} \
+#    --folder="scheduleevent" --iteration-data="data/scheduleEventData.json" --environment=${ENV_PATH} \
+#    --reporters="junit,cli"
+#
+#docker-compose run --rm postman run ${COLLECTION_PATH} \
+#    --folder="scheduleevent_error_4xx" --iteration-data="data/scheduleEventData.json" --environment=${ENV_PATH} \
+#    --reporters="junit,cli"
 
 
 
