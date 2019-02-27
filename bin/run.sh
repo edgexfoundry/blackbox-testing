@@ -22,7 +22,7 @@ SUPPORT_SCHEDULER_LOG_PATH=$BASEPATH/supportScheduler$TIMESTAMPFORMAT.log
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 securityTest() {
-	. $(dirname "$0")/setupSecurityserviceTest.sh
+	$(dirname "$0")/setupSecurityserviceTest.sh
 	$(dirname "$0")/runSecurityserviceTest.sh
 	$(dirname "$0")/cleanSecurityserviceTest.sh
 }
@@ -95,6 +95,7 @@ testAll() {
 	exportClientTest
 	rulesengineTest
 	supportSchedulerTest
+	securityTest
 
 }
 
