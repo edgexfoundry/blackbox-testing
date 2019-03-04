@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "546f29f3-59b3-4c89-9056-c07f3ae8f64d",
+		"_postman_id": "d840e622-6231-458d-b71b-49f1c28be0f2",
 		"name": "core-metadata",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2933,100 +2933,6 @@
 					"response": []
 				},
 				{
-					"name": "53 http://localhost:48081/api/v1/device/addressable/:addressableId",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "dec9ecbc-45af-48f1-ab4a-7f83e9fb20be",
-								"exec": [
-									"/*",
-									" * Test Case:  /api/v1/device/addressable/:addressableId - GET",
-									" * Version: Alpha",
-									" * Service: Metadata",
-									" * @Author: Tata Elxsi",
-									" *",
-									" */",
-									"    tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"    tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"    if(responseCode.code === 200){",
-									"        if(responseBody.length === 0){",
-									"            tests[\"Response body Empty\"] = responseBody === null;",
-									"        } else{",
-									"            var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"            ",
-									"            tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"            ",
-									"            if (contentTypeHeaderExists) {",
-									"                tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
-									"            }",
-									"             //Test body parameters",
-									"            var actualDeviceData;",
-									"            try{",
-									"                //Parse json response",
-									"                actualDeviceData = JSON.parse(responseBody);",
-									"            }catch(e) {",
-									"                console.log(\"Exception while parsing json response\");",
-									"            }",
-									"            ",
-									"            if(actualDeviceData.length !== 0) {",
-									"             tests[\"Is Valid Response Schema\"] = tv4.validate(actualDeviceData,data.schema);",
-									"                console.log(\"Validation failed: \", tv4.error);",
-									"            } else {",
-									"                //Shows message when event list is empty",
-									"                console.log(\"Device List Empty\");",
-									"                tests[\"Is Device list empty\"] = actualDeviceData.length === 0",
-									"            }",
-									"        }",
-									"    }"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "20db1125-f0e7-4b43-ae02-45870534ac84",
-								"exec": [
-									"var baseUrl = pm.environment.get(\"baseUrl\");",
-									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/addressable/name/Nest Cam\", function (err, res) {",
-									"    if (err) {",
-									"        console.log(err);",
-									"    } else {",
-									"        pm.environment.set(\"getAddressableId\", res.json().id);",
-									"    }",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/addressable/{{getAddressableId}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"device",
-								"addressable",
-								"{{getAddressableId}}"
-							]
-						},
-						"description": "Find all devices associated to the Addressable with the specified addressable database generated identifier. List may be empty if no device match. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if no Addressable match on the id provided."
-					},
-					"response": []
-				},
-				{
 					"name": "62 http://localhost:48081/api/v1/device",
 					"event": [
 						{
@@ -3166,7 +3072,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "38475862-a05f-4cf4-a1a5-4f0509952cfa",
 								"exec": [
 									"/*",
 									" * Test Case: /api/v1/device - POST",
@@ -3190,7 +3096,8 @@
 									"    //Test body value",
 									"    tests[\"Is Body Contains Id\"] = responseBody.length === 36;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3204,7 +3111,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\" :\"AWS IOT Button\",\r\n   \"description\":\"Home automation system\",\r\n   \"adminState\":\"UNLOCKED\",\r\n   \"operatingState\":\"ENABLED\",\r\n   \"addressable\":{  \r\n      \"name\":\"canary\"\r\n   },\r\n   \"labels\":[  \r\n      \"home\",\r\n      \"hvac\",\r\n      \"thermostat\"\r\n   ],\r\n   \"location\":\"{lat:45.45,long:47.80}\",\r\n   \"responseDelay\":0,\r\n   \"service\":{  \r\n      \"name\":\"Gogle Home device service\"\r\n   },\r\n   \"profile\":{  \r\n      \"name\":\"Google Home profile\"\r\n   }\r\n}"
+							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\" :\"AWS IOT Button1\",\r\n   \"description\":\"Home automation system\",\r\n   \"adminState\":\"UNLOCKED\",\r\n   \"operatingState\":\"ENABLED\",\r\n   \"protocols\":{\r\n      \"modbus-tcp\":{\r\n         \"host\":\"localhost\",\r\n         \"port\":\"1234\",\r\n         \"unitID\":\"1\"\r\n      }\r\n   },\r\n   \"labels\":[  \r\n      \"home\",\r\n      \"hvac\",\r\n      \"thermostat\"\r\n   ],\r\n   \"location\":\"{lat:45.45,long:47.80}\",\r\n   \"responseDelay\":0,\r\n   \"service\":{  \r\n      \"name\":\"Gogle Home device service\"\r\n   },\r\n   \"profile\":{  \r\n      \"name\":\"Google Home profile\"\r\n   },\r\n   \"autoEvents\":[  \r\n      {  \r\n         \"frequency\":123,\r\n         \"onChange\":true,\r\n         \"resource\":\"CurrentHumidity\"\r\n      }\r\n   ]\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device",
@@ -3931,57 +3838,6 @@
 					"response": []
 				},
 				{
-					"name": "49_404 http://localhost:48081/api/v1/device/addressablename/:addressablename",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"    /**",
-									"     * Test Case: /api/v1/device/addressablename/:addressablename - GET",
-									"     * Version: Alpha",
-									"     * @Author: Tata Elxsi",
-									"     *",
-									"     **/",
-									"    tests[\"Status code is 404\"] = responseCode.code === 404;",
-									"    if(responseCode.code === 404){",
-									"        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"        if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-									"        }",
-									"        }"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/addressablename/{{InvalidAddressName}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"device",
-								"addressablename",
-								"{{InvalidAddressName}}"
-							]
-						},
-						"description": "Find all devices associated to the Addressable with the specified addressable name. List may be empty if no device match. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if no Addressable match on the name provided."
-					},
-					"response": []
-				},
-				{
 					"name": "52_404 http://localhost:48081/api/v1/device/profilename/:profilename",
 					"event": [
 						{
@@ -4029,57 +3885,6 @@
 							]
 						},
 						"description": "Find all devices associated to the DeviceProfile with the specified profile name. List may be empty if no device match. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if no DeviceProfile match on the name provided."
-					},
-					"response": []
-				},
-				{
-					"name": "55_404 http://localhost:48081/api/v1/device/addressable/:addressableId",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ad44da66-f556-4ecc-b860-122e5d618c70",
-								"exec": [
-									"/**",
-									"* Test Case: /api/v1/device/addressable/:addressableId - GET",
-									"* Version: Alpha",
-									"* @Author: Tata Elxsi",
-									"*",
-									"**/",
-									"tests[\"Status code is 404\"] = responseCode.code === 404;",
-									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
-									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"if (contentTypeHeaderExists) {",
-									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-									"}",
-									"// the value descriptor cannot be located by the identifier."
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/addressable/57e5fbfde4b060e2d487f244",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"device",
-								"addressable",
-								"57e5fbfde4b060e2d487f244"
-							]
-						},
-						"description": "Find all devices associated to the Addressable with the specified addressable database generated identifier. List may be empty if no device match. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if no Addressable match on the id provided."
 					},
 					"response": []
 				},
@@ -4145,12 +3950,11 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "674953e6-4b44-42ea-99cc-3346d8d20ed3",
 								"exec": [
 									"    /**",
 									"     * Test Case:  /api/v1/device - POST",
-									"     * Version: Alpha",
-									"     * @Author: Tata Elxsi",
+									"     * Associated device Profile cannot be found with the id or name provided.",
 									"     *",
 									"     **/",
 									"    tests[\"Status code is 400\"] = responseCode.code === 400;",
@@ -4161,7 +3965,8 @@
 									"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
 									"        }",
 									"           }"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -4175,7 +3980,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\":\"Amazon Tap\",\r\n   \"description\":\" Portable voice controlled speaker\",\r\n   \"adminstate\":\"UNLOCKED\",\r\n   \"operatingState\":\"ENABLED\",\r\n   \"addressable\":{  \r\n      \"name\":\"\"\r\n   },\r\n   \"labels\":[  \r\n      \"home\",\r\n      \"hvac\",\r\n      \"thermostat\"\r\n   ],\r\n   \"location\":\"{lat:45.45,long:47.80}\",\r\n   \"responseDelay\":0,\r\n   \"service\":{  \r\n      \"name\":\"home thermostat device service\"\r\n   },\r\n   \"profile\":{  \r\n      \"name\":\"thermostat profile\"\r\n   }\r\n}"
+							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\":\"Amazon Tap\",\r\n   \"description\":\" Portable voice controlled speaker\",\r\n   \"adminstate\":\"UNLOCKED\",\r\n   \"operatingState\":\"ENABLED\",\r\n   \"protocols\":{  \r\n      \"HTTP\":{  \r\n         \"host\":\"localhost\",\r\n         \"port\":\"1234\",\r\n         \"unitID\":\"1\"\r\n      }\r\n    },\r\n   \"labels\":[  \r\n      \"home\",\r\n      \"hvac\",\r\n      \"thermostat\"\r\n   ],\r\n   \"location\":\"{lat:45.45,long:47.80}\",\r\n   \"responseDelay\":0,\r\n   \"service\":{  \r\n      \"name\":\"home thermostat device service\"\r\n   },\r\n   \"profile\":{  \r\n      \"name\":\"\"\r\n   }\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device",
