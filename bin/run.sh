@@ -95,7 +95,10 @@ testAll() {
 	exportClientTest
 	rulesengineTest
 	supportSchedulerTest
-	securityTest
+
+	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
+	     securityTest
+	fi
 
 }
 
@@ -111,8 +114,8 @@ docker cp $(dirname "$0")/postman-test/. "${VOLUME_CONTAINER}":/etc/newman
 
 case ${option} in
 	-sec)
-		echo "Info: Initiating Securityservice Test"
-		securityTest | tee $SECURITYLOGSPATH
+	echo "Info: Initiating Securityservice Test"
+	securityTest | tee $SECURITYLOGSPATH
 	;;
 	-cd)
 	echo "Info: Initiating Coredata Test"
@@ -130,7 +133,7 @@ case ${option} in
 	echo "Info: Initiating Logging Test"
 	loggingTest	| tee $LOGGINGLOGSPATH
 	;;
-   	-sn)
+  	-sn)
     echo "Info: Initiating SupportNotifications Test"
 	supportNotificationTest	| tee $SUPPORT_NOTIFICATION_LOG_PATH
     ;;
@@ -151,7 +154,7 @@ case ${option} in
 	testAll		| tee $EDGEXLOGSPATH
     ;;
    	*)
-    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-exc Export Client] | [-ss SupportScheduler] | [-ru Rulesengine] | [-all All]"
+    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-exc Export Client] | [-ss SupportScheduler] | [-ru Rulesengine] | [-sec securityTest] | [-all All]"
     echo
     exit 0
     ;;
