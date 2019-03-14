@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c5292f30-766e-47f9-bd30-1310d91b5d18",
+		"_postman_id": "abd84f44-e46f-4585-9dd9-bf6ef947bfc3",
 		"name": "core-metadata-cleaner",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -485,7 +485,7 @@
 			"response": []
 		},
 		{
-			"name": "clean scheduleEvent",
+			"name": "clean intervalAction",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -502,9 +502,9 @@
 					"script": {
 						"id": "f1038d15-eba5-4afb-94aa-9f8929b28cf6",
 						"exec": [
-							"var baseUrl = pm.environment.get(\"baseUrl\");",
+							"var schedulerUrl = pm.environment.get(\"schedulerUrl\");",
 							"",
-							"pm.sendRequest(baseUrl+\"/api/v1/scheduleevent\", function (err, res) {",
+							"pm.sendRequest(schedulerUrl+\"/api/v1/intervalaction\", function (err, res) {",
 							"    removeData(res.json())",
 							"});",
 							"",
@@ -516,7 +516,7 @@
 							"    var count = 0;",
 							"    var failedCount = 0;",
 							"    data.forEach(function(item, index) { ",
-							"        request.url = baseUrl+'/api/v1/scheduleevent/id/'+item.id;",
+							"        request.url = schedulerUrl+'/api/v1/intervalaction/'+item.id;",
 							"        pm.sendRequest(request, function (err, res) {",
 							"          if (res.code!=200) {",
 							"                console.log(index, res.stream.toString());",
@@ -552,9 +552,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}/api/v1/ping",
+					"raw": "{{schedulerUrl}}/api/v1/ping",
 					"host": [
-						"{{baseUrl}}"
+						"{{schedulerUrl}}"
 					],
 					"path": [
 						"api",
@@ -566,7 +566,7 @@
 			"response": []
 		},
 		{
-			"name": "clean schedule",
+			"name": "clean interval",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -583,9 +583,9 @@
 					"script": {
 						"id": "f1038d15-eba5-4afb-94aa-9f8929b28cf6",
 						"exec": [
-							"var baseUrl = pm.environment.get(\"baseUrl\");",
+							"var schedulerUrl = pm.environment.get(\"schedulerUrl\");",
 							"",
-							"pm.sendRequest(baseUrl+\"/api/v1/schedule\", function (err, res) {",
+							"pm.sendRequest(schedulerUrl+\"/api/v1/interval\", function (err, res) {",
 							"    removeData(res.json())",
 							"});",
 							"",
@@ -597,7 +597,7 @@
 							"    var count = 0;",
 							"    var failedCount = 0;",
 							"    data.forEach(function(item, index) { ",
-							"        request.url = baseUrl+'/api/v1/schedule/id/'+item.id;",
+							"        request.url = schedulerUrl+'/api/v1/interval/'+item.id;",
 							"        pm.sendRequest(request, function (err, res) {",
 							"          if (res.code!=200) {",
 							"                console.log(index, res.stream.toString());",
@@ -633,9 +633,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}/api/v1/ping",
+					"raw": "{{schedulerUrl}}/api/v1/ping",
 					"host": [
-						"{{baseUrl}}"
+						"{{schedulerUrl}}"
 					],
 					"path": [
 						"api",
