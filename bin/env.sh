@@ -24,11 +24,5 @@ export kongdb=postgres:9.5
 export kong=kong:0.13.0
 export edgexProxy=nexus3.edgexfoundry.org:10004/docker-edgex-proxy-go:0.2.1
 
-#For security service blackbox testing, the original postman docker image doesn't support new SSL/TLS protocol and it will fail
-# the test cases due to failing to to connect to vault and kong over https. It needs to be upgraded to latest one.
-if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
-  export postman=postman/newman
-else
-  export postman=postman/newman_ubuntu1404:3.10.0
-fi 
+export postman=postman/newman
 
