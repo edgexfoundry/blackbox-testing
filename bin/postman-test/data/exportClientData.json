@@ -1,5 +1,6 @@
 [
   {
+    "responseTime": 800,
     "getName": "OSIClient",
     "deleteName": "OSIClient3",
     "regIDNotFound": "thisregisnotthere",

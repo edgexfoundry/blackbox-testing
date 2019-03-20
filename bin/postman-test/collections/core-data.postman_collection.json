@@ -1668,7 +1668,7 @@
 								"exec": [
 									"//Test Case for status : 404",
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
-									"tests[\"Response time is less than 200ms\"] = responseTime < 200;"
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
 								]
 							}
 						}
@@ -1707,7 +1707,7 @@
 								"exec": [
 									"//Test Case for status : 413",
 									"tests[\"Status code is 413\"] = responseCode.code === 413;",
-									"tests[\"Response time is less than 200ms\"] = responseTime < 200;"
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
 								]
 							}
 						}
@@ -1748,7 +1748,7 @@
 								"exec": [
 									"//Test Case for status : 413",
 									"tests[\"Status code is 413\"] = responseCode.code === 413;",
-									"tests[\"Response time is less than 200ms\"] = responseTime < 200;"
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
 								]
 							}
 						}
@@ -1966,7 +1966,7 @@
 									" *",
 									" */",
 									"tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
 									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 									"if (contentTypeHeaderExists) {",
@@ -2193,8 +2193,7 @@
 									" */",
 									"//Verify the http status code for 200.",
 									"tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"//Verify if response time is less than 200ms.",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < 200;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
 									"",
 									"if (responseCode.code === 200) {",
 									"    //Verify the existence of content-type in the header.",
@@ -2710,7 +2709,7 @@
 									" *",
 									" */",
 									"tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
 									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 									"if (contentTypeHeaderExists) {",
@@ -2850,7 +2849,7 @@
 								"exec": [
 									"//Assert 404 status if the reading cannot be found by id",
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
-									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
 									"",
 									""
 								]
@@ -2894,7 +2893,7 @@
 								"exec": [
 									"//Assert 404 status if the reading cannot be found by id",
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
-									"tests[\"Response time is less than 200ms\"] = responseTime < 200;"
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
 								],
 								"type": "text/javascript"
 							}
@@ -3106,7 +3105,7 @@
 									" *",
 									" **/",
 									"tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
 									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 									"if (contentTypeHeaderExists) {",
@@ -3607,7 +3606,7 @@
 									" *",
 									" **/",
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
-									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
 									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 									"if (contentTypeHeaderExists) {",
@@ -3660,7 +3659,7 @@
 									" *",
 									" **/",
 									"tests[\"Status code is 409\"] = responseCode.code === 409;",
-									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
 									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 									"if (contentTypeHeaderExists) {",
@@ -3714,7 +3713,7 @@
 									"*",
 									"**/",
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
-									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
 									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 									"if (contentTypeHeaderExists) {",
@@ -3766,7 +3765,7 @@
 									"     **/",
 									"    tests[\"Status code is 404\"] = responseCode.code === 404;",
 									"    if(responseCode.code === 404){",
-									"        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
 									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 									"        if (contentTypeHeaderExists) {",
@@ -3818,7 +3817,7 @@
 									"    tests[\"Status code is 409\"] = responseCode.code === 409;",
 									"    if(responseCode.code === 409){",
 									"        tests[\"Status code is 409\"] = responseCode.code === 409;",
-									"        tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
 									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 									"        if (contentTypeHeaderExists) {",
@@ -3888,7 +3887,7 @@
 									"*",
 									"**/",
 									"tests[\"Status code is 409\"] = responseCode.code === 409;",
-									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
 									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 									"if (contentTypeHeaderExists) {",
@@ -3939,7 +3938,7 @@
 									"*",
 									"**/",
 									"tests[\"Status code is 409\"] = responseCode.code === 409;",
-									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
 									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
 									"if (contentTypeHeaderExists) {",
@@ -3993,7 +3992,7 @@
 									"     *",
 									"     **/",
 									"    tests[\"Status code is 409\"] = responseCode.code === 409;",
-									"    tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"    tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
 									"    if(responseCode.code === 409){",
 									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
@@ -4055,7 +4054,7 @@
 									" **/",
 									" ",
 									" tests[\"Ping Success\"] = responseCode.code === 200;",
-									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									" tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
 									" if(responseCode.code === 200){",
 									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
