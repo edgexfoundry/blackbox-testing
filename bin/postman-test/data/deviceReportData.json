@@ -7,7 +7,7 @@
     "drGetByName": "TestDeviceReportGetByName",
     "drGetByID": "57f7479ee4b060e281141658",
     "drGetByDeviceName": "TestDeviceToReport",
-    "responseTime": 400,
+    "responseTime": 800,
     "ApplicationJsonContentType": "application/json",
     "ApplicationTextPlainType": "text/plain",
     "deviceReportSchema": {

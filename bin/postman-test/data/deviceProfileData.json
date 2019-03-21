@@ -9,7 +9,7 @@
     "dpByName": "DeviceProfileGetByName",
     "dpByModel": "TestModel7",
     "dpByLable": "bacnet",
-    "responseTime": 400,
+    "responseTime": 800,
     "ApplicationJsonContentType": "application/json",
     "ApplicationTextPlainType": "text/plain",
     "deviceProfileSchemaArray": {
