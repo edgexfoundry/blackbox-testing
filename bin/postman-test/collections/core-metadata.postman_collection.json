@@ -9292,7 +9292,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "bad7f644-e635-46ba-a7fc-391e6cdd5e99",
 								"exec": [
 									"/*",
 									" * Test Case: /provisionwatcher - POST",
@@ -9319,7 +9319,8 @@
 									"    //Validate the body for Id",
 									"    tests[\"Does body contains Id\"] = responseBody.length === 36;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -9333,7 +9334,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \n   \"name\":\"bacnet2 watcher\",\n   \"origin\":1471806386919,\n   \"identifiers\":{  \n      \"MAC\":\"00-05-1B-A1-99-99\",\n      \"HTTP\":\"10.0.0.1\"\n   },\n   \"profile\":{  \n      \"name\":\"variable speed motor profile\"\n   },\n   \"service\":{  \n      \"name\":\"home variable speed motor device service\"\n   }\n}"
+							"raw": "{  \n   \"name\":\"bacnet2 watcher\",\n   \"origin\":1471806386919,\n   \"identifiers\":{  \n      \"MAC\":\"00-05-1B-A1-99-99\",\n      \"HTTP\":\"10.0.0.1\"\n   },\n   \"profile\":{  \n      \"name\":\"variable speed motor profile\"\n   },\n   \"service\":{  \n      \"name\":\"home variable speed motor device service\"\n   },\n   \"operatingState\": \"enabled\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/provisionwatcher",
