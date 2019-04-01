@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b53ec894-ecb6-44f7-937b-f9602df24bc2",
+		"_postman_id": "88cc25f6-c2ed-4f44-afcb-5e244ddcd2d6",
 		"name": "core-data",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -916,84 +916,6 @@
 					"response": []
 				},
 				{
-					"name": "27 http://localhost:48080/api/v1/event/device/:deviceId/valuedescriptor/{valuedescriptor}/{limit} ",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "192600c4-9da1-4ca0-b512-6054d21a3cf3",
-								"exec": [
-									"/*",
-									" * Test Case:  /event/id - GET",
-									" * Version: Alpha",
-									" * @Author: Tata Elxsi",
-									" *",
-									" */",
-									"",
-									"//Test Case for status : 200",
-									"tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"//Test response time",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"",
-									"if(responseCode.code === 200) {",
-									"    //Test content type should present in header",
-									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"    ",
-									"    if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
-									"    }",
-									"    ",
-									"    //Test body parameters",
-									"    var actualEventData;",
-									"    try{",
-									"        //Parse json response",
-									"        actualEventData = JSON.parse(responseBody);",
-									"    }catch(e) {",
-									"        console.log(\"Exception while parsing json response\");",
-									"    }",
-									"    if(actualEventData !== null) {",
-									"        //Test response schema",
-									"        tests[\"Is Valid Response Schema\"] = tv4.validate(actualEventData, data.schema);",
-									"        console.log(\"Validation failed: \", tv4.error);",
-									"    } else {",
-									"        console.log(\"Event is empty.\");",
-									"        tests[\"Is Event empty\"] = actualEventData.length === 0;",
-									"    }",
-									"}"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/event/device/{{deviceGetRequestName}}/valuedescriptor/{{valuedescriptor}}/{{limit}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"event",
-								"device",
-								"{{deviceGetRequestName}}",
-								"valuedescriptor",
-								"{{valuedescriptor}}",
-								"{{limit}}"
-							]
-						},
-						"description": "Return all readings associated to the device via the event, and filtered by those readings associated to the provided value descriptor.  LimitExceededException (HTTP 413) if the number of events (associated to the device) exceeds the current max limit. ServiceException (HTTP 503) for unknown or unanticipated issues."
-					},
-					"response": []
-				},
-				{
 					"name": "01 http://localhost:48080/api/v1/event",
 					"event": [
 						{
@@ -1734,49 +1656,6 @@
 							]
 						},
 						"description": "Return all events between a given begin and end date/time (in the form of longs). LimitExceededException (HTTP 413) if the number of events exceeds the current max limit. ServiceException (HTTP 503) for unknown or unanticipated issues."
-					},
-					"response": []
-				},
-				{
-					"name": "29 http://localhost:48080/api/v1/event/device/:deviceId/valuedescriptor/{valuedescriptor}/{limit}",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "cb82f771-51f7-4832-b6bd-bc6c5952da98",
-								"type": "text/javascript",
-								"exec": [
-									"//Test Case for status : 413",
-									"tests[\"Status code is 413\"] = responseCode.code === 413;",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/event/device/{{deviceGetRequestId}}/valuedescriptor/{{valuedescriptor}}/{{invalidLimit}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"event",
-								"device",
-								"{{deviceGetRequestId}}",
-								"valuedescriptor",
-								"{{valuedescriptor}}",
-								"{{invalidLimit}}"
-							]
-						},
-						"description": "Return all readings associated to the device via the event, and filtered by those readings associated to the provided value descriptor.  LimitExceededException (HTTP 413) if the number of events (associated to the device) exceeds the current max limit. ServiceException (HTTP 503) for unknown or unanticipated issues."
 					},
 					"response": []
 				}
