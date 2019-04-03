@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "447bc093-e864-4a5e-b1b7-8b4ddf78527a",
+		"_postman_id": "7c23404f-e007-4214-a45f-9e2ac7e424f2",
 		"name": "support-notifications",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -273,7 +273,6 @@
 							"listen": "test",
 							"script": {
 								"id": "0bc75a11-4897-48c0-98e0-8edd632ec7b2",
-								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -287,7 +286,8 @@
 									"    pm.response.to.have.header(\"Content-Type\");",
 									"});",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -301,7 +301,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"slug\": \"group-c-member\",\n        \"receiver\": \"Group C Member\",\n        \"subscribedCategories\": [\n            \"HW_HEALTH\"\n        ],\n        \"subscribedLabels\": [\n            \"temperature\",\n            \"humidity\"\n        ],\n        \"channels\": [\n            {\n                \"type\": \"EMAIL\",\n                \"_class\" : \"org.edgexfoundry.support.domain.notifications.EmailChannel\" ,\n                \"mailAddresses\": [\n                    \"karl@abc.def\",\n                    \"jeff@abc.def\"\n                ]\n            }\n        ]\n    }"
+							"raw": "    {\n        \"slug\": \"group-c-member\",\n        \"receiver\": \"Group C Member\",\n        \"subscribedCategories\": [\n            \"HW_HEALTH\"\n        ],\n        \"subscribedLabels\": [\n            \"temperature\",\n            \"humidity\"\n        ],\n        \"channels\": [\n            {\n                \"type\": \"EMAIL\",\n                \"mailAddresses\": [\n                    \"karl@abc.def\",\n                    \"jeff@abc.def\"\n                ]\n            }\n        ]\n    }"
 						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/subscription",
@@ -325,7 +325,6 @@
 							"listen": "test",
 							"script": {
 								"id": "5f84b52c-ec21-4f3f-8bb4-afb183108f2c",
-								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 404\", function () {",
 									"    pm.response.to.have.status(404);",
@@ -339,7 +338,8 @@
 									"    pm.response.to.have.header(\"Content-Type\");",
 									"});",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -353,7 +353,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"slug\": \"non-exist-test-slug\",\n        \"receiver\": \"Non Exist Receiver\",\n        \"subscribedCategories\": [\n            \"HW_HEALTH\"\n        ],\n        \"subscribedLabels\": [\n            \"temperature\",\n            \"humidity\"\n        ],\n        \"channels\": [\n            {\n                \"type\": \"EMAIL\",\n                \"_class\" : \"org.edgexfoundry.support.domain.notifications.EmailChannel\" ,\n                \"mailAddresses\": [\n                    \"karl@abc.def\",\n                    \"jeff@abc.def\"\n                ]\n            }\n        ]\n    }"
+							"raw": "    {\n        \"slug\": \"non-exist-test-slug\",\n        \"receiver\": \"Non Exist Receiver\",\n        \"subscribedCategories\": [\n            \"HW_HEALTH\"\n        ],\n        \"subscribedLabels\": [\n            \"temperature\",\n            \"humidity\"\n        ],\n        \"channels\": [\n            {\n                \"type\": \"EMAIL\",\n                \"mailAddresses\": [\n                    \"karl@abc.def\",\n                    \"jeff@abc.def\"\n                ]\n            }\n        ]\n    }"
 						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/subscription",
