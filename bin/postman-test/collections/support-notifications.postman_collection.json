@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ccb21bb8-fb9a-47cb-b83b-d738c0e30553",
+		"_postman_id": "447bc093-e864-4a5e-b1b7-8b4ddf78527a",
 		"name": "support-notifications",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1474,9 +1474,10 @@
 							"listen": "test",
 							"script": {
 								"id": "977b0c2e-0a3b-4e6f-bad1-51ec5a876bc4",
-								"type": "text/javascript",
 								"exec": [
 									"var schema = pm.globals.get(\"schemas\").NotificationArray;",
+									"var startDate = pm.globals.get(\"startDate\");",
+									"var endDate = pm.globals.get(\"endDate\");",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -1498,7 +1499,7 @@
 									"pm.test(\"Response body is correct\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    jsonData.forEach(function(data) {",
-									"      pm.expect(data.created > 1300000 && data.created<1400000).to.be.true;",
+									"      pm.expect(data.created > startDate && data.created< endDate).to.be.true;",
 									"    });",
 									"});",
 									"",
@@ -1511,26 +1512,27 @@
 									"     pm.expect(result).to.be.true;",
 									"});",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "840e3709-064c-4f04-88d0-ab00fe3b213c",
-								"type": "text/javascript",
 								"exec": [
-									"if(!data.startDate){",
-									"    pm.environment.set(\"startDate\", \"1300000\");",
-									"    pm.environment.set(\"endDate\", \"1400000\");",
-									"    pm.environment.set(\"limit\", \"2\");",
-									"}else{",
-									"    pm.environment.set(\"startDate\", data.startDate); ",
-									"    pm.environment.set(\"endDate\", data.endDate); ",
-									"    pm.environment.set(\"limit\", data.limit); ",
-									"}",
+									"var date = new Date();",
+									"var now = date.getTime()",
+									"var startDate = now - 30000",
+									"var endDate = now - 10000",
+									"",
+									"",
+									"pm.globals.set(\"startDate\", startDate);",
+									"pm.globals.set(\"endDate\", endDate);",
+									"pm.environment.set(\"limit\", \"2\");",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1574,9 +1576,9 @@
 							"listen": "test",
 							"script": {
 								"id": "2bd711e8-a09a-4bcd-b6a5-0de70bba5c2e",
-								"type": "text/javascript",
 								"exec": [
 									"var schema = pm.globals.get(\"schemas\").NotificationArray;",
+									"var startDate = pm.globals.get(\"startDate\");",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -1598,7 +1600,7 @@
 									"pm.test(\"Response body is correct\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    jsonData.forEach(function(data) {",
-									"      pm.expect(data.created > 1500000).to.be.true;",
+									"      pm.expect(data.created > startDate).to.be.true;",
 									"    });",
 									"});",
 									"",
@@ -1611,24 +1613,23 @@
 									"     pm.expect(result).to.be.true;",
 									"});",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "829fc3ab-98ec-45e2-b98e-7682fdf5109e",
-								"type": "text/javascript",
 								"exec": [
-									"if(!data.startDate2){",
-									"    pm.environment.set(\"startDate2\", \"1500000\");",
-									"    pm.environment.set(\"limit\", \"2\");",
-									"}else{",
-									"    pm.environment.set(\"startDate2\", data.startDate2); ",
-									"    pm.environment.set(\"limit\", data.limit); ",
-									"}",
+									"var date = new Date();",
+									"var startDate = date.getTime() - 20000",
+									"",
+									"pm.globals.set(\"startDate\", startDate);",
+									"pm.environment.set(\"limit\", \"2\");",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1646,7 +1647,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/notification/start/{{startDate2}}/{{limit}}",
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/start/{{startDate}}/{{limit}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -1655,7 +1656,7 @@
 								"v1",
 								"notification",
 								"start",
-								"{{startDate2}}",
+								"{{startDate}}",
 								"{{limit}}"
 							]
 						},
@@ -1670,9 +1671,9 @@
 							"listen": "test",
 							"script": {
 								"id": "0e32973d-e2c4-4768-a4f2-bcd710aaa6a4",
-								"type": "text/javascript",
 								"exec": [
 									"var schema = pm.globals.get(\"schemas\").NotificationArray;",
+									"var endDate = pm.globals.get(\"endDate\");",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -1694,7 +1695,7 @@
 									"pm.test(\"Response body is correct\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    jsonData.forEach(function(data) {",
-									"      pm.expect(data.created < 1600000).to.be.true;",
+									"      pm.expect(data.created < endDate).to.be.true;",
 									"    });",
 									"});",
 									"",
@@ -1707,24 +1708,24 @@
 									"     pm.expect(result).to.be.true;",
 									"});",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "b95f8561-afda-468c-bdfb-a0226a0d7700",
-								"type": "text/javascript",
 								"exec": [
-									"if(!data.endDate2){",
-									"    pm.environment.set(\"endDate2\", \"1600000\");",
-									"    pm.environment.set(\"limit\", \"2\");",
-									"}else{",
-									"    pm.environment.set(\"endDate2\", data.endDate2); ",
-									"    pm.environment.set(\"limit\", data.limit); ",
-									"}",
+									"var date = new Date();",
+									"var endDate = date.getTime();",
+									"",
+									"//pm.environment.set(\"endDate\", endDate);",
+									"pm.globals.set(\"endDate\", endDate);",
+									"pm.environment.set(\"limit\", \"2\");",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1742,7 +1743,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/notification/end/{{endDate2}}/{{limit}}",
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/end/{{endDate}}/{{limit}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -1751,7 +1752,7 @@
 								"v1",
 								"notification",
 								"end",
-								"{{endDate2}}",
+								"{{endDate}}",
 								"{{limit}}"
 							]
 						},
@@ -2171,9 +2172,10 @@
 							"listen": "test",
 							"script": {
 								"id": "0f27d89d-a68a-4506-81fd-f0e2cd6d3b87",
-								"type": "text/javascript",
 								"exec": [
 									"var schema = pm.globals.get(\"schemas\").TransmissionArray;",
+									"var startDate = pm.globals.get(\"startDate\");",
+									"var endDate = pm.globals.get(\"endDate\"); ",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -2195,7 +2197,7 @@
 									"pm.test(\"Response body is correct\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    jsonData.forEach(function(data) {",
-									"      pm.expect(data.created > 100000 && data.created<100020).to.be.true;",
+									"      pm.expect(data.created > startDate && data.created< endDate).to.be.true;",
 									"    });",
 									"});",
 									"",
@@ -2207,26 +2209,26 @@
 									"     }",
 									"     pm.expect(result).to.be.true;",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "d055a086-3fbf-405c-8e2a-478a396fee04",
-								"type": "text/javascript",
 								"exec": [
-									"if(!data.startDate){",
-									"    pm.environment.set(\"startDate\", \"100000\");",
-									"    pm.environment.set(\"endDate\", \"100020\");",
-									"    pm.environment.set(\"limit\", \"2\");",
-									"}else{",
-									"    pm.environment.set(\"startDate\", data.startDate); ",
-									"    pm.environment.set(\"endDate\", data.endDate); ",
-									"    pm.environment.set(\"limit\", data.limit); ",
-									"}",
+									"var date = new Date();",
+									"var now = date.getTime()",
+									"var startDate = now - 30000",
+									"var endDate = now - 10000",
+									"",
+									"pm.globals.set(\"startDate\", startDate);",
+									"pm.globals.set(\"endDate\", endDate);",
+									"pm.environment.set(\"limit\", \"2\");",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2270,9 +2272,9 @@
 							"listen": "test",
 							"script": {
 								"id": "688d5dec-15aa-458a-940e-864380e01e58",
-								"type": "text/javascript",
 								"exec": [
 									"var schema = pm.globals.get(\"schemas\").TransmissionArray;",
+									"var startDate = pm.globals.get(\"startDate\"); ",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -2294,7 +2296,7 @@
 									"pm.test(\"Response body is correct\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    jsonData.forEach(function(data) {",
-									"      pm.expect(data.created > 140000).to.be.true;",
+									"      pm.expect(data.created > startDate).to.be.true;",
 									"    });",
 									"});",
 									"",
@@ -2306,24 +2308,24 @@
 									"     }",
 									"     pm.expect(result).to.be.true;",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "4bb0c0f5-c433-49e3-afc7-68a74611d876",
-								"type": "text/javascript",
 								"exec": [
-									"if(!data.startDate2){",
-									"    pm.environment.set(\"startDate2\", \"140000\");",
-									"    pm.environment.set(\"limit\", \"2\");",
-									"}else{",
-									"    pm.environment.set(\"startDate2\", data.startDate2); ",
-									"    pm.environment.set(\"limit\", data.limit); ",
-									"}",
+									"var date = new Date();",
+									"var now = date.getTime()",
+									"var startDate = now - 20000",
+									"",
+									"pm.globals.set(\"startDate\", startDate);",
+									"pm.environment.set(\"limit\", \"2\");",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2341,7 +2343,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/start/{{startDate2}}/{{limit}}",
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/start/{{startDate}}/{{limit}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -2350,7 +2352,7 @@
 								"v1",
 								"transmission",
 								"start",
-								"{{startDate2}}",
+								"{{startDate}}",
 								"{{limit}}"
 							]
 						},
@@ -2365,9 +2367,9 @@
 							"listen": "test",
 							"script": {
 								"id": "5b36490a-30bd-42ec-addf-9496db6a760a",
-								"type": "text/javascript",
 								"exec": [
 									"var schema = pm.globals.get(\"schemas\").TransmissionArray;",
+									"var endDate = pm.globals.get(\"endDate\"); ",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -2389,7 +2391,7 @@
 									"pm.test(\"Response body is correct\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    jsonData.forEach(function(data) {",
-									"      pm.expect(data.created < 100000).to.be.true;",
+									"      pm.expect(data.created < endDate ).to.be.true;",
 									"    });",
 									"});",
 									"",
@@ -2402,24 +2404,23 @@
 									"     pm.expect(result).to.be.true;",
 									"});",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "4a107294-633a-41aa-95c3-9614d74cda30",
-								"type": "text/javascript",
 								"exec": [
-									"if(!data.endDate2){",
-									"    pm.environment.set(\"endDate2\", \"140000\");",
-									"    pm.environment.set(\"limit\", \"2\");",
-									"}else{",
-									"    pm.environment.set(\"endDate2\", data.endDate2); ",
-									"    pm.environment.set(\"limit\", data.limit); ",
-									"}",
+									"var date = new Date();",
+									"var endDate = date.getTime()",
+									"",
+									"pm.globals.set(\"endDate\", endDate);",
+									"pm.environment.set(\"limit\", \"2\");",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2437,7 +2438,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/end/{{endDate2}}/{{limit}}",
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/end/{{endDate}}/{{limit}}",
 							"host": [
 								"{{supportNotificationsUrl}}"
 							],
@@ -2446,7 +2447,7 @@
 								"v1",
 								"transmission",
 								"end",
-								"{{endDate2}}",
+								"{{endDate}}",
 								"{{limit}}"
 							]
 						},
