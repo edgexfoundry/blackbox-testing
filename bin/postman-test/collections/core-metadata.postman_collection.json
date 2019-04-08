@@ -4460,8 +4460,8 @@
 									"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
 									"        }",
 									"        // the device Profile cannot be located by the identifier.",
-									"        tests[\"contains commands\"] = responseBody.has(\"commands\");",
-									"        tests[\"contains resources\"] = responseBody.has(\"resources\");",
+									"        tests[\"contains coreCommands\"] = responseBody.has(\"coreCommands\");",
+									"        tests[\"contains deviceCommands\"] = responseBody.has(\"deviceCommands\");",
 									"        tests[\"contains description\"] = responseBody.has(\"description\");",
 									"        tests[\"contains labels\"] = responseBody.has(\"labels\");",
 									"        tests[\"contains manufacturer\"] = responseBody.has(\"manufacturer\");",
@@ -4520,8 +4520,8 @@
 									"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
 									"        }",
 									"        // the device Profile cannot be located by the identifier.",
-									"        tests[\"contains commands\"] = responseBody.has(\"commands\");",
-									"        tests[\"contains resources\"] = responseBody.has(\"resources\");",
+									"        tests[\"contains coreCommands\"] = responseBody.has(\"coreCommands\");",
+									"        tests[\"contains deviceCommands\"] = responseBody.has(\"deviceCommands\");",
 									"        tests[\"contains description\"] = responseBody.has(\"description\");",
 									"        tests[\"contains labels\"] = responseBody.has(\"labels\");",
 									"        tests[\"contains manufacturer\"] = responseBody.has(\"manufacturer\");",
@@ -4768,7 +4768,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"origin\":1471806386919,\r\n  \"name\":\"TestProfileToPostUniqe\",\r\n  \"description\":\"BACnet Honeywell thermostats\",\r\n  \"manufacturer\":\"Honeywell\",\r\n  \"model\":\"ABC123\",\r\n  \"labels\":[\"bacnet\",\"thermostat\",\"Honeywell\"],\r\n  \"commands\":[\r\n    {\r\n      \"origin\":1471806386919,\r\n      \"name\":\"cooling point\",\r\n      \"get\":\r\n        {\r\n          \"path\":\"/cooling\",\r\n          \"response\":{\r\n            \"code\":\"200\",\r\n            \"errorDescription\":\"not a float\",\r\n            \"expectedValues\":\"temperature\"\r\n          }\r\n        },\r\n      \"put\":{\r\n        \"path\":\"/cooling\",\r\n        \"response\":{\r\n          \"code\":\"200\",\r\n          \"errorDescription\":\"not a float\",\r\n          \"expectedValues\":\"temperature\"\r\n        },\r\n        \"parameters\":[  \r\n               {  \r\n                  \"name\":\"coolingpoint\",\r\n                  \"value\":\"float\",\r\n                  \"uom\":\"string\"\r\n               }\r\n        ]\r\n      }\r\n    }\r\n  ],\r\n  \"resources\":[{\r\n    \"get\":[\r\n      {\r\n        \"parameter\":\"CurrentHumidity\",\r\n        \"property\":\"presentValue\",\r\n        \"operation\":\"get\",\r\n        \"object\":\"AnalogValue_22\"\r\n      }\r\n    ]\r\n  }]\r\n}"
+							"raw": "{\r\n  \"origin\":1471806386919,\r\n  \"name\":\"TestProfileToPostUniqe\",\r\n  \"description\":\"BACnet Honeywell thermostats\",\r\n  \"manufacturer\":\"Honeywell\",\r\n  \"model\":\"ABC123\",\r\n  \"labels\":[\"bacnet\",\"thermostat\",\"Honeywell\"],\r\n  \"coreCommands\":[\r\n    {\r\n      \"origin\":1471806386919,\r\n      \"name\":\"cooling point\",\r\n      \"get\":\r\n        {\r\n          \"path\":\"/cooling\",\r\n          \"response\":{\r\n            \"code\":\"200\",\r\n            \"errorDescription\":\"not a float\",\r\n            \"expectedValues\":\"temperature\"\r\n          }\r\n        },\r\n      \"put\":{\r\n        \"path\":\"/cooling\",\r\n        \"response\":{\r\n          \"code\":\"200\",\r\n          \"errorDescription\":\"not a float\",\r\n          \"expectedValues\":\"temperature\"\r\n        },\r\n        \"parameters\":[  \r\n               {  \r\n                  \"name\":\"coolingpoint\",\r\n                  \"value\":\"float\",\r\n                  \"uom\":\"string\"\r\n               }\r\n        ]\r\n      }\r\n    }\r\n  ],\r\n  \"deviceCommands\":[{\r\n    \"get\":[\r\n      {\r\n        \"parameter\":\"CurrentHumidity\",\r\n        \"property\":\"presentValue\",\r\n        \"operation\":\"get\",\r\n        \"object\":\"AnalogValue_22\"\r\n      }\r\n    ]\r\n  }]\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/deviceprofile",
@@ -4846,7 +4846,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"{{deviceprofileId}}\",\n    \"description\": \"Test DeviceProfile after PUT\",\n    \"commands\": [\n      {\n        \"id\": \"57f4995be4b060e268aeb084\",\n        \"get\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        },\n        \"put\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        }\n      }\n    ]\n}"
+							"raw": "{\n    \"id\": \"{{deviceprofileId}}\",\n    \"description\": \"Test DeviceProfile after PUT\",\n    \"coreCommands\": [\n      {\n        \"id\": \"57f4995be4b060e268aeb084\",\n        \"get\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        },\n        \"put\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        }\n      }\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/deviceprofile",
@@ -5054,7 +5054,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"origin\":1471806386919,\r\n  \"name\":\"TestProfileToPost\",\r\n  \"description\":\"BACnet Honeywell thermostats\",\r\n  \"manufacturer\":\"Honeywell\",\r\n  \"model\":\"ABC123\",\r\n  \"labels\":[\"bacnet\",\"thermostat\",\"Honeywell\"],\r\n  \"commands\":[\r\n    {\r\n      \"origin\":1471806386919,\r\n      \"name\":\"cooling point\",\r\n      \"get\":\r\n        {\r\n          \"path\":\"/cooling\",\r\n          \"response\":{\r\n            \"code\":\"200\",\r\n            \"errorDescription\":\"not a float\",\r\n            \"expectedValues\":\"temperature\"\r\n          }\r\n        },\r\n      \"put\":{\r\n        \"path\":\"/cooling\",\r\n        \"response\":{\r\n          \"code\":\"200\",\r\n          \"errorDescription\":\"not a float\",\r\n          \"expectedValues\":\"temperature\"\r\n        },\r\n        \"parameters\":[  \r\n               {  \r\n                  \"name\":\"coolingpoint\",\r\n                  \"value\":\"float\",\r\n                  \"uom\":\"string\"\r\n               }\r\n        ]\r\n      }\r\n    },\r\n    {\r\n      \"origin\":1471806386919,\r\n      \"name\":\"cooling point\",\r\n      \"get\":\r\n        {\r\n          \"path\":\"/cooling\",\r\n          \"response\":{\r\n            \"code\":\"200\",\r\n            \"errorDescription\":\"not a float\",\r\n            \"expectedValues\":\"temperature\"\r\n          }\r\n        },\r\n      \"put\":{\r\n        \"path\":\"/cooling\",\r\n        \"response\":{\r\n          \"code\":\"200\",\r\n          \"errorDescription\":\"not a float\",\r\n          \"expectedValues\":\"temperature\"\r\n        },\r\n        \"parameters\":[  \r\n               {  \r\n                  \"name\":\"coolingpoint\",\r\n                  \"value\":\"float\",\r\n                  \"uom\":\"string\"\r\n               }\r\n        ]\r\n      }\r\n    }\r\n  ],\r\n  \"resources\":[{\r\n    \"get\":[\r\n      {\r\n        \"parameter\":\"CurrentHumidity\",\r\n        \"property\":\"presentValue\",\r\n        \"operation\":\"get\",\r\n        \"object\":\"AnalogValue_22\"\r\n      }\r\n    ]\r\n  }]\r\n}"
+							"raw": "{\r\n  \"origin\":1471806386919,\r\n  \"name\":\"TestProfileToPost\",\r\n  \"description\":\"BACnet Honeywell thermostats\",\r\n  \"manufacturer\":\"Honeywell\",\r\n  \"model\":\"ABC123\",\r\n  \"labels\":[\"bacnet\",\"thermostat\",\"Honeywell\"],\r\n  \"coreCommands\":[\r\n    {\r\n      \"origin\":1471806386919,\r\n      \"name\":\"cooling point\",\r\n      \"get\":\r\n        {\r\n          \"path\":\"/cooling\",\r\n          \"response\":{\r\n            \"code\":\"200\",\r\n            \"errorDescription\":\"not a float\",\r\n            \"expectedValues\":\"temperature\"\r\n          }\r\n        },\r\n      \"put\":{\r\n        \"path\":\"/cooling\",\r\n        \"response\":{\r\n          \"code\":\"200\",\r\n          \"errorDescription\":\"not a float\",\r\n          \"expectedValues\":\"temperature\"\r\n        },\r\n        \"parameters\":[  \r\n               {  \r\n                  \"name\":\"coolingpoint\",\r\n                  \"value\":\"float\",\r\n                  \"uom\":\"string\"\r\n               }\r\n        ]\r\n      }\r\n    },\r\n    {\r\n      \"origin\":1471806386919,\r\n      \"name\":\"cooling point\",\r\n      \"get\":\r\n        {\r\n          \"path\":\"/cooling\",\r\n          \"response\":{\r\n            \"code\":\"200\",\r\n            \"errorDescription\":\"not a float\",\r\n            \"expectedValues\":\"temperature\"\r\n          }\r\n        },\r\n      \"put\":{\r\n        \"path\":\"/cooling\",\r\n        \"response\":{\r\n          \"code\":\"200\",\r\n          \"errorDescription\":\"not a float\",\r\n          \"expectedValues\":\"temperature\"\r\n        },\r\n        \"parameters\":[  \r\n               {  \r\n                  \"name\":\"coolingpoint\",\r\n                  \"value\":\"float\",\r\n                  \"uom\":\"string\"\r\n               }\r\n        ]\r\n      }\r\n    }\r\n  ],\r\n  \"deviceCommands\":[{\r\n    \"get\":[\r\n      {\r\n        \"parameter\":\"CurrentHumidity\",\r\n        \"property\":\"presentValue\",\r\n        \"operation\":\"get\",\r\n        \"object\":\"AnalogValue_22\"\r\n      }\r\n    ]\r\n  }]\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/deviceprofile",
@@ -5107,7 +5107,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"57f4995be4b060e268aeb000\",\n    \"description\": \"Test DeviceProfile after PUT\",\n    \"commands\": [\n      {\n        \"id\": \"57f4995be4b060e268aeb084\",\n        \"get\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        },\n        \"put\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        }\n      }\n    ]\n}"
+							"raw": "{\n    \"id\": \"57f4995be4b060e268aeb000\",\n    \"description\": \"Test DeviceProfile after PUT\",\n    \"coreCommands\": [\n      {\n        \"id\": \"57f4995be4b060e268aeb084\",\n        \"get\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        },\n        \"put\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        }\n      }\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/deviceprofile",
