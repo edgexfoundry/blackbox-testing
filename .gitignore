@@ -1,5 +1,12 @@
-
-/.idea/
 /bin/postman-test/newman/
 bin/postman-test/newman/
 bin/testResult/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+* Etc
+*.DS_Store
+
