@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "663f1b04-9f60-449a-b2ab-a3d5b44d2d0e",
+		"_postman_id": "39280efa-450e-4045-8d84-3c00bb478684",
 		"name": "core-metadata",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2746,7 +2746,7 @@
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
 									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/deviceservice/name/Gogle Home device service\", function (err, res) {",
+									"pm.sendRequest(baseUrl+\"/api/v1/deviceservice/name/Google Home device service\", function (err, res) {",
 									"    if (err) {",
 									"        console.log(err);",
 									"    } else {",
@@ -3011,7 +3011,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "e5427f2a-7fbd-4699-961f-421665054c55",
 								"exec": [
 									"/*",
 									" * Test Case:  api/v1/device - PUT",
@@ -3035,7 +3035,26 @@
 									"            tests[\"Body has True\"] = responseBody === \"true\";",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3366f333-7465-44df-9d2e-8d4093db79a8",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/device/name/livingroomthermostatdevice\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"getDeviceId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3049,7 +3068,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\":\"57f63243e4b060e2e0dd6ed0\",\r\n  \"name\": \"livingroomthermostatdevice\",\r\n  \"description\":\"Home automation\",\r\n  \"adminstate\":\"LOCKED\"\r\n  \r\n}"
+							"raw": "{\r\n  \"id\": \"{{getDeviceId}}\",\r\n  \"name\": \"livingroomthermostatdevice\",\r\n  \"description\":\"Home automation\",\r\n  \"adminstate\":\"LOCKED\",\r\n  \"operatingState\": \"enabled\",\r\n  \"protocols\":{\r\n    \"modbus-tcp\":{\r\n        \"host\":\"localhost\",\r\n        \"port\":\"1210\",\r\n        \"unitID\":\"1\"\r\n    }\r\n  },\r\n  \"service\": {\r\n   \"name\": \"car tachometer device service\",\r\n   \"adminState\": \"unlocked\",\r\n   \"operatingState\": \"enabled\",\r\n   \"addressable\": {\r\n       \"name\": \"tachometer address\"\r\n   }\r\n  },\r\n  \"profile\": {\r\n    \"name\": \"car tachometer profile\"\r\n  }\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device",
@@ -3111,7 +3130,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\" :\"AWS IOT Button1\",\r\n   \"description\":\"Home automation system\",\r\n   \"adminState\":\"UNLOCKED\",\r\n   \"operatingState\":\"ENABLED\",\r\n   \"protocols\":{\r\n      \"modbus-tcp\":{\r\n         \"host\":\"localhost\",\r\n         \"port\":\"1234\",\r\n         \"unitID\":\"1\"\r\n      }\r\n   },\r\n   \"labels\":[  \r\n      \"home\",\r\n      \"hvac\",\r\n      \"thermostat\"\r\n   ],\r\n   \"location\":\"{lat:45.45,long:47.80}\",\r\n   \"responseDelay\":0,\r\n   \"service\":{  \r\n      \"name\":\"Gogle Home device service\"\r\n   },\r\n   \"profile\":{  \r\n      \"name\":\"Google Home profile\"\r\n   },\r\n   \"autoEvents\":[  \r\n      {  \r\n         \"frequency\":\"300ms\",\r\n         \"onChange\":true,\r\n         \"resource\":\"CurrentHumidity\"\r\n      }\r\n   ]\r\n}"
+							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\" :\"AWS IOT Button1\",\r\n   \"description\":\"Home automation system\",\r\n   \"adminState\":\"UNLOCKED\",\r\n   \"operatingState\":\"ENABLED\",\r\n   \"protocols\":{\r\n      \"modbus-tcp\":{\r\n         \"host\":\"localhost\",\r\n         \"port\":\"1234\",\r\n         \"unitID\":\"1\"\r\n      }\r\n   },\r\n   \"labels\":[  \r\n      \"home\",\r\n      \"hvac\",\r\n      \"thermostat\"\r\n   ],\r\n   \"location\":\"{lat:45.45,long:47.80}\",\r\n   \"responseDelay\":0,\r\n   \"service\":{  \r\n      \"name\":\"Google Home device service\",\r\n      \"adminState\": \"unlocked\",\r\n      \"operatingState\": \"enabled\",\r\n      \"addressable\": {\r\n        \"name\": \"test addressable for Google Home device service\"\r\n    }\r\n   },\r\n   \"profile\":{  \r\n      \"name\":\"Google Home profile\"\r\n   },\r\n   \"autoEvents\":[  \r\n      {  \r\n         \"frequency\":\"300ms\",\r\n         \"onChange\":true,\r\n         \"resource\":\"CurrentHumidity\"\r\n      }\r\n   ]\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device",
@@ -3894,7 +3913,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "649814f3-f716-4c99-b526-3a8b8d0c455a",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/device - PUT",
@@ -3913,7 +3932,8 @@
 									"            tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
 									"        }",
 									"        }"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3927,7 +3947,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\":\"57bc6d80555e5218873e5a30\",\r\n  \"description\":\"living room thermostat\",\r\n  \"adminstate\":\"LOCKED\"\r\n  \r\n}"
+							"raw": "{\r\n  \"id\":\"57bc6d80555e5218873e5a30\",\r\n  \"description\":\"living room thermostat\",\r\n  \"adminstate\":\"LOCKED\",\r\n  \"operatingState\": \"enabled\",\r\n  \"protocols\":{\r\n    \"modbus-tcp\":{\r\n        \"host\":\"localhost\",\r\n        \"port\":\"1210\",\r\n        \"unitID\":\"1\"\r\n    }\r\n  },\r\n  \"service\": {\r\n   \"name\": \"car tachometer device service\",\r\n   \"adminState\": \"unlocked\",\r\n   \"operatingState\": \"enabled\",\r\n   \"addressable\": {\r\n       \"name\": \"tachometer address\"\r\n   }\r\n  },\r\n  \"profile\": {\r\n    \"name\": \"car tachometer profile\"\r\n  }\r\n  \r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device",
@@ -3980,7 +4000,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\":\"Amazon Tap\",\r\n   \"description\":\" Portable voice controlled speaker\",\r\n   \"adminstate\":\"UNLOCKED\",\r\n   \"operatingState\":\"ENABLED\",\r\n   \"protocols\":{  \r\n      \"HTTP\":{  \r\n         \"host\":\"localhost\",\r\n         \"port\":\"1234\",\r\n         \"unitID\":\"1\"\r\n      }\r\n    },\r\n   \"labels\":[  \r\n      \"home\",\r\n      \"hvac\",\r\n      \"thermostat\"\r\n   ],\r\n   \"location\":\"{lat:45.45,long:47.80}\",\r\n   \"responseDelay\":0,\r\n   \"service\":{  \r\n      \"name\":\"home thermostat device service\"\r\n   },\r\n   \"profile\":{  \r\n      \"name\":\"\"\r\n   }\r\n}"
+							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\":\"Amazon Tap\",\r\n   \"description\":\" Portable voice controlled speaker\",\r\n   \"adminstate\":\"UNLOCKED\",\r\n   \"operatingState\":\"ENABLED\",\r\n   \"protocols\":{  \r\n      \"HTTP\":{  \r\n         \"host\":\"localhost\",\r\n         \"port\":\"1234\",\r\n         \"unitID\":\"1\"\r\n      }\r\n    },\r\n   \"labels\":[  \r\n      \"home\",\r\n      \"hvac\",\r\n      \"thermostat\"\r\n   ],\r\n   \"location\":\"{lat:45.45,long:47.80}\",\r\n   \"responseDelay\":0,\r\n   \"service\":{  \r\n      \"name\":\"home thermostat device service\",\r\n      \"adminState\": \"unlocked\",\r\n      \"operatingState\": \"enabled\",\r\n      \"addressable\": {\r\n        \"name\": \"canaryDM\"\r\n      }\r\n   },\r\n   \"profile\":{  \r\n      \"name\":\"\"\r\n   }\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device",
@@ -4729,7 +4749,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "ecc2acd5-eb99-4dad-82f2-85f11873a2cc",
 								"exec": [
 									"/**",
 									" * Test Case:  /api/v1/deviceprofile - POST",
@@ -4754,7 +4774,8 @@
 									"            tests[\"Response list is empty\"] = responseBody.length === 0",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -4768,7 +4789,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"origin\":1471806386919,\r\n  \"name\":\"TestProfileToPostUniqe\",\r\n  \"description\":\"BACnet Honeywell thermostats\",\r\n  \"manufacturer\":\"Honeywell\",\r\n  \"model\":\"ABC123\",\r\n  \"labels\":[\"bacnet\",\"thermostat\",\"Honeywell\"],\r\n  \"coreCommands\":[\r\n    {\r\n      \"origin\":1471806386919,\r\n      \"name\":\"cooling point\",\r\n      \"get\":\r\n        {\r\n          \"path\":\"/cooling\",\r\n          \"response\":{\r\n            \"code\":\"200\",\r\n            \"errorDescription\":\"not a float\",\r\n            \"expectedValues\":\"temperature\"\r\n          }\r\n        },\r\n      \"put\":{\r\n        \"path\":\"/cooling\",\r\n        \"response\":{\r\n          \"code\":\"200\",\r\n          \"errorDescription\":\"not a float\",\r\n          \"expectedValues\":\"temperature\"\r\n        },\r\n        \"parameters\":[  \r\n               {  \r\n                  \"name\":\"coolingpoint\",\r\n                  \"value\":\"float\",\r\n                  \"uom\":\"string\"\r\n               }\r\n        ]\r\n      }\r\n    }\r\n  ],\r\n  \"deviceCommands\":[{\r\n    \"get\":[\r\n      {\r\n        \"parameter\":\"CurrentHumidity\",\r\n        \"property\":\"presentValue\",\r\n        \"operation\":\"get\",\r\n        \"object\":\"AnalogValue_22\"\r\n      }\r\n    ]\r\n  }]\r\n}"
+							"raw": "{\r\n  \"origin\":1471806386919,\r\n  \"name\":\"TestProfileToPostUniqe\",\r\n  \"description\":\"BACnet Honeywell thermostats\",\r\n  \"manufacturer\":\"Honeywell\",\r\n  \"model\":\"ABC123\",\r\n  \"labels\":[\"bacnet\",\"thermostat\",\"Honeywell\"],\r\n  \"coreCommands\":[\r\n    {\r\n      \"origin\":1471806386919,\r\n      \"name\":\"cooling point1\",\r\n      \"get\":\r\n        {\r\n          \"path\":\"/cooling\",\r\n          \"response\":{\r\n            \"code\":\"200\",\r\n            \"errorDescription\":\"not a float\",\r\n            \"expectedValues\":\"temperature\"\r\n          }\r\n        },\r\n      \"put\":{\r\n        \"path\":\"/cooling\",\r\n        \"response\":{\r\n          \"code\":\"200\",\r\n          \"errorDescription\":\"not a float\",\r\n          \"expectedValues\":\"temperature\"\r\n        },\r\n        \"parameters\":[  \r\n               {  \r\n                  \"name\":\"coolingpoint\",\r\n                  \"value\":\"float\",\r\n                  \"uom\":\"string\"\r\n               }\r\n        ]\r\n      }\r\n    }\r\n  ],\r\n  \"deviceCommands\":[{\r\n    \"get\":[\r\n      {\r\n        \"parameter\":\"CurrentHumidity\",\r\n        \"property\":\"presentValue\",\r\n        \"operation\":\"get\",\r\n        \"object\":\"AnalogValue_22\"\r\n      }\r\n    ]\r\n  }]\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/deviceprofile",
@@ -4846,7 +4867,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"{{deviceprofileId}}\",\n    \"description\": \"Test DeviceProfile after PUT\",\n    \"coreCommands\": [\n      {\n        \"id\": \"57f4995be4b060e268aeb084\",\n        \"get\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        },\n        \"put\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        }\n      }\n    ]\n}"
+							"raw": "{\n    \"id\": \"{{deviceprofileId}}\",\n    \"description\": \"Test DeviceProfile after PUT\",\n    \"coreCommands\": [\n      {\n        \"id\": \"57f4995be4b060e268aeb084\",\n        \"name\": \"cooling point\",\n        \"get\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        },\n        \"put\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        }\n      }\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/deviceprofile",
@@ -5054,7 +5075,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"origin\":1471806386919,\r\n  \"name\":\"TestProfileToPost\",\r\n  \"description\":\"BACnet Honeywell thermostats\",\r\n  \"manufacturer\":\"Honeywell\",\r\n  \"model\":\"ABC123\",\r\n  \"labels\":[\"bacnet\",\"thermostat\",\"Honeywell\"],\r\n  \"coreCommands\":[\r\n    {\r\n      \"origin\":1471806386919,\r\n      \"name\":\"cooling point\",\r\n      \"get\":\r\n        {\r\n          \"path\":\"/cooling\",\r\n          \"response\":{\r\n            \"code\":\"200\",\r\n            \"errorDescription\":\"not a float\",\r\n            \"expectedValues\":\"temperature\"\r\n          }\r\n        },\r\n      \"put\":{\r\n        \"path\":\"/cooling\",\r\n        \"response\":{\r\n          \"code\":\"200\",\r\n          \"errorDescription\":\"not a float\",\r\n          \"expectedValues\":\"temperature\"\r\n        },\r\n        \"parameters\":[  \r\n               {  \r\n                  \"name\":\"coolingpoint\",\r\n                  \"value\":\"float\",\r\n                  \"uom\":\"string\"\r\n               }\r\n        ]\r\n      }\r\n    },\r\n    {\r\n      \"origin\":1471806386919,\r\n      \"name\":\"cooling point\",\r\n      \"get\":\r\n        {\r\n          \"path\":\"/cooling\",\r\n          \"response\":{\r\n            \"code\":\"200\",\r\n            \"errorDescription\":\"not a float\",\r\n            \"expectedValues\":\"temperature\"\r\n          }\r\n        },\r\n      \"put\":{\r\n        \"path\":\"/cooling\",\r\n        \"response\":{\r\n          \"code\":\"200\",\r\n          \"errorDescription\":\"not a float\",\r\n          \"expectedValues\":\"temperature\"\r\n        },\r\n        \"parameters\":[  \r\n               {  \r\n                  \"name\":\"coolingpoint\",\r\n                  \"value\":\"float\",\r\n                  \"uom\":\"string\"\r\n               }\r\n        ]\r\n      }\r\n    }\r\n  ],\r\n  \"deviceCommands\":[{\r\n    \"get\":[\r\n      {\r\n        \"parameter\":\"CurrentHumidity\",\r\n        \"property\":\"presentValue\",\r\n        \"operation\":\"get\",\r\n        \"object\":\"AnalogValue_22\"\r\n      }\r\n    ]\r\n  }]\r\n}"
+							"raw": "{\r\n  \"origin\":1471806386919,\r\n  \"name\":\"TestProfileToPost\",\r\n  \"description\":\"BACnet Honeywell thermostats\",\r\n  \"manufacturer\":\"Honeywell\",\r\n  \"model\":\"ABC123\",\r\n  \"labels\":[\"bacnet\",\"thermostat\",\"Honeywell\"],\r\n  \"coreCommands\":[\r\n    {\r\n      \"origin\":1471806386919,\r\n      \"name\":\"cooling point\",\r\n      \"get\":\r\n        {\r\n          \"path\":\"/cooling\",\r\n          \"response\":{\r\n            \"code\":\"200\",\r\n            \"errorDescription\":\"not a float\",\r\n            \"expectedValues\":\"temperature\"\r\n          }\r\n        },\r\n      \"put\":{\r\n        \"path\":\"/cooling\",\r\n        \"response\":{\r\n          \"code\":\"200\",\r\n          \"errorDescription\":\"not a float\",\r\n          \"expectedValues\":\"temperature\"\r\n        },\r\n        \"parameters\":[  \r\n               {  \r\n                  \"name\":\"coolingpoint\",\r\n                  \"value\":\"float\",\r\n                  \"uom\":\"string\"\r\n               }\r\n        ]\r\n      }\r\n    },\r\n    {\r\n      \"origin\":1471806386919,\r\n      \"name\":\"cooling point1\",\r\n      \"get\":\r\n        {\r\n          \"path\":\"/cooling\",\r\n          \"response\":{\r\n            \"code\":\"200\",\r\n            \"errorDescription\":\"not a float\",\r\n            \"expectedValues\":\"temperature\"\r\n          }\r\n        },\r\n      \"put\":{\r\n        \"path\":\"/cooling\",\r\n        \"response\":{\r\n          \"code\":\"200\",\r\n          \"errorDescription\":\"not a float\",\r\n          \"expectedValues\":\"temperature\"\r\n        },\r\n        \"parameters\":[  \r\n               {  \r\n                  \"name\":\"coolingpoint\",\r\n                  \"value\":\"float\",\r\n                  \"uom\":\"string\"\r\n               }\r\n        ]\r\n      }\r\n    }\r\n  ],\r\n  \"deviceCommands\":[{\r\n    \"get\":[\r\n      {\r\n        \"parameter\":\"CurrentHumidity\",\r\n        \"property\":\"presentValue\",\r\n        \"operation\":\"get\",\r\n        \"object\":\"AnalogValue_22\"\r\n      }\r\n    ]\r\n  }]\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/deviceprofile",
@@ -5107,7 +5128,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"57f4995be4b060e268aeb000\",\n    \"description\": \"Test DeviceProfile after PUT\",\n    \"coreCommands\": [\n      {\n        \"id\": \"57f4995be4b060e268aeb084\",\n        \"get\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        },\n        \"put\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        }\n      }\n    ]\n}"
+							"raw": "{\n    \"id\": \"57f4995be4b060e268aeb000\",\n    \"description\": \"Test DeviceProfile after PUT\",\n    \"coreCommands\": [\n      {\n        \"id\": \"57f4995be4b060e268aeb084\",\n        \"name\": \"cooling\",\n        \"get\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        },\n        \"put\": {\n          \"response\": {\n            \"errorDescription\": \"Integer Value\",\n            \"expectedValues\": \"temperature\"\n          }\n        }\n      }\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/deviceprofile",
@@ -6763,6 +6784,8 @@
 									"};",
 									"var deviceService = {",
 									"  \"name\":\"deviceService-\"+ randName,",
+									"  \"adminState\": \"unlocked\",",
+									"  \"operatingState\": \"enabled\",",
 									"  \"addressable\":{",
 									"    \"name\":\"addressable-\"+ randName",
 									"  }",
@@ -9225,7 +9248,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "ed461754-527e-4dd6-a1dd-cdf113806b95",
 								"exec": [
 									"/*",
 									" * Test Case:  /provisionwatcher - PUT",
@@ -9255,7 +9278,18 @@
 									"            }",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9dff975b-9c54-44c5-a209-b856c9c7ffec",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -9269,7 +9303,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"name\":\"modbus watcher\", \"origin\":14718063870000}"
+							"raw": "{\n\t\"name\":\"modbus watcher\", \n\t\"origin\":14718063870000,\n    \"profile\":{  \n       \"name\":\"variable speed motor profile\"\n    },\n    \"service\":{  \n      \"name\":\"home variable speed motor device service\",\n      \"adminState\": \"unlocked\",\n      \"operatingState\": \"enabled\",\n      \"addressable\": {\n       \"name\": \"ceiling fan variable speed motor address\"\n      }\n    },\n   \"operatingState\": \"enabled\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/provisionwatcher",
@@ -9334,7 +9368,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \n   \"name\":\"bacnet2 watcher\",\n   \"origin\":1471806386919,\n   \"identifiers\":{  \n      \"MAC\":\"00-05-1B-A1-99-99\",\n      \"HTTP\":\"10.0.0.1\"\n   },\n   \"profile\":{  \n      \"name\":\"variable speed motor profile\"\n   },\n   \"service\":{  \n      \"name\":\"home variable speed motor device service\"\n   },\n   \"operatingState\": \"enabled\"\n}"
+							"raw": "{  \n   \"name\":\"bacnet2 watcher1\",\n   \"origin\":1471806386919,\n   \"identifiers\":{  \n      \"MAC\":\"00-05-1B-A1-99-99\",\n      \"HTTP\":\"10.0.0.1\"\n   },\n   \"profile\":{  \n      \"name\":\"variable speed motor profile\"\n   },\n   \"service\":{  \n      \"name\":\"home variable speed motor device service\",\n      \"adminState\": \"unlocked\",\n      \"operatingState\": \"enabled\",\n      \"addressable\": {\n       \"name\": \"ceiling fan variable speed motor address\"\n      }\n   },\n   \"operatingState\": \"enabled\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/provisionwatcher",
@@ -9646,7 +9680,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "2819211a-1790-43d2-8262-0f5e297bb528",
 								"exec": [
 									"/*",
 									" * Test Case:  /provisionwatcher - 404 Error - PUT",
@@ -9659,7 +9693,8 @@
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
 									"//Test response time",
 									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -9673,7 +9708,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"name\":\"invalid watcher\", \"origin\":14718063870000}"
+							"raw": "{\n\t\"name\":\"invalid watcher\", \n\t\"origin\":14718063870000,\n    \"profile\":{  \n       \"name\":\"variable speed motor profile\"\n    },\n    \"service\":{  \n      \"name\":\"home variable speed motor device service\",\n      \"adminState\": \"unlocked\",\n      \"operatingState\": \"enabled\",\n      \"addressable\": {\n       \"name\": \"ceiling fan variable speed motor address\"\n      }\n    },\n   \"operatingState\": \"enabled\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/provisionwatcher",
@@ -9696,7 +9731,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "11cf7bdf-09b6-452b-b87e-9172b22e8732",
 								"exec": [
 									"/*",
 									" * Test Case:  /provisionwatcher - 409 Error - POST ",
@@ -9708,7 +9743,8 @@
 									"tests[\"Status code is 409\"] = responseCode.code === 409;",
 									"//Verify if response time is less than 200ms.",
 									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -9722,7 +9758,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \n   \"name\":\"bacnet2 watcher\",\n   \"origin\":1471806386919,\n   \"identifiers\":{  \n      \"MAC\":\"00-05-1B-A1-99-99\",\n      \"HTTP\":\"10.0.0.1\"\n   },\n   \"profile\":{  \n      \"name\":\"variable speed motor not found\"\n   },\n   \"service\":{  \n      \"name\":\"home variable speed motor not found\"\n   }\n}"
+							"raw": "{  \n   \"name\":\"bacnet2 watcher\",\n   \"origin\":1471806386919,\n   \"identifiers\":{  \n      \"MAC\":\"00-05-1B-A1-99-99\",\n      \"HTTP\":\"10.0.0.1\"\n   },\n   \"profile\":{  \n      \"name\":\"variable speed motor not found\"\n   },\n   \"service\":{  \n      \"name\":\"home variable speed motor not found\",\n      \"adminState\": \"unlocked\",\n      \"operatingState\": \"enabled\",\n      \"addressable\": {\n       \"name\": \"ceiling fan variable speed motor address\"\n      }\n   },\n   \"operatingState\": \"enabled\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/provisionwatcher",
