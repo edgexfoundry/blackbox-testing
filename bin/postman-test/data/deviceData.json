@@ -6,7 +6,7 @@
     "deleteDeviceName": "livingroomthermostatDM1",
     "getDeviceName": "CUJO",
     "getDeviceLabelName": "hvac",
-    "getServiceName": "Gogle Home device service",
+    "getServiceName": "Google Home device service",
     "getProfileName": "Google Home profile",
     "getAddressablename": "Starry Station",
     "updateOpState": "ENABLED",
