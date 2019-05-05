@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b53ec894-ecb6-44f7-937b-f9602df24bc2",
+		"_postman_id": "94c87f3a-9418-4f61-9b48-e8e3314d67f1",
 		"name": "core-data",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -132,6 +132,7 @@
 									"    \"readings\": [",
 									"        {",
 									"          \"origin\": 1471806386918,",
+									"          \"device\": \"powerScoutMeter\",",
 									"          \"name\": \"power\",",
 									"          \"value\": \"39\"",
 									"        }",
@@ -164,7 +165,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"id\":\"{{eventID}}\",\"pushed\":1471806399999}"
+							"raw": "{\n\t\"id\":\"{{eventID}}\",\n\t\"device\": \"powerScoutMeter\",\n\t\"pushed\":1471806399999\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/event",
@@ -187,7 +188,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "8dc6d708-09f0-4f3c-afdf-b923c780eaa2",
 								"exec": [
 									"/*",
 									" * Test Case:  /event - POST",
@@ -211,7 +212,8 @@
 									"    //Test body value",
 									"    tests[\"Is Body Contains Id\"] = responseBody.length === 36;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -225,7 +227,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"device\":\"57e8b705e4b060e251231c4f\",\r\n   \"readings\":[  \r\n      {  \r\n         \"origin\":1471806386919,\r\n         \"name\":\"luminousIntensity\",\r\n         \"value\":\"40\"\r\n      }\r\n   ]\r\n}"
+							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"device\":\"cartachometer\",\r\n   \"readings\":[  \r\n      {  \r\n        \"origin\":1471806386919,\r\n\t\t\"device\":\"cartachometer\",\r\n        \"name\":\"luminousIntensity\",\r\n        \"value\":\"40\"\r\n      }\r\n   ]\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/event",
@@ -304,6 +306,7 @@
 									"    \"readings\": [",
 									"        {",
 									"          \"origin\": 1471806386918,",
+									"          \"device\": \"powerScoutMeter\",",
 									"          \"name\": \"power\",",
 									"          \"value\": \"39\"",
 									"        }",
@@ -398,6 +401,7 @@
 									"    \"readings\": [",
 									"        {",
 									"          \"origin\": 1471806386918,",
+									"          \"device\": \"powerScoutMeter\",",
 									"          \"name\": \"power\",",
 									"          \"value\": \"39\"",
 									"        }",
@@ -498,6 +502,7 @@
 									"    \"readings\": [",
 									"        {",
 									"          \"origin\": 1471806386918,",
+									"          \"device\": \"powerScoutMeter\",",
 									"          \"name\": \"power\",",
 									"          \"value\": \"39\"",
 									"        }",
@@ -921,7 +926,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "2b318e23-92ba-460c-aa00-657fa004f0d6",
 								"exec": [
 									"/*",
 									" * Test Case:  /event - POST",
@@ -945,7 +950,8 @@
 									"    //Test body value",
 									"    tests[\"Is Body Contains Id\"] = responseBody.length === 36;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -959,7 +965,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"device\":\"luxmeter\",\r\n   \"readings\":[  \r\n      {  \r\n         \"origin\":1471806386919,\r\n         \"name\":\"luminousIntensity\",\r\n         \"value\":\"38\"\r\n      }\r\n   ]\r\n}"
+							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"device\":\"luxmeter\",\r\n   \"readings\":[  \r\n      {  \r\n         \"origin\":1471806386919,\r\n\t\t \"device\":\"luxmeter\",\r\n         \"name\":\"luminousIntensity\",\r\n         \"value\":\"38\"\r\n      }\r\n   ]\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/event",
@@ -982,7 +988,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "7624a6c4-eabf-4d28-8e1d-b95824de8637",
 								"exec": [
 									"/*",
 									" * Test Case:  /event - POST",
@@ -1006,7 +1012,8 @@
 									"    //Test body value",
 									"    tests[\"Is Body Contains Id\"] = responseBody.length === 36;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1020,7 +1027,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"device\":\"livingroomthermostat\",\r\n   \"readings\":[  \r\n      {  \r\n         \"origin\":1471806386919,\r\n         \"name\":\"xxx\",\r\n         \"value\":\"38\"\r\n      }\r\n   ]\r\n}"
+							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"device\":\"livingroomthermostat\",\r\n   \"readings\":[  \r\n      {  \r\n         \"origin\":1471806386919,\r\n         \"device\":\"livingroomthermostat\",\r\n         \"name\":\"xxx\",\r\n         \"value\":\"38\"\r\n      }\r\n   ]\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/event",
@@ -1043,7 +1050,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "ef8f65a3-f73d-484b-b5ac-a1f68f4ce7fa",
 								"exec": [
 									"/*",
 									" * Test Case:  /event - POST",
@@ -1067,7 +1074,8 @@
 									"    //Test body value",
 									"    tests[\"Is Body Contains Id\"] = responseBody.length === 36;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1081,7 +1089,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"device\":\"57e8b705e4b060e251231c4f\",\r\n   \"readings\":[  \r\n      {  \r\n         \"origin\":1471806386919,\r\n         \"name\":\"xxx\",\r\n         \"value\":\"38\"\r\n      }\r\n   ]\r\n}"
+							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"device\":\"57e8b705e4b060e251231c4f\",\r\n   \"readings\":[  \r\n      {  \r\n         \"origin\":1471806386919,\r\n         \"device\":\"livingroomthermostat\",\r\n         \"name\":\"xxx\",\r\n         \"value\":\"38\"\r\n      }\r\n   ]\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/event",
@@ -1291,7 +1299,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "e743bce5-73e2-45ae-9b08-b69a37e1cbac",
 								"exec": [
 									"/*",
 									" * Test Case:  /event - 404 Error - PUT ",
@@ -1304,7 +1312,8 @@
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
 									"//Test response time",
 									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1318,7 +1327,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"id\":\"57e866d4e4b0ca8e6d73a411\",\"pushed\":1471806399999}"
+							"raw": "{\n\t\"id\":\"57e866d4e4b0ca8e6d73a411\",\n\t\"device\": \"powerScoutMeter\",\n\t\"pushed\":1471806399999\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/event",
@@ -1783,6 +1792,7 @@
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
 									"var data = {",
 									"    \"origin\":1471806366619,",
+									"    \"device\": \"powerScoutMeter\",",
 									"    \"name\":\"co2\",",
 									"    \"value\":\"12\"",
 									"};",
@@ -1813,7 +1823,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"{{readingID}}\",\n    \"name\": \"ohm\",\n    \"value\": \"6\"\n }"
+							"raw": "{\n    \"id\": \"{{readingID}}\",\n    \"device\": \"powerScoutMeter\",\n    \"name\": \"ohm\",\n    \"value\": \"6\"\n }"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading",
@@ -1869,7 +1879,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"origin\":1471806366619,\"name\":\"co2\",\"value\":\"12\"}"
+							"raw": "{\n\t\"origin\":1471806366619,\n\t\"device\":\"livingroomthermostat\",\n\t\"name\":\"co2\",\n\t\"value\":\"12\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading",
@@ -2012,6 +2022,7 @@
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
 									"var data = {",
 									"    \"origin\":1471806366619,",
+									"    \"device\": \"powerScoutMeter\",",
 									"    \"name\":\"co2\",",
 									"    \"value\":\"12\"",
 									"};",
@@ -2612,7 +2623,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"origin\":1471806366619,\"name\":\"xxx\",\"value\":\"12\"}"
+							"raw": "{\n\t\"origin\":1471806366619,\n\t\"device\":\"livingroomthermostat\",\n\t\"name\":\"xxx\",\n\t\"value\":\"12\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading",
@@ -2695,7 +2706,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"{{readingID}}\",\n    \"created\": 1475227393375,\n    \"modified\": 1475227393375,\n    \"origin\": 1471806366619,\n    \"pushed\": 0,\n    \"name\": \"xxx\",\n    \"value\": \"12\"\n}"
+							"raw": "{\n    \"id\": \"{{readingID}}\",\n    \"created\": 1475227393375,\n    \"modified\": 1475227393375,\n    \"origin\": 1471806366619,\n    \"device\": \"powerScoutMeter\",\n    \"pushed\": 0,\n    \"name\": \"xxx\",\n    \"value\": \"12\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading",
@@ -2724,14 +2735,15 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "a1eb391e-6015-4c7f-803f-10524cec5c98",
 								"exec": [
 									"//Assert 404 status if the reading cannot be found by id",
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
 									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
 									"",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2745,7 +2757,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"57e866d4e4b0ca8e6d73a412\",\n    \"created\": 1475227070170,\n    \"modified\": 1475227070170,\n    \"origin\": 1471806366619,\n    \"pushed\": 0,\n    \"name\": \"co2\",\n    \"value\": \"12\"\n}"
+							"raw": "{\n    \"id\": \"57e866d4e4b0ca8e6d73a412\",\n    \"created\": 1475227070170,\n    \"modified\": 1475227070170,\n    \"origin\": 1471806366619,\n    \"device\": \"powerScoutMeter\",\n    \"pushed\": 0,\n    \"name\": \"co2\",\n    \"value\": \"12\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading",
@@ -2935,6 +2947,7 @@
 									"        console.log(err);",
 									"    } else {",
 									"        pm.environment.set(\"valuedescriptorID\", res.json()[0].id);",
+									"        pm.environment.set(\"valuedescriptorName\", res.json()[0].name);",
 									"    }",
 									"});"
 								],
@@ -2952,7 +2965,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\":\"{{valuedescriptorID}}\",\n  \"min\":\"-800\",\n  \"max\":\"200\",\n  \"defaultValue\": \"0\"\n}"
+							"raw": "{\n  \"id\":\"{{valuedescriptorID}}\",\n  \"name\": \"{{valuedescriptorName}}\",\n  \"min\":\"-800\",\n  \"max\":\"200\",\n  \"defaultValue\": \"0\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/valuedescriptor",
@@ -3506,7 +3519,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\":\"57e5064be4b0f1b53f534103\",\n  \"min\":\"-200\",\n  \"max\":\"200\"\n}"
+							"raw": "{\n  \"id\":\"57e5064be4b0f1b53f534103\",\n  \"name\": \"RPM\",\n  \"min\":\"-200\",\n  \"max\":\"200\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/valuedescriptor",
@@ -3560,7 +3573,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\":\"co2\",\r\n  \"min\":\"12\",\r\n  \"max\":\"15\",\r\n  \"type\":\"F\",\r\n  \"uomLabel\":\"degreecel\",\r\n  \"defaultValue\":\"0\",\r\n  \"formatting\":\"%\",\r\n  \"labels\":[\"NHCO2\",\"hvac\"]\r\n}"
+							"raw": "{\r\n  \"name\":\"co2\",\r\n  \"min\":\"12\",\r\n  \"max\":\"15\",\r\n  \"type\":\"F\",\r\n  \"uomLabel\":\"degreecel\",\r\n  \"defaultValue\":\"0\",\r\n  \"formatting\":\"%s\",\r\n  \"labels\":[\"NHCO2\",\"hvac\"]\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/valuedescriptor",
@@ -3827,6 +3840,24 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1cc8c37c-3e62-40d3-9433-c8dc911a5710",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/valuedescriptor\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"valuedescriptorID\", res.json()[0].id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -3839,7 +3870,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\":\"luminousIntensity\",\r\n  \"min\":\"-200\",\r\n  \"max\":\"200\",\r\n  \"type\":\"F\",\r\n  \"uomLabel\":\"degreecel23\",\r\n  \"defaultValue\":\"0\",\r\n  \"formatting\":\"%\",\r\n  \"labels\":[\"NHCO2\",\"hvac\"]\r\n}"
+							"raw": "{\r\n  \"id\": \"{{valuedescriptorID}}\",\r\n  \"name\":\"luminousIntensity\",\r\n  \"min\":\"-200\",\r\n  \"max\":\"200\",\r\n  \"type\":\"F\",\r\n  \"uomLabel\":\"degreecel23\",\r\n  \"defaultValue\":\"0\",\r\n  \"formatting\":\"%s\",\r\n  \"labels\":[\"NHCO2\",\"hvac\"]\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/valuedescriptor",
