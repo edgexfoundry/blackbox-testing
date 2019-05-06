@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c8f64c65-ae00-4227-83f6-60b2c5ae8882",
+		"_postman_id": "ad787b2f-5ae3-43c3-b2ab-12b92fb92f7b",
 		"name": "device-virtual",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -67,7 +67,7 @@
 			"response": []
 		},
 		{
-			"name": "Test whether the Random-Bool-Generator device profile has been added to metadata",
+			"name": "Test whether the Random-Boolean-Generator device profile has been added to metadata",
 			"event": [
 				{
 					"listen": "test",
@@ -109,7 +109,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-Bool-Generator",
+					"raw": "{{baseUrl}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-Boolean-Generator",
 					"host": [
 						"{{baseUrl}}{{coreMetadataServicePort}}"
 					],
@@ -118,7 +118,7 @@
 						"v1",
 						"deviceprofile",
 						"name",
-						"Random-Bool-Generator"
+						"Random-Boolean-Generator"
 					]
 				}
 			},
@@ -299,7 +299,7 @@
 			"response": []
 		},
 		{
-			"name": "Test whether the pre-defined Random-Bool-Generator01 device in metadata exists",
+			"name": "Test whether the pre-defined Random-Boolean-Generator01 device in metadata exists",
 			"event": [
 				{
 					"listen": "test",
@@ -341,7 +341,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}{{coreMetadataServicePort}}/api/v1/device/name/Random-Bool-Generator01",
+					"raw": "{{baseUrl}}{{coreMetadataServicePort}}/api/v1/device/name/Random-Boolean-Generator01",
 					"host": [
 						"{{baseUrl}}{{coreMetadataServicePort}}"
 					],
@@ -350,7 +350,7 @@
 						"v1",
 						"device",
 						"name",
-						"Random-Bool-Generator01"
+						"Random-Boolean-Generator01"
 					]
 				}
 			},
@@ -531,7 +531,7 @@
 			"response": []
 		},
 		{
-			"name": "Test the put method of Enable_Randomization and Value",
+			"name": "Test the put value method",
 			"event": [
 				{
 					"listen": "test",
@@ -556,13 +556,13 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"Enable_Randomization\":\"false\",\"RandomValue_Int8\":\"66\"}"
+					"raw": "{\"RandomValue_Int8\":\"66\"}"
 				},
 				"url": {
 					"raw": "{{baseUrl}}{{virtualDeviceServicePort}}/api/v1/device/name/Random-Integer-Generator01/RandomValue_Int8",
