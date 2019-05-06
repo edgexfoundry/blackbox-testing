@@ -19,6 +19,7 @@ SUPPORT_NOTIFICATION_LOG_PATH=$BASEPATH/supportNotification$TIMESTAMPFORMAT.log
 EXPORTCLIENTLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
 RULESENGINELOGSPATH=$BASEPATH/rulesengine$TIMESTAMPFORMAT.log
 SUPPORT_SCHEDULER_LOG_PATH=$BASEPATH/supportScheduler$TIMESTAMPFORMAT.log
+DEVICEVIRTUALLOGSPATH=$BASEPATH/devicevirtual$TIMESTAMPFORMAT.log
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 securityTest() {
@@ -85,6 +86,10 @@ supportSchedulerTest(){
     $(dirname "$0")/flushSupportSchedulerDataDump.sh
 }
 
+deviceVirtualTest() {
+	$(dirname "$0")/deviceVirtualTest.sh
+}
+
 testAll() {
 
 	coreDataTest
@@ -95,6 +100,7 @@ testAll() {
 	exportClientTest
 	rulesengineTest
 	supportSchedulerTest
+	deviceVirtualTest
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 	     securityTest
@@ -149,12 +155,16 @@ case ${option} in
     echo "Info: Initiating SupportRulesengine Test"
     rulesengineTest	| tee $RULESENGINELOGSPATH
     ;;
+    -dv)
+    echo "Info: Initiating DeviceVirtual Test"
+    deviceVirtualTest	| tee $DEVICEVIRTUALLOGSPATH
+    ;;
    	-all)
     echo "Info: Initiating EdgeX Test"
 	testAll		| tee $EDGEXLOGSPATH
     ;;
    	*)
-    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-exc Export Client] | [-ss SupportScheduler] | [-ru Rulesengine] | [-sec securityTest] | [-all All]"
+    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-exc Export Client] | [-ss SupportScheduler] | [-ru Rulesengine] | [-dv DeviceVirtual] | [-sec securityTest] | [-all All]"
     echo
     exit 0
     ;;

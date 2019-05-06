@@ -27,8 +27,8 @@
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.test(\"Response time is less than 200ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"pm.test(\"Response time is less than 600ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);",
 							"});",
 							"",
 							"pm.test(\"Content-Type is present\", function () {",
@@ -36,7 +36,7 @@
 							"});",
 							"",
 							"pm.test(\"Response body is correct\", function () {",
-							"    pm.expect(pm.response.text()).to.include(\"pong\");",
+							"    pm.expect(pm.response.text()).to.include(\"1.0.0\");",
 							"});",
 							""
 						],
@@ -52,9 +52,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}{{coreMetadataServicePort}}/api/v1/ping",
+					"raw": "{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}/api/v1/ping",
 					"host": [
-						"{{baseUrl}}{{coreMetadataServicePort}}"
+						"{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}"
 					],
 					"path": [
 						"api",
@@ -95,6 +95,11 @@
 							"     pm.response.to.be.withBody;",
 							"     pm.response.to.be.json; ",
 							"});",
+							"",
+							"pm.test(\"Validate device profile name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name===\"Random-Boolean-Generator\").to.be.true; ",
+							"});",
 							""
 						],
 						"type": "text/javascript"
@@ -109,9 +114,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-Boolean-Generator",
+					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-Boolean-Generator",
 					"host": [
-						"{{baseUrl}}{{coreMetadataServicePort}}"
+						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
 					],
 					"path": [
 						"api",
@@ -153,6 +158,11 @@
 							"     pm.response.to.be.withBody;",
 							"     pm.response.to.be.json; ",
 							"});",
+							"",
+							"pm.test(\"Validate device profile name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name===\"Random-Integer-Generator\").to.be.true; ",
+							"});",
 							""
 						],
 						"type": "text/javascript"
@@ -167,9 +177,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-Integer-Generator",
+					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-Integer-Generator",
 					"host": [
-						"{{baseUrl}}{{coreMetadataServicePort}}"
+						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
 					],
 					"path": [
 						"api",
@@ -211,6 +221,11 @@
 							"     pm.response.to.be.withBody;",
 							"     pm.response.to.be.json; ",
 							"});",
+							"",
+							"pm.test(\"Validate device profile name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name===\"Random-UnsignedInteger-Generator\").to.be.true; ",
+							"});",
 							""
 						],
 						"type": "text/javascript"
@@ -225,9 +240,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-UnsignedInteger-Generator",
+					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-UnsignedInteger-Generator",
 					"host": [
-						"{{baseUrl}}{{coreMetadataServicePort}}"
+						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
 					],
 					"path": [
 						"api",
@@ -269,6 +284,11 @@
 							"     pm.response.to.be.withBody;",
 							"     pm.response.to.be.json; ",
 							"});",
+							"",
+							"pm.test(\"Validate device profile name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name===\"Random-Float-Generator\").to.be.true; ",
+							"});",
 							""
 						],
 						"type": "text/javascript"
@@ -283,9 +303,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-Float-Generator",
+					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-Float-Generator",
 					"host": [
-						"{{baseUrl}}{{coreMetadataServicePort}}"
+						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
 					],
 					"path": [
 						"api",
@@ -327,6 +347,11 @@
 							"     pm.response.to.be.withBody;",
 							"     pm.response.to.be.json; ",
 							"});",
+							"",
+							"pm.test(\"Validate device name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name===\"Random-Boolean-Generator01\").to.be.true; ",
+							"});",
 							""
 						],
 						"type": "text/javascript"
@@ -341,9 +366,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}{{coreMetadataServicePort}}/api/v1/device/name/Random-Boolean-Generator01",
+					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/device/name/Random-Boolean-Generator01",
 					"host": [
-						"{{baseUrl}}{{coreMetadataServicePort}}"
+						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
 					],
 					"path": [
 						"api",
@@ -385,6 +410,11 @@
 							"     pm.response.to.be.withBody;",
 							"     pm.response.to.be.json; ",
 							"});",
+							"",
+							"pm.test(\"Validate device name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name===\"Random-Integer-Generator01\").to.be.true; ",
+							"});",
 							""
 						],
 						"type": "text/javascript"
@@ -399,9 +429,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}{{coreMetadataServicePort}}/api/v1/device/name/Random-Integer-Generator01",
+					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/device/name/Random-Integer-Generator01",
 					"host": [
-						"{{baseUrl}}{{coreMetadataServicePort}}"
+						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
 					],
 					"path": [
 						"api",
@@ -443,6 +473,11 @@
 							"     pm.response.to.be.withBody;",
 							"     pm.response.to.be.json; ",
 							"});",
+							"",
+							"pm.test(\"Validate device name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name===\"Random-UnsignedInteger-Generator01\").to.be.true; ",
+							"});",
 							""
 						],
 						"type": "text/javascript"
@@ -457,9 +492,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}{{coreMetadataServicePort}}/api/v1/device/name/Random-UnsignedInteger-Generator01",
+					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/device/name/Random-UnsignedInteger-Generator01",
 					"host": [
-						"{{baseUrl}}{{coreMetadataServicePort}}"
+						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
 					],
 					"path": [
 						"api",
@@ -501,6 +536,11 @@
 							"     pm.response.to.be.withBody;",
 							"     pm.response.to.be.json; ",
 							"});",
+							"",
+							"pm.test(\"Validate device name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name===\"Random-Float-Generator01\").to.be.true; ",
+							"});",
 							""
 						],
 						"type": "text/javascript"
@@ -515,9 +555,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}{{coreMetadataServicePort}}/api/v1/device/name/Random-Float-Generator01",
+					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/device/name/Random-Float-Generator01",
 					"host": [
-						"{{baseUrl}}{{coreMetadataServicePort}}"
+						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
 					],
 					"path": [
 						"api",
@@ -565,9 +605,9 @@
 					"raw": "{\"RandomValue_Int8\":\"66\"}"
 				},
 				"url": {
-					"raw": "{{baseUrl}}{{virtualDeviceServicePort}}/api/v1/device/name/Random-Integer-Generator01/RandomValue_Int8",
+					"raw": "{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}/api/v1/device/name/Random-Integer-Generator01/RandomValue_Int8",
 					"host": [
-						"{{baseUrl}}{{virtualDeviceServicePort}}"
+						"{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}"
 					],
 					"path": [
 						"api",
@@ -629,9 +669,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}{{virtualDeviceServicePort}}/api/v1/device/name/Random-Integer-Generator01/RandomValue_Int8",
+					"raw": "{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}/api/v1/device/name/Random-Integer-Generator01/RandomValue_Int8",
 					"host": [
-						"{{baseUrl}}{{virtualDeviceServicePort}}"
+						"{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}"
 					],
 					"path": [
 						"api",
