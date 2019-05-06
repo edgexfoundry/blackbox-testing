@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a70a0517-8f4c-488d-a592-1f8d749bfc64",
+		"_postman_id": "9c47a743-44b1-40a8-be8b-23195a2ae6a5",
 		"name": "export-client",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -82,7 +82,6 @@
 							"listen": "test",
 							"script": {
 								"id": "b0233f73-59c2-4ea0-82a3-caaf14f99271",
-								"type": "text/javascript",
 								"exec": [
 									"/**",
 									" * Test Case:  api/v1/registration - PUT",
@@ -106,7 +105,8 @@
 									"pm.test(\"Response body is correct\", function () {",
 									"    pm.expect(pm.response.text() === 'true' ).to.be.true;",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -120,7 +120,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"enable\": false\n}"
+							"raw": "{\n\t\"name\":\"OSIClient\",\n\t\"format\":\"JSON\",\n\t\"addressable\":\n\t{\t\n\t\t\"name\":\"OSIMQTTBroker\"\n\t},\n\t\"enable\": false,\n\t\"compression\":\"GZIP\",\n\t\"destination\": \"REST_ENDPOINT\"\n}"
 						},
 						"url": {
 							"raw": "{{exportClientUrl}}/api/v1/registration",
@@ -860,7 +860,6 @@
 							"listen": "test",
 							"script": {
 								"id": "510f7316-2b2b-467a-9c65-283aac327ae8",
-								"type": "text/javascript",
 								"exec": [
 									"/**",
 									" * Test Case:  api/v1/registration - PUT - 400",
@@ -881,7 +880,8 @@
 									"    pm.response.to.have.header(\"Content-Type\");",
 									"});",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -919,7 +919,6 @@
 							"listen": "test",
 							"script": {
 								"id": "1158a8e4-ae1e-4037-9f99-53eb881deacc",
-								"type": "text/javascript",
 								"exec": [
 									"/**",
 									" * Test Case:  api/v1/registration - PUT - 404",
@@ -940,7 +939,8 @@
 									"    pm.response.to.have.header(\"Content-Type\");",
 									"});",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -954,7 +954,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\":\"OSIClientNotThere\",\n\t\"enable\": false\n}"
+							"raw": "{\n\t\"name\":\"OSIClientNotThere\",\n\t\"format\":\"JSON\",\n\t\"addressable\":\n\t{\t\n\t\t\"name\":\"OSIMQTTBroker\"\n\t},\n\t\"enable\": false,\n\t\"compression\":\"GZIP\",\n\t\"destination\": \"REST_ENDPOINT\"\n}"
 						},
 						"url": {
 							"raw": "{{exportClientUrl}}/api/v1/registration",
