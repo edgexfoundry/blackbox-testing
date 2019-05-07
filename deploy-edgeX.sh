@@ -76,4 +76,4 @@ run_service export-distro
 
 run_service rulesengine
 
-#run_service device-virtual
+run_service device-virtual
