@@ -8,7 +8,7 @@
     "senderName":"Room System Management",
     "labels":"power-meter",
     "status":"new",
-    "limit":"2",
+    "limit": 2,
     "cleanUpAge":"123456",
     "schema":{
       "$schema": "http://json-schema.org/draft-04/schema#",

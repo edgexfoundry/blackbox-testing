@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "53c69d94-b494-4911-838a-fd085eb47177",
+		"_postman_id": "38138592-7d9a-4225-8f25-47b33fe2d2a8",
 		"name": "support-notifications",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -15,7 +15,6 @@
 							"listen": "test",
 							"script": {
 								"id": "5c82bea1-bc93-40f8-aa81-40f121a18013",
-								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 201\", function () {",
 									"    pm.response.to.have.status(201);",
@@ -38,7 +37,8 @@
 									"    pm.response.to.have.body(\"sys-admin\");",
 									"});",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1378,9 +1378,9 @@
 							"listen": "test",
 							"script": {
 								"id": "247bc61d-e597-4c86-bc4a-3e102cd46cb5",
-								"type": "text/javascript",
 								"exec": [
 									"var schema = pm.globals.get(\"schemas\").NotificationArray;",
+									"var limit = pm.environment.get(\"limit\");",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -1406,6 +1406,11 @@
 									"    });",
 									"});",
 									"",
+									"pm.test(\"Response count is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.equal(limit);",
+									"});",
+									"",
 									"pm.test(\"Is valid response schema\", function () {",
 									"     var jsonData = pm.response.json();",
 									"     var result = tv4.validate(jsonData, schema);",
@@ -1415,24 +1420,25 @@
 									"     pm.expect(result).to.be.true;",
 									"});",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "57d6af4e-0157-46a7-b03d-13095268c2d0",
-								"type": "text/javascript",
 								"exec": [
 									"if(!data.senderName){",
 									"    pm.environment.set(\"senderName\", \"Room System Management\");",
-									"    pm.environment.set(\"limit\", \"2\");",
+									"    pm.environment.set(\"limit\", 2);",
 									"}else{",
 									"    pm.environment.set(\"senderName\", data.senderName); ",
 									"    pm.environment.set(\"limit\", data.limit); ",
 									"}",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1478,6 +1484,7 @@
 									"var schema = pm.globals.get(\"schemas\").NotificationArray;",
 									"var endDate = pm.environment.get(\"endDate\");",
 									"var startDate = pm.environment.get(\"startDate\");",
+									"var limit = pm.environment.get(\"limit\");",
 									"var responseTime = pm.environment.get(\"responseTime\");",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
@@ -1502,6 +1509,11 @@
 									"    jsonData.forEach(function(data) {",
 									"      pm.expect(data.created > startDate && data.created< endDate).to.be.true;",
 									"    });",
+									"});",
+									"",
+									"pm.test(\"Response count is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.equal(limit);",
 									"});",
 									"",
 									"pm.test(\"Is valid response schema\", function () {",
@@ -1529,7 +1541,7 @@
 									"",
 									"pm.environment.set(\"startDate\", startDate);",
 									"pm.environment.set(\"endDate\", endDate);",
-									"pm.environment.set(\"limit\", \"2\");",
+									"pm.environment.set(\"limit\", 2);",
 									"",
 									"if(!data.responseTime){",
 									"    pm.environment.set(\"responseTime\", 800);",
@@ -1585,6 +1597,7 @@
 								"exec": [
 									"var schema = pm.globals.get(\"schemas\").NotificationArray;",
 									"var startDate = pm.environment.get(\"startDate\");",
+									"var limit = pm.environment.get(\"limit\");",
 									"var responseTime = pm.environment.get(\"responseTime\");",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
@@ -1611,6 +1624,11 @@
 									"    });",
 									"});",
 									"",
+									"pm.test(\"Response count is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.equal(limit);",
+									"});",
+									"",
 									"pm.test(\"Is valid response schema\", function () {",
 									"     var jsonData = pm.response.json();",
 									"     var result = tv4.validate(jsonData, schema);",
@@ -1633,7 +1651,7 @@
 									"var startDate = date.getTime() - 300000",
 									"",
 									"pm.environment.set(\"startDate\", startDate);",
-									"pm.environment.set(\"limit\", \"2\");",
+									"pm.environment.set(\"limit\", 2);",
 									"",
 									"if(!data.responseTime){",
 									"    pm.environment.set(\"responseTime\", 800);",
@@ -1687,6 +1705,7 @@
 								"exec": [
 									"var schema = pm.globals.get(\"schemas\").NotificationArray;",
 									"var endDate = pm.environment.get(\"endDate\");",
+									"var limit = pm.environment.get(\"limit\");",
 									"var responseTime = pm.environment.get(\"responseTime\");",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
@@ -1713,6 +1732,11 @@
 									"    });",
 									"});",
 									"",
+									"pm.test(\"Response count is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.equal(limit);",
+									"});",
+									"",
 									"pm.test(\"Is valid response schema\", function () {",
 									"     var jsonData = pm.response.json();",
 									"     var result = tv4.validate(jsonData, schema);",
@@ -1735,7 +1759,7 @@
 									"var endDate = date.getTime();",
 									"",
 									"pm.environment.set(\"endDate\", endDate);",
-									"pm.environment.set(\"limit\", \"2\");",
+									"pm.environment.set(\"limit\", 2);",
 									"",
 									"if(!data.responseTime){",
 									"    pm.environment.set(\"responseTime\", 800);",
@@ -1783,12 +1807,29 @@
 					"name": "Query notifications by labels matching any one of them with limited returned records",
 					"event": [
 						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8c9ff981-138c-4c98-9649-5f8ff27e47d7",
+								"exec": [
+									"if(!data.labels){",
+									"    pm.environment.set(\"labels\", \"power-meter\");",
+									"    pm.environment.set(\"limit\", 2);",
+									"}else{",
+									"    pm.environment.set(\"labels\", data.labels); ",
+									"    pm.environment.set(\"limit\", data.limit); ",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
 							"listen": "test",
 							"script": {
-								"id": "ba39ddaa-018c-44dc-9424-94eaa658c718",
-								"type": "text/javascript",
+								"id": "9af25d36-b317-4499-858a-80df75075d13",
 								"exec": [
 									"var schema = pm.globals.get(\"schemas\").NotificationArray;",
+									"var limit = pm.environment.get(\"limit\");",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -1807,6 +1848,11 @@
 									"    pm.expect(contentType).to.include('application/json');",
 									"});",
 									"",
+									"pm.test(\"Response count is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.equal(limit);",
+									"});",
+									"",
 									"pm.test(\"Response body is correct\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    jsonData.forEach(function(data) {",
@@ -1823,24 +1869,8 @@
 									"     pm.expect(result).to.be.true;",
 									"});",
 									""
-								]
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "53d1e17a-7f63-4650-bbd6-e091f347f5de",
-								"type": "text/javascript",
-								"exec": [
-									"if(!data.labels){",
-									"    pm.environment.set(\"labels\", \"power-meter\");",
-									"    pm.environment.set(\"limit\", \"2\");",
-									"}else{",
-									"    pm.environment.set(\"labels\", data.labels); ",
-									"    pm.environment.set(\"limit\", data.limit); ",
-									"}",
-									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1882,9 +1912,9 @@
 							"listen": "test",
 							"script": {
 								"id": "8cd830d9-a8f2-4c31-a80c-b142489a767f",
-								"type": "text/javascript",
 								"exec": [
 									"var schema = pm.globals.get(\"schemas\").NotificationArray;",
+									"var limit = pm.environment.get(\"limit\");",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -1910,6 +1940,11 @@
 									"    });",
 									"});",
 									"",
+									"pm.test(\"Response count is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.equal(limit);",
+									"});",
+									"",
 									"pm.test(\"Is valid response schema\", function () {",
 									"     var jsonData = pm.response.json();",
 									"     var result = tv4.validate(jsonData, schema);",
@@ -1919,24 +1954,25 @@
 									"     pm.expect(result).to.be.true;",
 									"});",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "2d431ebb-24a4-4d15-9a8c-47facfb27efc",
-								"type": "text/javascript",
 								"exec": [
 									"if(!data.status){",
 									"    pm.environment.set(\"status\", \"new\");",
-									"    pm.environment.set(\"limit\", \"2\");",
+									"    pm.environment.set(\"limit\", 2);",
 									"}else{",
 									"    pm.environment.set(\"status\", data.status); ",
 									"    pm.environment.set(\"limit\", data.limit); ",
 									"}",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2099,6 +2135,7 @@
 								"exec": [
 									"var schema = pm.globals.get(\"schemas\").TransmissionArray;",
 									"var responseTime = pm.environment.get(\"responseTime\");",
+									"var limit = pm.environment.get(\"limit\");",
 									"var slugName = pm.environment.get(\"slugName\");",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
@@ -2125,6 +2162,11 @@
 									"    });",
 									"});",
 									"",
+									"pm.test(\"Response count is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.equal(limit);",
+									"});",
+									"",
 									"pm.test(\"Is valid response schema\", function () {",
 									"     var jsonData = pm.response.json();",
 									"     var result = tv4.validate(jsonData, schema);",
@@ -2144,7 +2186,7 @@
 								"exec": [
 									"if(!data.slugName){",
 									"    pm.environment.set(\"slugName\", \"notice-020\");",
-									"    pm.environment.set(\"limit\", \"2\");",
+									"    pm.environment.set(\"limit\", 2);",
 									"    pm.environment.set(\"responseTime\", 800);",
 									"}else{",
 									"    pm.environment.set(\"slugName\", data.slugName); ",
@@ -2199,6 +2241,7 @@
 									"var schema = pm.globals.get(\"schemas\").TransmissionArray;",
 									"var endDate = pm.environment.get(\"endDate\");",
 									"var startDate = pm.environment.get(\"startDate\");",
+									"var limit = pm.environment.get(\"limit\");",
 									"var responseTime = pm.environment.get(\"responseTime\");",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
@@ -2211,6 +2254,11 @@
 									"",
 									"pm.test(\"Content-Type is present\", function () {",
 									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Response count is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.equal(limit);",
 									"});",
 									"",
 									"pm.test(\"Content-Type is application/json\", function(){",
@@ -2232,7 +2280,8 @@
 									"         console.log(tv4.error);",
 									"     }",
 									"     pm.expect(result).to.be.true;",
-									"});"
+									"});",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -2243,13 +2292,13 @@
 								"id": "d055a086-3fbf-405c-8e2a-478a396fee04",
 								"exec": [
 									"var date = new Date();",
-									"var now = date.getTime()",
-									"var startDate = now - 300000",
-									"var endDate = now",
+									"var now = date.getTime();",
+									"var startDate = now - 300000;",
+									"var endDate = now;",
 									"",
 									"pm.environment.set(\"startDate\", startDate);",
 									"pm.environment.set(\"endDate\", endDate);",
-									"pm.environment.set(\"limit\", \"2\");",
+									"pm.environment.set(\"limit\", 2);",
 									"",
 									"if(!data.responseTime){",
 									"    pm.environment.set(\"responseTime\", 800);",
@@ -2305,6 +2354,7 @@
 								"exec": [
 									"var schema = pm.globals.get(\"schemas\").TransmissionArray;",
 									"var startDate = pm.environment.get(\"startDate\");",
+									"var limit = pm.environment.get(\"limit\");",
 									"var responseTime = pm.environment.get(\"responseTime\");",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
@@ -2331,6 +2381,11 @@
 									"    });",
 									"});",
 									"",
+									"pm.test(\"Response count is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.equal(limit);",
+									"});",
+									"",
 									"pm.test(\"Is valid response schema\", function () {",
 									"     var jsonData = pm.response.json();",
 									"     var result = tv4.validate(jsonData, schema);",
@@ -2349,10 +2404,10 @@
 								"id": "4bb0c0f5-c433-49e3-afc7-68a74611d876",
 								"exec": [
 									"var date = new Date();",
-									"var startDate = date.getTime() - 300000",
+									"var startDate = date.getTime() - 300000;",
 									"",
 									"pm.environment.set(\"startDate\", startDate);",
-									"pm.environment.set(\"limit\", \"2\");",
+									"pm.environment.set(\"limit\", 2);",
 									"",
 									"if(!data.responseTime){",
 									"    pm.environment.set(\"responseTime\", 800);",
@@ -2406,7 +2461,9 @@
 								"exec": [
 									"var schema = pm.globals.get(\"schemas\").TransmissionArray;",
 									"var endDate = pm.environment.get(\"endDate\");",
+									"var limit = pm.environment.get(\"limit\");",
 									"var responseTime = pm.environment.get(\"responseTime\");",
+									"var jsonData = pm.response.json();",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -2426,14 +2483,16 @@
 									"});",
 									"",
 									"pm.test(\"Response body is correct\", function () {",
-									"    var jsonData = pm.response.json();",
 									"    jsonData.forEach(function(data) {",
-									"      pm.expect(data.created < endDate ).to.be.true;",
+									"      pm.expect(data.created < endDate).to.be.true;",
 									"    });",
 									"});",
 									"",
+									"pm.test(\"Response count is correct\", function () {",
+									"    pm.expect(jsonData.length).to.equal(limit);",
+									"});",
+									"",
 									"pm.test(\"Is valid response schema\", function () {",
-									"     var jsonData = pm.response.json();",
 									"     var result = tv4.validate(jsonData, schema);",
 									"     if(!result){",
 									"         console.log(tv4.error);",
@@ -2454,7 +2513,7 @@
 									"var endDate = date.getTime();",
 									"",
 									"pm.environment.set(\"endDate\", endDate);",
-									"pm.environment.set(\"limit\", \"2\");",
+									"pm.environment.set(\"limit\", 2);",
 									"",
 									"if(!data.responseTime){",
 									"    pm.environment.set(\"responseTime\", 800);",
@@ -2507,6 +2566,7 @@
 								"id": "25e8278b-f312-4a1a-8dfd-b5ed0f2d5350",
 								"exec": [
 									"var schema = pm.globals.get(\"schemas\").TransmissionArray;",
+									"var limit = pm.environment.get(\"limit\");",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -2532,6 +2592,11 @@
 									"    });",
 									"});",
 									"",
+									"pm.test(\"Response count is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.equal(limit);",
+									"});",
+									"",
 									"pm.test(\"Is valid response schema\", function () {",
 									"     var jsonData = pm.response.json();",
 									"     var result = tv4.validate(jsonData, schema);",
@@ -2551,7 +2616,7 @@
 								"exec": [
 									"if(!data.endDate2){",
 									"    pm.environment.set(\"escalatedStatus\", \"escalated\");",
-									"    pm.environment.set(\"limit\", \"2\");",
+									"    pm.environment.set(\"limit\", 2);",
 									"}else{",
 									"    pm.environment.set(\"escalatedStatus\", data.escalatedStatus); ",
 									"    pm.environment.set(\"limit\", data.limit); ",
@@ -2599,9 +2664,9 @@
 							"listen": "test",
 							"script": {
 								"id": "6203da22-13fb-491d-bb80-0c914fa58471",
-								"type": "text/javascript",
 								"exec": [
 									"var schema = pm.globals.get(\"schemas\").TransmissionArray;",
+									"var limit = pm.environment.get(\"limit\");",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -2627,6 +2692,11 @@
 									"    });",
 									"});",
 									"",
+									"pm.test(\"Response count is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.equal(limit);",
+									"});",
+									"",
 									"pm.test(\"Is valid response schema\", function () {",
 									"     var jsonData = pm.response.json();",
 									"     var result = tv4.validate(jsonData, schema);",
@@ -2635,24 +2705,25 @@
 									"     }",
 									"     pm.expect(result).to.be.true;",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "975fdbe1-7565-485e-9a55-e011e62d8f43",
-								"type": "text/javascript",
 								"exec": [
 									"if(!data.failedStatus){",
 									"    pm.environment.set(\"failedStatus\", \"failed\");",
-									"    pm.environment.set(\"limit\", \"2\");",
+									"    pm.environment.set(\"limit\", 2);",
 									"}else{",
 									"    pm.environment.set(\"failedStatus\", data.failedStatus); ",
 									"    pm.environment.set(\"limit\", data.limit); ",
 									"}",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],

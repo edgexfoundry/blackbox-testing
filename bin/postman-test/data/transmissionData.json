@@ -2,7 +2,7 @@
   {
     "responseTime": 800,
     "slugName":"notice-020",
-    "limit":"2",
+    "limit": 2,
     "escalatedStatus":"escalated",
     "failedStatus":"failed",
     "sentStatus":"sent",
