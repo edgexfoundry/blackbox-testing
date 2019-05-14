@@ -7,7 +7,7 @@ labels:
   - "thermostat"
   - "Honeywell"
   
-commands:
+coreCommands:
   - name: "cooling point"
     get:
         path: "/cooling"
@@ -23,12 +23,11 @@ commands:
             description: "not a float"
             expectedValues: 
               - "temperature"
-       
-objects:
-    resources:
-        CurrentHumidity:
-            get:
-              - parameter: "CurrentHumidity"
-                property: "presentValue"
-                operation: "get"
-                object: "AnalogValue_22"
+
+deviceCommands:
+  - name: "CurrentHumidity"
+    get:
+      - parameter: "CurrentHumidity"
+        property: "presentValue"
+        operation: "get"
+        object: "AnalogValue_22"

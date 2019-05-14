@@ -17,7 +17,7 @@ deviceResources:
              units:
                  { type: "String", readWrite: "R", defaultValue: "degree"}
 
-resources:
+deviceCommands:
       -
         name: "coolingpoint"
         get:
@@ -25,7 +25,7 @@ resources:
         set:
           - { index: "2", operation: "set", object: "coolingpoint", parameter: "coolingpoint", property: "value" }
   
-commands:
+coreCommands:
   - name: "coolingpoint"
     get:
         path: "/api/v1/device/{deviceId}/coolingpoint"
