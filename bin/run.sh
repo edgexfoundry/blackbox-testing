@@ -92,6 +92,7 @@ deviceVirtualTest() {
 
 testAll() {
 
+	deviceVirtualTest
 	coreDataTest
 	metaDataTest
 	commandTest
@@ -100,7 +101,6 @@ testAll() {
 	exportClientTest
 	rulesengineTest
 	supportSchedulerTest
-	deviceVirtualTest
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 	     securityTest
