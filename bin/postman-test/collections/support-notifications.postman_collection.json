@@ -908,7 +908,7 @@
 									"});",
 									"",
 									"pm.test(\"Response body is correct\", function () {",
-									"    pm.response.to.have.body(\"notice-test-001\");",
+									"    pm.response.to.have.body(/\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b/);",
 									"});"
 								]
 							}
@@ -1036,7 +1036,7 @@
 									"});",
 									"",
 									"pm.test(\"Response body is correct\", function () {",
-									"    pm.response.to.have.body(\"notice-002\");",
+									"    pm.response.to.have.body(/\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b/);",
 									"});",
 									""
 								]
