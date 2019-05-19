@@ -1,0 +1,1045 @@
+{
+  "info": {
+    "_postman_id": "a7a08cc2-6b9c-4dd4-a3ae-d1d66feef471",
+    "name": "sma",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "config",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "a33f91fa-2e51-46f7-8c8d-30e4487ca744",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 600ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(600);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is application/json\", function(){",
+              "    var contentType = pm.response.headers.get('Content-Type');",
+              "    pm.expect(contentType).to.include('application/json');",
+              "});",
+              "",
+              "pm.test(\"Response must contain required data\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"Configuration\");",
+              "    pm.expect(jsonData.Configuration).to.have.property(\"device-virtual\");",
+              "    pm.expect(jsonData.Configuration).to.have.property(\"edgex-core-command\");",
+              "    pm.expect(jsonData.Configuration).to.have.property(\"edgex-core-data\");",
+              "    pm.expect(jsonData.Configuration).to.have.property(\"edgex-core-metadata\");",
+              "    pm.expect(jsonData.Configuration).to.have.property(\"edgex-export-client\");",
+              "    pm.expect(jsonData.Configuration).to.have.property(\"edgex-export-distro\");",
+              "    pm.expect(jsonData.Configuration).to.have.property(\"edgex-support-logging\");",
+              "    pm.expect(jsonData.Configuration).to.have.property(\"edgex-support-notifications\");",
+              "    pm.expect(jsonData.Configuration).to.have.property(\"edgex-support-scheduler\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "api-key",
+            "value": "{{api-key}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{systemManagementUrl}}/api/v1/config/device-virtual,edgex-core-command,edgex-core-data,edgex-core-metadata,edgex-export-client,edgex-export-distro,edgex-support-logging,edgex-support-notifications,edgex-support-scheduler",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "48090",
+          "path": [
+            "api",
+            "v1",
+            "config",
+            "device-virtual,edgex-core-command,edgex-core-data,edgex-core-metadata,edgex-export-client,edgex-export-distro,edgex-support-logging,edgex-support-notifications,edgex-support-scheduler"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "health",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "07675d9c-ca27-4208-b998-81ae040e36f5",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 600ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(600);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is application/json\", function(){",
+              "    var contentType = pm.response.headers.get('Content-Type');",
+              "    pm.expect(contentType).to.include('application/json');",
+              "});",
+              "",
+              "pm.test(\"Response must contain required data\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"device-virtual\");",
+              "    pm.expect(jsonData).to.have.property(\"edgex-core-command\");",
+              "    pm.expect(jsonData).to.have.property(\"edgex-core-data\");",
+              "    pm.expect(jsonData).to.have.property(\"edgex-core-metadata\");",
+              "    pm.expect(jsonData).to.have.property(\"edgex-export-client\");",
+              "    pm.expect(jsonData).to.have.property(\"edgex-export-distro\");",
+              "    pm.expect(jsonData).to.have.property(\"edgex-support-logging\");",
+              "    pm.expect(jsonData).to.have.property(\"edgex-support-notifications\");",
+              "    pm.expect(jsonData).to.have.property(\"edgex-support-scheduler\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "api-key",
+            "value": "{{api-key}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{systemManagementUrl}}/api/v1/health/device-virtual,edgex-core-command,edgex-core-data,edgex-core-metadata,edgex-export-client,edgex-export-distro,edgex-support-logging,edgex-support-notifications,edgex-support-scheduler",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "48090",
+          "path": [
+            "api",
+            "v1",
+            "health",
+            "device-virtual,edgex-core-command,edgex-core-data,edgex-core-metadata,edgex-export-client,edgex-export-distro,edgex-support-logging,edgex-support-notifications,edgex-support-scheduler"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ping",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "8d6a718a-e7ed-44d4-bca5-d527f579e5a2",
+            "exec": [
+              "pm.test(\"Response body is correct\", function () {",
+              "    pm.response.to.have.body(\"pong\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "api-key",
+            "value": "{{api-key}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{systemManagementUrl}}/api/v1/ping",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "48090",
+          "path": [
+            "api",
+            "v1",
+            "ping"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "metrics",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "ed75887a-472a-4f12-857a-1d790af5ab0a",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 600ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(600);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is application/json\", function(){",
+              "    var contentType = pm.response.headers.get('Content-Type');",
+              "    pm.expect(contentType).to.include('application/json');",
+              "});",
+              "",
+              "pm.test(\"Response must contain required data\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.Metrics).to.have.property(\"device-virtual\");",
+              "    pm.expect(jsonData.Metrics).to.have.property(\"edgex-core-command\");",
+              "    pm.expect(jsonData.Metrics).to.have.property(\"edgex-core-data\");",
+              "    pm.expect(jsonData.Metrics).to.have.property(\"edgex-core-metadata\");",
+              "    pm.expect(jsonData.Metrics).to.have.property(\"edgex-export-client\");",
+              "    pm.expect(jsonData.Metrics).to.have.property(\"edgex-export-distro\");",
+              "    pm.expect(jsonData.Metrics).to.have.property(\"edgex-support-logging\");",
+              "    pm.expect(jsonData.Metrics).to.have.property(\"edgex-support-notifications\");",
+              "    pm.expect(jsonData.Metrics).to.have.property(\"edgex-support-scheduler\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "api-key",
+            "value": "{{api-key}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{systemManagementUrl}}/api/v1/metrics/device-virtual,edgex-core-command,edgex-core-data,edgex-core-metadata,edgex-export-client,edgex-export-distro,edgex-support-logging,edgex-support-notifications,edgex-support-scheduler",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "48090",
+          "path": [
+            "api",
+            "v1",
+            "metrics",
+            "device-virtual,edgex-core-command,edgex-core-data,edgex-core-metadata,edgex-export-client,edgex-export-distro,edgex-support-logging,edgex-support-notifications,edgex-support-scheduler"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "operation stop",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "e5b71c76-f0ec-48c9-86f0-eeb1ee615535",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 25000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(25000);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is text/plain\", function(){",
+              "    var contentType = postman.getResponseHeader(\"Content-Type\");",
+              "    pm.expect(contentType).to.include(\"text/plain\");",
+              "});",
+              "",
+              "pm.test(\"Response body is correct\", function () {",
+              "    pm.response.to.have.body(\"Done. Stopped the requested services.\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "api-key",
+            "value": "{{api-key}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n   \"action\":\"stop\",\n   \"services\":[\n      \"edgex-core-data\",\n      \"edgex-export-distro\"\n   ],\n   \"params\":[\n   \t\"graceful\"\n   \t]\n}"
+        },
+        "url": {
+          "raw": "{{systemManagementUrl}}/api/v1/operation",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "48090",
+          "path": [
+            "api",
+            "v1",
+            "operation"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Create Regression Model - POST",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api-key}}",
+                "disabled": false
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n   \"slug\":\"testme3\",\n   \"sender\":\"test sender\",\n   \"category\":\"SW_HEALTH\",\n   \"severity\":\"NORMAL\",\n   \"content\":\"test content\",\n   \"description\":\"test descrp\",\n   \"status\":\"PROCESSED\",\n   \"labels\":[\n      \"label1\",\n      \"label2\"\n   ],\n   \"contenttype\":\"REST\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:48060/api/v1/notification",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "48060",
+              "path": [
+                "api",
+                "v1",
+                "notification"
+              ]
+            }
+          },
+          "status": "Accepted",
+          "code": 202,
+          "_postman_previewlanguage": "plain",
+          "header": [
+            {
+              "key": "Content-Length",
+              "value": "7",
+              "name": "Content-Length",
+              "description": "The length of the response body in octets (8-bit bytes)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "text/plain;charset=UTF-8",
+              "name": "Content-Type",
+              "description": "The mime type of this content"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 19 Jun 2018 13:07:53 GMT",
+              "name": "Date",
+              "description": "The date and time that the message was sent"
+            },
+            {
+              "key": "Server",
+              "value": "Apache-Coyote/1.1",
+              "name": "Server",
+              "description": "A name for the server"
+            }
+          ],
+          "cookie": [],
+          "body": "testme3"
+        }
+      ]
+    },
+    {
+      "name": "stop_all_services",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "fbe71e98-c064-482a-9b30-a4b6db650116",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 90000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(90000);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is text/plain\", function(){",
+              "    var contentType = postman.getResponseHeader(\"Content-Type\");",
+              "    pm.expect(contentType).to.include(\"text/plain\");",
+              "});",
+              "",
+              "pm.test(\"Response body is correct\", function () {",
+              "    pm.response.to.have.body(\"Done. Stopped the requested services.\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "api-key",
+            "value": "{{api-key}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n   \"action\":\"stop\",\n   \"services\":[\n      \"edgex-core-command\",\n      \"edgex-core-data\",\n      \"edgex-core-metadata\",\n      \"edgex-export-client\",\n      \"edgex-export-distro\",\n      \"edgex-support-logging\",\n      \"edgex-support-notifications\",\n      \"edgex-support-scheduler\"\n   ],\n   \"params\":[\n    \"graceful\"\n    ]\n}\n"
+        },
+        "url": {
+          "raw": "{{systemManagementUrl}}/api/v1/operation",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "48090",
+          "path": [
+            "api",
+            "v1",
+            "operation"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Create Regression Model - POST",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api-key}}",
+                "disabled": false
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n   \"slug\":\"testme3\",\n   \"sender\":\"test sender\",\n   \"category\":\"SW_HEALTH\",\n   \"severity\":\"NORMAL\",\n   \"content\":\"test content\",\n   \"description\":\"test descrp\",\n   \"status\":\"PROCESSED\",\n   \"labels\":[\n      \"label1\",\n      \"label2\"\n   ],\n   \"contenttype\":\"REST\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:48060/api/v1/notification",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "48060",
+              "path": [
+                "api",
+                "v1",
+                "notification"
+              ]
+            }
+          },
+          "status": "Accepted",
+          "code": 202,
+          "_postman_previewlanguage": "plain",
+          "header": [
+            {
+              "key": "Content-Length",
+              "value": "7",
+              "name": "Content-Length",
+              "description": "The length of the response body in octets (8-bit bytes)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "text/plain;charset=UTF-8",
+              "name": "Content-Type",
+              "description": "The mime type of this content"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 19 Jun 2018 13:07:53 GMT",
+              "name": "Date",
+              "description": "The date and time that the message was sent"
+            },
+            {
+              "key": "Server",
+              "value": "Apache-Coyote/1.1",
+              "name": "Server",
+              "description": "A name for the server"
+            }
+          ],
+          "cookie": [],
+          "body": "testme3"
+        }
+      ]
+    },
+    {
+      "name": "operation restart",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "9ed78ab1-43fb-4e4a-bd04-1a3ed5868aa7",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 30000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(30000);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is text/plain\", function(){",
+              "    var contentType = postman.getResponseHeader(\"Content-Type\");",
+              "    pm.expect(contentType).to.include(\"text/plain\");",
+              "});",
+              "",
+              "pm.test(\"Response body is correct\", function () {",
+              "    pm.response.to.have.body(\"Done. Restarted the requested services.\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "api-key",
+            "value": "{{api-key}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n   \"action\":\"restart\",\n   \"services\":[\n      \"edgex-core-data\",\n      \"edgex-export-distro\"\n   ],\n   \"params\":[\n   \t\"graceful\"\n   \t]\n}"
+        },
+        "url": {
+          "raw": "{{systemManagementUrl}}/api/v1/operation",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "48090",
+          "path": [
+            "api",
+            "v1",
+            "operation"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Create Regression Model - POST",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api-key}}",
+                "disabled": false
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n   \"slug\":\"testme3\",\n   \"sender\":\"test sender\",\n   \"category\":\"SW_HEALTH\",\n   \"severity\":\"NORMAL\",\n   \"content\":\"test content\",\n   \"description\":\"test descrp\",\n   \"status\":\"PROCESSED\",\n   \"labels\":[\n      \"label1\",\n      \"label2\"\n   ],\n   \"contenttype\":\"REST\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:48060/api/v1/notification",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "48060",
+              "path": [
+                "api",
+                "v1",
+                "notification"
+              ]
+            }
+          },
+          "status": "Accepted",
+          "code": 202,
+          "_postman_previewlanguage": "plain",
+          "header": [
+            {
+              "key": "Content-Length",
+              "value": "7",
+              "name": "Content-Length",
+              "description": "The length of the response body in octets (8-bit bytes)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "text/plain;charset=UTF-8",
+              "name": "Content-Type",
+              "description": "The mime type of this content"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 19 Jun 2018 13:07:53 GMT",
+              "name": "Date",
+              "description": "The date and time that the message was sent"
+            },
+            {
+              "key": "Server",
+              "value": "Apache-Coyote/1.1",
+              "name": "Server",
+              "description": "A name for the server"
+            }
+          ],
+          "cookie": [],
+          "body": "testme3"
+        }
+      ]
+    },
+    {
+      "name": "restart_all_services",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "8cf7e462-3b7d-4fe5-ba76-5a62f4f4c71d",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 90000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(90000);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is text/plain\", function(){",
+              "    var contentType = postman.getResponseHeader(\"Content-Type\");",
+              "    pm.expect(contentType).to.include(\"text/plain\");",
+              "});",
+              "",
+              "pm.test(\"Response body is correct\", function () {",
+              "    pm.response.to.have.body(\"Done. Restarted the requested services.\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "api-key",
+            "value": "{{api-key}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n   \"action\":\"restart\",\n   \"services\":[\n      \"edgex-core-command\",\n      \"edgex-core-data\",\n      \"edgex-core-metadata\",\n      \"edgex-export-client\",\n      \"edgex-export-distro\",\n      \"edgex-support-logging\",\n      \"edgex-support-notifications\",\n      \"edgex-support-scheduler\"\n   ],\n   \"params\":[\n    \"graceful\"\n    ]\n}\n"
+        },
+        "url": {
+          "raw": "{{systemManagementUrl}}/api/v1/operation",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "48090",
+          "path": [
+            "api",
+            "v1",
+            "operation"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Create Regression Model - POST",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api-key}}",
+                "disabled": false
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n   \"slug\":\"testme3\",\n   \"sender\":\"test sender\",\n   \"category\":\"SW_HEALTH\",\n   \"severity\":\"NORMAL\",\n   \"content\":\"test content\",\n   \"description\":\"test descrp\",\n   \"status\":\"PROCESSED\",\n   \"labels\":[\n      \"label1\",\n      \"label2\"\n   ],\n   \"contenttype\":\"REST\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:48060/api/v1/notification",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "48060",
+              "path": [
+                "api",
+                "v1",
+                "notification"
+              ]
+            }
+          },
+          "status": "Accepted",
+          "code": 202,
+          "_postman_previewlanguage": "plain",
+          "header": [
+            {
+              "key": "Content-Length",
+              "value": "7",
+              "name": "Content-Length",
+              "description": "The length of the response body in octets (8-bit bytes)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "text/plain;charset=UTF-8",
+              "name": "Content-Type",
+              "description": "The mime type of this content"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 19 Jun 2018 13:07:53 GMT",
+              "name": "Date",
+              "description": "The date and time that the message was sent"
+            },
+            {
+              "key": "Server",
+              "value": "Apache-Coyote/1.1",
+              "name": "Server",
+              "description": "A name for the server"
+            }
+          ],
+          "cookie": [],
+          "body": "testme3"
+        }
+      ]
+    },
+    {
+      "name": "operation start",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "f6ff0eea-3c31-4fbf-8908-6e83759c0066",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 25000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(25000);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is text/plain\", function(){",
+              "    var contentType = postman.getResponseHeader(\"Content-Type\");",
+              "    pm.expect(contentType).to.include(\"text/plain\");",
+              "});",
+              "",
+              "pm.test(\"Response body is correct\", function () {",
+              "    pm.response.to.have.body(\"Done. Started the requested services.\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "api-key",
+            "value": "{{api-key}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n   \"action\":\"start\",\n   \"services\":[\n      \"edgex-core-data\",\n      \"edgex-export-distro\"\n   ],\n   \"params\":[\n   \t\"graceful\"\n   \t]\n}"
+        },
+        "url": {
+          "raw": "{{systemManagementUrl}}/api/v1/operation",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "48090",
+          "path": [
+            "api",
+            "v1",
+            "operation"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Create Regression Model - POST",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api-key}}",
+                "disabled": false
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n   \"slug\":\"testme3\",\n   \"sender\":\"test sender\",\n   \"category\":\"SW_HEALTH\",\n   \"severity\":\"NORMAL\",\n   \"content\":\"test content\",\n   \"description\":\"test descrp\",\n   \"status\":\"PROCESSED\",\n   \"labels\":[\n      \"label1\",\n      \"label2\"\n   ],\n   \"contenttype\":\"REST\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:48060/api/v1/notification",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "48060",
+              "path": [
+                "api",
+                "v1",
+                "notification"
+              ]
+            }
+          },
+          "status": "Accepted",
+          "code": 202,
+          "_postman_previewlanguage": "plain",
+          "header": [
+            {
+              "key": "Content-Length",
+              "value": "7",
+              "name": "Content-Length",
+              "description": "The length of the response body in octets (8-bit bytes)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "text/plain;charset=UTF-8",
+              "name": "Content-Type",
+              "description": "The mime type of this content"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 19 Jun 2018 13:07:53 GMT",
+              "name": "Date",
+              "description": "The date and time that the message was sent"
+            },
+            {
+              "key": "Server",
+              "value": "Apache-Coyote/1.1",
+              "name": "Server",
+              "description": "A name for the server"
+            }
+          ],
+          "cookie": [],
+          "body": "testme3"
+        }
+      ]
+    },
+    {
+      "name": "start_all_services",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "cb63a51b-cdb7-4e01-967b-e77fcdbbee25",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 90000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(90000);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is text/plain\", function(){",
+              "    var contentType = postman.getResponseHeader(\"Content-Type\");",
+              "    pm.expect(contentType).to.include(\"text/plain\");",
+              "});",
+              "",
+              "pm.test(\"Response body is correct\", function () {",
+              "    pm.response.to.have.body(\"Done. Started the requested services.\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "api-key",
+            "value": "{{api-key}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n   \"action\":\"start\",\n   \"services\":[\n      \"edgex-core-command\",\n      \"edgex-core-data\",\n      \"edgex-core-metadata\",\n      \"edgex-export-client\",\n      \"edgex-export-distro\",\n      \"edgex-support-logging\",\n      \"edgex-support-notifications\",\n      \"edgex-support-scheduler\"\n   ],\n   \"params\":[\n    \"graceful\"\n    ]\n}\n"
+        },
+        "url": {
+          "raw": "{{systemManagementUrl}}/api/v1/operation",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "48090",
+          "path": [
+            "api",
+            "v1",
+            "operation"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Create Regression Model - POST",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api-key}}",
+                "disabled": false
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n   \"slug\":\"testme3\",\n   \"sender\":\"test sender\",\n   \"category\":\"SW_HEALTH\",\n   \"severity\":\"NORMAL\",\n   \"content\":\"test content\",\n   \"description\":\"test descrp\",\n   \"status\":\"PROCESSED\",\n   \"labels\":[\n      \"label1\",\n      \"label2\"\n   ],\n   \"contenttype\":\"REST\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:48060/api/v1/notification",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "48060",
+              "path": [
+                "api",
+                "v1",
+                "notification"
+              ]
+            }
+          },
+          "status": "Accepted",
+          "code": 202,
+          "_postman_previewlanguage": "plain",
+          "header": [
+            {
+              "key": "Content-Length",
+              "value": "7",
+              "name": "Content-Length",
+              "description": "The length of the response body in octets (8-bit bytes)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "text/plain;charset=UTF-8",
+              "name": "Content-Type",
+              "description": "The mime type of this content"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 19 Jun 2018 13:07:53 GMT",
+              "name": "Date",
+              "description": "The date and time that the message was sent"
+            },
+            {
+              "key": "Server",
+              "value": "Apache-Coyote/1.1",
+              "name": "Server",
+              "description": "A name for the server"
+            }
+          ],
+          "cookie": [],
+          "body": "testme3"
+        }
+      ]
+    }
+  ]
+}
