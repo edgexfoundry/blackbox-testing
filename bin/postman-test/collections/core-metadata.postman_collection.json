@@ -1006,106 +1006,6 @@
 			"name": "command",
 			"item": [
 				{
-					"name": "339 http://localhost:48081/api/v1/command/id/:id",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "8010d25d-4950-41ee-82df-d5f815e30055",
-								"exec": [
-									"/*",
-									" * Test Case:  /command/id/:id - DEL",
-									" * Version: Alpha",
-									" * @Author: Tata Elxsi",
-									" *",
-									" */",
-									"",
-									"//If request success with response code is 200",
-									"tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"//Test Response time",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"",
-									"if(responseCode.code === 200) {",
-									"    //Test Content type in header",
-									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"    ",
-									"    if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
-									"    }",
-									"    var actualCommandData = JSON.parse(responseBody);",
-									"    if(actualCommandData !== 0){",
-									"        tests[\"Body has True\"] = responseBody === \"true\";",
-									"    }",
-									"}"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "12efadbf-e6e2-4d86-8a8a-aab73bbd3658",
-								"exec": [
-									"var baseUrl = pm.environment.get(\"baseUrl\");",
-									"var data = {  ",
-									"   \"origin\":1471806386919,",
-									"   \"name\":\"test command\",",
-									"   \"get\":{  ",
-									"      \"path\":\"/cooling\",",
-									"      \"response\":{  ",
-									"         \"code\":\"200\",",
-									"         \"errorDescription\":\"not afloat\",",
-									"         \"expectedValues\":\"temperature\"",
-									"      }",
-									"   },",
-									"   \"put\":{  ",
-									"      \"path\":\"/cooling\"",
-									"   }",
-									"};",
-									"",
-									"var request = {",
-									"  url: baseUrl+'/api/v1/command',",
-									"  method: 'POST',",
-									"  body: {",
-									"    mode: 'raw',",
-									"    raw: JSON.stringify(data)",
-									"  }",
-									"};",
-									"",
-									"pm.sendRequest(request, function (err, res) {",
-									"    pm.environment.set(\"commandDelRequestId\", res.stream.toString());",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/command/id/{{commandDelRequestId}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"command",
-								"id",
-								"{{commandDelRequestId}}"
-							]
-						},
-						"description": "Remove the Command designated by database generated id. ServiceException (HTTP 503) for unknown or unanticipated issues. NotFoundException (HTTP 404) if no Command is found with the provided id. DataValidationException (HTTP 409) if the Command is still associated to a Device Profile."
-					},
-					"response": []
-				},
-				{
 					"name": "342 http://localhost:48081/api/v1/command/:id",
 					"event": [
 						{
@@ -1342,167 +1242,6 @@
 						"description": "Return all command objects. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns LimitExceededException (HTTP 413) if the number returned exceeds the max limit."
 					},
 					"response": []
-				},
-				{
-					"name": "348 http://localhost:48081/api/v1/command",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "79941c1e-8924-427d-83fc-5c9ae68514a9",
-								"exec": [
-									"/*",
-									" * Test Case:  /command - PUT",
-									" * Version: Alpha",
-									" * @Author: Tata Elxsi",
-									" *",
-									" */",
-									"",
-									"//If request success with response code is 200",
-									"tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"//Test Response time",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"",
-									"if(responseCode.code === 200) {",
-									"    //Test Content type in header",
-									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"       var actualCommandData = JSON.parse(responseBody);",
-									"    if(actualCommandData.length !== 0){",
-									"        tests[\"Body has True\"] = responseBody === \"true\";",
-									"    }",
-									"}"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "7a18ce93-08f1-48c7-ab40-203c390b36af",
-								"exec": [
-									"var baseUrl = pm.environment.get(\"baseUrl\");",
-									"var data = {  ",
-									"   \"origin\":1471806386919,",
-									"   \"name\":\"test command\",",
-									"   \"get\":{  ",
-									"      \"path\":\"/cooling\",",
-									"      \"response\":{  ",
-									"         \"code\":\"200\",",
-									"         \"errorDescription\":\"not afloat\",",
-									"         \"expectedValues\":\"temperature\"",
-									"      }",
-									"   },",
-									"   \"put\":{  ",
-									"      \"path\":\"/cooling\"",
-									"   }",
-									"};",
-									"",
-									"var request = {",
-									"  url: baseUrl+'/api/v1/command',",
-									"  method: 'POST',",
-									"  body: {",
-									"    mode: 'raw',",
-									"    raw: JSON.stringify(data)",
-									"  }",
-									"};",
-									"",
-									"pm.sendRequest(request, function (err, res) {",
-									"    pm.environment.set(\"commandId\", res.stream.toString());",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"id\": \"{{commandId}}\",\n    \"name\": \"current\",\n    \"put\": {\n      \"path\": \"/current\",\n      \"response\": {\n        \"code\": \"200\",\n        \"errorDescription\": \"not in amps\",\n        \"expectedValues\": \"amps\"\n      }\n    }\n}"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/command",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"command"
-							]
-						},
-						"description": "Update the Command identified by the database generated id in the object provided. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. NotFoundException (HTTP 404) if no Command is found with the provided id. DataValidationException (HTTP 409) if the name is updated and it is not unique for the Device Profile."
-					},
-					"response": []
-				},
-				{
-					"name": "346 http://localhost:48081/api/v1/command",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "23321779-8dfc-4ad7-b477-5ebab3c77cf7",
-								"exec": [
-									"/*",
-									" * Test Case:  /command - POST",
-									" * Version: Alpha",
-									" * @Author: Tata Elxsi",
-									" *",
-									" */",
-									" ",
-									"//Test Case for status : 200",
-									"tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"//Test response time ",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"if(responseCode.code === 200) {",
-									"    //Test content type should present in header",
-									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"    ",
-									"    if (contentTypeHeaderExists) {",
-									"        tests[\"Content-Type is \"+data.TextPlainContentType] =  responseHeaders[\"Content-Type\"].has(data.TextPlainContentType);",
-									"    }",
-									"    //Test body value",
-									"    tests[\"Is Body Contains Id\"] = responseBody.length === 36;",
-									"}"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{  \r\n   \"origin\":1471806386919,\r\n   \"name\":\"test command\",\r\n   \"get\":{  \r\n      \"path\":\"/cooling\",\r\n      \"response\":{  \r\n         \"code\":\"200\",\r\n         \"errorDescription\":\"not afloat\",\r\n         \"expectedValues\":\"temperature\"\r\n      }\r\n   },\r\n   \"put\":{  \r\n      \"path\":\"/cooling\"\r\n   }\r\n}\r\n"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/command",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"command"
-							]
-						},
-						"description": "Add a new Command. Returns ServiceException (HTTP 503) for unknown or unanticipated issues."
-					},
-					"response": []
 				}
 			],
 			"description": "Folder for command"
@@ -1511,187 +1250,96 @@
 			"name": "command_error_4xx",
 			"item": [
 				{
-					"name": "340 http://localhost:48081/api/v1/command/id/:id",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "eed610b6-f5d2-4443-b924-d4fd322cb66f",
-								"exec": [
-									"/*",
-									" * Test Case:  /command - 409 Error - DEL ",
-									" * Version: Alpha",
-									" * @Author: Tata Elxsi",
-									" *",
-									" */",
-									" ",
-									"//Test Case for status : 409",
-									"tests[\"Status code is 409\"] = responseCode.code === 409;",
-									"//Test response time",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "355c096f-7da1-4ac7-b787-be1fdf6931e0",
-								"exec": [
-									"var baseUrl = pm.environment.get(\"baseUrl\");",
-									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/command/name/cooling point\", function (err, res) {",
-									"    if (err) {",
-									"        console.log(err);",
-									"    } else {",
-									"        pm.environment.set(\"commandDelRequestIderr\", res.json()[0].id);",
-									"    }",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/command/id/{{commandDelRequestIderr}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"command",
-								"id",
-								"{{commandDelRequestIderr}}"
-							]
-						},
-						"description": "Remove the Command designated by database generated id. ServiceException (HTTP 503) for unknown or unanticipated issues. NotFoundException (HTTP 404) if no Command is found with the provided id. DataValidationException (HTTP 409) if the Command is still associated to a Device Profile."
-					},
-					"response": []
-				},
-				{
-					"name": "349 http://localhost:48081/api/v1/command",
+					"name": "348 http://localhost:48081/api/v1/command/:id",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"type": "text/javascript",
 								"exec": [
-									"/*",
-									" * Test Case:  /command - 404 Error - PUT ",
+									"/**",
+									" * Test Case:  /api/v1/command/:id - GET",
 									" * Version: Alpha",
-									" * @Author: Tata Elxsi",
+									" * Service: Metadata",
+									" * @Author: dianaa@vmware.com",
 									" *",
-									" */",
+									" **/",
 									" ",
-									"//Test Case for status : 404",
-									"tests[\"Status code is 404\"] = responseCode.code === 404;",
-									"//Test response time",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+									"    tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"    if(responseCode.code === 404){",
+									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"    }"
 								]
 							}
 						}
 					],
 					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
+						"method": "GET",
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"aaaaaaaa123aaaaaaaaaabbf\",\n    \"name\": \"current\",\n    \"put\": {\n      \"path\": \"/current\"\n    }\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/command",
+							"raw": "{{baseUrl}}/api/v1/command/{{CommandIdNotExist}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"command"
+								"commands",
+								"{{CommandIdNotExist}}"
 							]
 						},
-						"description": "Update the Command identified by the database generated id in the object provided. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. NotFoundException (HTTP 404) if no Command is found with the provided id. DataValidationException (HTTP 409) if the name is updated and it is not unique for the Device Profile."
+						"description": "Try to fetch command by Id that does not exists. Expected return is HTTP 404, Not Found."
 					},
 					"response": []
 				},
 				{
-					"name": "350 http://localhost:48081/api/v1/command",
+					"name": "349 http://localhost:48081/api/v1/command/:name",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "1fbe55fb-87c4-48c1-8c91-f8f50e941294",
+								"type": "text/javascript",
 								"exec": [
-									"/*",
-									" * Test Case:  /command - 409 Error - PUT ",
+									"/**",
+									" * Test Case:  /api/v1/command/:id - GET",
 									" * Version: Alpha",
-									" * @Author: Tata Elxsi",
+									" * Service: Metadata",
+									" * @Author: dianaa@vmware.com",
 									" *",
-									" */",
+									" **/",
 									" ",
-									"//Test Case for status : 409",
-									"tests[\"Status code is 409\"] = responseCode.code === 409;",
-									"//Test response time",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "47891f42-3588-48ce-82c8-8bdd74e13a28",
-								"exec": [
-									"var baseUrl = pm.environment.get(\"baseUrl\");",
-									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/command/name/temp\", function (err, res) {",
-									"    if (err) {",
-									"        console.log(err);",
-									"    } else {",
-									"        pm.environment.set(\"commandId\", res.json()[0].id);",
-									"    }",
-									"});"
-								],
-								"type": "text/javascript"
+									"    tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"    if(responseCode.code === 404){",
+									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"    }"
+								]
 							}
 						}
 					],
 					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
+						"method": "GET",
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\n    \"id\": \"{{commandId}}\",\n    \"created\": 1476349573318,\n    \"modified\": 1476349573318,\n    \"origin\": 1471806386919,\n    \"name\": \"boilingpoint\",\n    \"get\": {\n      \"path\": \"/boiling\",\n      \"response\": {\n        \"code\": \"200\",\n        \"errorDescription\": \"not afloat\",\n        \"expectedValues\": \"temperature\"\n      }\n    },\n    \"put\": {\n      \"path\": \"/boiling\",\n      \"response\": null,\n      \"parameters\": null\n    }\n }"
+							"raw": ""
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/command",
+							"raw": "{{baseUrl}}/api/v1/command/{{CommandNameNotExist}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"command"
+								"commands",
+								"{{CommandNameNotExist}}"
 							]
 						},
-						"description": "Update the Command identified by the database generated id in the object provided. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. NotFoundException (HTTP 404) if no Command is found with the provided id. DataValidationException (HTTP 409) if the name is updated and it is not unique for the Device Profile."
+						"description": "Try to fetch command by Name that does not exists. Expected return is HTTP 404, Not Found."
 					},
 					"response": []
 				}

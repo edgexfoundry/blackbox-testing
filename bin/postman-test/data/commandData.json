@@ -4,6 +4,8 @@
     "ApplicationJsonContentType": "application/json",
     "TextPlainContentType": "text/plain",
     "commandGetRequestName": "coordinates",
+    "CommandIdNotExist": "9dc4d2cd-d371-4369-aea1-4bafc09c8d0a",
+    "CommandNameNotExist" : "CommandNameNotExist",
     "objectSchema": {
       "type": "object",
       "$schema": "http://json-schema.org/draft-03/schema#",
