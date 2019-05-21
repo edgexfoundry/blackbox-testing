@@ -1428,7 +1428,7 @@
 					"response": []
 				},
 				{
-					"name": "05 http://localhost:48081/api/v1/device/name/:name/opstate/{opState}",
+					"name": "04 http://localhost:48081/api/v1/device/name/:name (Operating State)",
 					"event": [
 						{
 							"listen": "test",
@@ -1436,7 +1436,7 @@
 								"type": "text/javascript",
 								"exec": [
 									"/**",
-									" * Test Case:  /api/v1/device/name/:name/opstate/{opState} - PUT",
+									" * Test Case:  /api/v1/device/name/:name - PUT",
 									" * Version: Alpha",
 									" * Service: Metadata",
 									" * @Author: Tata Elxsi",
@@ -1446,12 +1446,6 @@
 									"    tests[\"Status code is 200\"] = responseCode.code === 200;",
 									"    if(responseCode.code === 200){",
 									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"         var jsonData = JSON.parse(responseBody);",
-									"        if(jsonData.length !== 0){",
-									"            tests[\"Device updated\"] = responseBody === \"true\";",
-									"        }",
 									"    }"
 								]
 							}
@@ -1462,10 +1456,10 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"operatingState\":\"{{updateOpState}}\"\n\t\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/name/{{getDeviceName}}/opstate/{{updateOpState}}",
+							"raw": "{{baseUrl}}/api/v1/device/name/{{getDeviceName}}",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1474,17 +1468,15 @@
 								"v1",
 								"device",
 								"name",
-								"{{getDeviceName}}",
-								"opstate",
-								"{{updateOpState}}"
+								"{{getDeviceName}}"
 							]
 						},
-						"description": "Update the op status time of the device by unique name of the device. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device cannot be found by the name provided."
+						"description": "Update the operating status time of the device by unique name of the device. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device cannot be found by the name provided."
 					},
 					"response": []
 				},
 				{
-					"name": "08 http://localhost:48081/api/v1/device/name/:name/adminstate/{adminState}",
+					"name": "05 http://localhost:48081/api/v1/device/name/:name (Admin State)",
 					"event": [
 						{
 							"listen": "test",
@@ -1492,7 +1484,7 @@
 								"type": "text/javascript",
 								"exec": [
 									"/**",
-									" * Test Case:  /api/v1/device/name/:name/adminstate/{adminState}- PUT",
+									" * Test Case:  /api/v1/device/name/:name - PUT",
 									" * Version: Alpha",
 									" * Service: Metadata",
 									" * @Author: Tata Elxsi",
@@ -1502,12 +1494,6 @@
 									"    tests[\"Status code is 200\"] = responseCode.code === 200;",
 									"    if(responseCode.code === 200){",
 									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"            var jsonData = JSON.parse(responseBody);",
-									"        if(jsonData.length !== 0){",
-									"            tests[\"Device updated\"] = responseBody === \"true\";",
-									"        }",
 									"    }"
 								]
 							}
@@ -1518,10 +1504,10 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"adminState\":\"{{updateAdminState}}\"\n\t\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/name/{{getDeviceName}}/adminstate/{{updateAdminState}}",
+							"raw": "{{baseUrl}}/api/v1/device/name/{{getDeviceName}}",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1530,12 +1516,10 @@
 								"v1",
 								"device",
 								"name",
-								"{{getDeviceName}}",
-								"adminstate",
-								"{{updateAdminState}}"
+								"{{getDeviceName}}"
 							]
 						},
-						"description": "Update the admin state of the device by device name. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device cannot be found by the identifier provided."
+						"description": "Update the admin status time of the device by unique name of the device. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device cannot be found by the name provided."
 					},
 					"response": []
 				},
@@ -1785,7 +1769,7 @@
 					"response": []
 				},
 				{
-					"name": "22 http://localhost:48081/api/v1/device/:id/opstate/{opState}",
+					"name": "22 http://localhost:48081/api/v1/device/:id (Operating State)",
 					"event": [
 						{
 							"listen": "test",
@@ -1793,7 +1777,7 @@
 								"id": "63f00cad-2d72-498f-9f51-94042342a63a",
 								"exec": [
 									"/**",
-									" * Test Case:  /api/v1/device/:id/opState/{opState} - PUT",
+									" * Test Case:  /api/v1/device/:id - PUT",
 									" * Version: Alpha",
 									" * Service: Metadata",
 									" * @Author: Tata Elxsi",
@@ -1803,12 +1787,6 @@
 									"    tests[\"Status code is 200\"] = responseCode.code === 200;",
 									"    if(responseCode.code === 200){",
 									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"            var jsonData = JSON.parse(responseBody);",
-									"        if(jsonData.length !== 0){",
-									"            tests[\"Device updated\"] = responseBody === \"true\";",
-									"        }",
 									"    }"
 								],
 								"type": "text/javascript"
@@ -1838,10 +1816,10 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"operatingState\":\"{{updateOpState}}\"\n\t\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/{{getDeviceId}}/opstate/{{updateOpState}}",
+							"raw": "{{baseUrl}}/api/v1/device/{{getDeviceId}}",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1849,17 +1827,15 @@
 								"api",
 								"v1",
 								"device",
-								"{{getDeviceId}}",
-								"opstate",
-								"{{updateOpState}}"
+								"{{getDeviceId}}"
 							]
 						},
-						"description": "Update the op state of the device by database generated identifier. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device cannot be found by the identifier provided."
+						"description": "Update the operating state of the device by database generated identifier. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device cannot be found by the identifier provided."
 					},
 					"response": []
 				},
 				{
-					"name": "25 http://localhost:48081/api/v1/device/:id/adminstate/{adminState}",
+					"name": "23 http://localhost:48081/api/v1/device/:id (Admin State)",
 					"event": [
 						{
 							"listen": "test",
@@ -1867,7 +1843,7 @@
 								"id": "c72cb70e-f1f7-4212-9fa1-05daba7604fc",
 								"exec": [
 									"/**",
-									" * Test Case:  /api/v1/device/:id/adminstate/{adminState} - PUT",
+									" * Test Case:  /api/v1/device/:id - PUT",
 									" * Version: Alpha",
 									" * Service: Metadata",
 									" * @Author: Tata Elxsi",
@@ -1877,12 +1853,6 @@
 									"    tests[\"Status code is 200\"] = responseCode.code === 200;",
 									"    if(responseCode.code === 200){",
 									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"          var jsonData = JSON.parse(responseBody);",
-									"        if(jsonData.length !== 0){",
-									"            tests[\"Device updated\"] = responseBody === \"true\";",
-									"        }",
 									"    }"
 								],
 								"type": "text/javascript"
@@ -1912,10 +1882,10 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"adminState\":\"{{updateAdminState}}\"\n\t\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/{{getDeviceId}}/adminstate/{{updateAdminState}}",
+							"raw": "{{baseUrl}}/api/v1/device/{{getDeviceId}}",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1923,9 +1893,7 @@
 								"api",
 								"v1",
 								"device",
-								"{{getDeviceId}}",
-								"adminstate",
-								"{{updateAdminState}}"
+								"{{getDeviceId}}"
 							]
 						},
 						"description": "Update the admin state of the device by database generated identifier. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device cannot be found by the identifier provided."
@@ -2853,7 +2821,7 @@
 					"response": []
 				},
 				{
-					"name": "07_404 http://localhost:48081/api/v1/device/name/:name/opstate/{updateOpState}",
+					"name": "07_404 http://localhost:48081/api/v1/device/name/:name (Operating State)",
 					"event": [
 						{
 							"listen": "test",
@@ -2861,7 +2829,7 @@
 								"type": "text/javascript",
 								"exec": [
 									"/**",
-									" * Test Case:  /api/v1/device/name/:name/opstate/{updateOpState} - PUT",
+									" * Test Case:  /api/v1/device/name/:name - PUT",
 									" * Version: Alpha",
 									" * Service: Metadata",
 									" * @Author: Tata Elxsi",
@@ -2886,10 +2854,10 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"operatingState\":\"{{updateOpState}}\"\n\t\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/name/:name/opstate/{{updateOpState}}",
+							"raw": "{{baseUrl}}/api/v1/device/name/:name",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -2898,9 +2866,7 @@
 								"v1",
 								"device",
 								"name",
-								":name",
-								"opstate",
-								"{{updateOpState}}"
+								":name"
 							],
 							"variable": [
 								{
@@ -2909,12 +2875,12 @@
 								}
 							]
 						},
-						"description": "Update the op status time of the device by unique name of the device. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device cannot be found by the name provided."
+						"description": "Update the operating status time of the device by unique name of the device. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device cannot be found by the name provided."
 					},
 					"response": []
 				},
 				{
-					"name": "10_404 http://localhost:48081/api/v1/device/name/:name/adminstate/{updateAdminState}",
+					"name": "10_404 http://localhost:48081/api/v1/device/name/:name (Admin State)",
 					"event": [
 						{
 							"listen": "test",
@@ -2922,7 +2888,7 @@
 								"type": "text/javascript",
 								"exec": [
 									"/**",
-									" * Test Case:  /api/v1/device/name/:name/adminstate/{updateAdminState} - PUT",
+									" * Test Case:  /api/v1/device/name/:name - PUT",
 									" * Version: Alpha",
 									" * Service: Metadata",
 									" * @Author: Tata Elxsi",
@@ -2947,10 +2913,10 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"adminState\":\"{{updateAdminState}}\"\n\t\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/name/:name/adminstate/{{updateAdminState}}",
+							"raw": "{{baseUrl}}/api/v1/device/name/:name",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -2959,9 +2925,7 @@
 								"v1",
 								"device",
 								"name",
-								":name",
-								"adminstate",
-								"{{updateAdminState}}"
+								":name"
 							],
 							"variable": [
 								{
@@ -3136,7 +3100,7 @@
 					"response": []
 				},
 				{
-					"name": "24_404 http://localhost:48081/api/v1/device/:id/opstate/{updateOpState}",
+					"name": "24_404 http://localhost:48081/api/v1/device/:id (Operating State)",
 					"event": [
 						{
 							"listen": "test",
@@ -3144,7 +3108,7 @@
 								"type": "text/javascript",
 								"exec": [
 									"/**",
-									" * Test Case:  /api/v1/device/:id/opState/{updateOpState} - PUT",
+									" * Test Case:  /api/v1/device/:id - PUT",
 									" * Version: Alpha",
 									" * Service: Metadata",
 									" * @Author: Tata Elxsi",
@@ -3169,10 +3133,10 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"operatingState\":\"{{updateOpState}}\"\n\t\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/{{InvalidId}}/opstate/{{updateOpState}}",
+							"raw": "{{baseUrl}}/api/v1/device/{{InvalidId}}",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -3180,17 +3144,15 @@
 								"api",
 								"v1",
 								"device",
-								"{{InvalidId}}",
-								"opstate",
-								"{{updateOpState}}"
+								"{{InvalidId}}"
 							]
 						},
-						"description": "Update the op state of the device by database generated identifier. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device cannot be found by the identifier provided."
+						"description": "Update the operating state of the device by database generated identifier. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device cannot be found by the identifier provided."
 					},
 					"response": []
 				},
 				{
-					"name": "27_404 http://localhost:48081/api/v1/device/:id/adminstate/{updateAdminState}",
+					"name": "27_404 http://localhost:48081/api/v1/device/:id (Admin State)",
 					"event": [
 						{
 							"listen": "test",
@@ -3198,7 +3160,7 @@
 								"type": "text/javascript",
 								"exec": [
 									"/**",
-									" * Test Case:  /api/v1/device/:id/adminState/{updateAdminState} - PUT",
+									" * Test Case:  /api/v1/device/:id - PUT (Admin State)",
 									" * Version: Alpha",
 									" * Service: Metadata",
 									" * @Author: Tata Elxsi",
@@ -3223,10 +3185,10 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"adminState\":\"{{updateAdminState}}\"\n\t\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/{{InvalidId}}/adminstate/{{updateAdminState}}",
+							"raw": "{{baseUrl}}/api/v1/device/{{InvalidId}}",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -3234,9 +3196,7 @@
 								"api",
 								"v1",
 								"device",
-								"{{InvalidId}}",
-								"adminstate",
-								"{{updateAdminState}}"
+								"{{InvalidId}}"
 							]
 						},
 						"description": "Update the admin state of the device by database generated identifier. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if the device cannot be found by the identifier provided."
