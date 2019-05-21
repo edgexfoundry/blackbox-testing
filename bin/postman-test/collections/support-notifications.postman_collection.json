@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "38138592-7d9a-4225-8f25-47b33fe2d2a8",
+		"_postman_id": "06a0079d-498b-43f7-8f8e-317fd292ed39",
 		"name": "support-notifications",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1141,6 +1141,153 @@
 					"response": []
 				},
 				{
+					"name": "Delete a specific notification by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9ec1305a-b7ba-434a-8406-3187a1de7f7f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than \"+data.responseTime+\"ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(data.responseTime);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a13e56ca-eb2e-4000-8b24-d490071add59",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"supportNotificationsUrl\");",
+									"var data = {",
+									"\t\"slug\": \"delete-notification-by-id\",",
+									"\t\"sender\": \"System Management\",",
+									"\t\"category\": \"SECURITY\",",
+									"\t\"severity\": \"NORMAL\",",
+									"\t\"content\": \"Hello, Notification!\",",
+									"\t\"labels\": [",
+									"\t\t\"cool\",",
+									"\t\t\"test\"",
+									"\t]",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/notification',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    var id = res.stream.toString()",
+									"    pm.environment.set(\"notificationID\", id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/{{notificationID}}",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"{{notificationID}}"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to delete a specific notification by an inexistent ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9ec1305a-b7ba-434a-8406-3187a1de7f7f",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than \"+data.responseTime+\"ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(data.responseTime);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a13e56ca-eb2e-4000-8b24-d490071add59",
+								"exec": [
+									"pm.environment.set(\"inexistent-notificationID\", \"94366318-1111-1111-1111-ab66f45cc683\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/{{inexistent-notificationID}}",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"{{inexistent-notificationID}}"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
 					"name": "Fail to delete a specific notification by an inexistent slug",
 					"event": [
 						{
@@ -1365,6 +1512,173 @@
 								"notification",
 								"slug",
 								"{{slugName2}}"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Query a specific notification by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "171084eb-6523-40b4-8ca7-20e585044daa",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").Notification;",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than \"+data.responseTime+\"ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(data.responseTime);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.slug==='query-notification-by-id').to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ac30e70f-02d4-4f71-a363-2c9fe6a7c1fe",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"supportNotificationsUrl\");",
+									"var data = {",
+									"\t\"slug\": \"query-notification-by-id\",",
+									"\t\"sender\": \"System Management\",",
+									"\t\"category\": \"SECURITY\",",
+									"\t\"severity\": \"NORMAL\",",
+									"\t\"content\": \"Hello, Notification!\",",
+									"\t\"labels\": [",
+									"\t\t\"cool\",",
+									"\t\t\"test\"",
+									"\t]",
+									"};",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/notification',",
+									"  method: 'POST',",
+									"  body: {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(data)",
+									"  }",
+									"};",
+									"",
+									"pm.sendRequest(request, function (err, res) {",
+									"    var id = res.stream.toString()",
+									"    pm.environment.set(\"notificationID\", id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/{{notificationID}}",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"{{notificationID}}"
+							]
+						},
+						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to query a specific notification by an inexistent ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "171084eb-6523-40b4-8ca7-20e585044daa",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than \"+data.responseTime+\"ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(data.responseTime);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ac30e70f-02d4-4f71-a363-2c9fe6a7c1fe",
+								"exec": [
+									"pm.environment.set(\"inexistent-notificationID\", \"94366318-1111-1111-1111-ab66f45cc683\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/notification/{{inexistent-notificationID}}",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"notification",
+								"{{inexistent-notificationID}}"
 							]
 						},
 						"description": "Create a new Subscritpion."
