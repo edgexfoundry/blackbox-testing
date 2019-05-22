@@ -108,6 +108,10 @@ testAll() {
 
 }
 
+## Changing MaxResultCount value to 100 before test
+echo "[INFO] Update MaxResultCount and restart services "
+sh $(dirname "$0")/updateMaxResultCount.sh
+
 #Main Script starts here
 $(dirname "$0")/banner.sh
 
