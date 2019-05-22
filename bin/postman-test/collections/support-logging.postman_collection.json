@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6b6e0358-9a4b-4f2e-9768-4b2f410c2579",
+		"_postman_id": "9d85a31c-09ab-4e78-9e0d-f9ba3258b1c6",
 		"name": "support-logging",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -670,7 +670,6 @@
 							"listen": "test",
 							"script": {
 								"id": "8675b656-ddf7-4522-a28a-d17ecc252653",
-								"type": "text/javascript",
 								"exec": [
 									" /*",
 									" * Test Case:  aapi/v1/logs/{{overLimit}} - GET",
@@ -706,18 +705,18 @@
 									"     pm.expect(result).to.be.true;",
 									"});",
 									"",
-									"pm.test(\"Collection's size should not exceed the configured ReadMaxLimit.\", function () {",
+									"pm.test(\"Please check the MaxResultCount value on service configuration. If the value is greater than 100, this case will fail. You could run or refer to bin/updateMaxResultCount.sh before this test. \", function () {",
 									"     pm.expect(jsonData.length<=readMaxLimit).to.be.true;",
 									"});",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "bdf4e7d6-260c-4041-bd44-c84cbf106498",
-								"type": "text/javascript",
 								"exec": [
 									"// handle iteration data",
 									"if(!data.loggingLabel){",
@@ -729,7 +728,8 @@
 									"    pm.environment.set(\"readMaxLimit\", data.readMaxLimit);",
 									"}",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],

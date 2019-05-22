@@ -13,7 +13,7 @@
     "valuedescriptor": "ohm",
     "age": "0",
     "invalidId": "57e866d4e4b0ca8e6d73a412",
-    "invalidLimit": 101,
+    "invalidLimit": 50001,
     "invalidDeviceName": "preassureSensor",
     "schema": {
       "type": "array",
