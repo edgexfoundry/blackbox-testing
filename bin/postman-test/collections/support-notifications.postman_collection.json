@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "06a0079d-498b-43f7-8f8e-317fd292ed39",
+		"_postman_id": "d4718eff-cd2c-4921-bace-00b4aaf72297",
 		"name": "support-notifications",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2541,6 +2541,203 @@
 							]
 						},
 						"description": "Create a new Subscritpion."
+					},
+					"response": []
+				},
+				{
+					"name": "Query limited transmissions with specified slug and created date range",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0f27d89d-a68a-4506-81fd-f0e2cd6d3b87",
+								"exec": [
+									"var schema = pm.globals.get(\"schemas\").TransmissionArray;",
+									"var slug = pm.environment.get(\"slug\");",
+									"var endDate = pm.environment.get(\"endDate\");",
+									"var startDate = pm.environment.get(\"startDate\");",
+									"var limit = pm.environment.get(\"record-limit\");",
+									"var responseTime = pm.environment.get(\"responseTime\");",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than \"+responseTime+\"ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(responseTime);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Response count is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.equal(limit);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is application/json\", function(){",
+									"    var contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.include('application/json');",
+									"});",
+									"",
+									"pm.test(\"Response body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.forEach(function(data) {",
+									"      pm.expect(data.created > startDate && data.created< endDate).to.be.true;",
+									"      pm.expect(data.notification.slug == slug ).to.be.true;",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Is valid response schema\", function () {",
+									"     var jsonData = pm.response.json();",
+									"     var result = tv4.validate(jsonData, schema);",
+									"     if(!result){",
+									"         console.log(tv4.error);",
+									"     }",
+									"     pm.expect(result).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d055a086-3fbf-405c-8e2a-478a396fee04",
+								"exec": [
+									"var date = new Date();",
+									"var now = date.getTime();",
+									"var startDate = now - 300000;",
+									"var endDate = now;",
+									"",
+									"pm.environment.set(\"slug\", \"notice-025\");",
+									"pm.environment.set(\"startDate\", startDate);",
+									"pm.environment.set(\"endDate\", endDate);",
+									"pm.environment.set(\"record-limit\", 5);",
+									"",
+									"if(!data.responseTime){",
+									"    pm.environment.set(\"responseTime\", 800);",
+									"}else{",
+									"    pm.environment.set(\"responseTime\", data.responseTime); ",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/slug/{{slug}}/start/{{startDate}}/end/{{endDate}}/{{record-limit}}",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"slug",
+								"{{slug}}",
+								"start",
+								"{{startDate}}",
+								"end",
+								"{{endDate}}",
+								"{{record-limit}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fail to query limited transmissions with specified slug and created date range",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0f27d89d-a68a-4506-81fd-f0e2cd6d3b87",
+								"exec": [
+									"var responseTime = pm.environment.get(\"responseTime\");",
+									"",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than \"+responseTime+\"ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(responseTime);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d055a086-3fbf-405c-8e2a-478a396fee04",
+								"exec": [
+									"pm.environment.set(\"slug\", \"notice-025\");",
+									"pm.environment.set(\"startDate\", \"2019-05-01\");",
+									"pm.environment.set(\"endDate\", \"2019-05-02\");",
+									"pm.environment.set(\"record-limit\", 5);",
+									"",
+									"if(!data.responseTime){",
+									"    pm.environment.set(\"responseTime\", 800);",
+									"}else{",
+									"    pm.environment.set(\"responseTime\", data.responseTime); ",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/slug/{{slug}}/start/{{startDate}}/end/{{endDate}}/{{record-limit}}",
+							"host": [
+								"{{supportNotificationsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transmission",
+								"slug",
+								"{{slug}}",
+								"start",
+								"{{startDate}}",
+								"end",
+								"{{endDate}}",
+								"{{record-limit}}"
+							]
+						},
+						"description": "Query transmissions with invalid request parameters should return 400(bad request) as HTTP status."
 					},
 					"response": []
 				},
