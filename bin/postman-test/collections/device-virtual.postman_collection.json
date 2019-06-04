@@ -67,7 +67,7 @@
 			"response": []
 		},
 		{
-			"name": "Test whether the Random-Boolean-Generator device profile has been added to metadata",
+			"name": "Test whether the Random-Boolean-Device device profile has been added to metadata",
 			"event": [
 				{
 					"listen": "test",
@@ -98,7 +98,7 @@
 							"",
 							"pm.test(\"Validate device profile name\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.name===\"Random-Boolean-Generator\").to.be.true; ",
+							"    pm.expect(jsonData.name===\"Random-Boolean-Device\").to.be.true; ",
 							"});",
 							""
 						],
@@ -114,7 +114,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-Boolean-Generator",
+					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-Boolean-Device",
 					"host": [
 						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
 					],
@@ -123,14 +123,14 @@
 						"v1",
 						"deviceprofile",
 						"name",
-						"Random-Boolean-Generator"
+						"Random-Boolean-Device"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Test whether the Random-Integer-Generator device profile has been added to metadata",
+			"name": "Test whether the Random-Integer-Device device profile has been added to metadata",
 			"event": [
 				{
 					"listen": "test",
@@ -161,7 +161,7 @@
 							"",
 							"pm.test(\"Validate device profile name\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.name===\"Random-Integer-Generator\").to.be.true; ",
+							"    pm.expect(jsonData.name===\"Random-Integer-Device\").to.be.true; ",
 							"});",
 							""
 						],
@@ -177,7 +177,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-Integer-Generator",
+					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-Integer-Device",
 					"host": [
 						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
 					],
@@ -186,14 +186,14 @@
 						"v1",
 						"deviceprofile",
 						"name",
-						"Random-Integer-Generator"
+						"Random-Integer-Device"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Test whether the Random-UnsignedInteger-Generator device profile has been added to metadata",
+			"name": "Test whether the Random-UnsignedInteger-Device device profile has been added to metadata",
 			"event": [
 				{
 					"listen": "test",
@@ -224,7 +224,7 @@
 							"",
 							"pm.test(\"Validate device profile name\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.name===\"Random-UnsignedInteger-Generator\").to.be.true; ",
+							"    pm.expect(jsonData.name===\"Random-UnsignedInteger-Device\").to.be.true; ",
 							"});",
 							""
 						],
@@ -240,7 +240,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-UnsignedInteger-Generator",
+					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-UnsignedInteger-Device",
 					"host": [
 						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
 					],
@@ -249,14 +249,14 @@
 						"v1",
 						"deviceprofile",
 						"name",
-						"Random-UnsignedInteger-Generator"
+						"Random-UnsignedInteger-Device"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Test whether the Random-Float-Generator device profile has been added to metadata",
+			"name": "Test whether the Random-Float-Device device profile has been added to metadata",
 			"event": [
 				{
 					"listen": "test",
@@ -287,7 +287,7 @@
 							"",
 							"pm.test(\"Validate device profile name\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.name===\"Random-Float-Generator\").to.be.true; ",
+							"    pm.expect(jsonData.name===\"Random-Float-Device\").to.be.true; ",
 							"});",
 							""
 						],
@@ -303,7 +303,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-Float-Generator",
+					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-Float-Device",
 					"host": [
 						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
 					],
@@ -312,14 +312,14 @@
 						"v1",
 						"deviceprofile",
 						"name",
-						"Random-Float-Generator"
+						"Random-Float-Device"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Test whether the pre-defined Random-Boolean-Generator01 device in metadata exists",
+			"name": "Test whether the pre-defined Random-Boolean-Device device in metadata exists",
 			"event": [
 				{
 					"listen": "test",
@@ -350,7 +350,7 @@
 							"",
 							"pm.test(\"Validate device name\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.name===\"Random-Boolean-Generator01\").to.be.true; ",
+							"    pm.expect(jsonData.name===\"Random-Boolean-Device\").to.be.true; ",
 							"});",
 							""
 						],
@@ -366,7 +366,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/device/name/Random-Boolean-Generator01",
+					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/device/name/Random-Boolean-Device",
 					"host": [
 						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
 					],
@@ -375,14 +375,14 @@
 						"v1",
 						"device",
 						"name",
-						"Random-Boolean-Generator01"
+						"Random-Boolean-Device"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Test whether the pre-defined Random-Integer-Generator01 device in metadata exists",
+			"name": "Test whether the pre-defined Random-Integer-Device device in metadata exists",
 			"event": [
 				{
 					"listen": "test",
@@ -413,7 +413,7 @@
 							"",
 							"pm.test(\"Validate device name\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.name===\"Random-Integer-Generator01\").to.be.true; ",
+							"    pm.expect(jsonData.name===\"Random-Integer-Device\").to.be.true; ",
 							"});",
 							""
 						],
@@ -429,7 +429,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/device/name/Random-Integer-Generator01",
+					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/device/name/Random-Integer-Device",
 					"host": [
 						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
 					],
@@ -438,14 +438,14 @@
 						"v1",
 						"device",
 						"name",
-						"Random-Integer-Generator01"
+						"Random-Integer-Device"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Test whether the pre-defined Random-UnsignedInteger-Generator01 device in metadata exists",
+			"name": "Test whether the pre-defined Random-UnsignedInteger-Device device in metadata exists",
 			"event": [
 				{
 					"listen": "test",
@@ -476,7 +476,7 @@
 							"",
 							"pm.test(\"Validate device name\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.name===\"Random-UnsignedInteger-Generator01\").to.be.true; ",
+							"    pm.expect(jsonData.name===\"Random-UnsignedInteger-Device\").to.be.true; ",
 							"});",
 							""
 						],
@@ -492,7 +492,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/device/name/Random-UnsignedInteger-Generator01",
+					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/device/name/Random-UnsignedInteger-Device",
 					"host": [
 						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
 					],
@@ -501,14 +501,14 @@
 						"v1",
 						"device",
 						"name",
-						"Random-UnsignedInteger-Generator01"
+						"Random-UnsignedInteger-Device"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Test whether the pre-defined Random-Float-Generator01 device in metadata exists",
+			"name": "Test whether the pre-defined Random-Float-Device device in metadata exists",
 			"event": [
 				{
 					"listen": "test",
@@ -539,7 +539,7 @@
 							"",
 							"pm.test(\"Validate device name\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.name===\"Random-Float-Generator01\").to.be.true; ",
+							"    pm.expect(jsonData.name===\"Random-Float-Device\").to.be.true; ",
 							"});",
 							""
 						],
@@ -555,7 +555,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/device/name/Random-Float-Generator01",
+					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/device/name/Random-Float-Device",
 					"host": [
 						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
 					],
@@ -564,7 +564,7 @@
 						"v1",
 						"device",
 						"name",
-						"Random-Float-Generator01"
+						"Random-Float-Device"
 					]
 				}
 			},
@@ -605,7 +605,7 @@
 					"raw": "{\"RandomValue_Int8\":\"66\"}"
 				},
 				"url": {
-					"raw": "{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}/api/v1/device/name/Random-Integer-Generator01/RandomValue_Int8",
+					"raw": "{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}/api/v1/device/name/Random-Integer-Device/RandomValue_Int8",
 					"host": [
 						"{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}"
 					],
@@ -614,7 +614,7 @@
 						"v1",
 						"device",
 						"name",
-						"Random-Integer-Generator01",
+						"Random-Integer-Device",
 						"RandomValue_Int8"
 					]
 				}
@@ -669,7 +669,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}/api/v1/device/name/Random-Integer-Generator01/RandomValue_Int8",
+					"raw": "{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}/api/v1/device/name/Random-Integer-Device/RandomValue_Int8",
 					"host": [
 						"{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}"
 					],
@@ -678,7 +678,7 @@
 						"v1",
 						"device",
 						"name",
-						"Random-Integer-Generator01",
+						"Random-Integer-Device",
 						"RandomValue_Int8"
 					]
 				}
