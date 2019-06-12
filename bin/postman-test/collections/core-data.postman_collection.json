@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "94c87f3a-9418-4f61-9b48-e8e3314d67f1",
+		"_postman_id": "4d75a6a4-b4cb-404f-ac25-4a6e58e2c148",
 		"name": "core-data",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -3848,11 +3848,11 @@
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
 									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/valuedescriptor\", function (err, res) {",
+									"pm.sendRequest(baseUrl+\"/api/v1/valuedescriptor/name/temperature\", function (err, res) {",
 									"    if (err) {",
 									"        console.log(err);",
 									"    } else {",
-									"        pm.environment.set(\"valuedescriptorID\", res.json()[0].id);",
+									"        pm.environment.set(\"valuedescriptorID\", res.json().id);",
 									"    }",
 									"});"
 								],
