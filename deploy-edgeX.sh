@@ -60,15 +60,7 @@ run_service mongo
 
 run_service logging
 
-run_service notifications
-
-run_service metadata
-
 run_service data
-
-run_service command
-
-run_service scheduler
 
 run_service export-client
 
@@ -76,4 +68,14 @@ run_service export-distro
 
 run_service rulesengine
 
+run_service notifications
+
+run_service metadata
+
+run_service command
+
+run_service scheduler
+
 run_service device-virtual
+
+sleep 100s # Wait for rulesengine fully startup, because it takes around 100s on Raspberry Pi
