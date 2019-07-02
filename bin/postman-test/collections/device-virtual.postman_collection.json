@@ -36,7 +36,7 @@
 							"});",
 							"",
 							"pm.test(\"Response body is correct\", function () {",
-							"    pm.expect(pm.response.text()).to.include(\"1.0.0\");",
+							"    pm.expect(pm.response.text()).to.include(\"1.1.0\");",
 							"});",
 							""
 						],
