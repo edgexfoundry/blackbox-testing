@@ -63,17 +63,14 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}/api/v1/event/removeold/age/0",
+					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"api",
 						"v1",
-						"event",
-						"removeold",
-						"age",
-						"0"
+						"ping"
 					]
 				}
 			},
