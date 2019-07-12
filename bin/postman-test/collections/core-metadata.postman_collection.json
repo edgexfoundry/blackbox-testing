@@ -1093,7 +1093,7 @@
 								"{{commandGetRequestId}}"
 							]
 						},
-						"description": "Fetch a specific command by database generated id. May return null if no commands with the id is found. Returns ServiceException (HTTP 503) for unknown or unanticipated issues."
+						"description": "Fetch a specific command by database generated id. Returns NotFoundException (HTTP 404) if command with the specified id does not exists. Returns ServiceException (HTTP 503) for unknown or unanticipated issues."
 					},
 					"response": []
 				},
@@ -1242,6 +1242,88 @@
 						"description": "Return all command objects. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns LimitExceededException (HTTP 413) if the number returned exceeds the max limit."
 					},
 					"response": []
+				},
+				{
+					"name": "345 http://localhost:48081/api/v1/command/device/:deviceId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/*",
+									" * Test Case:  /command/device/:id - GET",
+									" * Version: Alpha",
+									" * @Author: Diana Atanasova, dianaa@vmware.com",
+									" *",
+									" */",
+									"",
+									"//Test Case for status : 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"",
+									"if(responseCode.code === 200) {",
+									"    //Test content type should present in header",
+									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"    ",
+									"    if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"    }",
+									"    ",
+									"    try{",
+									"        //Tests if the response could be parsed as json",
+									"        var actualCommandData = JSON.parse(responseBody);",
+									"    }catch(e) {",
+									"        console.log(\"Exception while parsing json response\");",
+									"    }",
+									"}"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d1e103cc-f1c9-4db5-8ecf-3bb871451aef",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/device/name/cartachometer\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"commandByDeviceId\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/command/device/{{commandByDeviceId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"command",
+								"device",
+								"{{commandByDeviceId}}"
+							]
+						},
+						"description": "Fetch all commands belonging to a device with specified id. Returns Internal Service Error (HTTP 500) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if device with the specified id does not exist."
+					},
+					"response": []
 				}
 			],
 			"description": "Folder for command"
@@ -1297,7 +1379,7 @@
 					"response": []
 				},
 				{
-					"name": "349 http://localhost:48081/api/v1/command/:name",
+					"name": "349 http://localhost:48081/api/v1/command/name/:name",
 					"event": [
 						{
 							"listen": "test",
@@ -1309,6 +1391,60 @@
 									" * Version: Alpha",
 									" * Service: Metadata",
 									" * @Author: dianaa@vmware.com",
+									" *",
+									" **/",
+									" ",
+									"    tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"    if(responseCode.code === 200){",
+									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"    }",
+									"    try{",
+									"        var result = JSON.parse(responseBody);",
+									"    }catch(e) {",
+									"        console.log(\"Exception while parsing json response\");",
+									"    }",
+									"    tests[\"Response is Empty\"] = result.length === 0"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/command/name/{{CommandNameNotExist}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"command",
+								"name",
+								"{{CommandNameNotExist}}"
+							]
+						},
+						"description": "Try to fetch all commands with specified name. Expected result is empty list, because no command with that name exists."
+					},
+					"response": []
+				},
+				{
+					"name": "350 http://localhost:48081/api/v1/command/device/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/**",
+									" * Test Case:  /api/v1/command/device/:id - GET",
+									" * Version: Alpha",
+									" * Service: Metadata",
+									" * @Author: Diana Atanasova, dianaa@vmware.com",
 									" *",
 									" **/",
 									" ",
@@ -1328,18 +1464,19 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/command/{{CommandNameNotExist}}",
+							"raw": "{{baseUrl}}/api/v1/command/device/{{DeviceIdNotExist}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"commands",
-								"{{CommandNameNotExist}}"
+								"command",
+								"device",
+								"{{DeviceIdNotExist}}"
 							]
 						},
-						"description": "Try to fetch command by Name that does not exists. Expected return is HTTP 404, Not Found."
+						"description": "Try to fetch all commands associated with non-existing device specified by its id. Expected return is HTTP 404, Not Found."
 					},
 					"response": []
 				}

@@ -5,6 +5,7 @@
     "TextPlainContentType": "text/plain",
     "commandGetRequestName": "coordinates",
     "CommandIdNotExist": "9dc4d2cd-d371-4369-aea1-4bafc09c8d0a",
+    "DeviceIdNotExist": "f97b5f0a-ec32-4e96-bd36-02210af16f8c",
     "CommandNameNotExist" : "CommandNameNotExist",
     "objectSchema": {
       "type": "object",
