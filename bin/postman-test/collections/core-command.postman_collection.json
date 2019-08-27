@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "63ba46d5-7553-4286-9ece-cb891a6555df",
+		"_postman_id": "6019a16b-dd0d-486f-b225-8e8bf367cd0a",
 		"name": "core-command",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,175 +9,12 @@
 			"name": "device",
 			"item": [
 				{
-					"name": "17 http://localhost:48082/api/v1/device/:id",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "fb6f6139-ba3a-45ef-a703-7035d35aa019",
-								"exec": [
-									"/**",
-									" * Test Case:  /api/v1/device/:id - GET",
-									" * Version: Alpha",
-									" * Service: Command",
-									" * @Author: Tata Elxsi",
-									" *",
-									" **/",
-									" ",
-									"    tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"    if(responseCode.code === 200){",
-									"        tests[\"Response time is less than 1200 ms\"] = responseTime < 1200;",
-									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"        if (contentTypeHeaderExists) {",
-									"            tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
-									"        }",
-									"         //Test body parameters",
-									"        var deviceService;",
-									"        try{",
-									"            //Parse json response",
-									"            deviceService = JSON.parse(responseBody);",
-									"        }catch(e) {",
-									"            console.log(\"Exception while parsing json response\");",
-									"        }",
-									"        ",
-									"        if(deviceService.length !== 0) {",
-									"         tests[\"Is Valid Response Schema\"] = tv4.validate(deviceService, data.schema);",
-									"            console.log(\"Validation failed: \", tv4.error);",
-									"        } else {",
-									"            //Shows message when event list is empty",
-									"            console.log(\"Device List Empty\");",
-									"            tests[\"DeviceService list empty\"] = deviceService.length === 0",
-									"        }",
-									"    }"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "9d95e2ba-4083-48a7-aa37-e3d9bd799bce",
-								"exec": [
-									"var baseUrl = pm.environment.get(\"baseUrl\");",
-									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/device/name/Livingroom automation\", function (err, res) {",
-									"    if (err) {",
-									"        console.log(err);",
-									"    } else {",
-									"        pm.environment.set(\"getDeviceById\", res.json().id);",
-									"    }",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/{{getDeviceById}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"device",
-								"{{getDeviceById}}"
-							]
-						},
-						"description": "Retrieve a device (by database generated id) and its command offerings. Throws ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided."
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:48082/api/v1/device/name/:name",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"/**",
-									" * Test Case:  /api/v1/device/name/:name - GET",
-									" *  Version: Alpha",
-									" * Service: Metadata",
-									" * @Author: Tata Elxsi",
-									" *",
-									" **/",
-									"    tests[\"Status code is 200\"] = responseCode.code === 200;",
-									"    tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									"    if(responseCode.code === 200){",
-									"        if(responseBody.length === 0){",
-									"            tests[\"Response body Empty\"] = responseBody === null;",
-									"        } else{",
-									"            var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"            ",
-									"            tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"            ",
-									"            if (contentTypeHeaderExists) {",
-									"                tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
-									"            }",
-									"             //Test body parameters",
-									"            var actualValueDescriptorName;",
-									"            try{",
-									"                //Parse json response",
-									"                actualValueDescriptorName = JSON.parse(responseBody);",
-									"            }catch(e) {",
-									"                console.log(\"Exception while parsing json response\");",
-									"            }",
-									"            ",
-									"            if(actualValueDescriptorName !== null) {",
-									"             tests[\"Is Valid Response Schema\"] = tv4.validate(actualValueDescriptorName, data.schema);",
-									"                console.log(\"Validation failed: \", tv4.error);",
-									"            } else {",
-									"                //Shows message when event list is empty",
-									"                console.log(\"Device List Empty\");",
-									"                tests[\"Is Device list empty\"] = actualValueDescriptorName.length === 0",
-									"            }",
-									"        }",
-									"    }"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/name/{{getDeviceByName}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"device",
-								"name",
-								"{{getDeviceByName}}"
-							]
-						},
-						"description": "Retrieve a device (by name) and its command offerings. Throws ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the name provided."
-					},
-					"response": []
-				},
-				{
 					"name": "http://localhost:48082/api/v1/device",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "3e626156-af15-466a-ae97-85d1252f876a",
 								"exec": [
 									"/*",
 									" * Test Case:  /api/v1/device - GET",
@@ -211,24 +48,21 @@
 									"    }",
 									"    if(actualEventData.length !== 0 ) {",
 									"        //Test response schema",
-									"        // tests[\"Is Valid Response Schema\"] = tv4.validate(actualEventData, data.schema);",
-									"        // console.log(\"Validation failed: \", tv4.error);",
+									"        //tests[\"Is Valid Response Schema\"] = tv4.validate(actualEventData, data.schema);",
+									"        //console.log(\"Validation failed: \", tv4.error);",
 									"    } else {",
 									"        console.log(\"Device list and expected list length doesnt match\");",
 									"        tests[\"Is actual and expected Device list matching\"] = actualEventData.length === 0;",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device",
 							"host": [
@@ -243,6 +77,462 @@
 						"description": "Retrieve a list of (all) devices and their command offerings. Throws ServiceException (HTTP 503) for unanticipated or unknown issues encountered."
 					},
 					"response": []
+				},
+				{
+					"name": "17 http://localhost:48082/api/v1/device/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fb6f6139-ba3a-45ef-a703-7035d35aa019",
+								"exec": [
+									"/**",
+									" * Test Case:  /api/v1/device/:id - GET",
+									" * Version: Alpha",
+									" * Service: Command",
+									" * @Author: Tata Elxsi",
+									" *",
+									" **/",
+									" ",
+									"    tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"    if(responseCode.code === 200){",
+									"        tests[\"Response time is less than 1200 ms\"] = responseTime < 1200;",
+									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"        if (contentTypeHeaderExists) {",
+									"            tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"        }",
+									"         //Test body parameters",
+									"        var device;",
+									"        try{",
+									"            //Parse json response",
+									"            device = JSON.parse(responseBody);",
+									"        }catch(e) {",
+									"            console.log(\"Exception while parsing json response\");",
+									"        }",
+									"        ",
+									"        if(device.length !== 0) {",
+									"         tests[\"Is Valid Response Schema\"] = tv4.validate(device, data.schema);",
+									"            console.log(\"Validation failed: \", tv4.error);",
+									"        } else {",
+									"            //Shows message when event list is empty",
+									"            console.log(\"Device List Empty\");",
+									"            tests[\"DeviceService list empty\"] = device.length === 0",
+									"        }",
+									"    }"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9d95e2ba-4083-48a7-aa37-e3d9bd799bce",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/device/name/Livingroom automation\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"getDeviceById\", res.json().id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/{{getDeviceById}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"{{getDeviceById}}"
+							]
+						},
+						"description": "Retrieve a device (by database generated id) and its command offerings. Throws ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided."
+					},
+					"response": []
+				},
+				{
+					"name": "20_200 http://localhost:48082/api/v1/device/:id/command/{commandId}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e4816dfe-0210-41e5-b12a-1ffa3f9f2e86",
+								"exec": [
+									"//Test Case for status : 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"if(responseCode.code === 200){",
+									"        tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"        if (contentTypeHeaderExists) {",
+									"            tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"        }",
+									"         //Test body parameters",
+									"        var device;",
+									"        try{",
+									"            //Parse json response",
+									"            device = JSON.parse(responseBody);",
+									"        }catch(e) {",
+									"            console.log(\"Exception while parsing json response\");",
+									"        }",
+									"        ",
+									"        if(device.length !== 0) {",
+									"         tests[\"Is Valid Response Schema\"] = tv4.validate(device, data.schema);",
+									"            console.log(\"Validation failed: \", tv4.error);",
+									"        } else {",
+									"            //Shows message when event list is empty",
+									"            console.log(\"Device List Empty\");",
+									"            tests[\"DeviceService list empty\"] = deviceService.length === 0",
+									"        }",
+									"    }"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1dc441cc-ef11-491b-a476-630d7748529a",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"// Device is generated by Device Virtual",
+									"pm.sendRequest(baseUrl+\"/api/v1/device/name/Random-Boolean-Device\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"getDeviceById\", res.json().id);",
+									"        pm.environment.set(\"getCommandById\", res.json().commands[0].id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/{{getDeviceById}}/command/{{getCommandById}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"{{getDeviceById}}",
+								"command",
+								"{{getCommandById}}"
+							]
+						},
+						"description": "Issue the get command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service."
+					},
+					"response": []
+				},
+				{
+					"name": "21_200 http://localhost:48082/api/v1/device/:id/command/{commandId}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e4816dfe-0210-41e5-b12a-1ffa3f9f2e86",
+								"exec": [
+									"//Test Case for status : 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1dc441cc-ef11-491b-a476-630d7748529a",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"// Device is generated by Device Virtual",
+									"pm.sendRequest(baseUrl+\"/api/v1/device/name/Random-Integer-Device\", function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"getDeviceById\", res.json().id);",
+									"        pm.environment.set(\"getCommandById\", res.json().commands[0].id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"RandomValue_Int8\": \"26\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/{{getDeviceById}}/command/{{getCommandById}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"{{getDeviceById}}",
+								"command",
+								"{{getCommandById}}"
+							]
+						},
+						"description": "Issue the get command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:48082/api/v1/device/name/:name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "96d18153-54cf-46ef-a74b-077019302fea",
+								"exec": [
+									"",
+									"    tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"    if(responseCode.code === 200){",
+									"        tests[\"Response time is less than 1200 ms\"] = responseTime < 1200;",
+									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"        if (contentTypeHeaderExists) {",
+									"            tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"        }",
+									"         //Test body parameters",
+									"        var deviceService;",
+									"        try{",
+									"            //Parse json response",
+									"            deviceService = JSON.parse(responseBody);",
+									"        }catch(e) {",
+									"            console.log(\"Exception while parsing json response\");",
+									"        }",
+									"        ",
+									"        if(deviceService.length !== 0) {",
+									"         tests[\"Is Valid Response Schema\"] = tv4.validate(deviceService, data.schema);",
+									"            console.log(\"Validation failed: \", tv4.error);",
+									"        } else {",
+									"            //Shows message when event list is empty",
+									"            console.log(\"Device List Empty\");",
+									"            tests[\"DeviceService list empty\"] = deviceService.length === 0",
+									"        }",
+									"    }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/name/{{getDeviceByName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"name",
+								"{{getDeviceByName}}"
+							]
+						},
+						"description": "Retrieve a device (by name) and its command offerings. Throws ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the name provided."
+					},
+					"response": []
+				},
+				{
+					"name": "30_200 http://localhost:48082/api/v1/device/name/{name}/command/{commandname}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a934772a-edca-41fc-83d6-853dae3ed1ea",
+								"exec": [
+									"",
+									"//Test Case for status : 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime] = responseTime < data.responseTime;",
+									"",
+									"if(responseCode.code === 200) {",
+									"    //Test content type should present in header",
+									"    var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"    tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"    ",
+									"    if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is \"+data.ApplicationJsonContentType] =  responseHeaders[\"Content-Type\"].has(data.ApplicationJsonContentType);",
+									"    }",
+									"    ",
+									"    //Test body parameters",
+									"    var actualEventData;",
+									"    try{",
+									"        //Parse json response",
+									"        actualEventData = JSON.parse(responseBody);",
+									"    }catch(e) {",
+									"        console.log(\"Exception while parsing json response\");",
+									"    }",
+									"    if(actualEventData.length !== 0 ) {",
+									"        //Test response schema",
+									"        // tests[\"Is Valid Response Schema\"] = tv4.validate(actualEventData, data.schema);",
+									"        // console.log(\"Validation failed: \", tv4.error);",
+									"    } else {",
+									"        console.log(\"Device list and expected list length doesnt match\");",
+									"        tests[\"Is actual and expected Device list matching\"] = actualEventData.length === 0;",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7e9cce9b-ce51-4922-8fde-b1cd872319af",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"// Device is generated by Device Virtual",
+									"var getDeviceByName = \"Random-Integer-Device\";",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/device/name/\" + getDeviceByName , function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"DeviceName\", getDeviceByName)",
+									"        pm.environment.set(\"CommandName\", res.json().commands[0].name);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/name/{{DeviceName}}/command/{{CommandName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"name",
+								"{{DeviceName}}",
+								"command",
+								"{{CommandName}}"
+							]
+						},
+						"description": "Retrieve devices by name and its command offerings."
+					},
+					"response": []
+				},
+				{
+					"name": "31_200 http://localhost:48082/api/v1/device/name/{name}/command/{commandname}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a934772a-edca-41fc-83d6-853dae3ed1ea",
+								"exec": [
+									"",
+									"//Test Case for status : 200",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime] = responseTime < data.responseTime;",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e2973e04-8795-42ae-a336-e74d352e5a93",
+								"exec": [
+									"var baseUrl = pm.environment.get(\"baseUrl\");",
+									"",
+									"// Device is generated by Device Virtual",
+									"var getDeviceByName = \"Random-Integer-Device\";",
+									"",
+									"pm.sendRequest(baseUrl+\"/api/v1/device/name/\" + getDeviceByName , function (err, res) {",
+									"    if (err) {",
+									"        console.log(err);",
+									"    } else {",
+									"        pm.environment.set(\"DeviceName\", getDeviceByName)",
+									"        pm.environment.set(\"CommandName\", res.json().commands[0].name);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"RandomValue_Int8\":\"72\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/name/{{DeviceName}}/command/{{CommandName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"name",
+								"{{DeviceName}}",
+								"command",
+								"{{CommandName}}"
+							]
+						},
+						"description": "Issue the put command referenced by the command name to the device/sensor (also referenced by name) it is associated to via the device service."
+					},
+					"response": []
 				}
 			],
 			"description": "Folder for device"
@@ -251,19 +541,14 @@
 			"name": "device_error_4xx",
 			"item": [
 				{
-					"name": "8 http://localhost:48082/api/v1/device/:id/command/{commandId}",
+					"name": "21_404 http://localhost:48082/api/v1/device/:id/command/{commandId}",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "ec1d8976-ea8a-4d8b-8aec-5fcdea3e6d98",
 								"exec": [
-									"/*",
-									" * Test Case:  /device/{{deviceIdNotPresent}}/command/{{commandId}} - PUT",
-									" * Version: Alpha",
-									" * @Author: Tata Elxsi",
-									" *",
-									" */",
+									"",
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
 									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
 								],
@@ -297,24 +582,19 @@
 								"{{invalidCommandId}}"
 							]
 						},
-						"description": "Issue the put command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service. ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided. Throws LockedException (HTTP 423) if the device is LOCKED (admin state)."
+						"description": "Issue the put command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service. Throws NotFoundException (HTTP 404) if no device exists by the id provided."
 					},
 					"response": []
 				},
 				{
-					"name": "9 http://localhost:48082/api/v1/device/:id/command/{commandId}",
+					"name": "21_423 http://localhost:48082/api/v1/device/:id/command/{commandId}",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "7e299788-fc6c-4afb-9ad3-e7714dace00d",
 								"exec": [
-									"/*",
-									" * Test Case:  /device/{{deviceGetRequestIdWithStateLocked}}/command/{{commandId}} - PUT",
-									" * Version: Alpha",
-									" * @Author: Tata Elxsi",
-									" *",
-									" */",
+									"",
 									"tests[\"Status code is 423\"] = responseCode.code === 423;",
 									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
 								],
@@ -366,7 +646,7 @@
 								"{{commandGetRequestIdForLockedState}}"
 							]
 						},
-						"description": "Issue the put command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service. ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided. Throws LockedException (HTTP 423) if the device is LOCKED (admin state)."
+						"description": "Issue the put command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service. Throws LockedException (HTTP 423) if the device is LOCKED (admin state)."
 					},
 					"response": []
 				},
@@ -395,10 +675,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device/{{getDeviceByInvalidId}}",
 							"host": [
@@ -416,19 +692,14 @@
 					"response": []
 				},
 				{
-					"name": "4 http://localhost:48082/api/v1/device/:id/command/{commandId}",
+					"name": "20_404 http://localhost:48082/api/v1/device/:id/command/{commandId}",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "e4816dfe-0210-41e5-b12a-1ffa3f9f2e86",
 								"exec": [
-									"/*",
-									" * Test Case:  /device/{{deviceIdNotPresent}}/command/{{commandId}}- Error 404 - GET",
-									" * Version: Alpha",
-									" * @Author: Tata Elxsi",
-									" *",
-									" */",
+									"",
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
 									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
 								],
@@ -439,10 +710,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device/{{deviceIdNotPresent}}/command/{{commandId}}",
 							"host": [
@@ -457,24 +724,19 @@
 								"{{commandId}}"
 							]
 						},
-						"description": "Issue the put command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service. ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided. Throws LockedException (HTTP 423) if the device is LOCKED (admin state)."
+						"description": "Issue the put command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service. Throws NotFoundException (HTTP 404) if no device exists by the id provided."
 					},
 					"response": []
 				},
 				{
-					"name": "5 http://localhost:48082/api/v1/device/:id/command/{commandId}",
+					"name": "20_423 http://localhost:48082/api/v1/device/:id/command/{commandId}",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "75541308-ff72-40bd-8e08-000bac2b9dce",
 								"exec": [
-									"/*",
-									" * Test Case:  /device/{{deviceIdNotPresent}}/command/{{commandId}} -Error 423 - GET",
-									" * Version: Alpha",
-									" * @Author: Tata Elxsi",
-									" *",
-									" */",
+									"",
 									"tests[\"Status code is 423\"] = responseCode.code === 423;",
 									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
 								],
@@ -503,10 +765,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device/{{deviceLockedId}}/command/{{commandGetRequestIdForLockedState}}",
 							"host": [
@@ -521,7 +779,7 @@
 								"{{commandGetRequestIdForLockedState}}"
 							]
 						},
-						"description": "Issue the put command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service. ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided. Throws LockedException (HTTP 423) if the device is LOCKED (admin state)."
+						"description": "Issue the put command referenced by the command id to the device/sensor (also referenced by database generated id) it is associated to via the device service. Throws LockedException (HTTP 423) if the device is LOCKED (admin state)."
 					},
 					"response": []
 				},
@@ -546,10 +804,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device/name/{{getDeviceByInvalidName}}",
 							"host": [
@@ -564,6 +818,241 @@
 							]
 						},
 						"description": "Retrieve a device (by database generated id) and its command offerings. Throws ServiceException (HTTP 503) for unanticipated or unknown issues encountered. Throws NotFoundException (HTTP 404) if no device exists by the id provided."
+					},
+					"response": []
+				},
+				{
+					"name": "30_404 http://localhost:48082/api/v1/device/name/{name}/command/{commandname}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a934772a-edca-41fc-83d6-853dae3ed1ea",
+								"exec": [
+									"",
+									"//Test Case for status : 404",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime] = responseTime < data.responseTime;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5445d783-4bcc-42c9-bb5f-35f4973849f0",
+								"exec": [
+									"pm.environment.set(\"DeviceName\", \"Livingroom automation\");",
+									"pm.environment.set(\"invalidCommandName\", \"coolingpointinvalid\");",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/name/{{getDeviceByName}}/command/{{invalidCommandName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"name",
+								"{{getDeviceByName}}",
+								"command",
+								"{{invalidCommandName}}"
+							]
+						},
+						"description": "Retrieve devices by name and its command offerings. Throws NotFoundException (HTTP 404) if device with given name does not exist or device doesn't have command with the given commandname."
+					},
+					"response": []
+				},
+				{
+					"name": "31_404 http://localhost:48082/api/v1/device/name/{name}/command/{commandname}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a934772a-edca-41fc-83d6-853dae3ed1ea",
+								"exec": [
+									"",
+									"//Test Case for status : 404",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime] = responseTime < data.responseTime;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7c338d2d-8ddc-490e-8f0a-2ed355a42452",
+								"exec": [
+									"pm.environment.set(\"invalidDeviceName\", \"Livingroom\");",
+									"pm.environment.set(\"CommandName\", \"coolingpoint\");",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"temp\":72}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/name/{{invalidDeviceName}}/command/{{commandName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"name",
+								"{{invalidDeviceName}}",
+								"command",
+								"{{commandName}}"
+							]
+						},
+						"description": "Issue the put command referenced by the command name to the device/sensor (also referenced by name) it is associated to via the device service. Throws NotFoundException (HTTP 404) if device with given name does not exist or device doesn't have command with the given commandname."
+					},
+					"response": []
+				},
+				{
+					"name": "30_423 http://localhost:48082/api/v1/device/name/{name}/command/{commandname}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a934772a-edca-41fc-83d6-853dae3ed1ea",
+								"exec": [
+									"",
+									"//Test Case for status : 423",
+									"tests[\"Status code is 423\"] = responseCode.code === 423;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime] = responseTime < data.responseTime;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f60d3156-55ba-45db-9c4e-193bf7acf6c1",
+								"exec": [
+									"var commandName = \"cooling point\";",
+									"",
+									"pm.environment.set(\"commandName\", \"cooling point\");",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/name/{{getDeviceByName}}/command/{{commandName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"name",
+								"{{getDeviceByName}}",
+								"command",
+								"{{commandName}}"
+							]
+						},
+						"description": "Retrieve devices by name and its command offerings. Throws NotFoundException (HTTP 423) if the device is locked (admin state)."
+					},
+					"response": []
+				},
+				{
+					"name": "31_423 http://localhost:48082/api/v1/device/name/{name}/command/{commandname}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a934772a-edca-41fc-83d6-853dae3ed1ea",
+								"exec": [
+									"",
+									"//Test Case for status : 423",
+									"tests[\"Status code is 423\"] = responseCode.code === 423;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime] = responseTime < data.responseTime;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "353e7492-3eaa-4680-80ac-6d25749dd2cb",
+								"exec": [
+									"var commandName = \"cooling point\";",
+									"",
+									"pm.environment.set(\"commandName\", \"cooling point\");",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"temp\":72}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/device/name/{{getDeviceByName}}/command/{{commandName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"device",
+								"name",
+								"{{getDeviceByName}}",
+								"command",
+								"{{commandName}}"
+							]
+						},
+						"description": "Issue the put command referenced by the command name to the device/sensor (also referenced by name) it is associated to via the device service. Throws NotFoundException (HTTP 423) if the device is locked (admin state)."
 					},
 					"response": []
 				}
@@ -606,10 +1095,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/ping",
 							"host": [
@@ -627,6 +1112,143 @@
 				}
 			],
 			"description": "Folder for ping"
+		},
+		{
+			"name": "resource",
+			"item": [
+				{
+					"name": "http://localhost:48082/api/v1/config",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7ae7302b-4278-4946-a2ee-4d11f0b9071a",
+								"exec": [
+									" tests[\"Get correct version\"] = responseCode.code === 200;",
+									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									" if(responseCode.code === 200){",
+									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"        if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"        }",
+									"        if(responseBody.length!== 0){",
+									"            pm.test(\"Body matches string\", function () {",
+									"                pm.expect(pm.response.text()).to.include(\"Writable\");",
+									"            });",
+									"        }",
+									"    }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/config",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"config"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:48082/api/v1/metrics",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4a0d9ed1-150e-4b12-93df-a944e31f361c",
+								"exec": [
+									" tests[\"Get correct version\"] = responseCode.code === 200;",
+									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									" if(responseCode.code === 200){",
+									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"        if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"        }",
+									"        if(responseBody.length!== 0){",
+									"            pm.test(\"Body matches string\", function () {",
+									"                pm.expect(pm.response.text()).to.include(\"Memory\");",
+									"            });",
+									"        }",
+									"    }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/metrics",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"metrics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:48082/api/version",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b81bf893-b5ae-4430-ad67-e272df3714ef",
+								"exec": [
+									"",
+									" tests[\"Get correct version\"] = responseCode.code === 200;",
+									" tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									" if(responseCode.code === 200){",
+									"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"        if (contentTypeHeaderExists) {",
+									"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"        }",
+									"        if(responseBody.length!== 0){",
+									"            pm.test(\"Body matches string\", function () {",
+									"                pm.expect(pm.response.text()).to.include(\"version\");",
+									"            });",
+									"        }",
+									"    }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/version",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"version"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

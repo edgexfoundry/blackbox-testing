@@ -94,8 +94,8 @@ testAll() {
 
 	deviceVirtualTest
 	coreDataTest
-	metaDataTest
 	commandTest
+	metaDataTest
 	loggingTest
 	supportNotificationTest
 	exportClientTest

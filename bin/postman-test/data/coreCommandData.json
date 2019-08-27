@@ -8,7 +8,7 @@
     "updateDeviceAdminState": "LOCKED",
     "commandGetRequestIdForLockedState": "8654ceff-1e66-4b58-b7d7-7c449ad174fc",
     "invalidCommandId": "53276951-0f7f-4cf5-b8d7-73ded9095d0a",
-    "CommandId": "8654ceff-1e66-4b58-b7d7-7c449ad174fc",
+    "commandId": "8654ceff-1e66-4b58-b7d7-7c449ad174fc",
     "getDeviceByInvalidId": "8fbfbf8d-1505-48ae-af9e-dc6b532889b4",
     "getDeviceByInvalidName": "Invalid_device_name",
     "adminStateChange": "LOCKED",
