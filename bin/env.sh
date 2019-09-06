@@ -17,6 +17,7 @@ export supportRulesengine=nexus3.edgexfoundry.org:10004/docker-support-rulesengi
 export exportClient=nexus3.edgexfoundry.org:10004/docker-export-client-go:1.1.0
 export exportDistro=nexus3.edgexfoundry.org:10004/docker-export-distro-go:1.1.0
 export deviceVirtual=nexus3.edgexfoundry.org:10004/docker-device-virtual-go:1.1.0
+export appService=nexus3.edgexfoundry.org:10004/docker-app-service-configurable:latest
 
 export vault=nexus3.edgexfoundry.org:10004/docker-edgex-vault:0.3.0
 export vaultWorker=nexus3.edgexfoundry.org:10004/docker-edgex-vault-worker-go:0.3.0

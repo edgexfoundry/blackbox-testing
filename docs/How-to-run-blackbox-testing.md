@@ -1,12 +1,9 @@
-###########################
-How to run blackbox-testing
-###########################
 
-.. contents::
+# How to run blackbox-testing
 
-=============
-Prerequisites
-=============
+
+## Prerequisites
+
 
 Before running EdgeX black-box test using the Newman script and Postman, you must install the following:
 
@@ -16,37 +13,35 @@ Before running EdgeX black-box test using the Newman script and Postman, you mus
 
 You must also clone the repo from https://github.com/edgexfoundry/blackbox-testing
 
-============
-Setup env.sh
-============
+
+## Setup env.sh
+
 To set up the environment variables for the test script, do the following:
 
-1.Open the **path/to/blackbox-testing/deploy-edgeX.sh** file and uncomment the following code snippet:
+1. Open the **path/to/blackbox-testing/deploy-edgeX.sh** file and uncomment the following code snippet:
 
-. $(dirname "$0")/bin/env.sh
+    `$(dirname "$0")/bin/env.sh`
 
-.. image:: images/env-setup1.png
+[images/env-setup1.png]
 
 2. Open the **path/to/blackbox-testing/bin/run.sh** file and uncomment the following code snippet:
 
-. $(dirname "$0")/env.sh
+    `$(dirname "$0")/env.sh`
 
-.. image:: images/env-setup1.png
+[images/env-setup1.png]
 
-============
-Deploy EdgeX
-============
+
+## Deploy EdgeX
+
 
 Change directory to **path/to/blackbox-testing/**, and execute the following command:
 
-.. code-block:: bash
-
-        $ bash deploy-edgeX.sh
-
+```
+$ bash deploy-edgeX.sh
+```
 The console displays output similar to the following:
 
-.. code-block:: bash
-
+```
     $ bash deploy-edgeX.sh
     Starting.. volume
     WARNING! Using --password via the CLI is insecure. Use --password-stdin.
@@ -69,11 +64,10 @@ The console displays output similar to the following:
     blackbox-testing_logging_1 is up-to-date
     blackbox-testing_metadata_1 is up-to-date
     Creating blackbox-testing_command_1 ... done
-
+```
 2. Check the EdgeX services using the **docker ps** command, as shown below:
 
-.. code-block:: bash
-
+```
     $ docker ps
     CONTAINER ID        IMAGE                                                              COMMAND                  CREATED             STATUS              PORTS                                                                                                            NAMES
     f1b490b3e0c3        nexus3.edgexfoundry.org:10004/docker-core-command-go:0.5.2         "/core-command --con…"   3 minutes ago       Up 3 minutes        0.0.0.0:48082->48082/tcp                                                                                         blackbox-testing_command_1
@@ -85,10 +79,10 @@ The console displays output similar to the following:
     85d0e33c4924        nexus3.edgexfoundry.org:10004/docker-core-config-seed-go:master    "docker-entrypoint.s…"   4 minutes ago       Up 4 minutes        8300-8302/tcp, 8400/tcp, 8500/tcp, 8301-8302/udp, 8600/tcp, 8600/udp                                             blackbox-testing_config-seed_1
     9e4bf85969d7        consul:1.1.0                                                       "docker-entrypoint.s…"   4 minutes ago       Up 4 minutes        0.0.0.0:8400->8400/tcp, 8301-8302/udp, 0.0.0.0:8500->8500/tcp, 8300-8302/tcp, 8600/udp, 0.0.0.0:8600->8600/tcp   blackbox-testing_consul_1
     47f532468383        nexus3.edgexfoundry.org:10004/docker-edgex-volume:master           "/bin/sh -c '/usr/bi…"   4 minutes ago       Up 4 minutes                                                                                                                         blackbox-testing_volume_1
+```
 
-=====================
-Run Test Using Newman
-=====================
+## Run Test Using Newman
+
 
 The script logic is as follows:
 
@@ -96,7 +90,7 @@ The script logic is as follows:
 - Run the Newman test script
 - Clean test data
 
-For example, when we execute **bash ./bin/run.sh -cd**, then the script logic is:
+For example, when we execute `bash ./bin/run.sh -cd`, then the script logic is:
 
 - Import core-data's test data into Edgex
 - Run core-data's test script
@@ -104,8 +98,7 @@ For example, when we execute **bash ./bin/run.sh -cd**, then the script logic is
 
 The output is similar to the following:
 
-.. code-block:: bash
-
+```
     $ bash ./bin/run.sh -cd
     -cd
     *********************************************
@@ -180,6 +173,7 @@ The output is similar to the following:
     ├───────────────────────────────────────────────┤
     │ average response time: 6ms                    │
     └───────────────────────────────────────────────┘
+```
 
 After deploying services, we can test the service's API using the following commands:
 
@@ -198,17 +192,15 @@ All	                     bash ./bin/run.sh -all
 
 You can run bash ./bin/run.sh to list these options:
 
-.. code-block:: bash
-
+```
     $ bash ./bin/run.sh
     ...
     ...
     [INFO] Init postman test data .
     run.sh:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-exc Export Client] | [-ru Rulesengine] | [-all All]
+```
 
-----------------------------------------------
-Present Test Result Using the Allure Framework
-----------------------------------------------
+## Present Test Result Using the Allure Framework
 
 Install Allure: https://docs.qameta.io/allure/#_get_started
 
@@ -216,10 +208,9 @@ Allure is based on standard xUnit results output. Once we have finished running 
 
 Generate report using the following command:
 
-.. code-block:: bash
-
-    $ allure serve /path-to-blackbox-testing-directory/blackbox-testing/bin/testResult
-
+```
+$ allure serve /path-to-blackbox-testing-directory/blackbox-testing/bin/testResult
+```
 After executing the allure serve command, the following information is displayed in the terminal:
 
 1. The location of the generated report

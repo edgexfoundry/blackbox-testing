@@ -1,8 +1,8 @@
 #!/bin/bash
 # Ensure we fail the job if any steps fail
-set -e -o pipefail
+# set -e -o pipefail
 
-#. $(dirname "$0")/env.sh
+# . $(dirname "$0")/env.sh
 
 option="${1}"
 
@@ -20,6 +20,7 @@ EXPORTCLIENTLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
 RULESENGINELOGSPATH=$BASEPATH/rulesengine$TIMESTAMPFORMAT.log
 SUPPORT_SCHEDULER_LOG_PATH=$BASEPATH/supportScheduler$TIMESTAMPFORMAT.log
 DEVICEVIRTUALLOGSPATH=$BASEPATH/devicevirtual$TIMESTAMPFORMAT.log
+APPSERVICECONFIGURABLELOGSPATH=$BASEPATH/appserviceconfigurable$TIMESTAMPFORMAT.log
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 securityTest() {
@@ -90,9 +91,14 @@ deviceVirtualTest() {
 	$(dirname "$0")/deviceVirtualTest.sh
 }
 
+appServiceConfigurableTest() {
+	$(dirname "$0")/appServiceConfigurableTest.sh
+}
+
 testAll() {
 
 	deviceVirtualTest
+	appServiceConfigurableTest
 	coreDataTest
 	commandTest
 	metaDataTest
@@ -163,12 +169,16 @@ case ${option} in
     echo "Info: Initiating DeviceVirtual Test"
     deviceVirtualTest	| tee $DEVICEVIRTUALLOGSPATH
     ;;
+	 -asc)
+    echo "Info: Initiating AppServiceConfigurable Test"
+    appServiceConfigurableTest	| tee $APPSERVICECONFIGURABLELOGSPATH
+    ;;
    	-all)
     echo "Info: Initiating EdgeX Test"
 	testAll		| tee $EDGEXLOGSPATH
     ;;
    	*)
-    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-exc Export Client] | [-ss SupportScheduler] | [-ru Rulesengine] | [-dv DeviceVirtual] | [-sec securityTest] | [-all All]"
+    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-exc Export Client] | [-ss SupportScheduler] | [-ru Rulesengine] | [-dv DeviceVirtual] | [-asc AppServiceConfigurable] | [-sec securityTest] | [-all All]"
     echo
     exit 0
     ;;

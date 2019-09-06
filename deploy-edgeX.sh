@@ -20,9 +20,9 @@
 
 #if [ "${OS}" ==  "Windows_NT" ] ; then
 #    echo " os =  ${OS}"
-#    . $(dirname "$0")/bin/env-win10.sh
+#   . $(dirname "$0")/bin/env-win10.sh
 #else
-#    . $(dirname "$0")/bin/env.sh	
+    . $(dirname "$0")/bin/env.sh	
 #fi
 
 run_service () {
@@ -77,5 +77,7 @@ run_service command
 run_service scheduler
 
 run_service device-virtual
+
+run_service app-service-configurable
 
 sleep 100s # Wait for rulesengine fully startup, because it takes around 100s on Raspberry Pi
