@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f1375449-668f-4172-9f89-d6dbb06213be",
+		"_postman_id": "47a7b839-85f2-4f4c-a339-768f5a7da8d8",
 		"name": "core-metadata-importer",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2581,7 +2581,7 @@
 							"      \"name\": \"ceiling fan variable speed motor address\"",
 							"    }",
 							"  },",
-							"  \"operatingState\": \"disabled\"",
+							"    \"adminState\": \"unlocked\"",
 							"},",
 							"{",
 							"  \"name\": \"modbus watcher\",",
@@ -2601,7 +2601,7 @@
 							"      \"name\": \"ceiling fan variable speed motor address\"",
 							"    }",
 							"  },",
-							"  \"operatingState\": \"enabled\"",
+							"    \"adminState\": \"unlocked\"",
 							"},",
 							"{",
 							"  \"name\": \"lonmark watcher\",",
@@ -2621,7 +2621,7 @@
 							"      \"name\": \"ceiling fan variable speed motor address\"",
 							"    }",
 							"  },",
-							"  \"operatingState\": \"enabled\"",
+							"    \"adminState\": \"unlocked\"",
 							"}",
 							"];",
 							"",

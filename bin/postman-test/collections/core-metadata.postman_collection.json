@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "39280efa-450e-4045-8d84-3c00bb478684",
+		"_postman_id": "cd512f26-1d71-427f-bc8c-1216c096d324",
 		"name": "core-metadata",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1370,7 +1370,7 @@
 							"path": [
 								"api",
 								"v1",
-								"commands",
+								"command",
 								"{{CommandIdNotExist}}"
 							]
 						},
@@ -9043,7 +9043,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\":\"modbus watcher\", \n\t\"origin\":14718063870000,\n    \"profile\":{  \n       \"name\":\"variable speed motor profile\"\n    },\n    \"service\":{  \n      \"name\":\"home variable speed motor device service\",\n      \"adminState\": \"unlocked\",\n      \"operatingState\": \"enabled\",\n      \"addressable\": {\n       \"name\": \"ceiling fan variable speed motor address\"\n      }\n    },\n   \"operatingState\": \"enabled\"\n}"
+							"raw": "{\n\t\"name\":\"modbus watcher\", \n\t\"origin\":14718063870000,\n    \"profile\":{  \n       \"name\":\"variable speed motor profile\"\n    },\n    \"service\":{  \n      \"name\":\"home variable speed motor device service\",\n      \"adminState\": \"unlocked\",\n      \"operatingState\": \"enabled\",\n      \"addressable\": {\n       \"name\": \"ceiling fan variable speed motor address\"\n      }\n    },\n    \"adminState\": \"unlocked\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/provisionwatcher",
@@ -9108,7 +9108,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \n   \"name\":\"bacnet2 watcher1\",\n   \"origin\":1471806386919,\n   \"identifiers\":{  \n      \"MAC\":\"00-05-1B-A1-99-99\",\n      \"HTTP\":\"10.0.0.1\"\n   },\n   \"profile\":{  \n      \"name\":\"variable speed motor profile\"\n   },\n   \"service\":{  \n      \"name\":\"home variable speed motor device service\",\n      \"adminState\": \"unlocked\",\n      \"operatingState\": \"enabled\",\n      \"addressable\": {\n       \"name\": \"ceiling fan variable speed motor address\"\n      }\n   },\n   \"operatingState\": \"enabled\"\n}"
+							"raw": "{  \n   \"name\":\"bacnet2 watcher1\",\n   \"origin\":1471806386919,\n   \"identifiers\":{  \n      \"MAC\":\"00-05-1B-A1-99-99\",\n      \"HTTP\":\"10.0.0.1\"\n   },\n   \"profile\":{  \n      \"name\":\"variable speed motor profile\"\n   },\n   \"service\":{  \n      \"name\":\"home variable speed motor device service\",\n      \"adminState\": \"unlocked\",\n      \"operatingState\": \"enabled\",\n      \"addressable\": {\n       \"name\": \"ceiling fan variable speed motor address\"\n      }\n   },\n    \"adminState\": \"unlocked\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/provisionwatcher",
@@ -9448,7 +9448,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\":\"invalid watcher\", \n\t\"origin\":14718063870000,\n    \"profile\":{  \n       \"name\":\"variable speed motor profile\"\n    },\n    \"service\":{  \n      \"name\":\"home variable speed motor device service\",\n      \"adminState\": \"unlocked\",\n      \"operatingState\": \"enabled\",\n      \"addressable\": {\n       \"name\": \"ceiling fan variable speed motor address\"\n      }\n    },\n   \"operatingState\": \"enabled\"\n}"
+							"raw": "{\n\t\"name\":\"invalid watcher\", \n\t\"origin\":14718063870000,\n    \"profile\":{  \n       \"name\":\"variable speed motor profile\"\n    },\n    \"service\":{  \n      \"name\":\"home variable speed motor device service\",\n      \"adminState\": \"unlocked\",\n      \"operatingState\": \"enabled\",\n      \"addressable\": {\n       \"name\": \"ceiling fan variable speed motor address\"\n      }\n    },\n  \"adminState\": \"unlocked\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/provisionwatcher",
@@ -9498,7 +9498,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \n   \"name\":\"bacnet2 watcher\",\n   \"origin\":1471806386919,\n   \"identifiers\":{  \n      \"MAC\":\"00-05-1B-A1-99-99\",\n      \"HTTP\":\"10.0.0.1\"\n   },\n   \"profile\":{  \n      \"name\":\"variable speed motor not found\"\n   },\n   \"service\":{  \n      \"name\":\"home variable speed motor not found\",\n      \"adminState\": \"unlocked\",\n      \"operatingState\": \"enabled\",\n      \"addressable\": {\n       \"name\": \"ceiling fan variable speed motor address\"\n      }\n   },\n   \"operatingState\": \"enabled\"\n}"
+							"raw": "{  \n   \"name\":\"bacnet2 watcher\",\n   \"origin\":1471806386919,\n   \"identifiers\":{  \n      \"MAC\":\"00-05-1B-A1-99-99\",\n      \"HTTP\":\"10.0.0.1\"\n   },\n   \"profile\":{  \n      \"name\":\"variable speed motor not found\"\n   },\n   \"service\":{  \n      \"name\":\"home variable speed motor not found\",\n      \"adminState\": \"unlocked\",\n      \"operatingState\": \"enabled\",\n      \"addressable\": {\n       \"name\": \"ceiling fan variable speed motor address\"\n      }\n   },\n   \"adminState\": \"unlocked\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/provisionwatcher",
