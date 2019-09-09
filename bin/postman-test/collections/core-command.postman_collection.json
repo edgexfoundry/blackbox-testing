@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6019a16b-dd0d-486f-b225-8e8bf367cd0a",
+		"_postman_id": "3944e92b-ddd1-49f7-bf62-e80093f62a99",
 		"name": "core-command",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -844,7 +844,7 @@
 							"script": {
 								"id": "5445d783-4bcc-42c9-bb5f-35f4973849f0",
 								"exec": [
-									"pm.environment.set(\"DeviceName\", \"Livingroom automation\");",
+									"pm.environment.set(\"deviceName\", \"livingroomthermostat\");",
 									"pm.environment.set(\"invalidCommandName\", \"coolingpointinvalid\");",
 									""
 								],
@@ -856,7 +856,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/device/name/{{getDeviceByName}}/command/{{invalidCommandName}}",
+							"raw": "{{baseUrl}}/api/v1/device/name/{{deviceName}}/command/{{invalidCommandName}}",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -865,7 +865,7 @@
 								"v1",
 								"device",
 								"name",
-								"{{getDeviceByName}}",
+								"{{deviceName}}",
 								"command",
 								"{{invalidCommandName}}"
 							]
