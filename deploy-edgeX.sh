@@ -78,4 +78,6 @@ run_service scheduler
 
 run_service device-virtual
 
+run_service app-service-configurable
+
 sleep 100s # Wait for rulesengine fully startup, because it takes around 100s on Raspberry Pi
