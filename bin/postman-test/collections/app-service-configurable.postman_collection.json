@@ -1,0 +1,662 @@
+{
+	"info": {
+		"_postman_id": "be5c0650-8c24-4309-8904-eb764af4bdc7",
+		"name": "EdgeX Applications Function SDK",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Ping",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7bb63997-3411-4385-bb68-b68fb384b582",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.equal(\"pong\");",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Content-Type is text/plain\", function () {",
+							"    pm.expect(pm.response.headers.one(\"Content-Type\").value).to.equal(\"text/plain\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{appServicesUrl}}/api/v1/ping",
+					"host": [
+						"{{appServicesUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": " Metrics Endpoint",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "710d9479-89af-414e-be26-553669eec08c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"pm.test(\"Content-Type is text/plain\", function () {",
+							"    pm.expect(pm.response.headers.one(\"Content-Type\").value).to.equal(\"application/json\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{appServicesUrl}}/api/v1/metrics",
+					"host": [
+						"{{appServicesUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"metrics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Configuration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b5018adf-9dc1-4145-8851-2a6889b3005b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"pm.test(\"Content-Type is text/plain\", function () {",
+							"    pm.expect(pm.response.headers.one(\"Content-Type\").value).to.equal(\"application/json\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{appServicesUrl}}/api/v1/config",
+					"host": [
+						"{{appServicesUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"config"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trigger Pipeline (RandNum-Device01) (No Match)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aad8c12e-1dbe-48c5-92ef-ca4f28114577",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Body matches empty string\", function () {",
+							"    pm.expect(pm.response.text()).to.equal(\"\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4f782c58-83ef-4f68-a8f4-8f8880655db3",
+						"exec": [
+							"pm.sendRequest({",
+							"    url: pm.environment.get(\"consulUrl\") + \"/v1/kv/edgex/appservices/1.0/AppService-docker/Writable/Pipeline/Functions/FilterByDeviceName/Parameters/DeviceNames\",",
+							"    method: \"PUT\",",
+							"    headers: {",
+							"        'Content-Type':'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: \"DeviceThatsNotFilteredFor\"",
+							" },",
+							" function (err, res) {",
+							"     pm.test(\"PREREQUEST: Update Consul (Device Filter)\", function () {",
+							"        pm.expect(err).to.not.be.ok;",
+							"        pm.expect(res).to.have.property('code', 200);",
+							"        pm.expect(res).to.have.property('status', 'OK');",
+							"        setTimeout(function(){",
+							"          console.log(\"Sleeping for 1 seconds before next request.\");",
+							"        }, 1000);",
+							"    });",
+							" }",
+							");",
+							"pm.sendRequest({",
+							"    url: pm.environment.get(\"consulUrl\") + \"/v1/kv/edgex/appservices/1.0/AppService-docker/Writable/Pipeline/Functions/FilterByValueDescriptor/Parameters/ValueDescriptors\",",
+							"    method: \"PUT\",",
+							"    headers: {",
+							"        'Content-Type':'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: \"RandomValue_Int8, RandomValue_Int64\"",
+							" },",
+							" function (err, res) {",
+							"     pm.test(\"PREREQUEST: Update Consul (Value Descriptor Parameter)\", function () {",
+							"        pm.expect(err).to.not.be.ok;",
+							"        pm.expect(res).to.have.property('code', 200);",
+							"        pm.expect(res).to.have.property('status', 'OK');",
+							"    });",
+							" }",
+							");",
+							"pm.sendRequest({",
+							"    url: pm.environment.get(\"consulUrl\") + \"/v1/kv/edgex/appservices/1.0/AppService-docker/Writable/Pipeline/ExecutionOrder\",",
+							"    method: \"PUT\",",
+							"    headers: {",
+							"        'Content-Type':'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: \"FilterByDeviceName, TransformToXML, SetOutputData\"",
+							" },",
+							" function (err, res) {",
+							"     pm.test(\"PREREQUEST: Update Consul (Execution Order) TransformToXML\", function () {",
+							"        pm.expect(err).to.not.be.ok;",
+							"        pm.expect(res).to.have.property('code', 200);",
+							"        pm.expect(res).to.have.property('status', 'OK');",
+							"    });",
+							" }",
+							");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"5bd794de0e36080001f53eab\",\n    \"pushed\": 0,\n    \"device\": \"RandNum-Device01\",\n    \"created\": 1540855006481,\n    \"modified\": 0,\n    \"origin\": 1540855006469,\n    \"schedule\": null,\n    \"event\": null,\n    \"readings\": [\n        {\n            \"id\": \"5bd794de0e36080001f53eac\",\n            \"pushed\": 0,\n            \"created\": 1540855006481,\n            \"origin\": 1540855006469,\n            \"modified\": 0,\n            \"device\": \"RandNum-Device01\",\n            \"name\": \"HoldingRegister_8454\",\n            \"value\": \"75.30\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{appServicesUrl}}/trigger",
+					"host": [
+						"{{appServicesUrl}}"
+					],
+					"path": [
+						"trigger"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trigger Pipeline (RandNum-Device01) (XML)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc803eb4-3e28-4145-a81e-9b0038042589",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Body matches XML String\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"<Event><ID>5bd794de0e36080001f53eab</ID><Pushed>0</Pushed><Device>RandNum-Device01</Device><Created>1540855006481</Created><Modified>0</Modified><Origin>1540855006469</Origin><Readings><Id>5bd794de0e36080001f53eac</Id><Pushed>0</Pushed><Created>1540855006481</Created><Origin>1540855006469</Origin><Modified>0</Modified><Device>RandNum-Device01</Device><Name>HoldingRegister_8454</Name><Value>75.30</Value><BinaryValue></BinaryValue></Readings></Event>\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490bb566-6d6f-4c04-b381-d018d74dbcb3",
+						"exec": [
+							"pm.sendRequest({",
+							"    url: pm.environment.get(\"consulUrl\") + \"/v1/kv/edgex/appservices/1.0/AppService-docker/Writable/Pipeline/Functions/FilterByDeviceName/Parameters/DeviceNames\",",
+							"    method: \"PUT\",",
+							"    headers: {",
+							"        'Content-Type':'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: \"RandNum-Device01\"",
+							" },",
+							" function (err, res) {",
+							"     pm.test(\"PREREQUEST: Update Consul (Device Filter)\", function () {",
+							"        pm.expect(err).to.not.be.ok;",
+							"        pm.expect(res).to.have.property('code', 200);",
+							"        pm.expect(res).to.have.property('status', 'OK');",
+							"        setTimeout(function(){",
+							"          console.log(\"Sleeping for 1 seconds before next request.\");",
+							"        }, 1000);",
+							"    });",
+							" }",
+							");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"5bd794de0e36080001f53eab\",\n    \"pushed\": 0,\n    \"device\": \"RandNum-Device01\",\n    \"created\": 1540855006481,\n    \"modified\": 0,\n    \"origin\": 1540855006469,\n    \"schedule\": null,\n    \"event\": null,\n    \"readings\": [\n        {\n            \"id\": \"5bd794de0e36080001f53eac\",\n            \"pushed\": 0,\n            \"created\": 1540855006481,\n            \"origin\": 1540855006469,\n            \"modified\": 0,\n            \"device\": \"RandNum-Device01\",\n            \"name\": \"HoldingRegister_8454\",\n            \"value\": \"75.30\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{appServicesUrl}}/trigger",
+					"host": [
+						"{{appServicesUrl}}"
+					],
+					"path": [
+						"trigger"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trigger Pipeline (RandNum-Device01) (JSON)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc803eb4-3e28-4145-a81e-9b0038042589",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"pm.test(\"Body matches JSON string\", function () {",
+							"    pm.expect(pm.response.text()).to.equal('{\"id\":\"5bd794de0e36080001f53eab\",\"device\":\"RandNum-Device01\",\"created\":1540855006481,\"origin\":1540855006469,\"readings\":[{\"id\":\"5bd794de0e36080001f53eac\",\"created\":1540855006481,\"origin\":1540855006469,\"device\":\"RandNum-Device01\",\"name\":\"HoldingRegister_8454\",\"value\":\"75.30\"}]}');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e6dae68e-56a8-4e2f-9786-fb6087fc916d",
+						"exec": [
+							"pm.sendRequest({",
+							"    url: pm.environment.get(\"consulUrl\") + \"/v1/kv/edgex/appservices/1.0/AppService-docker/Writable/Pipeline/ExecutionOrder\",",
+							"    method: \"PUT\",",
+							"    headers: {",
+							"        'Content-Type':'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: \"FilterByDeviceName, TransformToJSON, SetOutputData\"",
+							" },",
+							" function (err, res) {",
+							"     pm.test(\"PREREQUEST: Update Consul (Execution Order) TransformToJSON\", function () {",
+							"        pm.expect(err).to.not.be.ok;",
+							"        pm.expect(res).to.have.property('code', 200);",
+							"        pm.expect(res).to.have.property('status', 'OK');",
+							"         setTimeout(function(){",
+							"          console.log(\"Sleeping for 1 seconds before next request.\");",
+							"        }, 1000);",
+							"    });",
+							" }",
+							");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"5bd794de0e36080001f53eab\",\n    \"pushed\": 0,\n    \"device\": \"RandNum-Device01\",\n    \"created\": 1540855006481,\n    \"modified\": 0,\n    \"origin\": 1540855006469,\n    \"schedule\": null,\n    \"event\": null,\n    \"readings\": [\n        {\n            \"id\": \"5bd794de0e36080001f53eac\",\n            \"pushed\": 0,\n            \"created\": 1540855006481,\n            \"origin\": 1540855006469,\n            \"modified\": 0,\n            \"device\": \"RandNum-Device01\",\n            \"name\": \"HoldingRegister_8454\",\n            \"value\": \"75.30\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{appServicesUrl}}/trigger",
+					"host": [
+						"{{appServicesUrl}}"
+					],
+					"path": [
+						"trigger"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trigger Pipeline (RandNum-Device01) (JSON-GZIP)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc803eb4-3e28-4145-a81e-9b0038042589",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"pm.test(\"Body matches JSON string\", function () {",
+							"    pm.expect(pm.response.text()).to.equal('H4sIAAAAAAAA/5SOP+uDMBRFv8ud8/vxgonGzB06dXAtpaS+VwlohPhnEb97sVuXQtdz4N6zgWWNrcCjCYkvy/B3egPSUGizhFkYXltDzlqi0jitMObYxfSBy1ohS+CYugn+uiEyPOyDq9qwkBQlOSLST1tIaH/f/paZwnCY89gf9410cZol352xBgpr6JdDV/a/IOy3/RUAAP//bXcqYfQAAAA=');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1d508c9d-b1cc-4c0d-b3bb-835325341909",
+						"exec": [
+							"pm.sendRequest({",
+							"    url: pm.environment.get(\"consulUrl\") + \"/v1/kv/edgex/appservices/1.0/AppService-docker/Writable/Pipeline/ExecutionOrder\",",
+							"    method: \"PUT\",",
+							"    headers: {",
+							"        'Content-Type':'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: \"FilterByValueDescriptor, TransformToJSON, CompressWithGZIP, SetOutputData\"",
+							" },",
+							" function (err, res) {",
+							"     pm.test(\"PREREQUEST: Update Consul (Execution Order) JSON-GZIP\", function () {",
+							"        pm.expect(err).to.not.be.ok;",
+							"        pm.expect(res).to.have.property('code', 200);",
+							"        pm.expect(res).to.have.property('status', 'OK');",
+							"        setTimeout(function(){",
+							"          console.log(\"Sleeping for 1 seconds before next request.\");",
+							"        }, 1000);",
+							"    });",
+							" }",
+							");",
+							"pm.sendRequest({",
+							"    url: pm.environment.get(\"consulUrl\") + \"/v1/kv/edgex/appservices/1.0/AppService-docker/Writable/Pipeline/Functions/FilterByValueDescriptor/Parameters/ValueDescriptors\",",
+							"    method: \"PUT\",",
+							"    headers: {",
+							"        'Content-Type':'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: \"HoldingRegister_8454\"",
+							" },",
+							" function (err, res) {",
+							"     pm.test(\"PREREQUEST: Update Consul (Value Descriptor Parameter)\", function () {",
+							"        pm.expect(err).to.not.be.ok;",
+							"        pm.expect(res).to.have.property('code', 200);",
+							"        pm.expect(res).to.have.property('status', 'OK');",
+							"    });",
+							" }",
+							");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"5bd794de0e36080001f53eab\",\n    \"pushed\": 0,\n    \"device\": \"RandNum-Device01\",\n    \"created\": 1540855006481,\n    \"modified\": 0,\n    \"origin\": 1540855006469,\n    \"schedule\": null,\n    \"event\": null,\n    \"readings\": [\n        {\n            \"id\": \"5bd794de0e36080001f53eac\",\n            \"pushed\": 0,\n            \"created\": 1540855006481,\n            \"origin\": 1540855006469,\n            \"modified\": 0,\n            \"device\": \"RandNum-Device01\",\n            \"name\": \"HoldingRegister_8454\",\n            \"value\": \"75.30\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{appServicesUrl}}/trigger",
+					"host": [
+						"{{appServicesUrl}}"
+					],
+					"path": [
+						"trigger"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trigger Pipeline (RandNum-Device01) (JSON-ZLIB)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc803eb4-3e28-4145-a81e-9b0038042589",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"pm.test(\"Body matches JSON string\", function () {",
+							"    pm.expect(pm.response.text()).to.equal('eJyUjj2LwzAQRP/L1LpjhSVbVn3FVSnchhBk78YIbBnkjyb4vwenS2NI+x7Mmyciw8O2XNWGhaQoyRGRfthCQgsFli12Ao8mJL6s48/fG5CGQpclLMLw2hpy1hKVxmmFKcc+pg9c1gpZAsfUz/DX8273/fbZzRTGw/xPw5FvpI/zIvnujDVQ2MKwHrqyvwVhv+2vAAAA///cpE5w');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1a7be3c0-c65c-46c2-b560-11676b5a3759",
+						"exec": [
+							"pm.sendRequest({",
+							"    url: pm.environment.get(\"consulUrl\") + \"/v1/kv/edgex/appservices/1.0/AppService-docker/Writable/Pipeline/ExecutionOrder\",",
+							"    method: \"PUT\",",
+							"    headers: {",
+							"        'Content-Type':'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: \"FilterByDeviceName, TransformToJSON, CompressWithZLIB, SetOutputData\"",
+							" },",
+							" function (err, res) {",
+							"     pm.test(\"PREREQUEST: Update Consul (Execution Order) JSON-ZLIB\", function () {",
+							"        pm.expect(err).to.not.be.ok;",
+							"        pm.expect(res).to.have.property('code', 200);",
+							"        pm.expect(res).to.have.property('status', 'OK');",
+							"        setTimeout(function(){",
+							"          console.log(\"Sleeping for 1 seconds before next request.\");",
+							"        }, 1000);",
+							"    });",
+							" }",
+							");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"5bd794de0e36080001f53eab\",\n    \"pushed\": 0,\n    \"device\": \"RandNum-Device01\",\n    \"created\": 1540855006481,\n    \"modified\": 0,\n    \"origin\": 1540855006469,\n    \"schedule\": null,\n    \"event\": null,\n    \"readings\": [\n        {\n            \"id\": \"5bd794de0e36080001f53eac\",\n            \"pushed\": 0,\n            \"created\": 1540855006481,\n            \"origin\": 1540855006469,\n            \"modified\": 0,\n            \"device\": \"RandNum-Device01\",\n            \"name\": \"HoldingRegister_8454\",\n            \"value\": \"75.30\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{appServicesUrl}}/trigger",
+					"host": [
+						"{{appServicesUrl}}"
+					],
+					"path": [
+						"trigger"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trigger Pipeline (RandNum-Device01) (XML-ZLIB-AES)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc803eb4-3e28-4145-a81e-9b0038042589",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"pm.test(\"Body matches JSON string\", function () {",
+							"    pm.expect(pm.response.text()).to.equal(\"maYz658kEbWJPPtlCWfDV5UF/kHOSKRZhVGAke+pNY4We7YzruHUnpxCM8XmO5baSJEb5HC7wJhu6YjW5db5S1+o9mLDG8fJezuINoluCGtz6cvkipNaQYE+Pq8ZZ13RqGKXozgisaLKcZHXvOdPSLBTC7Zzuijpz1rOJ6VYq3dq9an7UxyPezyvAar6+YeqB4uQ6daAtKVmqWkyeteCN1HNn4IHNz6x8hJeO+9TGSbAMvTe4SOu6CCClT4NEXoaNCZYHwlOdRmYaCK08SsdPogxl7tqRocoBBU3t4kT+sKFl+IkBpXxyT5f5WuTEdC0KEw/Gq3VtHYQP63+gyN0Dp5sHAhkBLZp2BSaJpPKFvAvLDGLk7DsPSZf2S5lOCkC\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5b735f4f-96d7-4fbe-88d9-b8a78d5c9df8",
+						"exec": [
+							"pm.sendRequest({",
+							"    url: pm.environment.get(\"consulUrl\") + \"/v1/kv/edgex/appservices/1.0/AppService-docker/Writable/Pipeline/ExecutionOrder\",",
+							"    method: \"PUT\",",
+							"    headers: {",
+							"        'Content-Type':'application/x-www-form-urlencoded'",
+							"    },",
+							"    body: \"FilterByDeviceName, TransformToXML, CompressWithZLIB, EncryptWithAES, SetOutputData\"",
+							" },",
+							" function (err, res) {",
+							"     pm.test(\"PREREQUEST: Update Consul (Execution Order) (XML-ZLIB-AES)\", function () {",
+							"        pm.expect(err).to.not.be.ok;",
+							"        pm.expect(res).to.have.property('code', 200);",
+							"        pm.expect(res).to.have.property('status', 'OK');",
+							"        setTimeout(function(){",
+							"          console.log(\"Sleeping for 1 seconds before next request.\");",
+							"        }, 1000);",
+							"    });",
+							" }",
+							");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"5bd794de0e36080001f53eab\",\n    \"pushed\": 0,\n    \"device\": \"RandNum-Device01\",\n    \"created\": 1540855006481,\n    \"modified\": 0,\n    \"origin\": 1540855006469,\n    \"schedule\": null,\n    \"event\": null,\n    \"readings\": [\n        {\n            \"id\": \"5bd794de0e36080001f53eac\",\n            \"pushed\": 0,\n            \"created\": 1540855006481,\n            \"origin\": 1540855006469,\n            \"modified\": 0,\n            \"device\": \"RandNum-Device01\",\n            \"name\": \"HoldingRegister_8454\",\n            \"value\": \"75.30\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{appServicesUrl}}/trigger",
+					"host": [
+						"{{appServicesUrl}}"
+					],
+					"path": [
+						"trigger"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
