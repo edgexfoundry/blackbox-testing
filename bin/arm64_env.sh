@@ -22,7 +22,7 @@ export appService=nexus3.edgexfoundry.org:10004/docker-app-service-configurable-
 export vault=nexus3.edgexfoundry.org:10004/docker-edgex-vault-arm64:0.3.0
 export vaultWorker=nexus3.edgexfoundry.org:10004/docker-edgex-vault-worker-go-arm64:0.3.0
 export kongdb=postgres:9.5
-export kong=nexus3.edgexfoundry.org:10003/kong-arm:latest
+export kong=kong:1.3.0-ubuntu
 export edgexProxy=nexus3.edgexfoundry.org:10004/docker-edgex-proxy-go-arm64:1.1.0
 
 export postman=nexus3.edgexfoundry.org:10004/postman-newman-arm64:3.9.4
