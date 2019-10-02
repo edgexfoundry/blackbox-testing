@@ -365,7 +365,7 @@ services:
     ports:
     - "48095:48095"
     container_name: edgex-app-service-configurable
-    command: "--profile=docker"
+    command: "--profile=docker-blackbox-tests"
     hostname: app-service-configurable
     networks:
       edgex-network:
