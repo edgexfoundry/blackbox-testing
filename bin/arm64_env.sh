@@ -18,6 +18,7 @@ export exportClient=nexus3.edgexfoundry.org:10004/docker-export-client-go-arm64:
 export exportDistro=nexus3.edgexfoundry.org:10004/docker-export-distro-go-arm64:1.1.0
 export deviceVirtual=nexus3.edgexfoundry.org:10004/docker-device-virtual-go-arm64:1.1.0
 export appService=nexus3.edgexfoundry.org:10004/docker-app-service-configurable-arm64:latest
+export systemManagement=nexus3.edgexfoundry.org:10004/docker-sys-mgmt-agent-go-arm64:1.1.0
 
 export vault=nexus3.edgexfoundry.org:10004/docker-edgex-secret-store-go-arm64:1.1.0
 export vaultWorker=nexus3.edgexfoundry.org:10004/docker-edgex-security-secretstore-setup-go-arm64:1.1.0

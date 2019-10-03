@@ -85,6 +85,8 @@ run_service command
 
 run_service scheduler
 
+run_service system
+
 run_service device-virtual
 
 run_service app-service-configurable
@@ -129,6 +131,8 @@ echo "------- command ------"
 docker logs edgex-core-command
 echo "------- scheduler ------"
 docker logs edgex-support-scheduler
+echo "------- edgex-sys-mgmt-agent ------"
+docker logs edgex-sys-mgmt-agent
 echo "------- device-virtual ------"
 docker logs edgex-device-virtual
 echo "------- app-service-configurable ------"

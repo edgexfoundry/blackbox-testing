@@ -19,6 +19,7 @@ SUPPORT_NOTIFICATION_LOG_PATH=$BASEPATH/supportNotification$TIMESTAMPFORMAT.log
 EXPORTCLIENTLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
 RULESENGINELOGSPATH=$BASEPATH/rulesengine$TIMESTAMPFORMAT.log
 SUPPORT_SCHEDULER_LOG_PATH=$BASEPATH/supportScheduler$TIMESTAMPFORMAT.log
+SYSTEMMANAGEMENTLOGSPATH=$BASEPATH/systemmanagement$TIMESTAMPFORMAT.log
 DEVICEVIRTUALLOGSPATH=$BASEPATH/devicevirtual$TIMESTAMPFORMAT.log
 APPSERVICECONFIGURABLELOGSPATH=$BASEPATH/appserviceconfigurable$TIMESTAMPFORMAT.log
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
@@ -70,6 +71,10 @@ supportNotificationTest(){
 
 }
 
+systemManagementTest(){
+	$(dirname "$0")/systemManagementTest.sh
+}
+
 exportClientTest() {
 	$(dirname "$0")/importExportClientDataDump.sh
 	$(dirname "$0")/exportClientTest.sh
@@ -97,16 +102,17 @@ appServiceConfigurableTest() {
 
 testAll() {
 
-	deviceVirtualTest
-	appServiceConfigurableTest
-	coreDataTest
-	commandTest
-	metaDataTest
-	loggingTest
-	supportNotificationTest
-	exportClientTest
-	rulesengineTest
-	supportSchedulerTest
+  deviceVirtualTest
+  appServiceConfigurableTest
+  coreDataTest
+  commandTest
+  metaDataTest
+  loggingTest
+  supportNotificationTest
+  exportClientTest
+  rulesengineTest
+  supportSchedulerTest
+  systemManagementTest
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 	     securityTest
@@ -172,6 +178,10 @@ case ${option} in
 	-asc)
     echo "Info: Initiating AppServiceConfigurable Test"
     appServiceConfigurableTest	| tee $APPSERVICECONFIGURABLELOGSPATH
+	;;
+	-sys)
+    echo "Info: Initiating SystemManagement Test"
+    systemManagementTest	| tee $SYSTEMMANAGEMENTLOGSPATH
 	;;
    	-all)
     echo "Info: Initiating EdgeX Test"
