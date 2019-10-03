@@ -122,7 +122,7 @@ services:
     environment:
         - 'KONG_DATABASE=postgres'
         - 'KONG_PG_HOST=kong-db'
-    command: "kong migrations up"
+    command: "kong migrations bootstrap || kong migrations up"
 
   kong:
     image: ${kong}
