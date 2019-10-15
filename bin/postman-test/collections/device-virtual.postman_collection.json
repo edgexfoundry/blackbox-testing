@@ -602,10 +602,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"RandomValue_Int8\":\"66\"}"
+					"raw": "{\"Int8\":\"66\"}"
 				},
 				"url": {
-					"raw": "{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}/api/v1/device/name/Random-Integer-Device/RandomValue_Int8",
+					"raw": "{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}/api/v1/device/name/Random-Integer-Device/Int8",
 					"host": [
 						"{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}"
 					],
@@ -615,7 +615,7 @@
 						"device",
 						"name",
 						"Random-Integer-Device",
-						"RandomValue_Int8"
+						"Int8"
 					]
 				}
 			},
@@ -669,7 +669,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}/api/v1/device/name/Random-Integer-Device/RandomValue_Int8",
+					"raw": "{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}/api/v1/device/name/Random-Integer-Device/Int8",
 					"host": [
 						"{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}"
 					],
@@ -679,7 +679,7 @@
 						"device",
 						"name",
 						"Random-Integer-Device",
-						"RandomValue_Int8"
+						"Int8"
 					]
 				}
 			},
