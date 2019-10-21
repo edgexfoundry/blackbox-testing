@@ -133,7 +133,7 @@ services:
     image: ${vaultWorker}
     container_name: edgex-vault-worker
     hostname: edgex-vault-worker
-    command: ["--init=true", "--vaultInterval=10", "--insecureskipverify=false"]
+    command: ["--init=true", "--vaultInterval=10", "--insecureSkipVerify=false"]
     networks:
       edgex-network:
         aliases:
