@@ -392,8 +392,19 @@ services:
     ports:
       - "48095:48095"
     container_name: edgex-app-service-configurable
-    command: "--profile=docker-blackbox-tests"
     hostname: app-service-configurable
+    environment:
+      edgex_registry: consul://edgex-core-consul:8500
+      edgex_service: http://app-service-configurable:48095
+      edgex_profile: blackbox-tests
+      Service_Host: app-service-configurable
+      Clients_CoreData_Host: edgex-core-data
+      Clients_Logging_Host: edgex-support-logging
+      Logging_EnableRemote: "true"
+      MessageBus_SubscribeHost_Host: edgex-core-data
+      Database_Host: edgex-mongo
+      Database_Username: appservice
+      Database_Password: password
     networks:
       edgex-network:
         aliases:
