@@ -221,7 +221,9 @@ services:
     container_name: edgex-mongo
     hostname: edgex-mongo
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+          - edgex-mongo
     volumes:
       - vault-config:/vault/config
       - newman:/etc/newman
@@ -236,7 +238,9 @@ services:
     container_name: edgex-support-logging
     hostname: edgex-support-logging
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+          - edgex-support-logging
     volumes:
       - db-data:/data/db
       - log-data:/edgex/logs
@@ -254,7 +258,9 @@ services:
     container_name: edgex-support-notifications
     hostname: edgex-support-notifications
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+          - edgex-support-notifications
     volumes:
       - db-data:/data/db
       - log-data:/edgex/logs
@@ -270,7 +276,9 @@ services:
     container_name: edgex-core-metadata
     hostname: edgex-core-metadata
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+          - edgex-core-metadata
     volumes:
       - db-data:/data/db
       - log-data:/edgex/logs
@@ -287,7 +295,9 @@ services:
     container_name: edgex-core-data
     hostname: edgex-core-data
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+          - edgex-core-data
     volumes:
       - db-data:/data/db
       - log-data:/edgex/logs
@@ -303,7 +313,9 @@ services:
     container_name: edgex-core-command
     hostname: edgex-core-command
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+          - edgex-core-command
     volumes:
       - db-data:/data/db
       - log-data:/edgex/logs
@@ -319,7 +331,9 @@ services:
     container_name: edgex-support-scheduler
     hostname: edgex-support-scheduler
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+          - edgex-support-scheduler
     volumes:
       - db-data:/data/db
       - log-data:/edgex/logs
@@ -335,7 +349,9 @@ services:
     container_name: edgex-export-client
     hostname: edgex-export-client
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+          - edgex-export-client
     volumes:
       - db-data:/data/db
       - log-data:/edgex/logs
@@ -352,7 +368,9 @@ services:
     container_name: edgex-export-distro
     hostname: edgex-export-distro
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+          - edgex-export-distro
     volumes:
       - db-data:/data/db
       - log-data:/edgex/logs
@@ -374,7 +392,9 @@ services:
     container_name: edgex-support-rulesengine
     hostname: edgex-support-rulesengine
     networks:
-      - edgex-network
+      edgex-network:
+        aliases:
+          - edgex-support-rulesengine
     volumes:
       - db-data:/data/db
       - log-data:/edgex/logs
