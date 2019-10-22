@@ -291,7 +291,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"RandomValue_Int8\": \"26\"}"
+							"raw": "{\"RandomValue_Int8\": \"26\", \"EnableRandomization_Int8\": \"false\"}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device/{{getDeviceById}}/command/{{getCommandById}}",
@@ -513,7 +513,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"RandomValue_Int8\":\"72\"}"
+							"raw": "{\"RandomValue_Int8\":\"72\",\"EnableRandomization_Int8\":\"false\"}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/device/name/{{DeviceName}}/command/{{CommandName}}",
