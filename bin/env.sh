@@ -19,11 +19,11 @@ export exportDistro=nexus3.edgexfoundry.org:10004/docker-export-distro-go:1.1.0
 export deviceVirtual=nexus3.edgexfoundry.org:10004/docker-device-virtual-go:1.1.0
 export appService=nexus3.edgexfoundry.org:10004/docker-app-service-configurable:latest
 
-export vault=nexus3.edgexfoundry.org:10004/docker-edgex-vault:0.3.0
-export vaultWorker=nexus3.edgexfoundry.org:10004/docker-edgex-vault-worker-go:0.3.0
-export kongdb=postgres:9.5
-export kong=kong:0.13.0
-export edgexProxy=nexus3.edgexfoundry.org:10004/docker-edgex-proxy-go:0.2.1
+export vault=nexus3.edgexfoundry.org:10004/docker-edgex-secret-store-go:1.1.0
+export vaultWorker=nexus3.edgexfoundry.org:10004/docker-edgex-security-secretstore-setup-go:1.1.0
+export kongdb=postgres:9.6
+export kong=kong:1.0.3
+export edgexProxy=nexus3.edgexfoundry.org:10004/docker-edgex-security-proxy-setup-go:1.1.0
 
 export postman=postman/newman
 
