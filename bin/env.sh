@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export volume=nexus3.edgexfoundry.org:10004/docker-edgex-volume:1.0.0
+export volume=nexus3.edgexfoundry.org:10004/docker-edgex-volume:1.1.0
 export consul=consul:1.3.1
 export configSeed=nexus3.edgexfoundry.org:10004/docker-core-config-seed-go:1.1.0
 export mongo=nexus3.edgexfoundry.org:10004/docker-edgex-mongo:1.1.0
@@ -26,4 +26,3 @@ export kong=kong:1.0.3
 export edgexProxy=nexus3.edgexfoundry.org:10004/docker-edgex-security-proxy-setup-go:1.1.0
 
 export postman=postman/newman
-
