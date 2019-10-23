@@ -257,6 +257,7 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
+      - vault-config:/vault/config
     depends_on:
       - config-seed
       - mongo
@@ -279,6 +280,7 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
+      - vault-config:/vault/config
     depends_on:
       - logging
 
@@ -299,6 +301,7 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
+      - vault-config:/vault/config
     depends_on:
       - logging
 
@@ -320,6 +323,7 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
+      - vault-config:/vault/config
     depends_on:
       - logging
 
@@ -340,6 +344,7 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
+      - vault-config:/vault/config
     depends_on:
       - metadata
 
@@ -360,6 +365,7 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
+      - vault-config:/vault/config
     depends_on:
       - metadata
 
@@ -380,6 +386,7 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
+      - vault-config:/vault/config
     depends_on:
       - data
 
@@ -423,6 +430,7 @@ services:
       - log-data:/edgex/logs
       - consul-config:/consul/config
       - consul-data:/consul/data
+      - vault-config:/vault/config
     depends_on:
       - export-client
 
