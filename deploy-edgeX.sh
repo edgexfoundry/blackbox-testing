@@ -30,7 +30,14 @@ run_service () {
 	docker-compose up -d $1
 }
 
+if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
+	export SECURITY_IS_ON="true"
+else
+	export SECURITY_IS_ON="false"
+fi
+
 run_service volume
+
 run_service consul
 
 run_service config-seed

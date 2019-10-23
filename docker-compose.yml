@@ -19,7 +19,7 @@
 version: '3.4'
 # all common shared environment variables defined here:
 x-common-env-variables: &common-variables
-  EDGEX_SECURITY_SECRET_STORE: "false"
+  EDGEX_SECURITY_SECRET_STORE: ${SECURITY_IS_ON}
 
 volumes:
   db-data:
