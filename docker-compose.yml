@@ -130,6 +130,7 @@ services:
       - vault-file:/vault/file
       - vault-logs:/vault/logs
       - secrets-setup-cache:/etc/edgex/pki
+      - vault-config:/vault/config
       - /run/edgex/secrets/edgex-vault:/run/edgex/secrets/edgex-vault
     depends_on:
       - volume

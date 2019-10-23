@@ -45,7 +45,9 @@ if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 
 	run_service kong-db
 
-	run_service kong-migration
+	sleep 10s
+
+	run_service kong-migrations
 
 	sleep 10s
 
