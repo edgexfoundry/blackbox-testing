@@ -27,10 +27,6 @@
 
 run_service () {
 	echo "\033[0;32mStarting.. $1\033[0m"
-	echo "-------------------------- ENVIRONMENT VARIABLES -----------------------"
-	env
-	echo "------------------------------------------------------------------------"
-
 	docker-compose up -d $1
 }
 
@@ -46,11 +42,11 @@ run_service consul
 
 run_service config-seed
 
-
-
 if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 
 	run_service vault
+
+	sleep 20s
 
 	run_service vault-worker
 
@@ -95,14 +91,46 @@ run_service app-service-configurable
 
 sleep 100s # Wait for rulesengine fully startup, because it takes around 100s on Raspberry Pi
 
-echo "-------------------------- MONGO -----------------------"
+echo "------- volume ------"
+docker logs edgex-files
+echo "------- consul ------"
+docker logs edgex-core-consul
+echo "------- config-seed ------"
+docker logs edgex-config-seed
+echo "------- vault ------"
+docker logs edgex-vault
+echo "------- vault-worker ------"
+docker logs edgex-vault-worker
+echo "------- kong-db ------"
+docker logs kong-db
+echo "------- kong-migrations ------"
+docker logs kong-migration
+echo "------- kong ------"
+docker logs kong
+echo "------- edgex-proxy ------"
+docker logs edgex-proxy
+echo "------- mongo ------"
 docker logs edgex-mongo
-echo "---------------------------------------------------------"
-
-echo "-------------------------- CORE DATA -----------------------"
+echo "------- logging ------"
+docker logs edgex-support-logging
+echo "------- data ------"
 docker logs edgex-core-data
-echo "-------------------------------------------------------------"
-
-echo "-------------------------- CORE METADATA -----------------------"
+echo "------- export-client ------"
+docker logs edgex-export-client
+echo "------- export-distro ------"
+docker logs edgex-export-distro
+echo "------- rulesengine ------"
+docker logs edgex-support-rulesengine
+echo "------- notifications ------"
+docker logs edgex-support-notifications
+echo "------- metadata ------"
 docker logs edgex-core-metadata
-echo "------------------------------------------------------------------"
+echo "------- command ------"
+docker logs edgex-core-command
+echo "------- scheduler ------"
+docker logs edgex-support-scheduler
+echo "------- device-virtual ------"
+docker logs edgex-device-virtual
+echo "------- app-service-configurable ------"
+docker logs edgex-app-service-configurable
+echo "---------------------------------------------------------"
