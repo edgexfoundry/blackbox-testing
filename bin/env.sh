@@ -12,7 +12,7 @@ export coreCommand=nexus3.edgexfoundry.org:10004/docker-core-command-go:1.1.0
 export supportLogging=nexus3.edgexfoundry.org:10004/docker-support-logging-go:1.1.0
 export supportNotifications=nexus3.edgexfoundry.org:10004/docker-support-notifications-go:1.1.0
 export supportScheduler=nexus3.edgexfoundry.org:10004/docker-support-scheduler-go:1.1.0
-export supportRulesengine=nexus3.edgexfoundry.org:10004/docker-support-rulesengine:1.0.0
+export supportRulesengine=nexus3.edgexfoundry.org:10004/docker-support-rulesengine::1.1.0-dev.1
 
 export exportClient=nexus3.edgexfoundry.org:10004/docker-export-client-go:1.1.0
 export exportDistro=nexus3.edgexfoundry.org:10004/docker-export-distro-go:1.1.0
