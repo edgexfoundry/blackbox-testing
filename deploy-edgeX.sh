@@ -27,6 +27,10 @@
 
 run_service () {
 	echo "\033[0;32mStarting.. $1\033[0m"
+	echo "-------------------------- ENVIRONMENT VARIABLES -----------------------"
+	env
+	echo "------------------------------------------------------------------------"
+
 	docker-compose up -d $1
 }
 
@@ -90,3 +94,15 @@ run_service device-virtual
 run_service app-service-configurable
 
 sleep 100s # Wait for rulesengine fully startup, because it takes around 100s on Raspberry Pi
+
+echo "-------------------------- MONGO -----------------------"
+docker logs edgex-mongo
+echo "---------------------------------------------------------"
+
+echo "-------------------------- CORE DATA -----------------------"
+docker logs edgex-core-data
+echo "-------------------------------------------------------------"
+
+echo "-------------------------- CORE METADATA -----------------------"
+docker logs edgex-core-metadata
+echo "------------------------------------------------------------------"
