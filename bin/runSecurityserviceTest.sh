@@ -17,7 +17,7 @@ fi
 
 echo "Info: Initiating Securityservice Test."
 
-#OT=$(docker-compose run edgex-proxy --useradd=jerry --group=admin | tail -1)
+#OT=$(docker-compose run edgex-proxy --init=false --useradd=jerry --group=admin | tail -1)
 #TOKEN=$( echo $OT | sed 's/.*: \([^.]*\).*/\1/')
 #echo $TOKEN
 
