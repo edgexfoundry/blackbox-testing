@@ -8,6 +8,6 @@ echo "Info: Clean Securityservice's test data."
 
 docker-compose run --rm postman run ${COLLECTION_PATH} --environment=${ENV_PATH}
 
-docker run –-network=${DOCKER_NETWORK} edgexfoundry/docker-edgex-proxy-go --userdel=jerry
+docker run –-network=${DOCKER_NETWORK} edgexfoundry/docker-edgex-security-proxy-setup-go --init=false --userdel=jerry
 
 echo "Info: Securityservice's test data Cleaned"

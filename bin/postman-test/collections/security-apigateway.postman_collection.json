@@ -1,13 +1,12 @@
 {
 	"info": {
-		"_postman_id": "75caac77-e281-4969-bfeb-a9f573b75747",
+		"_postman_id": "ea100c42-a49e-41a8-9301-f0083b3ab3b8",
 		"name": "security-apigateway",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "reading",
-			"description": "Folder for reading",
 			"item": [
 				{
 					"name": "01 http://localhost:8000/coredata/api/v1/reading",
@@ -16,7 +15,6 @@
 							"listen": "test",
 							"script": {
 								"id": "14d7c4e1-db68-4815-ac50-72d060450b19",
-								"type": "text/javascript",
 								"exec": [
 									"/*",
 									" * Test Case:  /api/v1/reading - GET",
@@ -57,22 +55,14 @@
 									"            tests[\"Is Reading list empty\"] = actualReadingData.length === 0",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "host",
-								"value": "edgex.com"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"header": [],
 						"url": {
 							"raw": "{{baseUrlcoredata}}/api/v1/reading",
 							"host": [
@@ -95,7 +85,6 @@
 							"listen": "test",
 							"script": {
 								"id": "d0f93a20-9b5f-4d7a-b234-1eaf10501e68",
-								"type": "text/javascript",
 								"exec": [
 									"/*",
 									" * Test Case:  /api/v1/reading - PUT",
@@ -122,14 +111,14 @@
 									"            tests[\"Body has True\"] = responseBody === \"true\";",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "426796ec-0865-4245-8143-04da02969b1b",
-								"type": "text/javascript",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrlcoredata\");",
 									"var data = {",
@@ -149,7 +138,8 @@
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"readingID\", res.stream.toString());",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -159,10 +149,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "host",
-								"value": "edgex.com"
 							}
 						],
 						"body": {
@@ -191,7 +177,6 @@
 							"listen": "test",
 							"script": {
 								"id": "6f7b9896-601f-4461-aa59-300fb8a9824f",
-								"type": "text/javascript",
 								"exec": [
 									"/*",
 									" * Test Case:  /api/v1/reading - POST",
@@ -209,7 +194,8 @@
 									"//if(null !== responseBody){",
 									"//    tests[\"Response Object id\"] = responseBody.length === 36;",
 									"//}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -219,10 +205,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "host",
-								"value": "edgex.com"
 							}
 						],
 						"body": {
@@ -244,11 +226,12 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Folder for reading",
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "reading_error_4xx",
-			"description": "Folder for reading",
 			"item": [
 				{
 					"name": "01 http://localhost:8000/coredata/api/v1/reading",
@@ -256,14 +239,15 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "f2b59fe2-a388-4f73-85a1-59a7c00d92ea",
 								"exec": [
 									"//Assert 404 status if the reading cannot be found by id",
 									"tests[\"Status code is 404\"] = responseCode.code === 404;",
 									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
 									"",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -273,10 +257,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "host",
-								"value": "edgex.com"
 							}
 						],
 						"body": {
@@ -298,11 +278,12 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Folder for reading",
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "ping",
-			"description": "Folder for ping",
 			"item": [
 				{
 					"name": "01 http://localhost:8000/coredata/api/v1/ping",
@@ -311,7 +292,6 @@
 							"listen": "test",
 							"script": {
 								"id": "33b870f7-d713-48ed-9c68-496b7ef5beea",
-								"type": "text/javascript",
 								"exec": [
 									" /**",
 									" * Test Case:  /api/v1/ping - GET",
@@ -332,22 +312,14 @@
 									"          //  tests[\"Body is correct\"] = responseBody === \"pong\";",
 									"        //}",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "host",
-								"value": "edgex.com"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"header": [],
 						"url": {
 							"raw": "{{baseUrlcoredata}}/api/v1/ping",
 							"host": [
@@ -362,16 +334,119 @@
 						"description": "Test service providing an indication that the service is available."
 					},
 					"response": []
+				},
+				{
+					"name": "02 https://localhost:8001/services",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2bf5e87d-9b32-4514-b973-934db4f8f7fa",
+								"exec": [
+									" /**",
+									" * Test Case:  /services - GET",
+									" * Version: Alpha",
+									" * @Author: Tingyu Zeng",
+									" * ",
+									" **/",
+									" ",
+									" tests[\"Ping Failure due to missing access token\"] = responseCode.code === 401;",
+									" tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									" //if(responseCode.code === 200){",
+									"   //     var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"     //   tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"       // if (contentTypeHeaderExists) {",
+									"        //tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+									"        //}",
+									"        //if(responseBody.length!== 0){",
+									"         //   tests[\"Body is correct\"] = responseBody === \"pong\";",
+									"        //}",
+									"    //}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8001/services",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"services"
+							]
+						},
+						"description": "Test service providing an indication that the service is available."
+					},
+					"response": []
+				},
+				{
+					"name": "03 http://localhost:8000/coredata/api/v1/ping",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2bf5e87d-9b32-4514-b973-934db4f8f7fa",
+								"exec": [
+									" /**",
+									" * Test Case:  /services - GET",
+									" * Version: Alpha",
+									" * @Author: Tingyu Zeng",
+									" * ",
+									" **/",
+									" ",
+									" tests[\"Ping Failure due to missing access token\"] = responseCode.code === 401;",
+									" tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									" //if(responseCode.code === 200){",
+									"   //     var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"     //   tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"       // if (contentTypeHeaderExists) {",
+									"        //tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+									"        //}",
+									"        //if(responseBody.length!== 0){",
+									"         //   tests[\"Body is correct\"] = responseBody === \"pong\";",
+									"        //}",
+									"    //}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/coredata/api/v1/ping",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"coredata",
+								"api",
+								"v1",
+								"ping"
+							]
+						},
+						"description": "Test service providing an indication that the service is available."
+					},
+					"response": []
 				}
-			]
+			],
+			"description": "Folder for ping",
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "api-gateway",
-			"description": "",
 			"item": [
 				{
 					"name": "Health Check",
-					"description": "",
 					"item": [
 						{
 							"name": "01 http://localhost:8001/services",
@@ -380,7 +455,6 @@
 									"listen": "test",
 									"script": {
 										"id": "b36ac77f-cc53-41ce-b871-7056ad468733",
-										"type": "text/javascript",
 										"exec": [
 											" /**",
 											" * Test Case:  /services - GET",
@@ -401,22 +475,14 @@
 											"        //    tests[\"Body is correct\"] = responseBody === \"pong\";",
 											"        //}",
 											"    }"
-										]
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "host",
-										"value": "edgex.com"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
+								"header": [],
 								"url": {
 									"raw": "{{baseUrl}}/services",
 									"host": [
@@ -437,7 +503,6 @@
 									"listen": "test",
 									"script": {
 										"id": "41a1010b-84c9-42d6-b469-2ef6b16f0140",
-										"type": "text/javascript",
 										"exec": [
 											" /**",
 											" * Test Case:  /routes - GET",
@@ -458,22 +523,14 @@
 											"        //    tests[\"Body is correct\"] = responseBody === \"pong\";",
 											"        //}",
 											"    }"
-										]
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "host",
-										"value": "edgex.com"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
+								"header": [],
 								"url": {
 									"raw": "{{baseUrl}}/routes",
 									"host": [
@@ -522,10 +579,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{baseUrl}}/v1/sys/health",
 									"host": [
@@ -542,11 +595,11 @@
 							"response": []
 						}
 					],
+					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
 				},
 				{
 					"name": "Proxy Check",
-					"description": "",
 					"item": [
 						{
 							"name": "01 https://localhost:8443/coredata/api/v1/ping",
@@ -555,7 +608,6 @@
 									"listen": "test",
 									"script": {
 										"id": "4ba89122-5c04-4e01-9019-ba669ebbac53",
-										"type": "text/javascript",
 										"exec": [
 											" /**",
 											" * Test Case:  /services - GET",
@@ -566,27 +618,14 @@
 											" ",
 											" tests[\"Ping Failure due to missing access token\"] = responseCode.code === 401;",
 											" tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
-										]
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "host",
-										"value": "edgex.com"
-									},
-									{
-										"key": "",
-										"value": "",
-										"disabled": true
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
+								"header": [],
 								"url": {
 									"raw": "https://localhost:8443/coredata/api/v1/ping",
 									"protocol": "https",
@@ -612,7 +651,6 @@
 									"listen": "test",
 									"script": {
 										"id": "4835cce9-7992-43bc-b1cc-1a46ba8192af",
-										"type": "text/javascript",
 										"exec": [
 											" /**",
 											" * Test Case:  /services - GET",
@@ -633,7 +671,8 @@
 											"           tests[\"Body is correct\"] = responseBody === \"pong\";",
 											"        }",
 											"    }"
-										]
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -649,21 +688,7 @@
 									]
 								},
 								"method": "GET",
-								"header": [
-									{
-										"key": "host",
-										"value": "edgex.com"
-									},
-									{
-										"key": "",
-										"value": "",
-										"disabled": true
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
+								"header": [],
 								"url": {
 									"raw": "https://localhost:8443/coredata/api/v1/ping",
 									"protocol": "https",
@@ -689,7 +714,6 @@
 									"listen": "test",
 									"script": {
 										"id": "2bf5e87d-9b32-4514-b973-934db4f8f7fa",
-										"type": "text/javascript",
 										"exec": [
 											" /**",
 											" * Test Case:  /services - GET",
@@ -710,22 +734,14 @@
 											"         //   tests[\"Body is correct\"] = responseBody === \"pong\";",
 											"        //}",
 											"    //}"
-										]
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "host",
-										"value": "edgex.com"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
+								"header": [],
 								"url": {
 									"raw": "http://localhost:8000/coredata/api/v1/ping",
 									"protocol": "http",
@@ -751,7 +767,6 @@
 									"listen": "test",
 									"script": {
 										"id": "2bf5e87d-9b32-4514-b973-934db4f8f7fa",
-										"type": "text/javascript",
 										"exec": [
 											" /**",
 											" * Test Case:  /services - GET",
@@ -772,22 +787,14 @@
 											"         //   tests[\"Body is correct\"] = responseBody === \"pong\";",
 											"        //}",
 											"    //}"
-										]
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "host",
-										"value": "edgex.com"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
+								"header": [],
 								"url": {
 									"raw": "http://localhost:8001/services",
 									"protocol": "http",
@@ -804,11 +811,11 @@
 							"response": []
 						}
 					],
+					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
 				},
 				{
 					"name": "SecretStore Check",
-					"description": "",
 					"item": [
 						{
 							"name": "01 http://localhost:8200/v1/sys/health",
@@ -845,10 +852,6 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{baseUrl}}/v1/sys/health",
 									"host": [
@@ -865,130 +868,11 @@
 							"response": []
 						}
 					],
+					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
-				},
-				{
-					"name": "02 https://localhost:8001/services",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "2bf5e87d-9b32-4514-b973-934db4f8f7fa",
-								"type": "text/javascript",
-								"exec": [
-									" /**",
-									" * Test Case:  /services - GET",
-									" * Version: Alpha",
-									" * @Author: Tingyu Zeng",
-									" * ",
-									" **/",
-									" ",
-									" tests[\"Ping Failure due to missing access token\"] = responseCode.code === 401;",
-									" tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									" //if(responseCode.code === 200){",
-									"   //     var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"     //   tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"       // if (contentTypeHeaderExists) {",
-									"        //tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-									"        //}",
-									"        //if(responseBody.length!== 0){",
-									"         //   tests[\"Body is correct\"] = responseBody === \"pong\";",
-									"        //}",
-									"    //}"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "host",
-								"value": "edgex.com"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "https://localhost:8001/services",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "8001",
-							"path": [
-								"services"
-							]
-						},
-						"description": "Test service providing an indication that the service is available."
-					},
-					"response": []
-				},
-				{
-					"name": "03 http://localhost:8000/coredata/api/v1/ping",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "2bf5e87d-9b32-4514-b973-934db4f8f7fa",
-								"type": "text/javascript",
-								"exec": [
-									" /**",
-									" * Test Case:  /services - GET",
-									" * Version: Alpha",
-									" * @Author: Tingyu Zeng",
-									" * ",
-									" **/",
-									" ",
-									" tests[\"Ping Failure due to missing access token\"] = responseCode.code === 401;",
-									" tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
-									" //if(responseCode.code === 200){",
-									"   //     var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"     //   tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"       // if (contentTypeHeaderExists) {",
-									"        //tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-									"        //}",
-									"        //if(responseBody.length!== 0){",
-									"         //   tests[\"Body is correct\"] = responseBody === \"pong\";",
-									"        //}",
-									"    //}"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "host",
-								"value": "edgex.com"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8000/coredata/api/v1/ping",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"coredata",
-								"api",
-								"v1",
-								"ping"
-							]
-						},
-						"description": "Test service providing an indication that the service is available."
-					},
-					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"event": [
@@ -1218,5 +1102,6 @@
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

@@ -1,17 +1,15 @@
 {
 	"info": {
-		"_postman_id": "a1cd7f2f-c5d5-4af7-a7b6-d89208852770",
+		"_postman_id": "37ed49d4-e864-4c8e-a62b-631227b93e75",
 		"name": "security-service-docker",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "apigateway",
-			"description": null,
 			"item": [
 				{
 					"name": "Health Check",
-					"description": null,
 					"item": [
 						{
 							"name": "01 port 8000 missing token test",
@@ -20,7 +18,6 @@
 									"listen": "test",
 									"script": {
 										"id": "56354e32-2ac1-4253-9a61-26313a54e395",
-										"type": "text/javascript",
 										"exec": [
 											" /**",
 											" * Test Case:  /services - GET",
@@ -30,22 +27,14 @@
 											" **/",
 											" ",
 											" tests[\"Port 8000 with missing token test\"] = responseCode.code === 401;"
-										]
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "host",
-										"value": "edgex.com"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
+								"header": [],
 								"url": {
 									"raw": "http://{{kong}}:8000/coredata/api/v1/ping",
 									"protocol": "http",
@@ -71,7 +60,6 @@
 									"listen": "test",
 									"script": {
 										"id": "e1a59e02-1650-4254-9c2a-f1ff6fa8de92",
-										"type": "text/javascript",
 										"exec": [
 											" /**",
 											" * Test Case:  /routes - GET",
@@ -88,22 +76,14 @@
 											"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
 											"        }",
 											"    }"
-										]
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "host",
-										"value": "edgex.com"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
+								"header": [],
 								"url": {
 									"raw": "http://{{kong}}:8001/",
 									"protocol": "http",
@@ -126,7 +106,6 @@
 									"listen": "test",
 									"script": {
 										"id": "4bf33d6e-3580-495d-8025-1b6aac8ac4bf",
-										"type": "text/javascript",
 										"exec": [
 											" /**",
 											" * Test Case:  /routes - GET",
@@ -137,22 +116,14 @@
 											" ",
 											" tests[\"Port 8443 not served\"] = responseCode.code === 404;",
 											" "
-										]
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "host",
-										"value": "edgex.com"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
+								"header": [],
 								"url": {
 									"raw": "https://{{kong}}:8443/",
 									"protocol": "https",
@@ -175,7 +146,6 @@
 									"listen": "test",
 									"script": {
 										"id": "d00b2d72-d5d2-4f3d-bcc7-dc0a1f0e811a",
-										"type": "text/javascript",
 										"exec": [
 											" /**",
 											" * Test Case:  /routes - GET",
@@ -186,22 +156,14 @@
 											" ",
 											" tests[\"Port 8443 with missing token test\"] = responseCode.code === 401;",
 											" "
-										]
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "host",
-										"value": "edgex.com"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
+								"header": [],
 								"url": {
 									"raw": "https://{{kong}}:8443/coredata/api/v1/ping",
 									"protocol": "https",
@@ -227,7 +189,6 @@
 									"listen": "test",
 									"script": {
 										"id": "3c312a45-7d5f-4d5e-ad0f-ecf0749e275f",
-										"type": "text/javascript",
 										"exec": [
 											" /**",
 											" * Test Case:  /routes - GET",
@@ -244,22 +205,14 @@
 											"        tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
 											"        }",
 											"    }"
-										]
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "host",
-										"value": "edgex.com"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
+								"header": [],
 								"url": {
 									"raw": "https://{{kong}}:8444/",
 									"protocol": "https",
@@ -276,11 +229,11 @@
 							"response": []
 						}
 					],
+					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
 				},
 				{
 					"name": "Proxy Check",
-					"description": null,
 					"item": [
 						{
 							"name": "01 Unauthorized token proxy access test",
@@ -289,7 +242,6 @@
 									"listen": "test",
 									"script": {
 										"id": "7dc7bbce-e60b-4988-8e2a-46b3986ad64e",
-										"type": "text/javascript",
 										"exec": [
 											" /**",
 											" * Test Case:  /services - GET",
@@ -300,7 +252,8 @@
 											" ",
 											" tests[\"Unauthorized Access Failure\"] = responseCode.code === 401;",
 											" "
-										]
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -309,21 +262,7 @@
 									"type": "noauth"
 								},
 								"method": "GET",
-								"header": [
-									{
-										"key": "host",
-										"value": "edgex.com"
-									},
-									{
-										"key": "",
-										"value": "",
-										"disabled": true
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
+								"header": [],
 								"url": {
 									"raw": "https://{{kong}}:8443/coredata/api/v1/ping",
 									"protocol": "https",
@@ -349,7 +288,6 @@
 									"listen": "test",
 									"script": {
 										"id": "5d0b1fbb-7b20-4776-b9d4-7ce1fdbce22a",
-										"type": "text/javascript",
 										"exec": [
 											" /**",
 											" * Test Case:  /services - GET",
@@ -369,7 +307,8 @@
 											"           tests[\"Body is correct\"] = responseBody === \"pong\";",
 											"        }",
 											"    }"
-										]
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -385,16 +324,7 @@
 									]
 								},
 								"method": "GET",
-								"header": [
-									{
-										"key": "host",
-										"value": "edgex.com"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
+								"header": [],
 								"url": {
 									"raw": "https://{{kong}}:8443/coredata/api/v1/ping",
 									"protocol": "https",
@@ -420,7 +350,6 @@
 									"listen": "test",
 									"script": {
 										"id": "2931833d-6335-4b99-9179-115b53179fec",
-										"type": "text/javascript",
 										"exec": [
 											" /**",
 											" * Test Case:  /services - GET",
@@ -431,7 +360,8 @@
 											" // execute this test case when Oauth2 authentication is configured - currently Oauth2 is by defult on apigateway",
 											" tests[\"Unauthorized token access failure test\"] = responseCode.code === 401;",
 											" "
-										]
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -447,16 +377,7 @@
 									]
 								},
 								"method": "GET",
-								"header": [
-									{
-										"key": "host",
-										"value": "edgex.com"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
+								"header": [],
 								"url": {
 									"raw": "https://{{kong}}:8443/metadata/api/v1/ping",
 									"protocol": "https",
@@ -482,14 +403,14 @@
 									"listen": "test",
 									"script": {
 										"id": "f7692439-548e-4d86-aa0b-97993f1994df",
-										"type": "text/javascript",
 										"exec": [
 											"//Assert 404 status if the reading cannot be found by id",
 											"tests[\"Status code is 404\"] = responseCode.code === 404;",
 											"",
 											"",
 											""
-										]
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -509,10 +430,6 @@
 									{
 										"key": "Content-Type",
 										"value": "application/json"
-									},
-									{
-										"key": "host",
-										"value": "edgex.com"
 									}
 								],
 								"body": {
@@ -544,7 +461,6 @@
 									"listen": "test",
 									"script": {
 										"id": "63988798-3e23-4156-905a-ebf6e8b39ca3",
-										"type": "text/javascript",
 										"exec": [
 											"/*",
 											" * Test Case:  /api/v1/reading - POST",
@@ -559,7 +475,8 @@
 											"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
 											"}",
 											""
-										]
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -579,10 +496,6 @@
 									{
 										"key": "Content-Type",
 										"value": "application/json"
-									},
-									{
-										"key": "host",
-										"value": "edgex.com"
 									}
 								],
 								"body": {
@@ -608,13 +521,14 @@
 							"response": []
 						}
 					],
+					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "secretstore",
-			"description": null,
 			"item": [
 				{
 					"name": "01 health check",
@@ -653,10 +567,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "https://{{vault}}:8200/v1/sys/health",
 							"protocol": "https",
@@ -712,10 +622,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "https://{{vault}}:8200/v1/sys/key-status",
 							"protocol": "https",
@@ -775,10 +681,6 @@
 								"value": "faked"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "https://{{vault}}:8200/v1/sys/key-status",
 							"protocol": "https",
@@ -838,10 +740,6 @@
 								"value": "{{rootKey}}"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "https://{{vault}}:8200/v1/sys/key-status",
 							"protocol": "https",
@@ -859,7 +757,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"event": [
@@ -1089,5 +988,6 @@
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
