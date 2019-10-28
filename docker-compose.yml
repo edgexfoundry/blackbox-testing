@@ -411,6 +411,26 @@ services:
     depends_on:
       - export-client
 
+  system:
+    image: ${systemManagement}
+    ports:
+      - "48090:48090"
+    container_name: edgex-sys-mgmt-agent
+    hostname: edgex-sys-mgmt-agent
+    networks:
+      - edgex-network
+    environment:
+      <<: *common-variables
+    volumes:
+      - db-data:/data/db
+      - log-data:/edgex/logs
+      - consul-config:/consul/config
+      - consul-data:/consul/data
+      # The following directive is to enable communication with the SMA Docker-in-Docker image (SystemManagement-Only.)
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - logging
+
   #################################################################
   # Application Services
   #################################################################
