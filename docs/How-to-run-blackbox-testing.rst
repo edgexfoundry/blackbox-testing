@@ -234,6 +234,35 @@ For example:
 
 For more information about the Allure framework, visit https://docs.qameta.io/allure/
 
+------------------------------------------
+Running Newman Tests for Local Development
+------------------------------------------
+
+Newman can also be used to test locally running EdgeX code quickly.
+
+First, install Newman on your command line with NPM. Instructions on how to install NPM are widely available for your
+ operating system.
+
+.. code-block:: bash
+
+    $ npm install -g newman
+
+Tests can now be executed on a per folder basis with the following syntax:
+
+.. code-block:: bash
+
+    $ newman run /path-to-blackbox-testing-directory/bin/postman-test/collections/collection_name.postman_collection
+    .json
+        --folder folder_name
+        -e bin/postman-test/environment/environment_name.postman_environment.json
+        -d bin/postman-test/data/data_name.json
+
+where "collection_name" is the name of the collection (usually the name of the service under test), the "folder_name" is
+ the name of the component under test, the "environment_name" is the name of the environment the test should be run
+ under (usually the name of the service under test, with separate environments for running natively and running in a
+ Docker container) and "data_name" is the name of the data file for that test, usually corresponding to the name of
+ the folder.
+
 ======================
 Run Test Using Postman
 ======================
@@ -313,3 +342,31 @@ Clean test data
 2-2. Execute the cleaner scripts using Postman Runner
 
 .. image:: images/clean-data-2.png
+
+==========================
+List of Test Prerequisites
+==========================
+
+------------
+Core-Command
+------------
+
+To run core-command tests you must have the following services running before any beginning any tests:
+
+1. mongo
+2. core-data
+3. core-metadata
+4. core-command
+5. device-virtual
+
+Run the core-command-cleaner script, then the importer script, and finally the tests.
+
+The core-command-cleaner collection requires the core-metadata environment. It does not require any data files.
+
+The core-command-importer collection requires the core-metadata environment. It does not require any data files.
+
+The core-command collection has four folders:
+    1. device: this folder requires the core-command environment and the coreCommandData data file.
+    2. device_error_4xx: this folder requires the core-command environment and the coreCommandData data file.
+    3. ping: this folder requires the core-command environment. It does not require any data files.
+    4. resources: this folder requires the core-command environment. It does not require any data files.
