@@ -370,3 +370,26 @@ The core-command collection has four folders:
     2. device_error_4xx: this folder requires the core-command environment and the coreCommandData data file.
     3. ping: this folder requires the core-command environment. It does not require any data files.
     4. resources: this folder requires the core-command environment. It does not require any data files.
+
+---------------------
+Support-Notifications
+---------------------
+
+To run support-notification tests you must have the following services running before beginning any tests:
+
+1. mongo
+2. support-notifications
+
+Run the support-notifications-cleaner script, then the importer script, and finally the tests.
+
+The support-notifications-cleaner collection requires the support-notification environment. It does not require any
+data files.
+
+The support-notifications-importer collection requires the support-notification environment. It does not require any
+data files.
+
+The support-notifications collection has four folders:
+    1. subscription: this folder requires the support-notification environment and the subscriptionData data file.
+    2. notification: this folder requires the support-notification environment and the notificationData data file.
+    3. transmission: this folder requires the support-notification environment and the transmissionData data file.
+    4. ping: this folder requires the support-notification environment. It does not require any data files.
