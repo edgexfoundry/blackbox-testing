@@ -353,7 +353,7 @@ Core-Command
 
 To run core-command tests you must have the following services running before any beginning any tests:
 
-1. mongo
+1. database
 2. core-data
 3. core-metadata
 4. core-command
@@ -377,7 +377,7 @@ Support-Notifications
 
 To run support-notification tests you must have the following services running before beginning any tests:
 
-1. mongo
+1. database
 2. support-notifications
 
 Run the support-notifications-cleaner script, then the importer script, and finally the tests.
