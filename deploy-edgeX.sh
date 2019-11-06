@@ -75,6 +75,8 @@ run_service export-client
 
 run_service export-distro
 
+run_service app-service-rules
+
 run_service rulesengine
 
 run_service notifications
