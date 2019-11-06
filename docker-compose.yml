@@ -20,6 +20,10 @@ version: '3.4'
 # all common shared environment variables defined here:
 x-common-env-variables: &common-variables
   EDGEX_SECURITY_SECRET_STORE: ${SECURITY_IS_ON}
+  edgex_registry: consul://edgex-core-consul:8500
+  Clients_CoreData_Host: edgex-core-data
+  Clients_Logging_Host: edgex-support-logging
+  Logging_EnableRemote: "true"
 
 volumes:
   db-data:
@@ -392,6 +396,27 @@ services:
       EXPORT_DISTRO_MQTTS_CERT_FILE: none
       EXPORT_DISTRO_MQTTS_KEY_FILE: none
       <<: *common-variables
+
+  app-service-rules:
+    image: ${appService}
+    ports:
+      - "48100:48100"
+    container_name: edgex-app-service-configurable-rules
+    hostname: edgex-app-service-configurable-rules
+    networks:
+      edgex-network:
+        aliases:
+          - edgex-app-service-configurable-rules
+    environment:
+      <<: *common-variables
+      edgex_service: http://edgex-app-service-configurable-rules:48100
+      edgex_profile: rules-engine
+      Service_Host: edgex-app-service-configurable-rules
+      MessageBus_SubscribeHost_Host: edgex-core-data
+    depends_on:
+      - consul
+      - logging
+      - data
 
   rulesengine:
     image: ${supportRulesengine}
