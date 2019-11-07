@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "37ed49d4-e864-4c8e-a62b-631227b93e75",
+		"_postman_id": "7125bb26-50b8-456a-aec0-54b973b9e31d",
 		"name": "security-service-docker",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -250,7 +250,7 @@
 											" * ",
 											" **/",
 											" ",
-											" tests[\"Unauthorized Access Failure\"] = responseCode.code === 401;",
+											" tests[\"Unauthorized Coredata Access Failure\"] = responseCode.code === 401;",
 											" "
 										],
 										"type": "text/javascript"
@@ -282,7 +282,7 @@
 							"response": []
 						},
 						{
-							"name": "02 valid token proxy access test coredata",
+							"name": "02 invalid token proxy access test command",
 							"event": [
 								{
 									"listen": "test",
@@ -296,17 +296,8 @@
 											" * ",
 											" **/",
 											" ",
-											" tests[\"Valid token access success\"] = responseCode.code === 200;",
-											" if(responseCode.code === 200){",
-											"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-											"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-											"        if (contentTypeHeaderExists) {",
-											"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-											"        }",
-											"        if(responseBody.length!== 0){",
-											"           tests[\"Body is correct\"] = responseBody === \"pong\";",
-											"        }",
-											"    }"
+											" tests[\"Unauthorized Command Access Failure\"] = responseCode.code === 401;",
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -326,14 +317,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://{{kong}}:8443/coredata/api/v1/ping",
+									"raw": "https://{{kong}}:8443/command/api/v1/ping",
 									"protocol": "https",
 									"host": [
 										"{{kong}}"
 									],
 									"port": "8443",
 									"path": [
-										"coredata",
+										"command",
 										"api",
 										"v1",
 										"ping"
@@ -344,7 +335,7 @@
 							"response": []
 						},
 						{
-							"name": "03 invalid token proxy access test metadata - OauthToken test",
+							"name": "03 invalid token proxy access test metadata - JWT Token test",
 							"event": [
 								{
 									"listen": "test",
@@ -358,7 +349,7 @@
 											" * ",
 											" **/",
 											" // execute this test case when Oauth2 authentication is configured - currently Oauth2 is by defult on apigateway",
-											" tests[\"Unauthorized token access failure test\"] = responseCode.code === 401;",
+											" tests[\"Unauthorized JWT token access failure test\"] = responseCode.code === 401;",
 											" "
 										],
 										"type": "text/javascript"
@@ -404,8 +395,8 @@
 									"script": {
 										"id": "f7692439-548e-4d86-aa0b-97993f1994df",
 										"exec": [
-											"//Assert 404 status if the reading cannot be found by id",
-											"tests[\"Status code is 404\"] = responseCode.code === 404;",
+											"//Assert 401 status if the reading cannot be found by id",
+											"tests[\"Invalid PUT Action\"] = responseCode.code === 401;",
 											"",
 											"",
 											""
@@ -462,19 +453,8 @@
 									"script": {
 										"id": "63988798-3e23-4156-905a-ebf6e8b39ca3",
 										"exec": [
-											"/*",
-											" * Test Case:  /api/v1/reading - POST",
-											" * Version: Alpha",
-											" * @Author: Tingyu Zeng",
-											" *",
-											" */",
-											"tests[\"Status code is 200\"] = responseCode.code === 200;",
-											"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-											"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-											"if (contentTypeHeaderExists) {",
-											"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
-											"}",
-											""
+											"//Assert 401 status if the post reading action fails",
+											"tests[\"Invalid POST Action\"] = responseCode.code === 401;"
 										],
 										"type": "text/javascript"
 									}
@@ -646,7 +626,6 @@
 							"listen": "test",
 							"script": {
 								"id": "3d9c1ea2-fa77-4fa3-9cf7-1bac98b75adb",
-								"type": "text/javascript",
 								"exec": [
 									" /**",
 									" * Test Case:  /services - GET",
@@ -656,20 +635,9 @@
 									" **/",
 									" ",
 									" tests[\"Unauthorized secret store access check\"] = responseCode.code === 403;",
-									" ",
-									" if(responseCode.code === 403){",
-									"       var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"       tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"       if (contentTypeHeaderExists) {",
-									"       tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-									"       }",
-									"        if(responseBody.length!== 0){",
-									"            obj = JSON.parse(responseBody)",
-									"            tests[\"Permission denied test\"] = obj.errors == \"permission denied\";",
-									"            ",
-									"        }",
-									"    }"
-								]
+									" "
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -679,65 +647,6 @@
 							{
 								"key": "X-Vault-Token",
 								"value": "faked"
-							}
-						],
-						"url": {
-							"raw": "https://{{vault}}:8200/v1/sys/key-status",
-							"protocol": "https",
-							"host": [
-								"{{vault}}"
-							],
-							"port": "8200",
-							"path": [
-								"v1",
-								"sys",
-								"key-status"
-							]
-						},
-						"description": "Test service providing an indication that the service is available."
-					},
-					"response": []
-				},
-				{
-					"name": "04 valid vault key test",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ce7f05aa-7808-4890-88c7-f10f06d94848",
-								"type": "text/javascript",
-								"exec": [
-									" /**",
-									" * Test Case:  /services - GET",
-									" * Version: Alpha",
-									" * @Author: Tingyu Zeng",
-									" * ",
-									" **/",
-									" ",
-									" tests[\"Unauthorized secret store access check\"] = responseCode.code === 200;",
-									" ",
-									" if(responseCode.code === 200){",
-									"       var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"       tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"       if (contentTypeHeaderExists) {",
-									"       tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-									"       }",
-									"        if(responseBody.length!== 0){",
-									"            obj = JSON.parse(responseBody)",
-									"            tests[\"vault key term test\"] = obj.term == 1;",
-									"            ",
-									"        }",
-									"    }"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-Vault-Token",
-								"value": "{{rootKey}}"
 							}
 						],
 						"url": {
