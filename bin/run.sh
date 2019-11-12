@@ -1,4 +1,11 @@
 #!/bin/bash
+# Set security environment variable. This is mostly cosmetic as the tests will display warnings that the env is not set.
+if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
+	export SECURITY_IS_ON="true"
+else
+	export SECURITY_IS_ON="false"
+fi
+
 # Ensure we fail the job if any steps fail
 set -e -o pipefail
 
