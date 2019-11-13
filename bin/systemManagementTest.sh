@@ -9,3 +9,6 @@ echo "Info: Initiating System Management Test."
 echo "[info] ---------- use docker-compose run newman ----------"
 
 docker-compose run --rm postman run ${COLLECTION_PATH} --environment=${ENV_PATH}
+
+echo "Info:System-Management Completed."
+
