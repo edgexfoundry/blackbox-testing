@@ -11,3 +11,6 @@ docker-compose run --rm postman run ${COLLECTION_PATH} --folder="subscription" -
 docker-compose run --rm postman run ${COLLECTION_PATH} --folder="notification" --iteration-data="data/notificationData.json"  --environment=${ENV_PATH} --reporters="junit,cli"
 docker-compose run --rm postman run ${COLLECTION_PATH} --folder="transmission" --iteration-data="data/transmissionData.json"  --environment=${ENV_PATH} --reporters="junit,cli"
 docker-compose run --rm postman run ${COLLECTION_PATH} --folder="ping"  --environment=${ENV_PATH} --reporters="junit,cli"
+
+echo "Info:Support-Notification Test Completed."
+
