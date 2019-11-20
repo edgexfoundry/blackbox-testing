@@ -353,7 +353,7 @@ Core-Command
 
 To run core-command tests you must have the following services running before any beginning any tests:
 
-1. mongo
+1. database
 2. core-data
 3. core-metadata
 4. core-command
@@ -377,7 +377,7 @@ Support-Notifications
 
 To run support-notification tests you must have the following services running before beginning any tests:
 
-1. mongo
+1. database
 2. support-notifications
 
 Run the support-notifications-cleaner script, then the importer script, and finally the tests.
@@ -393,3 +393,24 @@ The support-notifications collection has four folders:
     2. notification: this folder requires the support-notification environment and the notificationData data file.
     3. transmission: this folder requires the support-notification environment and the transmissionData data file.
     4. ping: this folder requires the support-notification environment. It does not require any data files.
+
+-----------------
+Support-Scheduler
+-----------------
+
+To run support-scheduler tests you must have the following services running before beginning any tests:
+
+1. database
+2. support-scheduler
+
+Run the support-notifications-cleaner script, then the importer script, and finally the tests.
+
+The support-scheduler-cleaner collection requires the support-scheduler environment. It does not require any
+data files.
+
+The support-scheduler-importer collection requires the support-scheduler environment. It does not require any
+data files.
+
+The support-notifications collection has two folders:
+    1. interval: this folder requires the support-scheduler environment and the intervalData data file.
+    2. intervalAction: this folder requires the support-scheduler environment and the intervalActionData data file.
