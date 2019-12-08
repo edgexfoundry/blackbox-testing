@@ -25,4 +25,4 @@ export kongdb=postgres:9.6
 export kong=kong:1.3.0-ubuntu
 export edgexProxy=nexus3.edgexfoundry.org:10004/docker-edgex-security-proxy-setup-go-arm64:1.1.0
 
-export postman=nexus3.edgexfoundry.org:10003/edgex-newman:4.5.1-arm64
+export postman=nexus3.edgexfoundry.org:10003/edgex-newman:4.5.6-arm64
