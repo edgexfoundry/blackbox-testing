@@ -14,8 +14,6 @@ pwd
 #docker pull edgexfoundry/docker-core-data
 #docker pull edgexfoundry/docker-core-command
 #docker pull edgexfoundry/docker-support-scheduler
-#docker pull edgexfoundry/docker-export-client
-#docker pull edgexfoundry/docker-export-distro
 #docker pull edgexfoundry/docker-support-rulesengine
 #docker pull edgexfoundry/docker-device-virtual
 

@@ -45,7 +45,6 @@ DEVICESERVICECCDATADUMP=/etc/newman/DataDumps/command/deviceServiceDb.json
 COMMANDCCDATADUMP=/etc/newman/DataDumps/command/commandDb.json
 CORECOMMANDDATAFILE=/etc/newman/data/coreCommandData.json
 
-REGISTERDATADUMP=/etc/newman/DataDumps/exportclient/exportConfigurationDb.json
 LOGGINGDATADUMP=/etc/newman/DataDumps/logging/logEntryDb.json
 
 SUPPORTNOTIFICATION_NOTIFICATION_DATADUMP=/etc/newman/DataDumps/supportNotifications/notificationDb.json

@@ -23,7 +23,6 @@ METADATALOGSPATH=$BASEPATH/metaData$TIMESTAMPFORMAT.log
 COMMANDLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
 LOGGINGLOGSPATH=$BASEPATH/logging$TIMESTAMPFORMAT.log
 SUPPORT_NOTIFICATION_LOG_PATH=$BASEPATH/supportNotification$TIMESTAMPFORMAT.log
-EXPORTCLIENTLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
 RULESENGINELOGSPATH=$BASEPATH/rulesengine$TIMESTAMPFORMAT.log
 SUPPORT_SCHEDULER_LOG_PATH=$BASEPATH/supportScheduler$TIMESTAMPFORMAT.log
 SYSTEMMANAGEMENTLOGSPATH=$BASEPATH/systemmanagement$TIMESTAMPFORMAT.log
@@ -82,13 +81,6 @@ systemManagementTest(){
 	$(dirname "$0")/systemManagementTest.sh
 }
 
-exportClientTest() {
-	$(dirname "$0")/importExportClientDataDump.sh
-	$(dirname "$0")/exportClientTest.sh
-	$(dirname "$0")/flushExportClientDataDump.sh
-
-}
-
 rulesengineTest() {
 	$(dirname "$0")/rulesengineTest.sh
 }
@@ -116,7 +108,6 @@ testAll() {
   metaDataTest
   loggingTest
   supportNotificationTest
-  exportClientTest
   rulesengineTest
   supportSchedulerTest
   systemManagementTest
@@ -166,10 +157,6 @@ case ${option} in
     echo "Info: Initiating SupportNotifications Test"
 	supportNotificationTest	| tee $SUPPORT_NOTIFICATION_LOG_PATH
     ;;
-  	-exc)
-    echo "Info: Initiating ExportClient Test"
-    exportClientTest | tee $EXPORTCLIENTLOGSPATH
-    ;;
     -ss)
     echo "Info: Initiating SupportScheduler Test"
     supportSchedulerTest | tee $SUPPORT_SCHEDULER_LOG_PATH
@@ -195,7 +182,7 @@ case ${option} in
 	testAll		| tee $EDGEXLOGSPATH
     ;;
    	*)
-    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-exc Export Client] | [-ss SupportScheduler] | [-ru Rulesengine] | [-dv DeviceVirtual] | [-asc AppServiceConfigurable] | [-sec securityTest] | [-all All]"
+    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-ss SupportScheduler] | [-ru Rulesengine] | [-dv DeviceVirtual] | [-asc AppServiceConfigurable] | [-sec securityTest] | [-all All]"
     echo
     exit 0
     ;;

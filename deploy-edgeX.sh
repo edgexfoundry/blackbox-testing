@@ -71,10 +71,6 @@ run_service logging
 
 run_service data
 
-run_service export-client
-
-run_service export-distro
-
 run_service app-service-rules
 
 run_service rulesengine
@@ -119,10 +115,6 @@ echo "------- logging ------"
 docker logs edgex-support-logging
 echo "------- data ------"
 docker logs edgex-core-data
-echo "------- export-client ------"
-docker logs edgex-export-client
-echo "------- export-distro ------"
-docker logs edgex-export-distro
 echo "------- rulesengine ------"
 docker logs edgex-support-rulesengine
 echo "------- notifications ------"
