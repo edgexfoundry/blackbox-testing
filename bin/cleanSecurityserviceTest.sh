@@ -2,6 +2,6 @@
 
 echo "Info: Clean Securityservice's test data."
 
-docker-compose run edgex-proxy --init=false --userdel=jerry
+docker-compose -f $(ls ../ | awk '/docker-compose/ && !/test-tools/') run edgex-proxy --init=false --userdel=jerry
 
 echo "Info: Securityservice's test data Cleaned"

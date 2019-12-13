@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OT=$(docker-compose run edgex-proxy --init=false --useradd=jerry --group=admin | tail -1)
+OT=$(docker-compose -f $(ls ../ | awk '/docker-compose/ && !/test-tools/') run edgex-proxy --init=false --useradd=jerry --group=admin | tail -1)
 export TOKEN=$( echo $OT | sed 's/.*: \([^.]*\).*/\1/')
 
 #echo $TOKEN

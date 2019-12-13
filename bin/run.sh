@@ -8,8 +8,11 @@ fi
 
 # Ensure we fail the job if any steps fail
 set -e -o pipefail
-
 #. $(dirname "$0")/env.sh
+
+# Run the compose file for blackbox testing
+export network=$(docker network ls | awk '{print $2}' | grep edgex-network)
+docker-compose -f ../docker-compose-test-tools.yml up -d app-service-configurable
 
 option="${1}"
 
@@ -119,12 +122,8 @@ sh $(dirname "$0")/updateMaxResultCount.sh
 #Main Script starts here
 $(dirname "$0")/banner.sh
 
-echo "[INFO] Init postman test data ."
-VOLUME_CONTAINER=$(docker-compose ps -q volume)
-VOLUME_CONTAINER=`echo ${VOLUME_CONTAINER} | cut -b 1-12`
-
-docker cp $(dirname "$0")/postman-test/. "${VOLUME_CONTAINER}":/etc/newman
-
+#Create testResult for postman
+[ -d "$(dirname "$0")/testResult" ]|| mkdir $(dirname "$0")/testResult
 
 case ${option} in
 	-sec)
@@ -177,10 +176,6 @@ case ${option} in
     exit 0
     ;;
 esac
-
-
-echo "[INFO] Fetch postman test result ."
-docker cp "${VOLUME_CONTAINER}":/etc/newman/newman/. $(dirname "$0")/testResult
 
 echo
 echo "Info: Logs available in [scriptLogs]"

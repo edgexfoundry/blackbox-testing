@@ -10,3 +10,6 @@ bin/testResult/
 * Etc
 *.DS_Store
 
+# Compose file from developer-scripts
+docker-compose-*.yml
+!docker-compose-test-tools.yml

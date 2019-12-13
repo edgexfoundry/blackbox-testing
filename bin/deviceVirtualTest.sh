@@ -19,7 +19,7 @@ echo "Info: Initiating DeviceVirtual Test."
 
 echo "[info] ---------- use docker-compose run newman ----------"
 
-docker-compose run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
     --environment=${ENV_PATH} --reporters="junit,cli"
 
 echo "Info:DeviceVirtual Test Completed."
