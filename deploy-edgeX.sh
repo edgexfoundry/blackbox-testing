@@ -44,6 +44,8 @@ run_service config-seed
 
 if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 
+	run_service security-secrets-setup
+
 	run_service vault
 
 	sleep 20s
@@ -60,7 +62,7 @@ if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 
 	run_service kong
 
-	sleep 10s
+	sleep 20s
 
 	run_service edgex-proxy
 fi
