@@ -99,6 +99,8 @@ echo "------- consul ------"
 docker logs edgex-core-consul
 echo "------- config-seed ------"
 docker logs edgex-config-seed
+echo "------- secrity-secrets-setup ------"
+docker logs edgex-secrets-setup
 echo "------- vault ------"
 docker logs edgex-vault
 echo "------- vault-worker ------"
