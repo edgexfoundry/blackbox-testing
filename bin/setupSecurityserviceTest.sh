@@ -9,3 +9,6 @@ RT=$(docker exec -i edgex-vault sh -c "cat /vault/config/assets/resp-init.json")
 export ROOTKEY=$(echo $RT | sed 's/.*"\(.*\)"[^"]*$/\1/')
 
 #echo $ROOTKEY
+
+echo "Info:Securityservice Setup Completed."
+
