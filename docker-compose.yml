@@ -421,6 +421,8 @@ services:
 
   app-service-rules:
     image: ${appService}
+    entrypoint: ["/app-service-configurable"]
+    command: ["--registry","--confdir=/res", "--skipVersionCheck=true"]
     ports:
       - "48100:48100"
     container_name: edgex-app-service-configurable-rules
@@ -488,7 +490,7 @@ services:
     ports:
       - "48095:48095"
     entrypoint: ["/app-service-configurable"]
-    command: ["--registry","--confdir=/res", "--profile=blackbox-tests", "--skipVersionCheck=true"]
+    command: ["--registry","--confdir=/res", "--skipVersionCheck=true"]
     container_name: edgex-app-service-configurable
     hostname: app-service-configurable
     environment:
