@@ -69,9 +69,9 @@ services:
       - consul-data:/consul/data
       - consul-scripts:/consul/scripts
       - vault-config:/vault/config
-      - /tmp/edgex/secrets/ca:/tmp/edgex/secrets/ca:ro
-      - /tmp/edgex/secrets/edgex-vault:/tmp/edgex/secrets/edgex-vault:ro
-      - /tmp/edgex/secrets/edgex-kong:/tmp/edgex/secrets/edgex-kong:ro
+      - /tmp/edgex/secrets/ca:/tmp/edgex/secrets/ca:ro,z
+      - /tmp/edgex/secrets/edgex-vault:/tmp/edgex/secrets/edgex-vault:ro,z
+      - /tmp/edgex/secrets/edgex-kong:/tmp/edgex/secrets/edgex-kong:ro,z
     depends_on:
       - volume
 
@@ -117,7 +117,7 @@ services:
       - vault-file:/vault/file
       - vault-logs:/vault/logs
       - vault-init:/vault/init:ro
-      - /tmp/edgex/secrets/edgex-vault:/tmp/edgex/secrets/edgex-vault:ro
+      - /tmp/edgex/secrets/edgex-vault:/tmp/edgex/secrets/edgex-vault:ro,z
     depends_on:
       - security-secrets-setup
       - consul
@@ -128,11 +128,12 @@ services:
     hostname: edgex-secrets-setup
     tmpfs:
       - /tmp
+      - /run
     command: "generate"
     volumes:
       - secrets-setup-cache:/etc/edgex/pki
       - vault-init:/vault/init
-      - /tmp/edgex/secrets:/tmp/edgex/secrets
+      - /tmp/edgex/secrets:/tmp/edgex/secrets:z
     depends_on:
       - volume
 
@@ -145,10 +146,10 @@ services:
         aliases:
           - edgex-vault-worker
     volumes:
-      - vault-config:/vault/config
+      - vault-config:/vault/config:z
       - consul-scripts:/consul/scripts
-      - /tmp/edgex/secrets/ca/ca.pem:/tmp/edgex/secrets/ca/ca.pem:ro
-      - /tmp/edgex/secrets/edgex-kong:/tmp/edgex/secrets/edgex-kong:ro
+      - /tmp/edgex/secrets/ca:/tmp/edgex/secrets/ca:ro,z
+      - /tmp/edgex/secrets/edgex-kong:/tmp/edgex/secrets/edgex-kong:ro,z
     depends_on:
       - volume
       - consul
@@ -252,8 +253,8 @@ services:
     volumes:
       - vault-config:/vault/config
       - consul-scripts:/consul/scripts
-      - /tmp/edgex/secrets/ca/ca.pem:/tmp/edgex/secrets/ca/ca.pem:ro
-      - /tmp/edgex/secrets/edgex-kong:/tmp/edgex/secrets/edgex-kong:ro      
+      - /tmp/edgex/secrets/ca:/tmp/edgex/secrets/ca:ro,z
+      - /tmp/edgex/secrets/edgex-kong:/tmp/edgex/secrets/edgex-kong:ro,z
     depends_on:
       - vault
       - kong-db
@@ -281,7 +282,7 @@ services:
       - vault-config:/vault/config
       - newman:/etc/newman
       - consul-scripts:/consul/scripts
-      - /tmp/edgex/secrets/ca/ca.pem:/tmp/edgex/secrets/ca/ca.pem:ro
+      - /tmp/edgex/secrets/ca:/tmp/edgex/secrets/ca:ro,z
     depends_on:
       - volume
       - vault-worker
@@ -301,7 +302,7 @@ services:
     volumes:
       - log-data:/edgex/logs
       - vault-config:/vault/config
-      - /tmp/edgex/secrets/ca/ca.pem:/tmp/edgex/secrets/ca/ca.pem:ro
+      - /tmp/edgex/secrets/ca:/tmp/edgex/secrets/ca:ro,z
     depends_on:
       - config-seed
       - mongo
@@ -325,7 +326,7 @@ services:
       - consul-config:/consul/config
       - consul-data:/consul/data
       - vault-config:/vault/config
-      - /tmp/edgex/secrets/ca/ca.pem:/tmp/edgex/secrets/ca/ca.pem:ro
+      - /tmp/edgex/secrets/ca:/tmp/edgex/secrets/ca:ro,z
     depends_on:
       - logging
 
@@ -347,7 +348,7 @@ services:
       - consul-config:/consul/config
       - consul-data:/consul/data
       - vault-config:/vault/config
-      - /tmp/edgex/secrets/ca/ca.pem:/tmp/edgex/secrets/ca/ca.pem:ro
+      - /tmp/edgex/secrets/ca:/tmp/edgex/secrets/ca:ro,z
     depends_on:
       - logging
 
@@ -370,7 +371,7 @@ services:
       - consul-config:/consul/config
       - consul-data:/consul/data
       - vault-config:/vault/config
-      - /tmp/edgex/secrets/ca/ca.pem:/tmp/edgex/secrets/ca/ca.pem:ro
+      - /tmp/edgex/secrets/ca:/tmp/edgex/secrets/ca:ro,z
     depends_on:
       - logging
 
@@ -392,7 +393,7 @@ services:
       - consul-config:/consul/config
       - consul-data:/consul/data
       - vault-config:/vault/config
-      - /tmp/edgex/secrets/ca/ca.pem:/tmp/edgex/secrets/ca/ca.pem:ro
+      - /tmp/edgex/secrets/ca:/tmp/edgex/secrets/ca:ro,z
     depends_on:
       - metadata
 
@@ -414,7 +415,7 @@ services:
       - consul-config:/consul/config
       - consul-data:/consul/data
       - vault-config:/vault/config
-      - /tmp/edgex/secrets/ca/ca.pem:/tmp/edgex/secrets/ca/ca.pem:ro
+      - /tmp/edgex/secrets/ca:/tmp/edgex/secrets/ca:ro,z
     depends_on:
       - metadata
 
