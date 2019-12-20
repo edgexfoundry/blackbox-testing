@@ -240,17 +240,25 @@
     },
     {
       "name": "all_metrics",
-      "test_status": "commented-out at this time, pending on https://github.com/edgexfoundry/edgex-go/issues/2008",
-      "test_placeholder": "what follows in the remainder of this test is a short-circuiting to enable test-execution",
       "event": [
         {
           "listen": "test",
           "script": {
-            "id": "cb63a51b-cdb7-4e01-967b-e77fcdbbee25",
+            "id": "ed75887a-472a-4f12-857a-1d790af5ab0a",
             "exec": [
-              "pm.test(\"Response body is correct\", function () {",
-              "    pm.response.to.have.body(\"pong\");",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
               "});",
+              "",
+              "pm.test(\"Response time is less than 6000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(6000);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is application/json\", function(){",
+              "    var contentType = pm.response.headers.get('Content-Type');",
+              "    pm.expect(contentType).to.include('application/json');",
+              "});",
+              "",
               ""
             ],
             "type": "text/javascript"
@@ -273,19 +281,21 @@
           "raw": ""
         },
         "url": {
-          "raw": "{{systemManagementUrl}}/api/v1/ping",
+          "raw": "{{systemManagementUrl}}/api/v1/metrics/device-virtual,edgex-core-command,edgex-core-data,edgex-core-metadata,edgex-support-logging,edgex-support-notifications,edgex-support-scheduler",
           "host": [
             "{{systemManagementUrl}}"
           ],
           "path": [
             "api",
             "v1",
-            "ping"
+            "metrics",
+            "device-virtual,edgex-core-command,edgex-core-data,edgex-core-metadata,edgex-support-logging,edgex-support-notifications,edgex-support-scheduler"
           ]
         }
       },
       "response": []
-    },    {
+    },
+    {
       "name": "start_all_services",
       "event": [
         {
@@ -528,60 +538,12 @@
       ]
     },
     {
-      "name": "stop_all_services",
-      "test_status": "commented-out at this time, pending on https://github.com/edgexfoundry/edgex-go/issues/2010",
-      "test_placeholder": "what follows in the remainder of this test is a short-circuiting to enable test-execution",
+      "name": "restart_all_services",
       "event": [
         {
           "listen": "test",
           "script": {
-            "id": "e5b71c76-f0ec-48c9-86f0-eeb1ee615535",
-            "exec": [
-              "pm.test(\"Response body is correct\", function () {",
-              "    pm.response.to.have.body(\"pong\");",
-              "});",
-              ""
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "api-key",
-            "value": "{{api-key}}"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": ""
-        },
-        "url": {
-          "raw": "{{systemManagementUrl}}/api/v1/ping",
-          "host": [
-            "{{systemManagementUrl}}"
-          ],
-          "path": [
-            "api",
-            "v1",
-            "ping"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "operation stop",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "e5b71c76-f0ec-48c9-86f0-eeb1ee615535",
+            "id": "9ed78ab1-43fb-4e4a-bd04-1a3ed5868aa7",
             "exec": [
               "pm.test(\"Status code is 200\", function () {",
               "    pm.response.to.have.status(200);",
@@ -615,7 +577,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n   \"action\":\"stop\",\n   \"services\":[\n      \"edgex-support-notifications\"   ]\n}"
+          "raw": "{\"action\":\"restart\", \"services\":[\"edgex-support-logging\",\"edgex-support-notifications\",\"edgex-core-metadata\", \"edgex-core-data\", \"edgex-core-command\"] }"
         },
         "url": {
           "raw": "{{systemManagementUrl}}/api/v1/operation",
@@ -702,7 +664,7 @@
         {
           "listen": "test",
           "script": {
-            "id": "9ed78ab1-43fb-4e4a-bd04-1a3ed5868aa7",
+            "id": "8cf7e462-3b7d-4fe5-ba76-5a62f4f4c71d",
             "exec": [
               "pm.test(\"Status code is 200\", function () {",
               "    pm.response.to.have.status(200);",
@@ -736,7 +698,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n   \"action\":\"restart\",\n   \"services\":[\n      \"edgex-support-notifications\"   ],\n   \"params\":[\n   \t\"graceful\"\n   \t]\n}"
+          "raw": "{\"action\":\"restart\", \"services\":[\"edgex-support-notifications\"] }"
         },
         "url": {
           "raw": "{{systemManagementUrl}}/api/v1/operation",
@@ -818,17 +780,146 @@
       ]
     },
     {
-      "name": "restart_all_services",
-      "test_status": "commented-out at this time, pending on https://github.com/edgexfoundry/edgex-go/issues/2009",
-      "test_placeholder": "what follows in the remainder of this test is a short-circuiting to enable test-execution",
+      "name": "stop_all_services",
       "event": [
         {
           "listen": "test",
           "script": {
-            "id": "cb63a51b-cdb7-4e01-967b-e77fcdbbee25",
+            "id": "fbe71e98-c064-482a-9b30-a4b6db650116",
             "exec": [
-              "pm.test(\"Response body is correct\", function () {",
-              "    pm.response.to.have.body(\"pong\");",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 90000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(90000);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is application/json\", function(){",
+              "    var contentType = pm.response.headers.get('Content-Type');",
+              "    pm.expect(contentType).to.include('application/json');",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "api-key",
+            "value": "{{api-key}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"action\":\"stop\", \"services\":[\"edgex-core-metadata\", \"edgex-core-data\", \"edgex-core-command\", \"edgex-support-logging\", \"edgex-support-notifications\"] }"
+        },
+        "url": {
+          "raw": "{{systemManagementUrl}}/api/v1/operation",
+          "host": [
+            "{{systemManagementUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "operation"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Create Regression Model - POST",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api-key}}",
+                "disabled": false
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{systemManagementUrl}}/api/v1/operation",
+              "host": [
+                "{{systemManagementUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "operation"
+              ]
+            }
+          },
+          "status": "Accepted",
+          "code": 202,
+          "_postman_previewlanguage": "plain",
+          "header": [
+            {
+              "key": "Content-Length",
+              "value": "7",
+              "name": "Content-Length",
+              "description": "The length of the response body in octets (8-bit bytes)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "text/plain;charset=UTF-8",
+              "name": "Content-Type",
+              "description": "The mime type of this content"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 19 Jun 2018 13:07:53 GMT",
+              "name": "Date",
+              "description": "The date and time that the message was sent"
+            },
+            {
+              "key": "Server",
+              "value": "Apache-Coyote/1.1",
+              "name": "Server",
+              "description": "A name for the server"
+            }
+          ],
+          "cookie": [],
+          "body": "testme3"
+        }
+      ]
+    },
+    {
+      "name": "operation stop",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "e5b71c76-f0ec-48c9-86f0-eeb1ee615535",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 90000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(90000);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is application/json\", function(){",
+              "    var contentType = pm.response.headers.get('Content-Type');",
+              "    pm.expect(contentType).to.include('application/json');",
               "});",
               ""
             ],
@@ -836,34 +927,100 @@
           }
         }
       ],
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
       "request": {
-        "method": "GET",
+        "method": "POST",
         "header": [
           {
             "key": "api-key",
             "value": "{{api-key}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
           }
         ],
         "body": {
           "mode": "raw",
-          "raw": ""
+          "raw": "{\"action\":\"stop\", \"services\":[\"edgex-support-notifications\"] }"
         },
         "url": {
-          "raw": "{{systemManagementUrl}}/api/v1/ping",
+          "raw": "{{systemManagementUrl}}/api/v1/operation",
           "host": [
             "{{systemManagementUrl}}"
           ],
           "path": [
             "api",
             "v1",
-            "ping"
+            "operation"
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "Create Regression Model - POST",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api-key}}",
+                "disabled": false
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{systemManagementUrl}}/api/v1/operation",
+              "host": [
+                "{{systemManagementUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "operation"
+              ]
+            }
+          },
+          "status": "Accepted",
+          "code": 202,
+          "_postman_previewlanguage": "plain",
+          "header": [
+            {
+              "key": "Content-Length",
+              "value": "7",
+              "name": "Content-Length",
+              "description": "The length of the response body in octets (8-bit bytes)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "text/plain;charset=UTF-8",
+              "name": "Content-Type",
+              "description": "The mime type of this content"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 19 Jun 2018 13:07:53 GMT",
+              "name": "Date",
+              "description": "The date and time that the message was sent"
+            },
+            {
+              "key": "Server",
+              "value": "Apache-Coyote/1.1",
+              "name": "Server",
+              "description": "A name for the server"
+            }
+          ],
+          "cookie": [],
+          "body": "testme3"
+        }
+      ]
     }
   ]
 }
