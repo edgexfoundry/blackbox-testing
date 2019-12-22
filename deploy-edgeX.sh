@@ -75,8 +75,6 @@ run_service data
 
 run_service app-service-rules
 
-run_service rulesengine
-
 run_service notifications
 
 run_service metadata
@@ -90,8 +88,6 @@ run_service system
 run_service device-virtual
 
 run_service app-service-configurable
-
-sleep 100s # Wait for rulesengine fully startup, because it takes around 100s on Raspberry Pi
 
 echo "------- volume ------"
 docker logs edgex-files
@@ -119,8 +115,6 @@ echo "------- logging ------"
 docker logs edgex-support-logging
 echo "------- data ------"
 docker logs edgex-core-data
-echo "------- rulesengine ------"
-docker logs edgex-support-rulesengine
 echo "------- notifications ------"
 docker logs edgex-support-notifications
 echo "------- metadata ------"

@@ -185,8 +185,7 @@ After deploying services, we can test the service's API using the following comm
 
 ======================  ======================
 Testservice             command 
-----------------------  ----------------------    
-support-rulesengine	     bash ./bin/run.sh -ru
+----------------------  ----------------------
 support-notification	 bash ./bin/run.sh -sn
 support-logging	         bash ./bin/run.sh -log
 core-metadata	         bash ./bin/run.sh -md
@@ -203,7 +202,7 @@ You can run bash ./bin/run.sh to list these options:
     ...
     ...
     [INFO] Init postman test data .
-    run.sh:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-ru Rulesengine] | [-all All]
+    run.sh:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-all All]
 
 ----------------------------------------------
 Present Test Result Using the Allure Framework
