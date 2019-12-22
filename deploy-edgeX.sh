@@ -77,7 +77,7 @@ run_service export-distro
 
 run_service app-service-rules
 
-run_service rulesengine
+[ "$(uname -m)" = "x86_64" ] && run_service rulesengine
 
 run_service notifications
 
@@ -90,8 +90,6 @@ run_service scheduler
 run_service device-virtual
 
 run_service app-service-configurable
-
-sleep 100s # Wait for rulesengine fully startup, because it takes around 100s on Raspberry Pi
 
 echo "------- volume ------"
 docker logs edgex-files
