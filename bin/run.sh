@@ -105,7 +105,7 @@ testAll() {
 	loggingTest
 	supportNotificationTest
 	exportClientTest
-	rulesengineTest
+	[ "$(uname -m)" = "x86_64" ] && rulesengineTest
 	supportSchedulerTest
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
