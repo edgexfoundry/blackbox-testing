@@ -23,7 +23,6 @@ METADATALOGSPATH=$BASEPATH/metaData$TIMESTAMPFORMAT.log
 COMMANDLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
 LOGGINGLOGSPATH=$BASEPATH/logging$TIMESTAMPFORMAT.log
 SUPPORT_NOTIFICATION_LOG_PATH=$BASEPATH/supportNotification$TIMESTAMPFORMAT.log
-RULESENGINELOGSPATH=$BASEPATH/rulesengine$TIMESTAMPFORMAT.log
 SUPPORT_SCHEDULER_LOG_PATH=$BASEPATH/supportScheduler$TIMESTAMPFORMAT.log
 SYSTEMMANAGEMENTLOGSPATH=$BASEPATH/systemmanagement$TIMESTAMPFORMAT.log
 DEVICEVIRTUALLOGSPATH=$BASEPATH/devicevirtual$TIMESTAMPFORMAT.log
@@ -81,10 +80,6 @@ systemManagementTest(){
 	$(dirname "$0")/systemManagementTest.sh
 }
 
-rulesengineTest() {
-	$(dirname "$0")/rulesengineTest.sh
-}
-
 supportSchedulerTest(){
     $(dirname "$0")/importSupportSchedulerDump.sh
     $(dirname "$0")/supportSchedulerTest.sh
@@ -108,7 +103,6 @@ testAll() {
   metaDataTest
   loggingTest
   supportNotificationTest
-  rulesengineTest
   supportSchedulerTest
   systemManagementTest
 
@@ -161,10 +155,6 @@ case ${option} in
     echo "Info: Initiating SupportScheduler Test"
     supportSchedulerTest | tee $SUPPORT_SCHEDULER_LOG_PATH
     ;;
-    -ru)
-    echo "Info: Initiating SupportRulesengine Test"
-    rulesengineTest	| tee $RULESENGINELOGSPATH
-    ;;
     -dv)
     echo "Info: Initiating DeviceVirtual Test"
     deviceVirtualTest	| tee $DEVICEVIRTUALLOGSPATH
@@ -182,7 +172,7 @@ case ${option} in
 	testAll		| tee $EDGEXLOGSPATH
     ;;
    	*)
-    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-ss SupportScheduler] | [-ru Rulesengine] | [-dv DeviceVirtual] | [-asc AppServiceConfigurable] | [-sec securityTest] | [-all All]"
+    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-ss SupportScheduler] | [-dv DeviceVirtual] | [-asc AppServiceConfigurable] | [-sec securityTest] | [-all All]"
     echo
     exit 0
     ;;

@@ -442,25 +442,6 @@ services:
       - logging
       - data
 
-  rulesengine:
-    image: ${supportRulesengine}
-    ports:
-      - "48075:48075"
-    container_name: edgex-support-rulesengine
-    hostname: edgex-support-rulesengine
-    networks:
-      edgex-network:
-        aliases:
-          - edgex-support-rulesengine
-    volumes:
-      - db-data:/data/db:z
-      - log-data:/edgex/logs:z
-      - consul-config:/consul/config:z
-      - consul-data:/consul/data:z
-      - vault-config:/vault/config:ro,z
-    depends_on:
-      - app-service-rules
-
   system:
     image: ${systemManagement}
     ports:
