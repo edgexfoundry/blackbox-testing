@@ -21,12 +21,12 @@ echo "[info] ---------- use docker-compose run newman ----------"
 
 echo "[info] ======================== Start run support scheduler tests ========================"
 
-docker-compose run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
     --folder="interval" --iteration-data="data/intervalData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
 
-docker-compose run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
     --folder="intervalAction" --iteration-data="data/intervalActionData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 

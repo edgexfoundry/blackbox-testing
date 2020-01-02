@@ -17,7 +17,7 @@ fi
 
 echo "Info: Initiating Securityservice Test."
 
-#OT=$(docker-compose run edgex-proxy --init=false --useradd=jerry --group=admin | tail -1)
+#OT=$(docker-compose -f $(ls ../ | awk '/docker-compose/ && !/test-tools/') run edgex-proxy --init=false --useradd=jerry --group=admin | tail -1)
 #TOKEN=$( echo $OT | sed 's/.*: \([^.]*\).*/\1/')
 #echo $TOKEN
 
@@ -27,7 +27,7 @@ echo "Info: Initiating Securityservice Test."
 
 echo "[info] ---------- use docker-compose run newman ----------"
 
-docker-compose run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
     --environment=${ENV_PATH} --insecure --reporters="junit,cli" --global-var accessToken=$TOKEN --global-var rootKey=$ROOTKEY
 
 

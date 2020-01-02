@@ -6,6 +6,6 @@ ENV_PATH="environment/core-data-docker.postman_environment.json"
 
 echo "Info: import Coredata's test data."
 
-docker-compose run --rm postman run ${COLLECTION_PATH} --environment=${ENV_PATH}
+docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} --environment=${ENV_PATH}
 
 echo "Info: Coredata's test data imported"
