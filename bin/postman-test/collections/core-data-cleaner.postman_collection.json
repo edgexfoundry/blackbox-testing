@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "97f518a2-0263-4280-b43b-cc878323f2ff",
+		"_postman_id": "f98b9477-cd28-43b4-bd41-72b4e483d1d4",
 		"name": "core-data-cleaner",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,8 +14,14 @@
 						"id": "195d88f2-c6f4-4a51-8297-2d1daa5c6935",
 						"exec": [
 							"var baseUrl = pm.environment.get(\"baseUrl\");",
+							"var request = {",
+							"  url: baseUrl+'/api/v1/event',",
+							"  method: 'GET'",
+							"};",
 							"",
-							"pm.sendRequest(baseUrl+\"/api/v1/event\", function (err, res) {",
+							"request = utils.checkToken(request);",
+							"",
+							"pm.sendRequest(request, function (err, res) {",
 							"    removeData(res.json())",
 							"});",
 							"",
@@ -23,6 +29,7 @@
 							"    var request = {",
 							"      method: 'DELETE'",
 							"    };",
+							"    request = utils.checkToken(request);",
 							"    ",
 							"    var count = 0;",
 							"    var failedCount = 0;",
@@ -47,8 +54,6 @@
 							"    }, 500);",
 							"    ",
 							"}",
-							"",
-							"",
 							""
 						],
 						"type": "text/javascript"
@@ -98,8 +103,13 @@
 						"id": "f1038d15-eba5-4afb-94aa-9f8929b28cf6",
 						"exec": [
 							"var baseUrl = pm.environment.get(\"baseUrl\");",
+							"var request = {",
+							"  url: baseUrl+'/api/v1/reading',",
+							"  method: 'GET'",
+							"};",
+							"request = utils.checkToken(request);",
 							"",
-							"pm.sendRequest(baseUrl+\"/api/v1/reading\", function (err, res) {",
+							"pm.sendRequest(request, function (err, res) {",
 							"    removeData(res.json())",
 							"});",
 							"",
@@ -107,6 +117,7 @@
 							"    var request = {",
 							"      method: 'DELETE'",
 							"    };",
+							"    request = utils.checkToken(request);",
 							"    ",
 							"    var count = 0;",
 							"    var failedCount = 0;",
@@ -131,8 +142,6 @@
 							"    }, 500);",
 							"    ",
 							"}",
-							"",
-							"",
 							""
 						],
 						"type": "text/javascript"
@@ -142,10 +151,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -179,6 +184,11 @@
 						"id": "f1038d15-eba5-4afb-94aa-9f8929b28cf6",
 						"exec": [
 							"var baseUrl = pm.environment.get(\"baseUrl\");",
+							"var request = {",
+							"  url: baseUrl+'/api/v1/valuedescriptor',",
+							"  method: 'GET'",
+							"};",
+							"request = utils.checkToken(request);",
 							"",
 							"pm.sendRequest(baseUrl+\"/api/v1/valuedescriptor\", function (err, res) {",
 							"    removeData(res.json())",
@@ -188,6 +198,7 @@
 							"    var request = {",
 							"      method: 'DELETE'",
 							"    };",
+							"    request = utils.checkToken(request);",
 							"    ",
 							"    var count = 0;",
 							"    var failedCount = 0;",
@@ -223,10 +234,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -241,5 +248,50 @@
 			},
 			"response": []
 		}
-	]
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c69e8a38-1f48-4b43-9645-fe6e97adcc0d",
+				"type": "text/javascript",
+				"exec": [
+					"utils = {",
+					"    checkToken: function(request) {",
+					"        var accessToken = pm.environment.get(\"accessToken\");",
+					"        if (accessToken !== undefined) {",
+					"            var header = {",
+					"                authorization: 'Bearer '+accessToken",
+					"            };",
+					"            request.header = header;   ",
+					"        }",
+					"        return request;",
+					"    }",
+					"};",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a3ae4f19-5ecd-422b-a9a6-eca256dd8499",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
 }

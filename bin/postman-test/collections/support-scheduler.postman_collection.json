@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3f688e68-18fc-4f8f-87f2-4b5b9130dba5",
+		"_postman_id": "f0141143-a37e-4dc6-b1ff-93dd017a3844",
 		"name": "support-scheduler",
 		"description": "support-scheduler blackbox tests with pre-req scripts",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -58,10 +58,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/interval",
 							"host": [
@@ -100,6 +96,7 @@
 									"  }",
 									"};",
 									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"intervalGetRequestId\", res.stream.toString());",
 									"});"
@@ -158,10 +155,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/interval/{{intervalGetRequestId}}",
 							"host": [
@@ -200,6 +193,7 @@
 									"  }",
 									"};",
 									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"intervalPutId\", res.stream.toString());",
 									"});"
@@ -294,6 +288,7 @@
 									"  }",
 									"};",
 									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"intervalDeleteId\", res.stream.toString());",
 									"});"
@@ -443,7 +438,8 @@
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "intervalAction",
@@ -496,10 +492,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/intervalaction",
 							"host": [
@@ -542,6 +534,7 @@
 									"  }",
 									"};",
 									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"intervalActionGetRequestId\", res.stream.toString());",
 									"});"
@@ -600,10 +593,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/intervalaction/{{intervalActionGetRequestId}}",
 							"host": [
@@ -647,6 +636,7 @@
 									"  }",
 									"};",
 									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"intervalActionPutId\", res.stream.toString());",
 									"});"
@@ -745,6 +735,7 @@
 									"  }",
 									"};",
 									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"intervalActionDeleteId\", res.stream.toString());",
 									"});"
@@ -872,9 +863,20 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -1063,7 +1065,21 @@
 					"      };",
 					"      ",
 					"pm.globals.set(\"intervalSchema\", intervalSchema);",
-					"pm.globals.set(\"intervalActionSchema\", intervalActionSchema);"
+					"pm.globals.set(\"intervalActionSchema\", intervalActionSchema);",
+					"",
+					"utils = {",
+					"    checkToken: function(request) {",
+					"        var accessToken = pm.globals.get(\"accessToken\");",
+					"        if (accessToken !== undefined) {",
+					"            var header = {",
+					"                authorization: 'Bearer '+accessToken",
+					"            };",
+					"            request.header = header;   ",
+					"        }",
+					"        return request;",
+					"    }",
+					"};",
+					""
 				]
 			}
 		},
@@ -1077,5 +1093,6 @@
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

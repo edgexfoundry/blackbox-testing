@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ad787b2f-5ae3-43c3-b2ab-12b92fb92f7b",
+		"_postman_id": "4b1eceeb-25eb-44a2-99f8-ddb3f60612d5",
 		"name": "device-virtual",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -43,14 +43,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}/api/v1/ping",
+					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
-						"{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"api",
@@ -105,14 +101,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-Boolean-Device",
+					"raw": "{{baseUrl-coreMetadata}}/api/v1/deviceprofile/name/Random-Boolean-Device",
 					"host": [
-						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
+						"{{baseUrl-coreMetadata}}"
 					],
 					"path": [
 						"api",
@@ -168,14 +160,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-Integer-Device",
+					"raw": "{{baseUrl-coreMetadata}}/api/v1/deviceprofile/name/Random-Integer-Device",
 					"host": [
-						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
+						"{{baseUrl-coreMetadata}}"
 					],
 					"path": [
 						"api",
@@ -231,14 +219,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-UnsignedInteger-Device",
+					"raw": "{{baseUrl-coreMetadata}}/api/v1/deviceprofile/name/Random-UnsignedInteger-Device",
 					"host": [
-						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
+						"{{baseUrl-coreMetadata}}"
 					],
 					"path": [
 						"api",
@@ -294,14 +278,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/deviceprofile/name/Random-Float-Device",
+					"raw": "{{baseUrl-coreMetadata}}/api/v1/deviceprofile/name/Random-Float-Device",
 					"host": [
-						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
+						"{{baseUrl-coreMetadata}}"
 					],
 					"path": [
 						"api",
@@ -357,14 +337,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/device/name/Random-Boolean-Device",
+					"raw": "{{baseUrl-coreMetadata}}/api/v1/device/name/Random-Boolean-Device",
 					"host": [
-						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
+						"{{baseUrl-coreMetadata}}"
 					],
 					"path": [
 						"api",
@@ -420,14 +396,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/device/name/Random-Integer-Device",
+					"raw": "{{baseUrl-coreMetadata}}/api/v1/device/name/Random-Integer-Device",
 					"host": [
-						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
+						"{{baseUrl-coreMetadata}}"
 					],
 					"path": [
 						"api",
@@ -483,14 +455,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/device/name/Random-UnsignedInteger-Device",
+					"raw": "{{baseUrl-coreMetadata}}/api/v1/device/name/Random-UnsignedInteger-Device",
 					"host": [
-						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
+						"{{baseUrl-coreMetadata}}"
 					],
 					"path": [
 						"api",
@@ -546,14 +514,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}/api/v1/device/name/Random-Float-Device",
+					"raw": "{{baseUrl-coreMetadata}}/api/v1/device/name/Random-Float-Device",
 					"host": [
-						"{{coreMetaDataServiceHost}}{{coreMetadataServicePort}}"
+						"{{baseUrl-coreMetadata}}"
 					],
 					"path": [
 						"api",
@@ -601,9 +565,9 @@
 					"raw": "{\"Int8\":\"66\"}"
 				},
 				"url": {
-					"raw": "{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}/api/v1/device/name/Random-Integer-Device/Int8",
+					"raw": "{{baseUrl}}/api/v1/device/name/Random-Integer-Device/Int8",
 					"host": [
-						"{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"api",
@@ -660,14 +624,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}/api/v1/device/name/Random-Integer-Device/Int8",
+					"raw": "{{baseUrl}}/api/v1/device/name/Random-Integer-Device/Int8",
 					"host": [
-						"{{virtualDeviceServiceHost}}{{virtualDeviceServicePort}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"api",
@@ -681,5 +641,38 @@
 			},
 			"response": []
 		}
-	]
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ec3dd63f-f91d-4cca-bb97-d602814705f2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "8a8fa7d1-2215-43cf-938e-e74ebec1c77d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
 }

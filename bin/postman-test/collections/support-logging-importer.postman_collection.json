@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c3fe6294-0a25-40d9-8f19-b4bd82e8edb7",
+		"_postman_id": "e4270dff-1e27-4355-aa60-668639bddb9b",
 		"name": "\b\bsupport-logging-importer",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -163,6 +163,7 @@
 							"    raw: 'json string'",
 							"  }",
 							"};",
+							"request = utils.checkToken(request);",
 							"",
 							"var count = 0;",
 							"var failedCount = 0;",
@@ -195,10 +196,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{supportLoggingUrl}}/api/v1/ping",
 					"host": [
@@ -214,6 +211,16 @@
 			"response": []
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -221,6 +228,18 @@
 				"id": "9895fac7-3c08-4435-a3d4-f8e49206b681",
 				"type": "text/javascript",
 				"exec": [
+					"utils = {",
+					"    checkToken: function(request) {",
+					"        var accessToken = pm.globals.get(\"accessToken\");",
+					"        if (accessToken !== undefined) {",
+					"            var header = {",
+					"                authorization: 'Bearer '+accessToken",
+					"            };",
+					"            request.header = header;   ",
+					"        }",
+					"        return request;",
+					"    }",
+					"};",
 					""
 				]
 			}
@@ -235,5 +254,6 @@
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

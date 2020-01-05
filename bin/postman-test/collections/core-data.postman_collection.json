@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4d75a6a4-b4cb-404f-ac25-4a6e58e2c148",
+		"_postman_id": "c47bc875-a293-4f6d-8cea-639bd82f647a",
 		"name": "core-data",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -64,10 +64,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/event",
 							"host": [
@@ -147,6 +143,7 @@
 									"  }",
 									"};",
 									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"eventID\", res.stream.toString());",
 									"});"
@@ -321,6 +318,7 @@
 									"  }",
 									"};",
 									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"eventGetRequestId\", res.stream.toString());",
 									"});"
@@ -332,10 +330,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/event/{{eventGetRequestId}}",
 							"host": [
@@ -416,6 +410,7 @@
 									"  }",
 									"};",
 									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"eventPutRequestId\", res.stream.toString());",
 									"});"
@@ -517,6 +512,7 @@
 									"  }",
 									"};",
 									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"eventDelRequestId\", res.stream.toString());",
 									"});"
@@ -613,10 +609,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/event/device/{{deviceGetRequestName}}/{{limit}}",
 							"host": [
@@ -699,10 +691,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/event/device/{{deviceGetRequestId}}/{{limit}}",
 							"host": [
@@ -898,10 +886,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/event/{{start}}/{{end}}/{{limit}}",
 							"host": [
@@ -1288,7 +1272,8 @@
 					"response": []
 				}
 			],
-			"description": "Folder for event"
+			"description": "Folder for event",
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "event_error_4xx",
@@ -1470,10 +1455,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/event/device/{{invalidId}}/{{limit}}",
 							"host": [
@@ -1607,10 +1588,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/event/{{invalidId}}",
 							"host": [
@@ -1646,10 +1623,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/event/{{start}}/{{end}}/{{invalidLimit}}",
 							"host": [
@@ -1669,7 +1642,8 @@
 					"response": []
 				}
 			],
-			"description": "Folder for event"
+			"description": "Folder for event",
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "reading",
@@ -1728,10 +1702,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading",
 							"host": [
@@ -1804,7 +1774,7 @@
 									"    raw: JSON.stringify(data)",
 									"  }",
 									"};",
-									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"readingID\", res.stream.toString());",
 									"});"
@@ -1945,8 +1915,12 @@
 								"id": "9a7568d1-69d8-4a79-9f13-85e6ad093aae",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
-									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/reading/0/10000000000000/1\", function (err, res) {",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/reading/0/10000000000000/1',",
+									"  method: 'GET',",
+									"};",
+									"request = utils.checkToken(request);",
+									"pm.sendRequest(request, function (err, res) {",
 									"    if (err) {",
 									"        console.log(err);",
 									"        console.log(err);",
@@ -1962,10 +1936,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading/{{readingGetRequestId}}",
 							"host": [
@@ -2034,7 +2004,7 @@
 									"    raw: JSON.stringify(data)",
 									"  }",
 									"};",
-									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"readingDelRequestId\", res.stream.toString());",
 									"});"
@@ -2128,10 +2098,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading/device/{{deviceGetRequestId}}/{{limit}}",
 							"host": [
@@ -2213,10 +2179,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading/name/{{readingValueDescriptorName}}/{{limit}}",
 							"host": [
@@ -2311,10 +2273,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading/uomlabel/{{readingValueDescriptorUom}}/{{limit}}",
 							"host": [
@@ -2404,10 +2362,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading/label/{{readingValueDescriptorLabel}}/{{limit}}",
 							"host": [
@@ -2483,10 +2437,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading/type/{{readingValueDescriptorType}}/{{limit}}",
 							"host": [
@@ -2562,10 +2512,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading/{{start}}/{{end}}/{{limit}}",
 							"host": [
@@ -2683,8 +2629,12 @@
 								"id": "c5606c01-2a27-4719-b1a1-b30999ee76e8",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
-									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/reading/0/10000000000000/1\", function (err, res) {",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/reading/0/10000000000000/1',",
+									"  method: 'GET',",
+									"};",
+									"request = utils.checkToken(request);",
+									"pm.sendRequest(request, function (err, res) {",
 									"    if (err) {",
 									"        console.log(err);",
 									"    } else {",
@@ -2724,7 +2674,8 @@
 					"response": []
 				}
 			],
-			"description": "Folder for reading"
+			"description": "Folder for reading",
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "reading_error_4xx",
@@ -2832,7 +2783,8 @@
 					"response": []
 				}
 			],
-			"description": "Folder for reading"
+			"description": "Folder for reading",
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "valuedescriptor",
@@ -2884,10 +2836,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/valuedescriptor",
 							"host": [
@@ -2941,8 +2889,12 @@
 								"id": "d735b23c-4c8f-4775-9086-d623e4e3f364",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
-									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/valuedescriptor\", function (err, res) {",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/valuedescriptor',",
+									"  method: 'GET',",
+									"};",
+									"request = utils.checkToken(request);",
+									"pm.sendRequest(request, function (err, res) {",
 									"    if (err) {",
 									"        console.log(err);",
 									"    } else {",
@@ -3076,8 +3028,12 @@
 								"id": "0284f488-fa2d-40d8-92f0-c1e0222b72ea",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
-									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/valuedescriptor/name/temp\", function (err, res) {",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/valuedescriptor/name/temp',",
+									"  method: 'GET',",
+									"};",
+									"request = utils.checkToken(request);",
+									"pm.sendRequest(request, function (err, res) {",
 									"    if (err) {",
 									"        console.log(err);",
 									"    } else {",
@@ -3175,10 +3131,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/valuedescriptor/name/{{ValuedescriptorByName}}",
 							"host": [
@@ -3305,8 +3257,12 @@
 								"id": "d3443af7-64b9-42a6-b5c6-16f7d56b6206",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
-									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/valuedescriptor/name/ohm\", function (err, res) {",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/valuedescriptor/name/ohm',",
+									"  method: 'GET',",
+									"};",
+									"request = utils.checkToken(request);",
+									"pm.sendRequest(request, function (err, res) {",
 									"    if (err) {",
 									"        console.log(err);",
 									"    } else {",
@@ -3321,10 +3277,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/valuedescriptor/{{ValuedescriptorById}}",
 							"host": [
@@ -3388,10 +3340,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/valuedescriptor/uomlabel/{{ValuedescriptorByUmo}}",
 							"host": [
@@ -3456,10 +3404,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/valuedescriptor/label/{{ValuedescriptorByLabel}}",
 							"host": [
@@ -3478,7 +3422,8 @@
 					"response": []
 				}
 			],
-			"description": "Folder for valuedescriptor"
+			"description": "Folder for valuedescriptor",
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "valuedescriptor_error_4xx",
@@ -3727,8 +3672,12 @@
 								"id": "cdbdb49f-7294-42fb-b9ae-4bb3d34b6acb",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
-									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/valuedescriptor/name/ohm\", function (err, res) {",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/valuedescriptor/name/ohmr',",
+									"  method: 'GET',",
+									"};",
+									"request = utils.checkToken(request);",
+									"pm.sendRequest(request, function (err, res) {",
 									"    if (err) {",
 									"        console.log(err);",
 									"    } else {",
@@ -3847,8 +3796,12 @@
 								"id": "1cc8c37c-3e62-40d3-9433-c8dc911a5710",
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
-									"",
-									"pm.sendRequest(baseUrl+\"/api/v1/valuedescriptor/name/temperature\", function (err, res) {",
+									"var request = {",
+									"  url: baseUrl+'/api/v1/valuedescriptor/name/temperaturer',",
+									"  method: 'GET',",
+									"};",
+									"request = utils.checkToken(request);",
+									"pm.sendRequest(request, function (err, res) {",
 									"    if (err) {",
 									"        console.log(err);",
 									"    } else {",
@@ -3943,7 +3896,8 @@
 					"response": []
 				}
 			],
-			"description": "Folder for valuedescriptor"
+			"description": "Folder for valuedescriptor",
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "ping",
@@ -3982,10 +3936,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/ping",
 							"host": [
@@ -4006,10 +3956,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/ping",
 							"host": [
@@ -4026,9 +3972,20 @@
 					"response": []
 				}
 			],
-			"description": "Folder for ping"
+			"description": "Folder for ping",
+			"protocolProfileBehavior": {}
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -4242,7 +4199,21 @@
 					"    ",
 					"pm.globals.set(\"eventSchema\", eventSchema);",
 					"pm.globals.set(\"readingSchema\", readingSchema);",
-					"pm.globals.set(\"valueDescriptorSchema\", valueDescriptorSchema);"
+					"pm.globals.set(\"valueDescriptorSchema\", valueDescriptorSchema);",
+					"",
+					"utils = {",
+					"    checkToken: function(request) {",
+					"        var accessToken = pm.globals.get(\"accessToken\");",
+					"        if (accessToken !== undefined) {",
+					"            var header = {",
+					"                authorization: 'Bearer '+accessToken",
+					"            };",
+					"            request.header = header;   ",
+					"        }",
+					"        return request;",
+					"    }",
+					"};",
+					""
 				]
 			}
 		},
@@ -4256,5 +4227,6 @@
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
