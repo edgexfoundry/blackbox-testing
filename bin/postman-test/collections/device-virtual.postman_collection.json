@@ -34,10 +34,6 @@
 							"pm.test(\"Content-Type is present\", function () {",
 							"    pm.response.to.have.header(\"Content-Type\");",
 							"});",
-							"",
-							"pm.test(\"Response body is correct\", function () {",
-							"    pm.expect(pm.response.text()).to.include(\"1.1.0\");",
-							"});",
 							""
 						],
 						"type": "text/javascript"
