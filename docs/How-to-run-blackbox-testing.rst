@@ -19,15 +19,7 @@ You must also clone the repo from https://github.com/edgexfoundry/blackbox-testi
 ============
 Setup env.sh
 ============
-To set up the environment variables for the test script, do the following:
-
-1.Open the **path/to/blackbox-testing/deploy-edgeX.sh** file and uncomment the following code snippet:
-
-. $(dirname "$0")/bin/env.sh
-
-.. image:: images/env-setup1.png
-
-2. Open the **path/to/blackbox-testing/bin/run.sh** file and uncomment the following code snippet:
+To set up the environment variables for the test script, open the **path/to/blackbox-testing/bin/run.sh** file and uncomment the following code snippet:
 
 . $(dirname "$0")/env.sh
 
@@ -41,6 +33,9 @@ Change directory to **path/to/blackbox-testing/**, and execute the following com
 
 .. code-block:: bash
 
+        $ export RELEASE=fuji #if using fuji release is needed; the default is nightly-build
+        $ export SECURITY_SERVICE_NEEDED=true #if the security services are needed
+        $ export FOR_REDIS=true #if running the services (no security) with Redis is needed
         $ bash deploy-edgeX.sh
 
 The console displays output similar to the following:
@@ -76,14 +71,14 @@ The console displays output similar to the following:
 
     $ docker ps
     CONTAINER ID        IMAGE                                                              COMMAND                  CREATED             STATUS              PORTS                                                                                                            NAMES
-    f1b490b3e0c3        nexus3.edgexfoundry.org:10004/docker-core-command-go:0.5.2         "/core-command --con…"   3 minutes ago       Up 3 minutes        0.0.0.0:48082->48082/tcp                                                                                         blackbox-testing_command_1
-    055dc4d48442        nexus3.edgexfoundry.org:10004/docker-core-data-go:0.5.2            "/core-data --consul…"   3 minutes ago       Up 3 minutes        0.0.0.0:48080->48080/tcp, 0.0.0.0:32781->5563/tcp                                                                blackbox-testing_data_1
-    e0aa5a675d7d        nexus3.edgexfoundry.org:10004/docker-core-metadata-go:0.5.2        "/core-metadata --co…"   3 minutes ago       Up 3 minutes        0.0.0.0:48081->48081/tcp, 48082/tcp                                                                              blackbox-testing_metadata_1
-    deaa276c175f        nexus3.edgexfoundry.org:10004/docker-support-notifications:0.5.0   "/bin/sh -c 'java -j…"   3 minutes ago       Up 3 minutes        0.0.0.0:48060->48060/tcp                                                                                         blackbox-testing_notifications_1
-    18336488dba4        nexus3.edgexfoundry.org:10004/docker-support-logging-go:0.5.2      "/support-logging --…"   4 minutes ago       Up 4 minutes        0.0.0.0:48061->48061/tcp                                                                                         blackbox-testing_logging_1
+    f1b490b3e0c3        nexus3.edgexfoundry.org:10004/docker-core-command-go:master         "/core-command --con…"   3 minutes ago       Up 3 minutes        0.0.0.0:48082->48082/tcp                                                                                         blackbox-testing_command_1
+    055dc4d48442        nexus3.edgexfoundry.org:10004/docker-core-data-go:master            "/core-data --consul…"   3 minutes ago       Up 3 minutes        0.0.0.0:48080->48080/tcp, 0.0.0.0:32781->5563/tcp                                                                blackbox-testing_data_1
+    e0aa5a675d7d        nexus3.edgexfoundry.org:10004/docker-core-metadata-go:master        "/core-metadata --co…"   3 minutes ago       Up 3 minutes        0.0.0.0:48081->48081/tcp, 48082/tcp                                                                              blackbox-testing_metadata_1
+    deaa276c175f        nexus3.edgexfoundry.org:10004/docker-support-notifications:master   "/bin/sh -c 'java -j…"   3 minutes ago       Up 3 minutes        0.0.0.0:48060->48060/tcp                                                                                         blackbox-testing_notifications_1
+    18336488dba4        nexus3.edgexfoundry.org:10004/docker-support-logging-go:master      "/support-logging --…"   4 minutes ago       Up 4 minutes        0.0.0.0:48061->48061/tcp                                                                                         blackbox-testing_logging_1
     05896fe88e17        nexus3.edgexfoundry.org:10004/docker-edgex-mongo:master            "docker-entrypoint.s…"   4 minutes ago       Up 4 minutes        0.0.0.0:27017->27017/tcp                                                                                         blackbox-testing_mongo_1
     85d0e33c4924        nexus3.edgexfoundry.org:10004/docker-core-config-seed-go:master    "docker-entrypoint.s…"   4 minutes ago       Up 4 minutes        8300-8302/tcp, 8400/tcp, 8500/tcp, 8301-8302/udp, 8600/tcp, 8600/udp                                             blackbox-testing_config-seed_1
-    9e4bf85969d7        consul:1.1.0                                                       "docker-entrypoint.s…"   4 minutes ago       Up 4 minutes        0.0.0.0:8400->8400/tcp, 8301-8302/udp, 0.0.0.0:8500->8500/tcp, 8300-8302/tcp, 8600/udp, 0.0.0.0:8600->8600/tcp   blackbox-testing_consul_1
+    9e4bf85969d7        consul:1.3.1                                                       "docker-entrypoint.s…"   4 minutes ago       Up 4 minutes        0.0.0.0:8400->8400/tcp, 8301-8302/udp, 0.0.0.0:8500->8500/tcp, 8300-8302/tcp, 8600/udp, 0.0.0.0:8600->8600/tcp   blackbox-testing_consul_1
     47f532468383        nexus3.edgexfoundry.org:10004/docker-edgex-volume:master           "/bin/sh -c '/usr/bi…"   4 minutes ago       Up 4 minutes                                                                                                                         blackbox-testing_volume_1
 
 =====================
@@ -96,7 +91,7 @@ The script logic is as follows:
 - Run the Newman test script
 - Clean test data
 
-For example, when we execute **bash ./bin/run.sh -cd**, then the script logic is:
+For example, when we execute **bash ./run.sh -cd** under **path/to/blackbox-testing/bin**, then the script logic is:
 
 - Import core-data's test data into Edgex
 - Run core-data's test script
@@ -106,7 +101,7 @@ The output is similar to the following:
 
 .. code-block:: bash
 
-    $ bash ./bin/run.sh -cd
+    $ cd bin; bash ./run.sh -cd
     -cd
     *********************************************************************
      _____    _           __  __  _____                     _            
@@ -194,11 +189,11 @@ core-command	         bash ./bin/run.sh -co
 All	                     bash ./bin/run.sh -all 
 ======================  ======================
 
-You can run bash ./bin/run.sh to list these options:
+You can run bash ./run.sh under **path/to/blackbox-testing/bin** to list these options:
 
 .. code-block:: bash
 
-    $ bash ./bin/run.sh
+    $ bash ./run.sh
     ...
     ...
     [INFO] Init postman test data .
@@ -231,6 +226,8 @@ For example:
 .. image:: images/allure-serve.png
 
 For more information about the Allure framework, visit https://docs.qameta.io/allure/
+
+Another way to get Allure report is using Allure docker service, see https://github.com/fescobar/allure-docker-service
 
 ------------------------------------------
 Running Newman Tests for Local Development
