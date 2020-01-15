@@ -1,14 +1,14 @@
 #!/bin/bash
 
-OT=$(docker-compose -f $(ls ../ | awk '/docker-compose/ && !/test-tools/') run edgex-proxy --init=false --useradd=jerry --group=admin | tail -1)
+OT=$(docker-compose -f ../$(ls ../ | awk '/docker-compose/ && !/test-tools/') run --rm --entrypoint /edgex/security-proxy-setup edgex-proxy --init=false --useradd=jerry --group=admin | tail -1)
 export TOKEN=$( echo $OT | sed 's/.*: \([^.]*\).*/\1/')
 
-#echo $TOKEN
+#echo TOKEN=$TOKEN
 
-RT=$(docker exec -i edgex-vault sh -c "cat /vault/config/assets/resp-init.json")
-export ROOTKEY=$(echo $RT | sed 's/.*"\(.*\)"[^"]*$/\1/')
+RT=$(docker exec -i edgex-vault-worker sh -c "cat /tmp/edgex/secrets/edgex-security-proxy-setup/secrets-token.json")
+export VAULTKEY=$(echo $RT | sed 's/.*"client_token":"\([^"]*\)".*/\1/')
 
-#echo $ROOTKEY
+#echo VAULTKEY=$VAULTKEY
 
 echo "Info:Securityservice Setup Completed."
 

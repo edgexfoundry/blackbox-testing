@@ -17,18 +17,10 @@ fi
 
 echo "Info: Initiating Securityservice Test."
 
-#OT=$(docker-compose -f $(ls ../ | awk '/docker-compose/ && !/test-tools/') run edgex-proxy --init=false --useradd=jerry --group=admin | tail -1)
-#TOKEN=$( echo $OT | sed 's/.*: \([^.]*\).*/\1/')
-#echo $TOKEN
-
-#RT=$(docker exec -i edgex-vault sh -c "cat /vault/config/assets/resp-init.json")
-#ROOTKEY=$(echo $RT | sed 's/.*"\(.*\)"[^"]*$/\1/')
-#echo $ROOTKEY
-
 echo "[info] ---------- use docker-compose run newman ----------"
 
 docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
-    --environment=${ENV_PATH} --insecure --reporters="junit,cli" --global-var accessToken=$TOKEN --global-var rootKey=$ROOTKEY
+    --environment=${ENV_PATH} --insecure --reporters="junit,cli" --global-var accessToken=$TOKEN --global-var vaultKey=$VAULTKEY
 
 
 #docker run --rm --user="1000" -v "${PWD}/bin/postman-test":/etc/newman --network=${DOCKER_NETWORK} postman/newman_ubuntu1404 run ${COLLECTION_PATH} \

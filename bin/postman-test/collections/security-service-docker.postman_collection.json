@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5b574b9d-4b39-4a66-8d81-442a27a33bfd",
+		"_postman_id": "8dcedfd2-1048-4b34-80c4-d63c067deed1",
 		"name": "security-service-docker",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -565,68 +565,12 @@
 					"response": []
 				},
 				{
-					"name": "02 mising vault keytest",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "b896f9ea-3e55-42cc-aa48-ef6d46ce4426",
-								"type": "text/javascript",
-								"exec": [
-									" /**",
-									" * Test Case:  /services - GET",
-									" * Version: Alpha",
-									" * @Author: Tingyu Zeng",
-									" * ",
-									" **/",
-									" ",
-									" tests[\"Missing secret store access check\"] = responseCode.code === 400;",
-									" ",
-									"  ",
-									" if(responseCode.code === 400){",
-									"       var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
-									"       tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
-									"       if (contentTypeHeaderExists) {",
-									"       tests[\"Content-Type is application/json\"] =  responseHeaders[\"Content-Type\"].has(\"application/json\");",
-									"       }",
-									"        if(responseBody.length!== 0){",
-									"            obj = JSON.parse(responseBody)",
-									"            tests[\"Missing token error\"] = obj.errors == \"missing client token\";",
-									"            ",
-									"        }",
-									"    }"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://{{vault}}:8200/v1/sys/key-status",
-							"protocol": "https",
-							"host": [
-								"{{vault}}"
-							],
-							"port": "8200",
-							"path": [
-								"v1",
-								"sys",
-								"key-status"
-							]
-						},
-						"description": "Test service providing an indication that the service is available."
-					},
-					"response": []
-				},
-				{
 					"name": "03 unauthorized vault key test",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "3d9c1ea2-fa77-4fa3-9cf7-1bac98b75adb",
-								"type": "text/javascript",
 								"exec": [
 									" /**",
 									" * Test Case:  /services - GET",
@@ -649,7 +593,8 @@
 									"            ",
 									"        }",
 									"    }"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -662,7 +607,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{vault}}:8200/v1/sys/key-status",
+							"raw": "https://{{vault}}:8200/v1/auth/token/lookup-self",
 							"protocol": "https",
 							"host": [
 								"{{vault}}"
@@ -670,8 +615,9 @@
 							"port": "8200",
 							"path": [
 								"v1",
-								"sys",
-								"key-status"
+								"auth",
+								"token",
+								"lookup-self"
 							]
 						},
 						"description": "Test service providing an indication that the service is available."
@@ -693,7 +639,7 @@
 									" * ",
 									" **/",
 									" ",
-									" tests[\"Valid secret store access check\"] = responseCode.code !== 403;"
+									" tests[\"Valid secret store access check\"] = responseCode.code === 200;"
 								],
 								"type": "text/javascript"
 							}
@@ -704,11 +650,11 @@
 						"header": [
 							{
 								"key": "X-Vault-Token",
-								"value": "{{rootKey}}"
+								"value": "{{vaultKey}}"
 							}
 						],
 						"url": {
-							"raw": "https://{{vault}}:8200/v1/sys/key-status",
+							"raw": "https://{{vault}}:8200/v1/auth/token/lookup-self",
 							"protocol": "https",
 							"host": [
 								"{{vault}}"
@@ -716,8 +662,9 @@
 							"port": "8200",
 							"path": [
 								"v1",
-								"sys",
-								"key-status"
+								"auth",
+								"token",
+								"lookup-self"
 							]
 						},
 						"description": "Test service providing an indication that the service is available."
