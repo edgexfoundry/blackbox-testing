@@ -19,24 +19,40 @@ You must also clone the repo from https://github.com/edgexfoundry/blackbox-testi
 ============
 Setup env.sh
 ============
-To set up the environment variables for the test script, open the **path/to/blackbox-testing/bin/run.sh** file and uncomment the following code snippet:
 
-. $(dirname "$0")/env.sh
+The following command to set up the environment
 
-.. image:: images/env-setup1.png
+.. code-block:: bash
+
+        . bin/env.sh
+
+Configure the rest of the environment
+
+.. code-block:: bash
+
+        export RELEASE=fuji #if using fuji release is needed; the default is nightly-build
+        export SECURITY_SERVICE_NEEDED=true #if the security services are needed
+
+Optionally use Mongo rather than the default Redis based persistence
+
+.. code-block:: bash
+
+        export FOR_REDIS=false #optional if Mongo is desired
+
+Optionally use local Docker Compose file rather than downloading from the repo. Note this overrides RELEASE.
+
+.. code-block:: bash
+
+        export COMPOSE_FILE_PATH=...full path to desired Docker Compose file...
 
 ============
 Deploy EdgeX
 ============
 
-Change directory to **path/to/blackbox-testing/**, and execute the following command:
+Then deploy EdgeX
 
 .. code-block:: bash
-
-        $ export RELEASE=fuji #if using fuji release is needed; the default is nightly-build
-        $ export SECURITY_SERVICE_NEEDED=true #if the security services are needed
-        $ export FOR_REDIS=true #if running the services (no security) with Redis is needed
-        $ bash deploy-edgeX.sh
+        ./deploy-edgeX.sh
 
 The console displays output similar to the following:
 
@@ -87,21 +103,40 @@ Run Test Using Newman
 
 The script logic is as follows:
 
-- Import test data into Edgex
+- Import test data into EdgeX
 - Run the Newman test script
 - Clean test data
 
-For example, when we execute **bash ./run.sh -cd** under **path/to/blackbox-testing/bin**, then the script logic is:
+The service's API are tested using the following commands:
 
-- Import core-data's test data into Edgex
-- Run core-data's test script
+======================  ======================
+Testservice             command 
+----------------------  ----------------------
+support-notification	 bin/run.sh -sn
+support-logging	         bin/run.sh -log
+core-metadata	         bin/run.sh -md
+core-data	             bin/run.sh -cd
+core-command	         bin/run.sh -co
+All	                     bin/run.sh -all 
+======================  ======================
+
+For example, when we execute 
+
+.. code-block:: bash
+
+    $ bin/run.sh -cd
+    
+then the script logic is:
+
+- Import **core-data's** test data into Edgex
+- Run **core-data's** test script
 - Clean core-data's test data
 
 The output is similar to the following:
 
 .. code-block:: bash
 
-    $ cd bin; bash ./run.sh -cd
+    $ bin/run.sh -cd
     -cd
     *********************************************************************
      _____    _           __  __  _____                     _            
@@ -176,24 +211,11 @@ The output is similar to the following:
     │ average response time: 6ms                    │
     └───────────────────────────────────────────────┘
 
-After deploying services, we can test the service's API using the following commands:
-
-======================  ======================
-Testservice             command 
-----------------------  ----------------------
-support-notification	 bash ./bin/run.sh -sn
-support-logging	         bash ./bin/run.sh -log
-core-metadata	         bash ./bin/run.sh -md
-core-data	             bash ./bin/run.sh -cd
-core-command	         bash ./bin/run.sh -co
-All	                     bash ./bin/run.sh -all 
-======================  ======================
-
-You can run bash ./run.sh under **path/to/blackbox-testing/bin** to list these options:
+To list all available options:
 
 .. code-block:: bash
 
-    $ bash ./run.sh
+    $ bin/run.sh
     ...
     ...
     [INFO] Init postman test data .
@@ -203,31 +225,23 @@ You can run bash ./run.sh under **path/to/blackbox-testing/bin** to list these o
 Present Test Result Using the Allure Framework
 ----------------------------------------------
 
-Install Allure: https://docs.qameta.io/allure/#_get_started
+Allure is based on standard xUnit results output. Once we have finished running the Newman script,
+the built-in JUnit reporter outputs a summary of the collection run to a JUnit compatible XML file.
+(Path: /blackbox-testing/bin/testResult/)
 
-Allure is based on standard xUnit results output. Once we have finished running the Newman script, the built-in JUnit reporter outputs a summary of the collection run to a JUnit compatible XML file. (Path: /blackbox-testing/bin/testResult/)
+The simplest way to use the service is through the Allure Docker service. For exhaustive
+documentation, see https://github.com/fescobar/allure-docker-service. Alternatively, install Allure
+as described in https://docs.qameta.io/allure/#_get_started
 
-Generate report using the following command:
+TL;DR: Install and start Allure Docker service
 
 .. code-block:: bash
 
-    $ allure serve /path-to-blackbox-testing-directory/blackbox-testing/bin/testResult
+    docker pull frankescobar/allure-docker-service
+    docker run -p 4040:4040 -p 5050:5050 -e CHECK_RESULTS_EVERY_SECONDS=3 -e KEEP_HISTORY="TRUE" -v /tmp/testResult:/app/allure-results frankescobar/allure-docker-service
 
-After executing the allure serve command, the following information is displayed in the terminal:
-
-1. The location of the generated report
-
-2. The URL to visit the report
-
-3. The operation to stop the local Allure web server (Ctrl+C)
-
-For example:
-
-.. image:: images/allure-serve.png
-
-For more information about the Allure framework, visit https://docs.qameta.io/allure/
-
-Another way to get Allure report is using Allure docker service, see https://github.com/fescobar/allure-docker-service
+This mounts the test results and checks for updates every 3 seconds. Now point your browser to
+http://localhost:4040 where you can review the report.
 
 ------------------------------------------
 Running Newman Tests for Local Development
@@ -262,7 +276,7 @@ where "collection_name" is the name of the collection (usually the name of the s
 Run Test Using Postman
 ======================
 
-The test uses same logic as **bash ./bin/run.sh -cd**, but there are more steps to complete.
+The test uses same logic as **./bin/run.sh -cd**, but there are more steps to complete.
 
 We will use the core-data test below as an example.
 
