@@ -35,7 +35,7 @@ Change directory to **path/to/blackbox-testing/**, and execute the following com
 
         $ export RELEASE=fuji #if using fuji release is needed; the default is nightly-build
         $ export SECURITY_SERVICE_NEEDED=true #if the security services are needed
-        $ export FOR_REDIS=true #if running the services (no security) with Redis is needed
+        $ export DATABASE=mongo #if running with Mongo is needed; the default is Redis
         $ bash deploy-edgeX.sh
 
 The console displays output similar to the following:

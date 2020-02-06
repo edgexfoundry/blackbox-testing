@@ -7,7 +7,7 @@
 [ "$SECURITY_SERVICE_NEEDED" != true ] && USE_NO_SECURITY="-no-secty"
 
 # redis or mongo
-[ "$FOR_REDIS" = true ] && USE_REDIS="-redis"
+[ "$DATABASE" != "mongo" ] && USE_REDIS="-redis"
 
 # nightly or other release
 USE_RELEASE=${RELEASE:-nightly-build}

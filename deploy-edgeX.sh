@@ -70,10 +70,10 @@ if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 	run_service edgex-proxy
 fi
 
-if [ "$FOR_REDIS" = true ]; then
-	run_service redis
-else
+if [ "$DATABASE" = "mongo" ]; then
 	run_service mongo
+else
+	run_service redis
 fi
 
 run_service logging
