@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d1fddbd7-58cb-4e71-92fa-15d3215be733",
+		"_postman_id": "bbbad9ae-a553-4afa-bc5e-8d32885fed70",
 		"name": "core-command-cleaner",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,8 +14,13 @@
 						"id": "195d88f2-c6f4-4a51-8297-2d1daa5c6935",
 						"exec": [
 							"var baseUrl = pm.environment.get(\"baseUrl\");",
+							"var request = {",
+							"  url: baseUrl+'/api/v1/device',",
+							"  method: 'GET'",
+							"};",
+							"request = utils.checkToken(request);",
 							"",
-							"pm.sendRequest(baseUrl+\"/api/v1/device\", function (err, res) {",
+							"pm.sendRequest(request, function (err, res) {",
 							"    removeData(res.json())",
 							"});",
 							"",
@@ -23,6 +28,7 @@
 							"    var request = {",
 							"      method: 'DELETE'",
 							"    };",
+							"    request = utils.checkToken(request);",
 							"    ",
 							"    var count = 0;",
 							"    var failedCount = 0;",
@@ -58,10 +64,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -95,8 +97,13 @@
 						"id": "f1038d15-eba5-4afb-94aa-9f8929b28cf6",
 						"exec": [
 							"var baseUrl = pm.environment.get(\"baseUrl\");",
+							"var request = {",
+							"  url: baseUrl+'/api/v1/deviceservice',",
+							"  method: 'GET'",
+							"};",
+							"request = utils.checkToken(request);",
 							"",
-							"pm.sendRequest(baseUrl+\"/api/v1/deviceservice\", function (err, res) {",
+							"pm.sendRequest(request, function (err, res) {",
 							"    removeData(res.json())",
 							"});",
 							"",
@@ -104,6 +111,7 @@
 							"    var request = {",
 							"      method: 'DELETE'",
 							"    };",
+							"    request = utils.checkToken(request);",
 							"    ",
 							"    var count = 0;",
 							"    var failedCount = 0;",
@@ -139,10 +147,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -176,8 +180,13 @@
 						"id": "f1038d15-eba5-4afb-94aa-9f8929b28cf6",
 						"exec": [
 							"var baseUrl = pm.environment.get(\"baseUrl\");",
+							"var request = {",
+							"  url: baseUrl+'/api/v1/deviceprofile',",
+							"  method: 'GET'",
+							"};",
+							"request = utils.checkToken(request);",
 							"",
-							"pm.sendRequest(baseUrl+\"/api/v1/deviceprofile\", function (err, res) {",
+							"pm.sendRequest(request, function (err, res) {",
 							"    removeData(res.json())",
 							"});",
 							"",
@@ -185,6 +194,7 @@
 							"    var request = {",
 							"      method: 'DELETE'",
 							"    };",
+							"    request = utils.checkToken(request);",
 							"    ",
 							"    var count = 0;",
 							"    var failedCount = 0;",
@@ -220,10 +230,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -257,8 +263,13 @@
 						"id": "f1038d15-eba5-4afb-94aa-9f8929b28cf6",
 						"exec": [
 							"var baseUrl = pm.environment.get(\"baseUrl\");",
+							"var request = {",
+							"  url: baseUrl+'/api/v1/addressable',",
+							"  method: 'GET'",
+							"};",
+							"request = utils.checkToken(request);",
 							"",
-							"pm.sendRequest(baseUrl+\"/api/v1/addressable\", function (err, res) {",
+							"pm.sendRequest(request, function (err, res) {",
 							"    removeData(res.json())",
 							"});",
 							"",
@@ -266,6 +277,7 @@
 							"    var request = {",
 							"      method: 'DELETE'",
 							"    };",
+							"    request = utils.checkToken(request);",
 							"    ",
 							"    var count = 0;",
 							"    var failedCount = 0;",
@@ -301,10 +313,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -320,6 +328,16 @@
 			"response": []
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -327,6 +345,18 @@
 				"id": "84ff17a0-b9b9-4a89-a639-9398d621ffc3",
 				"type": "text/javascript",
 				"exec": [
+					"utils = {",
+					"    checkToken: function(request) {",
+					"        var accessToken = pm.globals.get(\"accessToken\");",
+					"        if (accessToken !== undefined) {",
+					"            var header = {",
+					"                authorization: 'Bearer '+accessToken",
+					"            };",
+					"            request.header = header;   ",
+					"        }",
+					"        return request;",
+					"    }",
+					"};",
 					""
 				]
 			}
@@ -341,5 +371,6 @@
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

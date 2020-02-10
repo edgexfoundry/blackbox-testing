@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8584e0fb-996d-4f57-a3fd-f80daf478ca4",
+		"_postman_id": "d66670db-2704-4ab2-8c15-edb43bf84165",
 		"name": "support-logging-cleaner",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -52,5 +52,38 @@
 			},
 			"response": []
 		}
-	]
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a410a4c7-acc1-45ef-b386-8915810fefc6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a850ff07-4e61-448a-aea5-87a563c53adc",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
 }

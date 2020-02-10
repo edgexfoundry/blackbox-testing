@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "82f25b0a-664c-4fc5-ba81-b62cefc0c167",
+		"_postman_id": "8b731158-5404-4956-9635-7598bd5d8307",
 		"name": "\b\bcore-data-importer",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -167,6 +167,8 @@
 							"  }",
 							"};",
 							"",
+							"request = utils.checkToken(request);",
+							"",
 							"var count = 0;",
 							"var failedCount = 0;",
 							"data.forEach(function(item, index) { ",
@@ -198,10 +200,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -368,6 +366,8 @@
 							"//   console.log(err);",
 							"// });",
 							"",
+							"request = utils.checkToken(request);",
+							"",
 							"var count = 0;",
 							"var failedCount = 0;",
 							"data.forEach(function(item, index) { ",
@@ -399,10 +399,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -418,6 +414,16 @@
 			"response": []
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -425,6 +431,18 @@
 				"id": "9895fac7-3c08-4435-a3d4-f8e49206b681",
 				"type": "text/javascript",
 				"exec": [
+					"utils = {",
+					"    checkToken: function(request) {",
+					"        var accessToken = pm.globals.get(\"accessToken\");",
+					"        if (accessToken !== undefined) {",
+					"            var header = {",
+					"                authorization: 'Bearer '+accessToken",
+					"            };",
+					"            request.header = header;   ",
+					"        }",
+					"        return request;",
+					"    }",
+					"};",
 					""
 				]
 			}
@@ -439,5 +457,6 @@
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

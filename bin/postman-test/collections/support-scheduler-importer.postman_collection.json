@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "36111e23-d2d1-4a53-8790-35610275bceb",
+		"_postman_id": "03504bff-781e-4c19-808c-950435eaa2bc",
 		"name": "support-scheduler-importer",
 		"description": "Imports data to be used in the integration tests for both Interval(s) and IntervalAction(s)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -57,6 +57,7 @@
 							"    raw: 'json string'",
 							"  }",
 							"};",
+							"request = utils.checkToken(request);",
 							"",
 							"var count = 0;",
 							"var failedCount = 0;",
@@ -90,10 +91,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -183,6 +180,7 @@
 							"    raw: 'json string'",
 							"  }",
 							"};",
+							"request = utils.checkToken(request);",
 							"",
 							"var count = 0;",
 							"var failedCount = 0;",
@@ -215,10 +213,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -234,6 +228,16 @@
 			"response": []
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -241,6 +245,18 @@
 				"id": "2b00dfd7-8f2f-4fcc-b948-8bd6b8bb83f1",
 				"type": "text/javascript",
 				"exec": [
+					"utils = {",
+					"    checkToken: function(request) {",
+					"        var accessToken = pm.globals.get(\"accessToken\");",
+					"        if (accessToken !== undefined) {",
+					"            var header = {",
+					"                authorization: 'Bearer '+accessToken",
+					"            };",
+					"            request.header = header;   ",
+					"        }",
+					"        return request;",
+					"    }",
+					"};",
 					""
 				]
 			}
@@ -255,5 +271,6 @@
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

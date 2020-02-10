@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "47a7b839-85f2-4f4c-a339-768f5a7da8d8",
+		"_postman_id": "e3953e92-19ae-40d1-a83f-d25543be8d5f",
 		"name": "core-metadata-importer",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -336,6 +336,7 @@
 							"    raw: 'json string'",
 							"  }",
 							"};",
+							"request = utils.checkToken(request);",
 							"",
 							"var count = 0;",
 							"var failedCount = 0;",
@@ -368,10 +369,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -721,6 +718,7 @@
 							"    raw: 'json string'",
 							"  }",
 							"};",
+							"request = utils.checkToken(request);",
 							"",
 							"var count = 0;",
 							"var failedCount = 0;",
@@ -753,10 +751,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -1877,6 +1871,7 @@
 							"    raw: 'json string'",
 							"  }",
 							"};",
+							"request = utils.checkToken(request);",
 							"",
 							"var count = 0;",
 							"var failedCount = 0;",
@@ -1909,10 +1904,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -2503,6 +2494,7 @@
 							"    raw: 'json string'",
 							"  }",
 							"};",
+							"request = utils.checkToken(request);",
 							"",
 							"var count = 0;",
 							"var failedCount = 0;",
@@ -2535,10 +2527,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -2645,6 +2633,7 @@
 							"    raw: 'json string'",
 							"  }",
 							"};",
+							"request = utils.checkToken(request);",
 							"",
 							"var count = 0;",
 							"var failedCount = 0;",
@@ -2677,10 +2666,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -2817,6 +2802,7 @@
 							"    raw: 'json string'",
 							"  }",
 							"};",
+							"request = utils.checkToken(request);",
 							"",
 							"var count = 0;",
 							"var failedCount = 0;",
@@ -2849,10 +2835,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -2867,5 +2849,50 @@
 			},
 			"response": []
 		}
-	]
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "20dd092d-5bfb-4e24-97ba-04a5b75bd8e7",
+				"type": "text/javascript",
+				"exec": [
+					"utils = {",
+					"    checkToken: function(request) {",
+					"        var accessToken = pm.globals.get(\"accessToken\");",
+					"        if (accessToken !== undefined) {",
+					"            var header = {",
+					"                authorization: 'Bearer '+accessToken",
+					"            };",
+					"            request.header = header;   ",
+					"        }",
+					"        return request;",
+					"    }",
+					"};",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "b965fbc5-27f7-484a-8e40-c7cc066fd06c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
 }

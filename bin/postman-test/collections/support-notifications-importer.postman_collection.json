@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fbc3e911-ffc5-4a2b-998f-da0096d1bfed",
+		"_postman_id": "068384f0-b571-47eb-841e-6417aa3b1ec7",
 		"name": "\b\bsupport-notifications-importer",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -313,6 +313,7 @@
 							"    raw: 'json string'",
 							"  }",
 							"};",
+							"request = utils.checkToken(request);",
 							"",
 							"var count = 0;",
 							"var failedCount = 0;",
@@ -345,10 +346,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{supportNotificationsUrl}}/api/v1/ping",
 					"host": [
@@ -608,6 +605,7 @@
 							"    raw: 'json string'",
 							"  }",
 							"};",
+							"request = utils.checkToken(request);",
 							"",
 							"var count = 0;",
 							"var failedCount = 0;",
@@ -640,10 +638,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{supportNotificationsUrl}}/api/v1/ping",
 					"host": [
@@ -1171,6 +1165,7 @@
 							"    raw: 'json string'",
 							"  }",
 							"};",
+							"request = utils.checkToken(request);",
 							"",
 							"var count = 0;",
 							"var failedCount = 0;",
@@ -1203,10 +1198,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{supportNotificationsUrl}}/api/v1/ping",
 					"host": [
@@ -1222,6 +1213,16 @@
 			"response": []
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -1229,6 +1230,18 @@
 				"id": "9895fac7-3c08-4435-a3d4-f8e49206b681",
 				"type": "text/javascript",
 				"exec": [
+					"utils = {",
+					"    checkToken: function(request) {",
+					"        var accessToken = pm.globals.get(\"accessToken\");",
+					"        if (accessToken !== undefined) {",
+					"            var header = {",
+					"                authorization: 'Bearer '+accessToken",
+					"            };",
+					"            request.header = header;   ",
+					"        }",
+					"        return request;",
+					"    }",
+					"};",
 					""
 				]
 			}
@@ -1243,5 +1256,6 @@
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

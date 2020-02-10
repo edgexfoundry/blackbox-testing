@@ -7,7 +7,7 @@ else
 fi
 
 # Ensure we fail the job if any steps fail
-set -e -o pipefail
+#set -e -o pipefail
 #. $(dirname "$0")/env.sh
 
 # Run the compose file for blackbox testing
@@ -39,58 +39,88 @@ securityTest() {
 }
 
 coreDataTest() {
-
-	$(dirname "$0")/importCoreDataDump.sh
-	$(dirname "$0")/coreDataTest.sh
-	$(dirname "$0")/flushCoreDataDump.sh
-
+  if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
+    source $(dirname "$0")/security/importCoreDataDump.sh
+	  source $(dirname "$0")/security/coreDataTest.sh
+	  source $(dirname "$0")/security/flushCoreDataDump.sh
+	else
+	  $(dirname "$0")/importCoreDataDump.sh
+	  $(dirname "$0")/coreDataTest.sh
+	  $(dirname "$0")/flushCoreDataDump.sh
+	fi
 }
 
-
 metaDataTest() {
-
- 	$(dirname "$0")/importMetaDataDumps.sh
- 	$(dirname "$0")/metadataTest.sh
-	$(dirname "$0")/flushMetaDataDump.sh
-
+ 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
+ 	  source $(dirname "$0")/security/importMetaDataDumps.sh
+ 	  source $(dirname "$0")/security/metadataTest.sh
+ 	  source $(dirname "$0")/security/flushMetaDataDump.sh
+ 	else
+ 	  $(dirname "$0")/importMetaDataDumps.sh
+ 	  $(dirname "$0")/metadataTest.sh
+ 	  $(dirname "$0")/flushMetaDataDump.sh
+ 	fi
 }
 
 commandTest() {
-
-	$(dirname "$0")/importCommandDataDump.sh
-	$(dirname "$0")/commandTest.sh
-	$(dirname "$0")/flushCommandDataDump.sh
-
+	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
+	  source $(dirname "$0")/security/importCommandDataDump.sh
+	  source $(dirname "$0")/security/commandTest.sh
+	  source $(dirname "$0")/security/flushCommandDataDump.sh
+	else
+	  $(dirname "$0")/importCommandDataDump.sh
+	  $(dirname "$0")/commandTest.sh
+	  $(dirname "$0")/flushCommandDataDump.sh
+	fi
 }
 
 
 loggingTest() {
-
-  	$(dirname "$0")/importLoggingDataDump.sh
-	$(dirname "$0")/loggingTest.sh
-	$(dirname "$0")/flushLoggingDataDump.sh
-
+  if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
+    source $(dirname "$0")/security/importLoggingDataDump.sh
+	  source $(dirname "$0")/security/loggingTest.sh
+	  source $(dirname "$0")/security/flushLoggingDataDump.sh
+	else
+	  $(dirname "$0")/importLoggingDataDump.sh
+	  $(dirname "$0")/loggingTest.sh
+	  $(dirname "$0")/flushLoggingDataDump.sh
+	fi
 }
 
 supportNotificationTest(){
-	$(dirname "$0")/importSupportNotificationDump.sh
-	$(dirname "$0")/supportNotificationsTest.sh
-	$(dirname "$0")/flushSupportNotificationDump.sh
-
+	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
+	  source $(dirname "$0")/security/importSupportNotificationDump.sh
+	  source $(dirname "$0")/security/supportNotificationsTest.sh
+	  source $(dirname "$0")/security/flushSupportNotificationDump.sh
+	else
+	  $(dirname "$0")/importSupportNotificationDump.sh
+	  $(dirname "$0")/supportNotificationsTest.sh
+	  $(dirname "$0")/flushSupportNotificationDump.sh
+	fi
 }
 
 systemManagementTest(){
-	$(dirname "$0")/systemManagementTest.sh
+  $(dirname "$0")/systemManagementTest.sh
 }
 
 supportSchedulerTest(){
-    $(dirname "$0")/importSupportSchedulerDump.sh
-    $(dirname "$0")/supportSchedulerTest.sh
-    $(dirname "$0")/flushSupportSchedulerDataDump.sh
+    if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
+      source $(dirname "$0")/security/importSupportSchedulerDump.sh
+      source $(dirname "$0")/security/supportSchedulerTest.sh
+      source $(dirname "$0")/security/flushSupportSchedulerDataDump.sh
+    else
+      $(dirname "$0")/importSupportSchedulerDump.sh
+      $(dirname "$0")/supportSchedulerTest.sh
+      $(dirname "$0")/flushSupportSchedulerDataDump.sh
+    fi
 }
 
 deviceVirtualTest() {
-	$(dirname "$0")/deviceVirtualTest.sh
+  if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
+	  source $(dirname "$0")/security/deviceVirtualTest.sh
+	else
+	  $(dirname "$0")/deviceVirtualTest.sh
+	fi
 }
 
 appServiceConfigurableTest() {

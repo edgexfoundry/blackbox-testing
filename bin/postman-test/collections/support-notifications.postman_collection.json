@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d4718eff-cd2c-4921-bace-00b4aaf72297",
+		"_postman_id": "7845f9dc-059f-49e5-b694-1c73075143d0",
 		"name": "support-notifications",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -423,10 +423,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/subscription",
 							"host": [
@@ -506,10 +502,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/slug/{{slugName2}}",
 							"host": [
@@ -593,10 +585,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/categories/{{categories}}",
 							"host": [
@@ -679,10 +667,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/labels/{{labels}}",
 							"host": [
@@ -767,10 +751,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/categories/{{categories2}}/labels/{{labels2}}",
 							"host": [
@@ -855,10 +835,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/subscription/receiver/{{receiverName}}",
 							"host": [
@@ -876,7 +852,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "notification",
@@ -1190,6 +1167,7 @@
 									"  }",
 									"};",
 									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    var id = res.stream.toString()",
 									"    pm.environment.set(\"notificationID\", id);",
@@ -1497,10 +1475,6 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/notification/slug/{{slugName2}}",
 							"host": [
@@ -1588,6 +1562,7 @@
 									"  }",
 									"};",
 									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    var id = res.stream.toString()",
 									"    pm.environment.set(\"notificationID\", id);",
@@ -1606,10 +1581,6 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/notification/{{notificationID}}",
 							"host": [
@@ -1665,10 +1636,6 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/notification/{{inexistent-notificationID}}",
 							"host": [
@@ -1765,10 +1732,6 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/notification/sender/{{senderName}}/{{limit}}",
 							"host": [
@@ -1877,10 +1840,6 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/notification/start/{{startDate}}/end/{{endDate}}/{{limit}}",
 							"host": [
@@ -1987,10 +1946,6 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/notification/start/{{startDate}}/{{limit}}",
 							"host": [
@@ -2095,10 +2050,6 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/notification/end/{{endDate}}/{{limit}}",
 							"host": [
@@ -2197,10 +2148,6 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/notification/labels/{{labels}}/{{limit}}",
 							"host": [
@@ -2299,10 +2246,6 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/notification/{{status}}/{{limit}}",
 							"host": [
@@ -2434,7 +2377,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "transmission",
@@ -2522,10 +2466,6 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/slug/{{slugName}}/{{limit}}",
 							"host": [
@@ -2637,10 +2577,6 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/slug/{{slug}}/start/{{startDate}}/end/{{endDate}}/{{record-limit}}",
 							"host": [
@@ -2715,10 +2651,6 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/slug/{{slug}}/start/{{startDate}}/end/{{endDate}}/{{record-limit}}",
 							"host": [
@@ -2831,10 +2763,6 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/start/{{startDate}}/end/{{endDate}}/{{limit}}",
 							"host": [
@@ -2940,10 +2868,6 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/start/{{startDate}}/{{limit}}",
 							"host": [
@@ -3046,10 +2970,6 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/end/{{endDate}}/{{limit}}",
 							"host": [
@@ -3147,10 +3067,6 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/{{escalatedStatus}}/{{limit}}",
 							"host": [
@@ -3247,10 +3163,6 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/transmission/{{failedStatus}}/{{limit}}",
 							"host": [
@@ -3590,7 +3502,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "ping",
@@ -3631,10 +3544,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportNotificationsUrl}}/api/v1/ping",
 							"host": [
@@ -3650,9 +3559,20 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -4215,7 +4135,21 @@
 					"        }",
 					"      };",
 					"    ",
-					"pm.globals.set(\"schemas\", schemas);"
+					"pm.globals.set(\"schemas\", schemas);",
+					"",
+					"utils = {",
+					"    checkToken: function(request) {",
+					"        var accessToken = pm.globals.get(\"accessToken\");",
+					"        if (accessToken !== undefined) {",
+					"            var header = {",
+					"                authorization: 'Bearer '+accessToken",
+					"            };",
+					"            request.header = header;   ",
+					"        }",
+					"        return request;",
+					"    }",
+					"};",
+					""
 				]
 			}
 		},
@@ -4229,5 +4163,6 @@
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9d85a31c-09ab-4e78-9e0d-f9ba3258b1c6",
+		"_postman_id": "f8855735-1688-44bb-959b-e66d904a16b6",
 		"name": "support-logging",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -128,10 +128,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/{{limit}}",
 							"host": [
@@ -217,10 +213,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/{{start}}/{{end}}/{{limit}}",
 							"host": [
@@ -319,10 +311,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/originServices/{{loggingService}}/{{start}}/{{end}}/{{limit}}",
 							"host": [
@@ -424,10 +412,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/keywords/{{loggingKeyword}}/{{start}}/{{end}}/{{limit}}",
 							"host": [
@@ -529,10 +513,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevel}}/{{start}}/{{end}}/{{limit}}",
 							"host": [
@@ -637,10 +617,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/logLevels/{{loggingLevel}}/originServices/{{loggingService}}/{{start}}/{{end}}/{{limit}}",
 							"host": [
@@ -736,10 +712,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/logs/{{overLimit}}",
 							"host": [
@@ -815,6 +787,7 @@
 									"  }",
 									"};",
 									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"loggingLevelDel\", \"ERROR\");",
 									"    pm.environment.set(\"start\", \"0\");",
@@ -912,6 +885,7 @@
 									"  }",
 									"};",
 									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"loggingServiceDel1\", \"service1\");",
 									"    pm.environment.set(\"start\", \"0\");",
@@ -1009,6 +983,7 @@
 									"  }",
 									"};",
 									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"loggingKeywordDel\", \"KeyWordTest\");",
 									"    pm.environment.set(\"start\", \"0\");",
@@ -1106,6 +1081,7 @@
 									"  }",
 									"};",
 									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"loggingLevelDel\", \"ERROR\");",
 									"    pm.environment.set(\"loggingServiceDel4\", \"service1\");",
@@ -1207,6 +1183,7 @@
 									"  }",
 									"};",
 									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"start\", \"0\");",
 									"    pm.environment.set(\"end\", new Date().getTime());",
@@ -1301,6 +1278,7 @@
 									"  }",
 									"};",
 									"",
+									"request = utils.checkToken(request);",
 									"pm.sendRequest(request, function (err, res) {",
 									"    pm.environment.set(\"age\", \"86400000\");",
 									"});",
@@ -1336,7 +1314,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "logs_error_4xx",
@@ -1421,7 +1400,8 @@
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "ping",
@@ -1457,10 +1437,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{supportLoggingUrl}}/api/v1/ping",
 							"host": [
@@ -1476,9 +1452,20 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -1523,7 +1510,21 @@
 					"        }",
 					"      };",
 					"    ",
-					"pm.globals.set(\"schemas\", schemas);"
+					"pm.globals.set(\"schemas\", schemas);",
+					"",
+					"utils = {",
+					"    checkToken: function(request) {",
+					"        var accessToken = pm.globals.get(\"accessToken\");",
+					"        if (accessToken !== undefined) {",
+					"            var header = {",
+					"                authorization: 'Bearer '+accessToken",
+					"            };",
+					"            request.header = header;   ",
+					"        }",
+					"        return request;",
+					"    }",
+					"};",
+					""
 				]
 			}
 		},
@@ -1537,5 +1538,6 @@
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

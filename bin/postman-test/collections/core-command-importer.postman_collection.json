@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2793a271-006a-4b4d-a1be-6b88dde5c536",
+		"_postman_id": "871e1f03-6949-42f7-ac4f-83e89f3f216f",
 		"name": "core-command-importer",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -97,6 +97,7 @@
 							"    raw: 'json string'",
 							"  }",
 							"};",
+							"request = utils.checkToken(request);",
 							"",
 							"var count = 0;",
 							"var failedCount = 0;",
@@ -129,10 +130,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -259,6 +256,7 @@
 							"    raw: 'json string'",
 							"  }",
 							"};",
+							"request = utils.checkToken(request);",
 							"",
 							"var count = 0;",
 							"var failedCount = 0;",
@@ -291,10 +289,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -556,6 +550,7 @@
 							"    raw: 'json string'",
 							"  }",
 							"};",
+							"request = utils.checkToken(request);",
 							"",
 							"var count = 0;",
 							"var failedCount = 0;",
@@ -588,10 +583,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -842,6 +833,7 @@
 							"    raw: 'json string'",
 							"  }",
 							"};",
+							"request = utils.checkToken(request);",
 							"",
 							"var count = 0;",
 							"var failedCount = 0;",
@@ -874,10 +866,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{baseUrl}}/api/v1/ping",
 					"host": [
@@ -892,5 +880,50 @@
 			},
 			"response": []
 		}
-	]
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "83ecce29-f20e-441b-aee7-02f57807cd49",
+				"type": "text/javascript",
+				"exec": [
+					"utils = {",
+					"    checkToken: function(request) {",
+					"        var accessToken = pm.globals.get(\"accessToken\");",
+					"        if (accessToken !== undefined) {",
+					"            var header = {",
+					"                authorization: 'Bearer '+accessToken",
+					"            };",
+					"            request.header = header;   ",
+					"        }",
+					"        return request;",
+					"    }",
+					"};",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c130099b-24aa-45cb-9950-aef7285f70b6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
 }
