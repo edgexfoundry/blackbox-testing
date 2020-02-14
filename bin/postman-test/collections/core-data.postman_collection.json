@@ -3673,7 +3673,7 @@
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
 									"var request = {",
-									"  url: baseUrl+'/api/v1/valuedescriptor/name/ohmr',",
+									"  url: baseUrl+'/api/v1/valuedescriptor/name/ohm',",
 									"  method: 'GET',",
 									"};",
 									"request = utils.checkToken(request);",
@@ -3797,7 +3797,7 @@
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
 									"var request = {",
-									"  url: baseUrl+'/api/v1/valuedescriptor/name/temperaturer',",
+									"  url: baseUrl+'/api/v1/valuedescriptor/name/temperature',",
 									"  method: 'GET',",
 									"};",
 									"request = utils.checkToken(request);",
