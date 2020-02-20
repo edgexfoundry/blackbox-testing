@@ -15,7 +15,7 @@ set -e -o pipefail
 export network=$(docker network ls | awk '{print $2}' | grep edgex-network)
 docker-compose -f "$(dirname "$0")"/../docker-compose-test-tools.yml up -d app-service-configurable
 
-TIMESTAMPFORMAT=`date +%d-%m-%Y_%H%M%S`
+TIMESTAMPFORMAT=$(date +%d-%m-%Y_%H%M%S)
 BASEPATH=$(dirname "$0")/postman-test/scriptLogs
 SECURITYLOGSPATH=$BASEPATH/securityservice$TIMESTAMPFORMAT.log
 COREDATALOGSPATH=$BASEPATH/coreData$TIMESTAMPFORMAT.log
@@ -30,180 +30,215 @@ APPSERVICECONFIGURABLELOGSPATH=$BASEPATH/appserviceconfigurable$TIMESTAMPFORMAT.
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 securityTest() {
+	pushd "$(dirname "$0")" >/dev/null
+
 	. $(dirname "$0")/setupSecurityserviceTest.sh
 	$(dirname "$0")/runSecurityserviceTest.sh
 	$(dirname "$0")/cleanSecurityserviceTest.sh
+
+	popd >/dev/null
 }
 
 coreDataTest() {
-  if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
-    source $(dirname "$0")/security/importCoreDataDump.sh
-	  source $(dirname "$0")/security/coreDataTest.sh
-	  source $(dirname "$0")/security/flushCoreDataDump.sh
+	pushd "$(dirname "$0")" >/dev/null
+
+	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
+		source ./security/importCoreDataDump.sh
+		source ./security/coreDataTest.sh
+		source ./security/flushCoreDataDump.sh
 	else
-	  $(dirname "$0")/importCoreDataDump.sh
-	  $(dirname "$0")/coreDataTest.sh
-	  $(dirname "$0")/flushCoreDataDump.sh
+		./importCoreDataDump.sh
+		./coreDataTest.sh
+		./flushCoreDataDump.sh
 	fi
+
+	popd >/dev/null
 }
 
 metaDataTest() {
- 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
- 	  source $(dirname "$0")/security/importMetaDataDumps.sh
- 	  source $(dirname "$0")/security/metadataTest.sh
- 	  source $(dirname "$0")/security/flushMetaDataDump.sh
- 	else
- 	  $(dirname "$0")/importMetaDataDumps.sh
- 	  $(dirname "$0")/metadataTest.sh
- 	  $(dirname "$0")/flushMetaDataDump.sh
- 	fi
+	pushd "$(dirname "$0")" >/dev/null
+
+	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
+		source ./security/importMetaDataDumps.sh
+		source ./security/metadataTest.sh
+		source ./security/flushMetaDataDump.sh
+	else
+		./importMetaDataDumps.sh
+		./metadataTest.sh
+		./flushMetaDataDump.sh
+	fi
+
+	popd >/dev/null
 }
 
 commandTest() {
-	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
-	  source $(dirname "$0")/security/importCommandDataDump.sh
-	  source $(dirname "$0")/security/commandTest.sh
-	  source $(dirname "$0")/security/flushCommandDataDump.sh
-	else
-	  $(dirname "$0")/importCommandDataDump.sh
-	  $(dirname "$0")/commandTest.sh
-	  $(dirname "$0")/flushCommandDataDump.sh
-	fi
-}
+	pushd "$(dirname "$0")" >/dev/null
 
+	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
+		source ./security/importCommandDataDump.sh
+		source ./security/commandTest.sh
+		source ./security/flushCommandDataDump.sh
+	else
+		./importCommandDataDump.sh
+		./commandTest.sh
+		./flushCommandDataDump.sh
+	fi
+
+	popd >/dev/null
+}
 
 loggingTest() {
-  if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
-    source $(dirname "$0")/security/importLoggingDataDump.sh
-	  source $(dirname "$0")/security/loggingTest.sh
-	  source $(dirname "$0")/security/flushLoggingDataDump.sh
-	else
-	  $(dirname "$0")/importLoggingDataDump.sh
-	  $(dirname "$0")/loggingTest.sh
-	  $(dirname "$0")/flushLoggingDataDump.sh
-	fi
-}
+	pushd "$(dirname "$0")" >/dev/null
 
-supportNotificationTest(){
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
-	  source $(dirname "$0")/security/importSupportNotificationDump.sh
-	  source $(dirname "$0")/security/supportNotificationsTest.sh
-	  source $(dirname "$0")/security/flushSupportNotificationDump.sh
+		source ./security/importLoggingDataDump.sh
+		source ./security/loggingTest.sh
+		source ./security/flushLoggingDataDump.sh
 	else
-	  $(dirname "$0")/importSupportNotificationDump.sh
-	  $(dirname "$0")/supportNotificationsTest.sh
-	  $(dirname "$0")/flushSupportNotificationDump.sh
+		./importLoggingDataDump.sh
+		./loggingTest.sh
+		./flushLoggingDataDump.sh
 	fi
+
+	popd >/dev/null
 }
 
-systemManagementTest(){
-  $(dirname "$0")/systemManagementTest.sh
+supportNotificationTest() {
+	pushd "$(dirname "$0")" >/dev/null
+
+	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
+		source ./security/importSupportNotificationDump.sh
+		source ./security/supportNotificationsTest.sh
+		source ./security/flushSupportNotificationDump.sh
+	else
+		./importSupportNotificationDump.sh
+		./supportNotificationsTest.sh
+		./flushSupportNotificationDump.sh
+	fi
+
+	popd >/dev/null
 }
 
-supportSchedulerTest(){
-    if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
-      source $(dirname "$0")/security/importSupportSchedulerDump.sh
-      source $(dirname "$0")/security/supportSchedulerTest.sh
-      source $(dirname "$0")/security/flushSupportSchedulerDataDump.sh
-    else
-      $(dirname "$0")/importSupportSchedulerDump.sh
-      $(dirname "$0")/supportSchedulerTest.sh
-      $(dirname "$0")/flushSupportSchedulerDataDump.sh
-    fi
+systemManagementTest() {
+	pushd "$(dirname "$0")" >/dev/null
+
+	./systemManagementTest.sh
+
+	popd >/dev/null
+}
+
+supportSchedulerTest() {
+	pushd "$(dirname "$0")" >/dev/null
+
+	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
+		source ./security/importSupportSchedulerDump.sh
+		source ./security/supportSchedulerTest.sh
+		source ./security/flushSupportSchedulerDataDump.sh
+	else
+		./importSupportSchedulerDump.sh
+		./supportSchedulerTest.sh
+		./flushSupportSchedulerDataDump.sh
+	fi
+
+	popd >/dev/null
 }
 
 deviceVirtualTest() {
-  if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
-	  source $(dirname "$0")/security/deviceVirtualTest.sh
+	pushd "$(dirname "$0")" >/dev/null
+
+	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
+		source ./security/deviceVirtualTest.sh
 	else
-	  $(dirname "$0")/deviceVirtualTest.sh
+		./deviceVirtualTest.sh
 	fi
+
+	popd >/dev/null
 }
 
 appServiceConfigurableTest() {
-	$(dirname "$0")/appServiceConfigurableTest.sh
+	pushd "$(dirname "$0")" >/dev/null
+	
+	./appServiceConfigurableTest.sh
+
+	popd >/dev/null
 }
 
 testAll() {
-
-  deviceVirtualTest
-  appServiceConfigurableTest
-  coreDataTest
-  commandTest
-  metaDataTest
-  supportNotificationTest
-  supportSchedulerTest
-  systemManagementTest
+	deviceVirtualTest
+	appServiceConfigurableTest
+	coreDataTest
+	commandTest
+	metaDataTest
+	supportNotificationTest
+	supportSchedulerTest
+	systemManagementTest
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
-	     securityTest
+		securityTest
 	fi
 
 }
-
 
 ## Changing MaxResultCount value to 100 before test
 echo "[INFO] Update MaxResultCount and restart services "
 $(dirname "$0")/updateMaxResultCount.sh >/dev/null 2>&1
 
-
-
 #Main Script starts here
 $(dirname "$0")/banner.sh
 
 #Create testResult for postman
-[ -d "$(dirname "$0")/testResult" ]|| mkdir $(dirname "$0")/testResult
+[ -d "$(dirname "$0")/testResult" ] || mkdir $(dirname "$0")/testResult
 
 case $1 in
-	-sec)
+-sec)
 	echo "Info: Initiating Securityservice Test"
 	securityTest | tee $SECURITYLOGSPATH
 	;;
-	-cd)
+-cd)
 	echo "Info: Initiating Coredata Test"
 	coreDataTest | tee $COREDATALOGSPATH
 	;;
-	-md)
+-md)
 	echo "Info: Initiating Metadata Test"
 	metaDataTest | tee $METADATALOGSPATH
 	;;
- 	-co)
+-co)
 	echo "Info: Initiating Command Test"
-	commandTest	| tee $COMMANDLOGSPATH
+	commandTest | tee $COMMANDLOGSPATH
 	;;
-	-log)
+-log)
 	echo "Info: Initiating Logging Test"
-	loggingTest	| tee $LOGGINGLOGSPATH
+	loggingTest | tee $LOGGINGLOGSPATH
 	;;
-  	-sn)
-    echo "Info: Initiating SupportNotifications Test"
-	supportNotificationTest	| tee $SUPPORT_NOTIFICATION_LOG_PATH
-    ;;
-    -ss)
-    echo "Info: Initiating SupportScheduler Test"
-    supportSchedulerTest | tee $SUPPORT_SCHEDULER_LOG_PATH
-    ;;
-    -dv)
-    echo "Info: Initiating DeviceVirtual Test"
-    deviceVirtualTest	| tee $DEVICEVIRTUALLOGSPATH
-    ;;
-	-asc)
-    echo "Info: Initiating AppServiceConfigurable Test"
-    appServiceConfigurableTest	| tee $APPSERVICECONFIGURABLELOGSPATH
+-sn)
+	echo "Info: Initiating SupportNotifications Test"
+	supportNotificationTest | tee $SUPPORT_NOTIFICATION_LOG_PATH
 	;;
-	-sys)
-    echo "Info: Initiating SystemManagement Test"
-    systemManagementTest	| tee $SYSTEMMANAGEMENTLOGSPATH
+-ss)
+	echo "Info: Initiating SupportScheduler Test"
+	supportSchedulerTest | tee $SUPPORT_SCHEDULER_LOG_PATH
 	;;
-   	-all)
-    echo "Info: Initiating EdgeX Test"
-		testAll		| tee $EDGEXLOGSPATH
-    ;;
-   	*)
-    echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-ss SupportScheduler] | [-dv DeviceVirtual] | [-asc AppServiceConfigurable] | [-sec securityTest] | [-all All]"
-    echo
-    exit 0
-    ;;
+-dv)
+	echo "Info: Initiating DeviceVirtual Test"
+	deviceVirtualTest | tee $DEVICEVIRTUALLOGSPATH
+	;;
+-asc)
+	echo "Info: Initiating AppServiceConfigurable Test"
+	appServiceConfigurableTest | tee $APPSERVICECONFIGURABLELOGSPATH
+	;;
+-sys)
+	echo "Info: Initiating SystemManagement Test"
+	systemManagementTest | tee $SYSTEMMANAGEMENTLOGSPATH
+	;;
+-all)
+	echo "Info: Initiating EdgeX Test"
+	testAll | tee $EDGEXLOGSPATH
+	;;
+*)
+	echo "$(basename ${0}):usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-ss SupportScheduler] | [-dv DeviceVirtual] | [-asc AppServiceConfigurable] | [-sec securityTest] | [-all All]"
+	echo
+	exit 0
+	;;
 esac
 
 echo
@@ -211,6 +246,3 @@ echo "Info: Logs available in [scriptLogs]"
 #echo "Info: HTML Reports available in [Reports]"
 echo
 $(dirname "$0")/endBanner.sh
-
-
-
