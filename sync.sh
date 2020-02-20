@@ -7,14 +7,18 @@
 [ "$SECURITY_SERVICE_NEEDED" != true ] && USE_NO_SECURITY="-no-secty"
 
 # redis or mongo
-[ "$FOR_REDIS" = true ] && USE_REDIS="-redis"
+if [ "${FOR_REDIS:=true}" = true ]; then 
+     PERSIST="-redis"
+else
+     PERSIST="-mongo"
+fi
 
 # nightly or other release
 USE_RELEASE=${RELEASE:-nightly-build}
 if [ "$USE_RELEASE" = "nightly-build" ]; then
-     COMPOSE_FILE="docker-compose-nexus${USE_REDIS}${USE_NO_SECURITY}${USE_ARM64}.yml"
+     COMPOSE_FILE="docker-compose-nexus${PERSIST}${USE_NO_SECURITY}${USE_ARM64}.yml"
 else
-     COMPOSE_FILE="docker-compose${USE_REDIS}-${USE_RELEASE}${USE_NO_SECURITY}${USE_ARM64}.yml"
+     COMPOSE_FILE="docker-compose${PERSIST}-${USE_RELEASE}${USE_NO_SECURITY}${USE_ARM64}.yml"
 fi
 
 wget -q -O ${COMPOSE_FILE} "https://raw.githubusercontent.com/edgexfoundry/developer-scripts/master/releases/${USE_RELEASE}/compose-files/${COMPOSE_FILE}"

@@ -1,5 +1,7 @@
 #!/bin/bash
-# Set security environment variable. This is mostly cosmetic as the tests will display warnings that the env is not set.
+
+# Set security environment variable. This is mostly cosmetic as the tests will display warnings that
+# the env is not set.
 if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 	export SECURITY_IS_ON="true"
 else
@@ -7,16 +9,11 @@ else
 fi
 
 # Ensure we fail the job if any steps fail
-#set -e -o pipefail
-#. $(dirname "$0")/env.sh
+set -e -o pipefail
 
 # Run the compose file for blackbox testing
 export network=$(docker network ls | awk '{print $2}' | grep edgex-network)
-docker-compose -f ../docker-compose-test-tools.yml up -d app-service-configurable
-
-option="${1}"
-
-echo " ${option}"
+docker-compose -f "$(dirname "$0")"/../docker-compose-test-tools.yml up -d app-service-configurable
 
 TIMESTAMPFORMAT=`date +%d-%m-%Y_%H%M%S`
 BASEPATH=$(dirname "$0")/postman-test/scriptLogs
@@ -134,7 +131,6 @@ testAll() {
   coreDataTest
   commandTest
   metaDataTest
-  loggingTest
   supportNotificationTest
   supportSchedulerTest
   systemManagementTest
@@ -145,9 +141,12 @@ testAll() {
 
 }
 
+
 ## Changing MaxResultCount value to 100 before test
 echo "[INFO] Update MaxResultCount and restart services "
-sh $(dirname "$0")/updateMaxResultCount.sh
+$(dirname "$0")/updateMaxResultCount.sh >/dev/null 2>&1
+
+
 
 #Main Script starts here
 $(dirname "$0")/banner.sh
@@ -155,7 +154,7 @@ $(dirname "$0")/banner.sh
 #Create testResult for postman
 [ -d "$(dirname "$0")/testResult" ]|| mkdir $(dirname "$0")/testResult
 
-case ${option} in
+case $1 in
 	-sec)
 	echo "Info: Initiating Securityservice Test"
 	securityTest | tee $SECURITYLOGSPATH
@@ -198,7 +197,7 @@ case ${option} in
 	;;
    	-all)
     echo "Info: Initiating EdgeX Test"
-	testAll		| tee $EDGEXLOGSPATH
+		testAll		| tee $EDGEXLOGSPATH
     ;;
    	*)
     echo "`basename ${0}`:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-ss SupportScheduler] | [-dv DeviceVirtual] | [-asc AppServiceConfigurable] | [-sec securityTest] | [-all All]"

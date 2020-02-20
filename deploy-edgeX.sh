@@ -25,12 +25,16 @@
 #    . $(dirname "$0")/bin/env.sh
 #fi
 
-./sync.sh
-COMPOSE_FILE=$(ls $(dirname "$0") | awk '/docker-compose/ && !/test-tools/')
+if [ -n "${COMPOSE_FILE_PATH}" ] && [ -r "${COMPOSE_FILE_PATH}" ]; then
+	COMPOSE_FILE=${COMPOSE_FILE_PATH}
+else
+	./sync.sh
+	COMPOSE_FILE=$(ls $(dirname "$0") | awk '/docker-compose/ && !/test-tools/')
+fi
 
 run_service () {
-	echo "\033[0;32mStarting.. $1\033[0m"
-        docker-compose -f $COMPOSE_FILE up -d $1
+	builtin echo -e "\033[0;32mStarting.. $1\033[0m"
+  docker-compose -f $COMPOSE_FILE up -d $1
 }
 
 if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
@@ -70,10 +74,12 @@ if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 	run_service edgex-proxy
 fi
 
-if [ "$FOR_REDIS" = true ]; then
+if [ "${FOR_REDIS:=true}" = true ]; then
 	run_service redis
+	persist=redis
 else
 	run_service mongo
+	persist=mongo
 fi
 
 run_service logging
@@ -115,8 +121,8 @@ echo "------- kong ------"
 docker logs kong
 echo "------- edgex-proxy ------"
 docker logs edgex-proxy
-echo "------- mongo ------"
-docker logs edgex-mongo
+echo "------- ${persist} ------"
+docker logs edgex-${persist}
 echo "------- logging ------"
 docker logs edgex-support-logging
 echo "------- data ------"

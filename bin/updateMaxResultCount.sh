@@ -8,3 +8,5 @@ curl -X PUT -d ${MaxResultCount} ${consulkvURL}/edgex/core/1.0/edgex-support-log
 
 # Restart Services
 docker restart edgex-support-logging
+
+exit 0
