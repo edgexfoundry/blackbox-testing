@@ -21,7 +21,7 @@ else
      COMPOSE_FILE="docker-compose${PERSIST}-${USE_RELEASE}${USE_NO_SECURITY}${USE_ARM64}.yml"
 fi
 
-wget -q -O ${COMPOSE_FILE} "https://raw.githubusercontent.com/edgexfoundry/developer-scripts/master/releases/${USE_RELEASE}/compose-files/${COMPOSE_FILE}"
+wget -q -O ${COMPOSE_FILE} "https://raw.githubusercontent.com/jinlinGuan/developer-scripts/issue-224/releases/${USE_RELEASE}/compose-files/${COMPOSE_FILE}"
 
 # Use Centos base image instead of Alpine base image for Kong for x86_64 CI
 # due to compatibility issues with Alpine image in CI
