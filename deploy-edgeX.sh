@@ -74,6 +74,11 @@ if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 	run_service edgex-proxy
 fi
 
+# [Workaround] there is no docker-compose-nexus-redis.yml now
+if [ "$SECURITY_SERVICE_NEEDED" = true ]; then
+        FOR_REDIS=false
+fi
+
 if [ "${FOR_REDIS:=true}" = true ]; then
 	run_service redis
 	persist=redis
