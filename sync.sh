@@ -7,7 +7,7 @@
 [ "$SECURITY_SERVICE_NEEDED" != true ] && USE_NO_SECURITY="-no-secty"
 
 # redis or mongo
-if [ "${FOR_REDIS:=true}" = true ]; then 
+if [ "${DATABASE:=redis}" = redis ]; then
      PERSIST="-redis"
 else
      PERSIST="-mongo"

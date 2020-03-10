@@ -76,15 +76,13 @@ fi
 
 # [Workaround] there is no docker-compose-nexus-redis.yml now
 if [ "$SECURITY_SERVICE_NEEDED" = true ]; then
-        FOR_REDIS=false
+        DATABASE=mongo
 fi
 
-if [ "${FOR_REDIS:=true}" = true ]; then
+if [ "${DATABASE:=redis}" = redis ]; then
 	run_service redis
-	persist=redis
 else
 	run_service mongo
-	persist=mongo
 fi
 
 run_service logging
@@ -126,8 +124,8 @@ echo "------- kong ------"
 docker logs kong
 echo "------- edgex-proxy ------"
 docker logs edgex-proxy
-echo "------- ${persist} ------"
-docker logs edgex-${persist}
+echo "------- ${DATABASE} ------"
+docker logs edgex-${DATABASE}
 echo "------- logging ------"
 docker logs edgex-support-logging
 echo "------- data ------"
