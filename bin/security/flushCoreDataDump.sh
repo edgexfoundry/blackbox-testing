@@ -11,6 +11,6 @@ source $(dirname "$0")/security/setupSecurityAccount.sh -useradd
 docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} --environment=${ENV_PATH} \
   --insecure --global-var accessToken="$TOKEN"
 
-sopurce $(dirname "$0")/security/setupSecurityAccount.sh -userdel
+source $(dirname "$0")/security/setupSecurityAccount.sh -userdel
 
 echo "Info: Coredata's test data Cleaned"
