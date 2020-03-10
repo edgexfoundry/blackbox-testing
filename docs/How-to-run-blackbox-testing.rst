@@ -37,7 +37,7 @@ Optionally use Mongo rather than the default Redis based persistence
 
 .. code-block:: bash
 
-        export FOR_REDIS=false #optional if Mongo is desired
+        export DATABASE=mongo #optional if Mongo is desired
 
 Optionally use local Docker Compose file rather than downloading from the repo. Note this overrides RELEASE.
 
