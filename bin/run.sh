@@ -9,7 +9,7 @@ else
 fi
 
 # Ensure we fail the job if any steps fail
-set -e -o pipefail
+set -o pipefail
 
 # Run the compose file for blackbox testing
 export network=$(docker network ls | awk '{print $2}' | grep edgex-network)
