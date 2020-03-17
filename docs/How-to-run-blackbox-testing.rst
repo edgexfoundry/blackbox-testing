@@ -26,24 +26,30 @@ The following command to set up the environment
 
         . bin/env.sh
 
-Configure the rest of the environment
+Optionally configure the rest of the environment
 
 .. code-block:: bash
 
-        export RELEASE=fuji #if using fuji release is needed; the default is nightly-build
-        export SECURITY_SERVICE_NEEDED=true #if the security services are needed
+        # Optionally use Fuji rather than the default nightly-build version
+        export RELEASE=fuji
 
-Optionally use Mongo rather than the default Redis based persistence
+        # Optionally use service-enabled rather than the default no security compose file
+        export SECURITY_SERVICE_NEEDED=true
 
-.. code-block:: bash
+        # Optionally use Mongo rather than the default Redis based persistence
+        export DATABASE=mongo
 
-        export DATABASE=mongo #optional if Mongo is desired
 
-Optionally use local Docker Compose file rather than downloading from the repo. Note this overrides RELEASE.
+
+Optionally use local Docker Compose file rather than downloading from the repo.
+
+*Note this overrides RELEASE. The corresponding settings for SECURITY_SERVICE_NEEDED and DATABASE are still needed.*
 
 .. code-block:: bash
 
         export COMPOSE_FILE_PATH=...full path to desired Docker Compose file...
+
+***Note: In addition to "docker-compose-test-tool.yml", there must be NO MORE THAN ONE docker-compose file under the blackbox-testing directory.**
 
 ============
 Deploy EdgeX
@@ -52,6 +58,7 @@ Deploy EdgeX
 Then deploy EdgeX
 
 .. code-block:: bash
+
         ./deploy-edgeX.sh
 
 The console displays output similar to the following:
@@ -107,24 +114,24 @@ The script logic is as follows:
 - Run the Newman test script
 - Clean test data
 
-The service's API are tested using the following commands:
+The service's API are tested using the following commands under the Path: **/blackbox-testing/bin/**:
 
 ======================  ======================
 Testservice             command 
 ----------------------  ----------------------
-support-notification	 bin/run.sh -sn
-support-logging	         bin/run.sh -log
-core-metadata	         bin/run.sh -md
-core-data	             bin/run.sh -cd
-core-command	         bin/run.sh -co
-All	                     bin/run.sh -all 
+support-notification	 ./run.sh -sn
+support-logging	         ./run.sh -log
+core-metadata	         ./run.sh -md
+core-data	             ./run.sh -cd
+core-command	         ./run.sh -co
+All	                     ./run.sh -all
 ======================  ======================
 
-For example, when we execute 
+For example, when we execute under the Path: **/blackbox-testing/bin/**
 
 .. code-block:: bash
 
-    $ bin/run.sh -cd
+    $ bash ./run.sh -cd
     
 then the script logic is:
 
@@ -136,7 +143,7 @@ The output is similar to the following:
 
 .. code-block:: bash
 
-    $ bin/run.sh -cd
+    $ bash ./run.sh -cd
     -cd
     *********************************************************************
      _____    _           __  __  _____                     _            
@@ -215,7 +222,7 @@ To list all available options:
 
 .. code-block:: bash
 
-    $ bin/run.sh
+    $ bash ./run.sh
     ...
     ...
     [INFO] Init postman test data .
@@ -276,7 +283,7 @@ where "collection_name" is the name of the collection (usually the name of the s
 Run Test Using Postman
 ======================
 
-The test uses same logic as **./bin/run.sh -cd**, but there are more steps to complete.
+The test uses same logic as **bash ./run.sh -cd**, but there are more steps to complete.
 
 We will use the core-data test below as an example.
 
@@ -387,7 +394,8 @@ Support-Notifications
 To run support-notification tests you must have the following services running before beginning any tests:
 
 1. database
-2. support-notifications
+2. support-logging
+3. support-notifications
 
 Run the support-notifications-cleaner script, then the importer script, and finally the tests.
 
@@ -410,7 +418,9 @@ Support-Scheduler
 To run support-scheduler tests you must have the following services running before beginning any tests:
 
 1. database
-2. support-scheduler
+2. core-metadata
+3. support-logging
+4. support-scheduler
 
 Run the support-notifications-cleaner script, then the importer script, and finally the tests.
 
@@ -423,3 +433,26 @@ data files.
 The support-notifications collection has two folders:
     1. interval: this folder requires the support-scheduler environment and the intervalData data file.
     2. intervalAction: this folder requires the support-scheduler environment and the intervalActionData data file.
+
+------------------------
+App-Service-Configurable
+------------------------
+
+The "docker-compose-test-tools.yml" in the blackbox-testing directory contains the services only for testing, such as app-service-configurable and postman.
+
+To run app-service-configurable tests you must have the following services running before beginning any tests:
+
+1. database
+2. core-data
+3. support-logging
+4. app-service-configurable
+
+To run app-service-configurable:
+
+.. code-block:: bash
+
+    $ export network=$(docker network ls | awk '{print $2}' | grep edgex-network)
+    $ docker-compose -f /path-to-blackbox-testing-directory/docker-compose-test-tools.yml up -d app-service-configurable
+
+The app-service-configurable collection requires the app-service-configurable environment. It does not require any
+data files.
