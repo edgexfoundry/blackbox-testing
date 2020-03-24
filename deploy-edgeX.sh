@@ -24,6 +24,7 @@
 #else
 #    . $(dirname "$0")/bin/env.sh
 #fi
+[ "$DATABASE" != "mongo" ] && exit 0
 
 run_service () {
 	echo "\033[0;32mStarting.. $1\033[0m"

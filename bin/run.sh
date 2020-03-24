@@ -1,6 +1,11 @@
 #!/bin/bash
 # Ensure we fail the job if any steps fail
 set -e -o pipefail
+if [ "$DATABASE" != "mongo" ]; then
+    mkdir $(dirname "$0")/testResult
+    touch $(dirname "$0")/testResult/nothing.xml
+    exit 0
+fi
 
 #. $(dirname "$0")/env.sh
 
