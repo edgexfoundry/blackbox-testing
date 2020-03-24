@@ -1849,7 +1849,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"origin\":1471806366619,\n\t\"device\":\"livingroomthermostat\",\n\t\"name\":\"co2\",\n\t\"value\":\"12\"\n}"
+							"raw": "{\n\t\"origin\":1471806366619,\n\t\"device\":\"livingroomthermostat\",\n\t\"name\":\"co2\",\n\t\"value\":\"12.2\",\n\t\"valueType\":\"Float32\",\n\t\"mediaType\":\"foo\",\n\t\"floatEncoding\": \"ieee23.2\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading",
@@ -1900,6 +1900,8 @@
 									"        //Test response schema",
 									"        tests[\"Is Valid Response Schema\"] = tv4.validate(actualEventData, data.objectSchema);",
 									"        console.log(\"Validation failed: \", tv4.error);",
+									"        tests[\"Float encoding present\"] = actualEventData.floatEncoding === \"IEEE-754\"",
+									"        tests[\"Value Type present\"] = actualEventData.valueType === \"Float32\"",
 									"    } else {",
 									"        console.log(\"Reading is empty.\");",
 									"        tests[\"Is Reading empty\"] = actualEventData.length === 0;",
@@ -1916,7 +1918,7 @@
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
 									"var request = {",
-									"  url: baseUrl+'/api/v1/reading/0/10000000000000/1',",
+									"  url: baseUrl+'/api/v1/reading/name/power/1',",
 									"  method: 'GET',",
 									"};",
 									"request = utils.checkToken(request);",
