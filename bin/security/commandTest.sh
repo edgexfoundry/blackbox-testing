@@ -21,11 +21,11 @@ echo "[info] ---------- use docker-compose run newman ----------"
 
 source $(dirname "$0")/security/setupSecurityAccount.sh -useradd
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="device" --iteration-data="data/coreCommandData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli" --insecure --global-var accessToken="$TOKEN"
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="device_error_4xx" --iteration-data="data/coreCommandData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli" --insecure --global-var accessToken="$TOKEN"
 

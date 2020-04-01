@@ -1,6 +1,7 @@
 #!/bin/bash
 
-OT=$(docker-compose -f ../$(ls ../ | awk '/docker-compose/ && !/test-tools/') run --rm --entrypoint /edgex/security-proxy-setup edgex-proxy --init=false --useradd=jerry --group=admin | grep '^the access token for')
+COMPOSE=$(dirname "$0")/../$(ls $(dirname "$0")/../ | awk '/docker-compose/ && !/test-tools/')
+OT=$(docker-compose -f ${COMPOSE} run --rm --entrypoint /edgex/security-proxy-setup edgex-proxy --init=false --useradd=jerry --group=admin | grep '^the access token for')
 export TOKEN=$( echo $OT | sed 's/.*: \([^.]*\.[^.]*\.[^.]*\).*/\1/')
 
 #echo TOKEN=$TOKEN

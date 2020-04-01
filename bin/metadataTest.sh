@@ -21,71 +21,71 @@ echo "[info] ---------- use docker-compose run newman ----------"
 
 echo "[info] ======================== Start run metaData test - addressable ========================"
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="addressable" --iteration-data="data/addressableData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
     
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="addressable_error_4xx" --iteration-data="data/addressableData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"    
 
 echo "[info] ======================== Start run metaData test - command ========================"
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="command" --iteration-data="data/commandData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"  
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="command_error_4xx" --iteration-data="data/commandData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"  
 
 echo "[info] ======================== Start run metaData test - device ========================"
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="device" --iteration-data="data/deviceData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="device_error_4xx" --iteration-data="data/deviceData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
 echo "[info] ======================== Start run metaData test - deviceprofile ========================"
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="deviceprofile" --iteration-data="data/deviceProfileData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="deviceprofile_error_4xx" --iteration-data="data/deviceProfileData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
 echo "[info] ======================== Start run metaData test - devicereport ========================"
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="devicereport" --iteration-data="data/deviceReportData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="devicereport_error_4xx" --iteration-data="data/deviceReportData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
 echo "[info] ======================== Start run metaData test - deviceservice ========================"
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="deviceservice" --iteration-data="data/deviceServiceData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="deviceservice_error_4xx" --iteration-data="data/deviceServiceData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
 echo "[info] ======================== Start run metaData test - provisionwatcher ========================"
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="provisionwatcher" --iteration-data="data/provisionWatcherData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="provisionwatcher_error_4xx" --iteration-data="data/provisionWatcherData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli"
 

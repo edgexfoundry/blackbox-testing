@@ -21,24 +21,24 @@ echo "[info] ---------- use docker-compose run newman ----------"
 
 source $(dirname "$0")/security/setupSecurityAccount.sh -useradd
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="reading" --iteration-data="data/readingData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli" --insecure --global-var accessToken="$TOKEN"
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="reading_error_4xx" --iteration-data="data/readingData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli" --insecure --global-var accessToken="$TOKEN"
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="valuedescriptor" --iteration-data="data/valueDescriptorData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli" --insecure --global-var accessToken="$TOKEN"
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="valuedescriptor_error_4xx" --iteration-data="data/valueDescriptorData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli" --insecure --global-var accessToken="$TOKEN"
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="event" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli" --insecure --global-var accessToken="$TOKEN"
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="event_error_4xx" --iteration-data="data/eventData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli" --insecure --global-var accessToken="$TOKEN"
 

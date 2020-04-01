@@ -13,7 +13,7 @@ set -o pipefail
 
 # Run the compose file for blackbox testing
 export network=$(docker network ls | awk '{print $2}' | grep edgex-network)
-docker-compose -f "$(dirname "$0")"/../docker-compose-test-tools.yml up -d app-service-configurable
+docker-compose -f ${docker_compose_test_tools} up -d app-service-configurable
 
 TIMESTAMPFORMAT=$(date +%d-%m-%Y_%H%M%S)
 BASEPATH=$(dirname "$0")/postman-test/scriptLogs
@@ -30,137 +30,116 @@ APPSERVICECONFIGURABLELOGSPATH=$BASEPATH/appserviceconfigurable$TIMESTAMPFORMAT.
 EDGEXLOGSPATH=$BASEPATH/edgex$TIMESTAMPFORMAT.log
 
 securityTest() {
-	pushd "$(dirname "$0")" >/dev/null
 
-	. $(dirname "$0")/setupSecurityserviceTest.sh
-	$(dirname "$0")/runSecurityserviceTest.sh
-	$(dirname "$0")/cleanSecurityserviceTest.sh
+	source $(dirname "$0")/setupSecurityserviceTest.sh
+	sh $(dirname "$0")/runSecurityserviceTest.sh
+	sh $(dirname "$0")/cleanSecurityserviceTest.sh
 
-	popd >/dev/null
 }
 
 coreDataTest() {
-	pushd "$(dirname "$0")" >/dev/null
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
-		source ./security/importCoreDataDump.sh
-		source ./security/coreDataTest.sh
-		source ./security/flushCoreDataDump.sh
+		source $(dirname "$0")/security/importCoreDataDump.sh
+		source $(dirname "$0")/security/coreDataTest.sh
+		source $(dirname "$0")/security/flushCoreDataDump.sh
 	else
-		./importCoreDataDump.sh
-		./coreDataTest.sh
-		./flushCoreDataDump.sh
+    sh $(dirname "$0")/importCoreDataDump.sh
+    sh $(dirname "$0")/coreDataTest.sh
+    sh $(dirname "$0")/flushCoreDataDump.sh
 	fi
 
-	popd >/dev/null
 }
 
 metaDataTest() {
-	pushd "$(dirname "$0")" >/dev/null
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
-		source ./security/importMetaDataDumps.sh
-		source ./security/metadataTest.sh
-		source ./security/flushMetaDataDump.sh
+		source $(dirname "$0")/security/importMetaDataDumps.sh
+		source $(dirname "$0")/security/metadataTest.sh
+		source $(dirname "$0")/security/flushMetaDataDump.sh
 	else
-		./importMetaDataDumps.sh
-		./metadataTest.sh
-		./flushMetaDataDump.sh
+    sh $(dirname "$0")/importMetaDataDumps.sh
+    sh $(dirname "$0")/metadataTest.sh
+    sh $(dirname "$0")/flushMetaDataDump.sh
 	fi
-
-	popd >/dev/null
 }
 
 commandTest() {
-	pushd "$(dirname "$0")" >/dev/null
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
-		source ./security/importCommandDataDump.sh
-		source ./security/commandTest.sh
-		source ./security/flushCommandDataDump.sh
+		source $(dirname "$0")/security/importCommandDataDump.sh
+		source $(dirname "$0")/security/commandTest.sh
+		source $(dirname "$0")/security/flushCommandDataDump.sh
 	else
-		./importCommandDataDump.sh
-		./commandTest.sh
-		./flushCommandDataDump.sh
+    sh $(dirname "$0")/importCommandDataDump.sh
+    sh $(dirname "$0")/commandTest.sh
+    sh $(dirname "$0")/flushCommandDataDump.sh
 	fi
 
-	popd >/dev/null
 }
 
 loggingTest() {
-	pushd "$(dirname "$0")" >/dev/null
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
-		source ./security/importLoggingDataDump.sh
-		source ./security/loggingTest.sh
-		source ./security/flushLoggingDataDump.sh
+		source $(dirname "$0")/security/importLoggingDataDump.sh
+		source $(dirname "$0")/security/loggingTest.sh
+		source $(dirname "$0")/security/flushLoggingDataDump.sh
 	else
-		./importLoggingDataDump.sh
-		./loggingTest.sh
-		./flushLoggingDataDump.sh
+    sh $(dirname "$0")/importLoggingDataDump.sh
+    sh $(dirname "$0")/loggingTest.sh
+    sh $(dirname "$0")/flushLoggingDataDump.sh
 	fi
 
-	popd >/dev/null
 }
 
 supportNotificationTest() {
-	pushd "$(dirname "$0")" >/dev/null
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
-		source ./security/importSupportNotificationDump.sh
-		source ./security/supportNotificationsTest.sh
-		source ./security/flushSupportNotificationDump.sh
+		source $(dirname "$0")/security/importSupportNotificationDump.sh
+		source $(dirname "$0")/security/supportNotificationsTest.sh
+		source $(dirname "$0")/security/flushSupportNotificationDump.sh
 	else
-		./importSupportNotificationDump.sh
-		./supportNotificationsTest.sh
-		./flushSupportNotificationDump.sh
+    sh $(dirname "$0")/importSupportNotificationDump.sh
+    sh $(dirname "$0")/supportNotificationsTest.sh
+    sh $(dirname "$0")/flushSupportNotificationDump.sh
 	fi
 
-	popd >/dev/null
 }
 
 systemManagementTest() {
-	pushd "$(dirname "$0")" >/dev/null
 
-	./systemManagementTest.sh
+    sh $(dirname "$0")/systemManagementTest.sh
 
-	popd >/dev/null
 }
 
 supportSchedulerTest() {
-	pushd "$(dirname "$0")" >/dev/null
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
-		source ./security/importSupportSchedulerDump.sh
-		source ./security/supportSchedulerTest.sh
-		source ./security/flushSupportSchedulerDataDump.sh
+		source $(dirname "$0")/security/importSupportSchedulerDump.sh
+		source $(dirname "$0")/security/supportSchedulerTest.sh
+		source $(dirname "$0")/security/flushSupportSchedulerDataDump.sh
 	else
-		./importSupportSchedulerDump.sh
-		./supportSchedulerTest.sh
-		./flushSupportSchedulerDataDump.sh
+    sh $(dirname "$0")/importSupportSchedulerDump.sh
+    sh $(dirname "$0")//supportSchedulerTest.sh
+    sh $(dirname "$0")/flushSupportSchedulerDataDump.sh
 	fi
 
-	popd >/dev/null
 }
 
 deviceVirtualTest() {
-	pushd "$(dirname "$0")" >/dev/null
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
-		source ./security/deviceVirtualTest.sh
+		source $(dirname "$0")/security/deviceVirtualTest.sh
 	else
-		./deviceVirtualTest.sh
+    sh $(dirname "$0")/deviceVirtualTest.sh
 	fi
 
-	popd >/dev/null
 }
 
 appServiceConfigurableTest() {
-	pushd "$(dirname "$0")" >/dev/null
 	
-	./appServiceConfigurableTest.sh
+    sh $(dirname "$0")/appServiceConfigurableTest.sh
 
-	popd >/dev/null
 }
 
 testAll() {
@@ -181,10 +160,10 @@ testAll() {
 
 ## Changing MaxResultCount value to 100 before test
 echo "[INFO] Update MaxResultCount and restart services "
-$(dirname "$0")/updateMaxResultCount.sh >/dev/null 2>&1
+sh $(dirname "$0")/updateMaxResultCount.sh >/dev/null 2>&1
 
 #Main Script starts here
-$(dirname "$0")/banner.sh
+sh $(dirname "$0")/banner.sh
 
 #Create testResult for postman
 [ -d "$(dirname "$0")/testResult" ] || mkdir $(dirname "$0")/testResult
@@ -245,4 +224,4 @@ echo
 echo "Info: Logs available in [scriptLogs]"
 #echo "Info: HTML Reports available in [Reports]"
 echo
-$(dirname "$0")/endBanner.sh
+sh $(dirname "$0")/endBanner.sh

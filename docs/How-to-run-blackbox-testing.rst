@@ -20,7 +20,7 @@ You must also clone the repo from https://github.com/edgexfoundry/blackbox-testi
 Setup env.sh
 ============
 
-The following command to set up the environment
+The following command to set up the environment for blackbox-testing
 
 .. code-block:: bash
 
@@ -55,7 +55,7 @@ Optionally use local Docker Compose file rather than downloading from the repo.
 Deploy EdgeX
 ============
 
-Then deploy EdgeX
+1. deploy EdgeX
 
 .. code-block:: bash
 
@@ -113,24 +113,24 @@ The script logic is as follows:
 - Run the Newman test script
 - Clean test data
 
-The service's API are tested using the following commands under the Path: **/blackbox-testing/bin/**:
+The service's API are tested using the following command:
 
 ======================  ======================
 Testservice             command 
 ----------------------  ----------------------
-support-notification	 ./run.sh -sn
-support-logging	         ./run.sh -log
-core-metadata	         ./run.sh -md
-core-data	             ./run.sh -cd
-core-command	         ./run.sh -co
-All	                     ./run.sh -all
+support-notification	 ./bin/run.sh -sn
+support-logging	         ./bin/run.sh -log
+core-metadata	         ./bin/run.sh -md
+core-data	             ./bin/run.sh -cd
+core-command	         ./bin/run.sh -co
+All	                     ./bin/run.sh -all
 ======================  ======================
 
-For example, when we execute under the Path: **/blackbox-testing/bin/**
+For example, when we execute under the Path:
 
 .. code-block:: bash
 
-    $ bash ./run.sh -cd
+    $ ./bin/run.sh -cd
     
 then the script logic is:
 
@@ -221,7 +221,7 @@ To list all available options:
 
 .. code-block:: bash
 
-    $ bash ./run.sh
+    $ ./bin/run.sh
     ...
     ...
     [INFO] Init postman test data .
