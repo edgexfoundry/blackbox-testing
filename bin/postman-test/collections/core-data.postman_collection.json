@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c47bc875-a293-4f6d-8cea-639bd82f647a",
+		"_postman_id": "986f05e6-4ffc-40c5-8fbb-59e19bdfd847",
 		"name": "core-data",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2722,6 +2722,94 @@
 							]
 						},
 						"description": "Update the reading.  Reading object needs to contain the database generated id of the existing reading. NotFoundException (HTTP 404) if the reading cannot be found by id. ServiceException (HTTP 503) for unknown or unanticipated issues. DataValidationException if the associated value descriptor is non-existent."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:48080/api/v1/reading missing mediaType",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a1eb391e-6015-4c7f-803f-10524cec5c98",
+								"exec": [
+									"//Assert 400 status if binaryValue is specified and mediaType isn't",
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"device\": \"powerScoutMeter\",\n    \"name\": \"co2\",\n    \"binaryValue\": \"83010203\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/reading",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reading"
+							]
+						},
+						"description": "Attempt to add a binary reading without specifying a media type.  Request should return an HTTP 400."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:48080/api/v1/reading missing float encoding",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a1eb391e-6015-4c7f-803f-10524cec5c98",
+								"exec": [
+									"//Assert 400 status if value is a float and float encoding is not specified.",
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"device\": \"powerScoutMeter\",\n    \"name\": \"co2\",\n    \"valueType\": \"Float32\",\n    \"value\": \"3.14\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/reading",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reading"
+							]
+						},
+						"description": "Attempt to add a float reading without specifying a float encoding.  Request should return an HTTP 400."
 					},
 					"response": []
 				},
