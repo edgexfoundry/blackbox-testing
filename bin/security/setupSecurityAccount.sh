@@ -8,8 +8,8 @@ case ${option} in
   -useradd)
   echo "Info: Add security account."
   OT=$(docker-compose -f "${BB_ROOT_DIR}/"$(ls .. | awk '/docker-compose/ && !/test-tools/') run --rm \
-    --entrypoint /edgex/security-proxy-setup edgex-proxy --init=false --useradd=geneva --group=admin | tail -1)
-  export TOKEN=$(echo ${OT} | sed 's/.*: \([^ ]*\).*/\1/' | sed 's/\(.*\)./\1/')
+    --entrypoint /edgex/security-proxy-setup edgex-proxy --init=false --useradd=geneva --group=admin | grep '^the access token for')
+  export TOKEN=$(echo ${OT} | sed 's/.*: \([^.]*\.[^.]*\.[^.]*\).*/\1/')
   ;;
   -userdel)
   echo "Info: Delete security account."
