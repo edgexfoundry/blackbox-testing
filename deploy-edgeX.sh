@@ -47,8 +47,6 @@ run_service volume
 
 run_service consul
 
-run_service config-seed
-
 if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 
 	run_service security-secrets-setup
@@ -108,8 +106,6 @@ echo "------- volume ------"
 docker logs edgex-files
 echo "------- consul ------"
 docker logs edgex-core-consul
-echo "------- config-seed ------"
-docker logs edgex-config-seed
 echo "------- secrity-secrets-setup ------"
 docker logs edgex-secrets-setup
 echo "------- vault ------"
