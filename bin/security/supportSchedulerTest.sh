@@ -23,11 +23,11 @@ echo "[info] ======================== Start run support scheduler tests ========
 
 source $(dirname "$0")/security/setupSecurityAccount.sh -useradd
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="interval" --iteration-data="data/intervalData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli" --insecure --global-var accessToken="$TOKEN"
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --folder="intervalAction" --iteration-data="data/intervalActionData.json" --environment=${ENV_PATH} \
     --reporters="junit,cli" --insecure --global-var accessToken="$TOKEN"
 

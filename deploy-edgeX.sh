@@ -28,12 +28,12 @@
 if [ -n "${COMPOSE_FILE_PATH}" ] && [ -r "${COMPOSE_FILE_PATH}" ]; then
 	COMPOSE_FILE=${COMPOSE_FILE_PATH}
 else
-	./sync.sh
+	sh ./sync.sh
 	COMPOSE_FILE=$(ls $(dirname "$0") | awk '/docker-compose/ && !/test-tools/')
 fi
 
 run_service () {
-	builtin echo -e "\033[0;32mStarting.. $1\033[0m"
+	echo -e "\033[0;32mStarting.. $1\033[0m"
   docker-compose -f $COMPOSE_FILE up -d $1
 }
 
@@ -100,7 +100,6 @@ run_service scheduler
 run_service system
 
 run_service device-virtual
-
 
 echo "------- volume ------"
 docker logs edgex-files

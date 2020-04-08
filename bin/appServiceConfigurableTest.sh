@@ -19,7 +19,7 @@ echo "Info: Initiating AppServiceConfigurable Test."
 
 echo "[info] ---------- use docker-compose run newman ----------"
 
-docker-compose -f ../docker-compose-test-tools.yml run --rm postman run ${COLLECTION_PATH} \
+docker-compose -f ${docker_compose_test_tools} run --rm postman run ${COLLECTION_PATH} \
     --environment=${ENV_PATH} --delay-request 500 --reporters="junit,cli"
 
 echo "Info:AppServiceConfigurable Test Completed."
