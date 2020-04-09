@@ -1306,10 +1306,10 @@
 							"raw": "{\n    \"device\": \"irCamera\",\n    \"readings\": [\n        {\n           \"device\": \"irCamera\",\n           \"name\": \"image\",\n           \"binaryValue\": \"83010203\",\n           \"mediaType\": \"image\"\n        }\n    ]\n}"
 						},
 						"url": {
-							"raw": "http://localhost:48080/api/v1/event",
+							"raw": "{{baseUrl}}/api/v1/event",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
 							"port": "48080",
 							"path": [
