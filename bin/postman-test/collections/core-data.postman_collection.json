@@ -1307,7 +1307,6 @@
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/event",
-							"protocol": "http",
 							"host": [
 								"{{baseUrl}}"
 							],
