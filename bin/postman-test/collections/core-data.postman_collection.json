@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "986f05e6-4ffc-40c5-8fbb-59e19bdfd847",
+		"_postman_id": "47bb75e4-bff6-4fd6-a4cb-3ee5b88c0c58",
 		"name": "core-data",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1270,6 +1270,55 @@
 						"description": "Remove all old events (and associated readings) based on delimiting age.  ServiceException (HTTP 503) for unknown or unanticipated issues.  Should only be used by the scrubber micro service"
 					},
 					"response": []
+				},
+				{
+					"name": "http://localhost:48080/api/v1/event event can be added with binary value",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cb08cb30-ce8a-4b39-a04b-ac666350fb09",
+								"exec": [
+									"/*",
+									" * Test Case:  /api/v1/event - POST",
+									" *",
+									" */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+									"}",
+									"if(null !== responseBody){",
+									"    tests[\"Response Object id\"] = responseBody.length === 36;",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"device\": \"irCamera\",\n    \"readings\": [\n        {\n           \"device\": \"irCamera\",\n           \"name\": \"image\",\n           \"binaryValue\": \"83010203\",\n           \"mediaType\": \"image\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/event",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "48080",
+							"path": [
+								"api",
+								"v1",
+								"event"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"description": "Folder for event",
@@ -1849,7 +1898,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"origin\":1471806366619,\n\t\"device\":\"livingroomthermostat\",\n\t\"name\":\"co2\",\n\t\"value\":\"12\"\n}"
+							"raw": "{\n\t\"origin\":1471806366619,\n\t\"device\":\"livingroomthermostat\",\n\t\"name\":\"co2\",\n\t\"value\":\"12.2\",\n\t\"valueType\":\"Float32\",\n\t\"floatEncoding\": \"ieee23.2\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading",
@@ -1900,6 +1949,8 @@
 									"        //Test response schema",
 									"        tests[\"Is Valid Response Schema\"] = tv4.validate(actualEventData, data.objectSchema);",
 									"        console.log(\"Validation failed: \", tv4.error);",
+									"        tests[\"Float encoding present\"] = actualEventData.floatEncoding === \"IEEE-754\"",
+									"        tests[\"Value Type present\"] = actualEventData.valueType === \"Float32\"",
 									"    } else {",
 									"        console.log(\"Reading is empty.\");",
 									"        tests[\"Is Reading empty\"] = actualEventData.length === 0;",
@@ -1916,7 +1967,7 @@
 								"exec": [
 									"var baseUrl = pm.environment.get(\"baseUrl\");",
 									"var request = {",
-									"  url: baseUrl+'/api/v1/reading/0/10000000000000/1',",
+									"  url: baseUrl+'/api/v1/reading/name/power/1',",
 									"  method: 'GET',",
 									"};",
 									"request = utils.checkToken(request);",
