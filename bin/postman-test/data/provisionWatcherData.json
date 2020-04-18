@@ -6,6 +6,8 @@
     "provisionWatcherGetRequestName": "modbus watcher",
     "identifierKey": "MAC",
     "identifierValue": "00-05-1B-C1-99-99",
+    "validId": "1337beef-1337-beef-beef-deadbeef8c81",
+    "illegalName": "%ZZ",
     "provisionWatcherGetByProfileRequestName": "variable speed motor profile",
     "provisionWatcherGetByServiceRequestName": "home variable speed motor device service",
     "provisionWatcherDelRequestName": "lonworks watcher",

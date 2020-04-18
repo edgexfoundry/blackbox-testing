@@ -9067,7 +9067,54 @@
 								"{{invalidProvisionWatcherId}}"
 							]
 						},
-						"description": "Remove the ProvisionWatcher designated by the database generated id for the ProvisionWatcher. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if no provision watcher with the provided id is found."
+						"description": "Attempt to delete a provision watcher with an incorrectly formatted ID."
+					},
+					"response": []
+				},
+				{
+					"name": "309 http://localhost:48081/api/v1/provisionwatcher/id/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/*",
+									" * Test Case:  /provisionwatcher/id/:id - 404 Error - DEL ",
+									" * Version: Alpha",
+									" * @Author: Brandon Forster",
+									" *",
+									" */",
+									" ",
+									"//Test Case for status : 404- valid, non existent ID",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/provisionwatcher/id/{{validId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"provisionwatcher",
+								"id",
+								"{{validId}}"
+							]
+						},
+						"description": "Attempt to delete a provision watcher with a valid (but nonexistent) UUID"
 					},
 					"response": []
 				},
@@ -9119,6 +9166,53 @@
 					"response": []
 				},
 				{
+					"name": "310 http://localhost:48081/api/v1/provisionwatcher/name/:name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/*",
+									" * Test Case:  /provisionwatcher/name/:name - 400 Error - DEL ",
+									" * Version: Alpha",
+									" * @Author: Brandon Forster",
+									" *",
+									" */",
+									" ",
+									"//Test Case for status : 400",
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/provisionwatcher/name/{{illegalName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"provisionwatcher",
+								"name",
+								"{{illegalName}}"
+							]
+						},
+						"description": "Attempt to delete a provision watcher by name using an unparseable name."
+					},
+					"response": []
+				},
+				{
 					"name": "292 http://localhost:48081/api/v1/provisionwatcher/profile/:profileId",
 					"event": [
 						{
@@ -9162,6 +9256,49 @@
 					"response": []
 				},
 				{
+					"name": "311 http://localhost:48081/api/v1/provisionwatcher/profile/:profileId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/*",
+									" * Test Case:  provisionwatcher/profile/{profileId} - 404 Error - GET ",
+									" * Version: Alpha",
+									" * @Author: Brandon Forster",
+									" *",
+									" */",
+									" ",
+									"//Test Case for status : 404",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/provisionwatcher/profile/{{validId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"provisionwatcher",
+								"profile",
+								"{{validId}}"
+							]
+						},
+						"description": "Attempt to get all provision watchers by profile ID using a valid (but nonexistent) UUID"
+					},
+					"response": []
+				},
+				{
 					"name": "295 http://localhost:48081/api/v1/provisionwatcher/profilename/:profilename",
 					"event": [
 						{
@@ -9201,6 +9338,49 @@
 							]
 						},
 						"description": "Find all provision watchers associated to the DeviceProfile with the specified profile name. List may be empty if no provision watcher match. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if no DeviceProfile match on the name provided."
+					},
+					"response": []
+				},
+				{
+					"name": "312 http://localhost:48081/api/v1/provisionwatcher/profilename/:profilename",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/*",
+									" * Test Case:  /provisionwatcher/profilename/{profilename} - 400 Error - GET ",
+									" * Version: Alpha",
+									" * @Author: Brandon Forster",
+									" *",
+									" */",
+									" ",
+									"//Test Case for status : 400",
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/provisionwatcher/profilename/{{illegalName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"provisionwatcher",
+								"profilename",
+								"{{illegalName}}"
+							]
+						},
+						"description": "Attempt to find all provision watchers containing the specified device profile using an unparseable name."
 					},
 					"response": []
 				},
@@ -9249,6 +9429,50 @@
 					"response": []
 				},
 				{
+					"name": "313 http://localhost:48081/api/v1/provisionwatcher/service/:serviceId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/*",
+									" * Test Case:  /provisionwatcher/provisionwatcher/service/:serviceId - 404 Error - GET",
+									" * Version: Alpha",
+									" * @Author: Brandon Forster",
+									" *",
+									" */",
+									"",
+									"//Test Case for status : 404",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/provisionwatcher/service/{{validId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"provisionwatcher",
+								"service",
+								"{{validId}}"
+							]
+						},
+						"description": "Attempt to find all provision watchers given a valid (but nonexistent) service UUID"
+					},
+					"response": []
+				},
+				{
 					"name": "301 http://localhost:48081/api/v1/provisionwatcher/servicename/:servicename",
 					"event": [
 						{
@@ -9288,6 +9512,49 @@
 							]
 						},
 						"description": "Find the provision watchers associated to the DeviceService with the specified service name. List may be none if no provision watcher match. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns NotFoundException (HTTP 404) if no DeviceService match on the name provided."
+					},
+					"response": []
+				},
+				{
+					"name": "314 http://localhost:48081/api/v1/provisionwatcher/servicename/:servicename",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/*",
+									" * Test Case:  /provisionwatcher/servicename/:servicename - 400 ERROR - GET",
+									" * Version: Alpha",
+									" * @Author: Brandon Forster",
+									" *",
+									" */",
+									"",
+									"//Test Case for status : 400",
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/provisionwatcher/servicename/{{illegalName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"provisionwatcher",
+								"servicename",
+								"{{illegalName}}"
+							]
+						},
+						"description": "Attempt to find all provision watchers associated with a given service name using an unparseable name."
 					},
 					"response": []
 				},
@@ -9343,6 +9610,210 @@
 					"response": []
 				},
 				{
+					"name": "315 http://localhost:48081/api/v1/provisionwatcher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b937e7d2-81aa-11ea-bc55-0242ac130003",
+								"exec": [
+									"/*",
+									" * Test Case:  /provisionwatcher - 503 Error - PUT",
+									" * Version: Alpha",
+									" * @Author: Brandon Forster",
+									" *",
+									" */",
+									" ",
+									"//Test Case for status : 503",
+									"tests[\"Status code is 503\"] = responseCode.code === 503;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{addressableId}}\",\r\n    \"created\": 1475556860463,\r\n    \"modified\": 1475556860463,\r\n    \"origin\": 1471806386924,\r\n    \"name\": \"gasmeter\",\r\n    \"protocol\": \"HTTP\",\r\n    \"address\": \"172.17.0.6\",\r\n    \"port\": 48093,\r\n    \"path\": \"/gasmeter\",\r\n    \"publisher\": \"DELLPUB\",\r\n    \"user\": \"test\",\r\n    \"password\": \"test123\",\r\n    \"topic\": \"kWhData\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/provisionwatcher",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"provisionwatcher"
+							]
+						},
+						"description": "Attempt to update a provision watcher using an invalid request body (in this case, an addressable)."
+					},
+					"response": []
+				},
+				{
+					"name": "316 http://localhost:48081/api/v1/provisionwatcher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b937e7d2-81aa-11ea-bc55-0242ac130003",
+								"exec": [
+									"/*",
+									" * Test Case:  /provisionwatcher - 409 Error - PUT",
+									" * Version: Alpha",
+									" * @Author: Brandon Forster",
+									" *",
+									" */",
+									" ",
+									"//Test Case for status : 409",
+									"tests[\"Status code is 409\"] = responseCode.code === 409;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"{{validId}}\", \n\t\"name\":\"lonmark watcher\", \n\t\"origin\":14718063870000,\n    \"profile\":{  \n       \"name\":\"variable speed motor profile\"\n    },\n    \"service\":{  \n      \"name\":\"home variable speed motor device service\",\n      \"adminState\": \"unlocked\",\n      \"operatingState\": \"enabled\",\n      \"addressable\": {\n       \"name\": \"ceiling fan variable speed motor address\"\n      }\n    },\n    \"adminState\": \"unlocked\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/provisionwatcher",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"provisionwatcher"
+							]
+						},
+						"description": "Attempt to update a provision watcher using a name that will collide with an existing one."
+					},
+					"response": []
+				},
+				{
+					"name": "315 http://localhost:48081/api/v1/provisionwatcher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b937e7d2-81aa-11ea-bc55-0242ac130003",
+								"exec": [
+									"/*",
+									" * Test Case:  /provisionwatcher - 503 Error - PUT",
+									" * Version: Alpha",
+									" * @Author: Brandon Forster",
+									" *",
+									" */",
+									" ",
+									"//Test Case for status : 503",
+									"tests[\"Status code is 503\"] = responseCode.code === 503;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{addressableId}}\",\r\n    \"created\": 1475556860463,\r\n    \"modified\": 1475556860463,\r\n    \"origin\": 1471806386924,\r\n    \"name\": \"gasmeter\",\r\n    \"protocol\": \"HTTP\",\r\n    \"address\": \"172.17.0.6\",\r\n    \"port\": 48093,\r\n    \"path\": \"/gasmeter\",\r\n    \"publisher\": \"DELLPUB\",\r\n    \"user\": \"test\",\r\n    \"password\": \"test123\",\r\n    \"topic\": \"kWhData\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/provisionwatcher",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"provisionwatcher"
+							]
+						},
+						"description": "Attempt to update a provision watcher using an invalid request body (in this case, an addressable)."
+					},
+					"response": []
+				},
+				{
+					"name": "317 http://localhost:48081/api/v1/provisionwatcher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b937e7d2-81aa-11ea-bc55-0242ac130003",
+								"exec": [
+									"/*",
+									" * Test Case:  /provisionwatcher - 404 Error - PUT",
+									" * Version: Alpha",
+									" * @Author: Brandon Forster",
+									" *",
+									" */",
+									" ",
+									"//Test Case for status : 404",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"{{invalidProvisionWatcherId}}\", \n\t\"name\":\"not this\", \n\t\"origin\":14718063870000,\n    \"profile\":{  \n       \"name\":\"variable speed motor profile\"\n    },\n    \"service\":{  \n      \"name\":\"home variable speed motor device service\",\n      \"adminState\": \"unlocked\",\n      \"operatingState\": \"enabled\",\n      \"addressable\": {\n       \"name\": \"ceiling fan variable speed motor address\"\n      }\n    },\n    \"adminState\": \"unlocked\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/provisionwatcher",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"provisionwatcher"
+							]
+						},
+						"description": "Attempt to update a provision watcher using a malformed ID."
+					},
+					"response": []
+				},
+				{
 					"name": "306 http://localhost:48081/api/v1/provisionwatcher",
 					"event": [
 						{
@@ -9356,7 +9827,7 @@
 									" * @Author: Tata Elxsi",
 									" *",
 									" */",
-									"//Verify the http status code for 200.",
+									"//Verify the http status code for 409.",
 									"tests[\"Status code is 409\"] = responseCode.code === 409;",
 									"//Verify if response time is less than 200ms.",
 									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
@@ -9389,6 +9860,340 @@
 							]
 						},
 						"description": "Add a new ProvisionWatcher - name must be unique. Returns ServiceException (HTTP 503) for unknown or unanticipated issues.  Returns DataValidationException (HTTP 409) if profile service are unknown"
+					},
+					"response": []
+				},
+				{
+					"name": "318 http://localhost:48081/api/v1/provisionwatcher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4094b5e6-81ad-11ea-bc55-0242ac130003",
+								"exec": [
+									"/*",
+									" * Test Case:  /provisionwatcher - 400 Error - POST ",
+									" * Version: Alpha",
+									" * @Author: Brandon Forster",
+									" *",
+									" */",
+									"//Verify the http status code for 400.",
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"//Verify if response time is less than 200ms.",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{addressableId}}\",\r\n    \"created\": 1475556860463,\r\n    \"modified\": 1475556860463,\r\n    \"origin\": 1471806386924,\r\n    \"name\": \"gasmeter\",\r\n    \"protocol\": \"HTTP\",\r\n    \"address\": \"172.17.0.6\",\r\n    \"port\": 48093,\r\n    \"path\": \"/gasmeter\",\r\n    \"publisher\": \"DELLPUB\",\r\n    \"user\": \"test\",\r\n    \"password\": \"test123\",\r\n    \"topic\": \"kWhData\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/provisionwatcher",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"provisionwatcher"
+							]
+						},
+						"description": "Attempt to add a provision watcher using an invalid JSON request body (in this case, an addressable)."
+					},
+					"response": []
+				},
+				{
+					"name": "319 http://localhost:48081/api/v1/provisionwatcher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b7204464-81ad-11ea-bc55-0242ac130003",
+								"exec": [
+									"/*",
+									" * Test Case:  /provisionwatcher - 400 Error - POST ",
+									" * Version: Alpha",
+									" * @Author: Brandon Forster",
+									" *",
+									" */",
+									"//Verify the http status code for 400.",
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"//Verify if response time is less than 200ms.",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \n   \"origin\":1471806386919,\n   \"identifiers\":{  \n      \"MAC\":\"00-05-1B-A1-99-99\",\n      \"HTTP\":\"10.0.0.1\"\n   },\n   \"profile\":{  \n      \"name\":\"variable speed motor profile\"\n   },\n   \"service\":{  \n      \"name\":\"home variable speed motor device service\",\n      \"adminState\": \"unlocked\",\n      \"operatingState\": \"enabled\",\n      \"addressable\": {\n       \"name\": \"ceiling fan variable speed motor address\"\n      }\n   },\n    \"adminState\": \"unlocked\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/provisionwatcher",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"provisionwatcher"
+							]
+						},
+						"description": "Attempt to add a provision watcher using an invalid JSON request body, not specifying a name"
+					},
+					"response": []
+				},
+				{
+					"name": "320 http://localhost:48081/api/v1/provisionwatcher/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/*",
+									" * Test Case:  /provisionwatcher/:id - 404 Error - GET ",
+									" * Version: Alpha",
+									" * @Author: Brandon Forster",
+									" *",
+									" */",
+									" ",
+									"//Test Case for status : 404",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/provisionwatcher/{{invalidProvisionWatcherId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"provisionwatcher",
+								"{{invalidProvisionWatcherId}}"
+							]
+						},
+						"description": "Attempt to fetch a provision watcher with an incorrectly formatted ID."
+					},
+					"response": []
+				},
+				{
+					"name": "321 http://localhost:48081/api/v1/provisionwatcher/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/*",
+									" * Test Case:  /provisionwatcher/:id - 404 Error - GET ",
+									" * Version: Alpha",
+									" * @Author: Brandon Forster",
+									" *",
+									" */",
+									" ",
+									"//Test Case for status : 404",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/provisionwatcher/{{validId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"provisionwatcher",
+								"{{validId}}"
+							]
+						},
+						"description": "Attempt to fetch a provision watcher with a valid, but nonexistent UUID."
+					},
+					"response": []
+				},
+				{
+					"name": "322 http://localhost:48081/api/v1/provisionwatcher/name/:name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/*",
+									" * Test Case:  /provisionwatcher/name/:name - 404 Error - GET ",
+									" * Version: Alpha",
+									" * @Author: Brandon Forster",
+									" *",
+									" */",
+									" ",
+									"//Test Case for status : 404",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/provisionwatcher/name/{{invalidProvisionWatcherName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"provisionwatcher",
+								"name",
+								"{{invalidProvisionWatcherName}}"
+							]
+						},
+						"description": "Attempt to fetch a nonexistent provision watcher"
+					},
+					"response": []
+				},
+				{
+					"name": "323 http://localhost:48081/api/v1/provisionwatcher/name/:name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/*",
+									" * Test Case:  /provisionwatcher/name/:name - 400 Error - GET ",
+									" * Version: Alpha",
+									" * @Author: Brandon Forster",
+									" *",
+									" */",
+									" ",
+									"//Test Case for status : 400",
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/provisionwatcher/name/{{illegalName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"provisionwatcher",
+								"name",
+								"{{illegalName}}"
+							]
+						},
+						"description": "Attempt to fetch a provision watcher with an unparseable name"
+					},
+					"response": []
+				},
+				{
+					"name": "324 http://localhost:48081/api/v1/provisionwatcher/identifier/:key/:value",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/*",
+									" * Test Case:  /provisionwatcher/identifier/:key/:value - 400 Error - GET ",
+									" * Version: Alpha",
+									" * @Author: Brandon Forster",
+									" *",
+									" */",
+									" ",
+									"//Test Case for status : 400",
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"//Test response time",
+									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/provisionwatcher/identifier/{{illegalName}}/{{illegalName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"provisionwatcher",
+								"identifier",
+								"{{illegalName}}",
+								"{{illegalName}}"
+							]
+						},
+						"description": "Attempt to fetch a provision watcher with an unparseable identifier"
 					},
 					"response": []
 				}
