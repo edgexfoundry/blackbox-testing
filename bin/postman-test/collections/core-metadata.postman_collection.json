@@ -4735,7 +4735,7 @@
 									"* @Author: Tata Elxsi",
 									"*",
 									"**/",
-									"tests[\"Status code is 404\"] = responseCode.code === 409;",
+									"tests[\"Status code is 409\"] = responseCode.code === 409;",
 									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
 									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
@@ -9682,54 +9682,47 @@
 								],
 								"type": "text/javascript"
 							}
-						}
-					],
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"id\":\"{{validId}}\", \n\t\"name\":\"lonmark watcher\", \n\t\"origin\":14718063870000,\n    \"profile\":{  \n       \"name\":\"variable speed motor profile\"\n    },\n    \"service\":{  \n      \"name\":\"home variable speed motor device service\",\n      \"adminState\": \"unlocked\",\n      \"operatingState\": \"enabled\",\n      \"addressable\": {\n       \"name\": \"ceiling fan variable speed motor address\"\n      }\n    },\n    \"adminState\": \"unlocked\"\n}"
 						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/provisionwatcher",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"provisionwatcher"
-							]
-						},
-						"description": "Attempt to update a provision watcher using a name that will collide with an existing one."
-					},
-					"response": []
-				},
-				{
-					"name": "315 http://localhost:48081/api/v1/provisionwatcher",
-					"event": [
 						{
-							"listen": "test",
+							"listen": "prerequest",
 							"script": {
-								"id": "b937e7d2-81aa-11ea-bc55-0242ac130003",
+								"id": "cc3bf26e-075e-45a9-9516-e9e116c82959",
 								"exec": [
-									"/*",
-									" * Test Case:  /provisionwatcher - 503 Error - PUT",
-									" * Version: Alpha",
-									" * @Author: Brandon Forster",
-									" *",
-									" */",
-									" ",
-									"//Test Case for status : 503",
-									"tests[\"Status code is 503\"] = responseCode.code === 503;",
-									"//Test response time",
-									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;"
+									"const createRequest = {",
+									"    url: pm.variables.get(\"baseUrl\") + \"/api/v1/provisionwatcher\",",
+									"    method: 'POST',",
+									"    header: {",
+									"        'content-type': 'application/json'",
+									"    },",
+									"    body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify({",
+									"            \"name\": \"net fan watcher\",",
+									"            \"origin\": 1471806386919,",
+									"            \"identifiers\": {",
+									"                \"MAC\": \"00-05-1B-A1-99-99\",",
+									"                \"HTTP\": \"10.0.0.1\"",
+									"            },",
+									"            \"profile\": {",
+									"                \"name\": \"variable speed motor profile\"",
+									"            },",
+									"            \"service\": {",
+									"                \"name\": \"home variable speed motor device service\",",
+									"                \"adminState\": \"unlocked\",",
+									"                \"operatingState\": \"enabled\",",
+									"                \"addressable\": {",
+									"                    \"name\": \"ceiling fan variable speed motor address\"",
+									"                }",
+									"            },",
+									"            \"adminState\": \"unlocked\"",
+									"        })",
+									"    }",
+									"};",
+									"",
+									"pm.sendRequest(createRequest, function (err, response) {",
+									"    console.log(response);",
+									"    pm.variables.set(\"insertedID\",response.id);",
+									"}); "
 								],
 								"type": "text/javascript"
 							}
@@ -9745,7 +9738,12 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"{{addressableId}}\",\r\n    \"created\": 1475556860463,\r\n    \"modified\": 1475556860463,\r\n    \"origin\": 1471806386924,\r\n    \"name\": \"gasmeter\",\r\n    \"protocol\": \"HTTP\",\r\n    \"address\": \"172.17.0.6\",\r\n    \"port\": 48093,\r\n    \"path\": \"/gasmeter\",\r\n    \"publisher\": \"DELLPUB\",\r\n    \"user\": \"test\",\r\n    \"password\": \"test123\",\r\n    \"topic\": \"kWhData\"\r\n}"
+							"raw": "{\n\t\"id\": \"{{insertedID}}\",\n    \"name\": \"net fan watcher\",\n    \"origin\": 1471806386919,\n    \"identifiers\": {\n        \"MAC\": \"00-05-1B-A1-99-99\",\n        \"HTTP\": \"10.0.0.1\"\n    },\n    \"profile\": {\n        \"name\": \"variable speed motor profile\"\n    },\n    \"service\": {\n        \"name\": \"home variable speed motor device service\",\n        \"adminState\": \"unlocked\",\n        \"operatingState\": \"enabled\",\n        \"addressable\": {\n            \"name\": \"ceiling fan variable speed motor address\"\n        }\n    },\n    \"adminState\": \"unlocked\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/provisionwatcher",
@@ -9758,7 +9756,7 @@
 								"provisionwatcher"
 							]
 						},
-						"description": "Attempt to update a provision watcher using an invalid request body (in this case, an addressable)."
+						"description": "Attempt to update a provision watcher using a name that will collide with an existing one."
 					},
 					"response": []
 				},
@@ -9989,10 +9987,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/provisionwatcher/{{invalidProvisionWatcherId}}",
 							"host": [
@@ -10035,10 +10029,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/provisionwatcher/{{validId}}",
 							"host": [
@@ -10081,10 +10071,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/provisionwatcher/name/{{invalidProvisionWatcherName}}",
 							"host": [
@@ -10128,10 +10114,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/provisionwatcher/name/{{illegalName}}",
 							"host": [
@@ -10175,10 +10157,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/provisionwatcher/identifier/{{illegalName}}/{{illegalName}}",
 							"host": [
