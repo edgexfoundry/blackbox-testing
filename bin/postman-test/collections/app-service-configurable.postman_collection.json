@@ -277,7 +277,7 @@
 							"});",
 							"",
 							"pm.test(\"Body matches XML String\", function () {",
-							"    pm.expect(pm.response.text()).to.include(\"<Event><ID>5bd794de0e36080001f53eab</ID><Pushed>0</Pushed><Device>RandNum-Device01</Device><Created>1540855006481</Created><Modified>0</Modified><Origin>1540855006469</Origin><Readings><Id>5bd794de0e36080001f53eac</Id><Pushed>0</Pushed><Created>1540855006481</Created><Origin>1540855006469</Origin><Modified>0</Modified><Device>RandNum-Device01</Device><Name>HoldingRegister_8454</Name><Value>75.30</Value><BinaryValue></BinaryValue></Readings></Event>\");",
+							"    pm.expect(pm.response.text()).to.include(\"<Event><ID>5bd794de0e36080001f53eab</ID><Pushed>0</Pushed><Device>RandNum-Device01</Device><Created>1540855006481</Created><Modified>0</Modified><Origin>1540855006469</Origin><Readings><Id>5bd794de0e36080001f53eac</Id><Pushed>0</Pushed><Created>1540855006481</Created><Origin>1540855006469</Origin><Modified>0</Modified><Device>RandNum-Device01</Device><Name>HoldingRegister_8454</Name><Value>75.30</Value><ValueType></ValueType><FloatEncoding></FloatEncoding><BinaryValue></BinaryValue><MediaType></MediaType></Readings></Event>\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -597,7 +597,7 @@
 							"    pm.response.to.have.header(\"Content-Type\");",
 							"});",
 							"pm.test(\"Body matches JSON string\", function () {",
-							"    pm.expect(pm.response.text()).to.equal(\"maYz658kEbWJPPtlCWfDV5UF/kHOSKRZhVGAke+pNY4We7YzruHUnpxCM8XmO5baSJEb5HC7wJhu6YjW5db5S1+o9mLDG8fJezuINoluCGtz6cvkipNaQYE+Pq8ZZ13RqGKXozgisaLKcZHXvOdPSLBTC7Zzuijpz1rOJ6VYq3dq9an7UxyPezyvAar6+YeqB4uQ6daAtKVmqWkyeteCN1HNn4IHNz6x8hJeO+9TGSbAMvTe4SOu6CCClT4NEXoaNCZYHwlOdRmYaCK08SsdPogxl7tqRocoBBU3t4kT+sKFl+IkBpXxyT5f5WuTEdC0KEw/Gq3VtHYQP63+gyN0Dp5sHAhkBLZp2BSaJpPKFvAvLDGLk7DsPSZf2S5lOCkC\");",
+							"    pm.expect(pm.response.text()).to.equal(\"CVu5bMYw+8bhU70UISo6QX7wzHm2eSlCtIs29w6BrJZWGgz1pAFMT8o0DDBBX06rK/qFqxkCQz6y3hABB2WoDjT4AX3Kpj/6Ldn2oAYt6QMkUBThNj/QBNHFoIb/UyYdHm59hSsK+FDhN2a9kbcI5vkFwc7ACD0/c35VI5f/BpSzI9irHy1r1WjO3KatlWd2gqCnmiTgupE2D2FwKlsnNE0T4WcfCce+l2/s03mr5zz0Y78k7wVkV6U3ILDGYmZpT/h5gBY/58CgvgP2ceH3RcR1sl2tTNYK2cMBE7ijvhS0/IIYSzlzoZGte3deENHz23B0szcChoIi9sfPJ0OXsf78FFBKzF8XEMq5OQa6yd/+PPwwp39d4hBRwzGcsBbI1q8H0hdP8EoGXvtVCGnWTDQ/H1bOau5yWqSe7seJKpFysXzesfpqRT/JTfRgUAX0\");",
 							"});"
 						],
 						"type": "text/javascript"
