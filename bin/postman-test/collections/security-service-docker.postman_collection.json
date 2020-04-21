@@ -309,7 +309,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{accessToken}}",
+											"value": "invalid token",
 											"type": "string"
 										}
 									]
@@ -362,7 +362,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{accessToken}}",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ",
 											"type": "string"
 										}
 									]
@@ -388,15 +388,15 @@
 							"response": []
 						},
 						{
-							"name": "04 reading error test",
+							"name": "04 PUT reading [failure]",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"id": "f7692439-548e-4d86-aa0b-97993f1994df",
 										"exec": [
-											"//Assert 401 status if the reading action fails",
-											"tests[\"Invalid PUT Action\"] = responseCode.code === 401;",
+											"//Assert 404 status if the reading cannot be found by id",
+											"tests[\"Status code is 404\"] = responseCode.code === 404;",
 											"",
 											"",
 											""
@@ -446,15 +446,26 @@
 							"response": []
 						},
 						{
-							"name": "05 POST reading test",
+							"name": "05 POST reading [success]",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"id": "63988798-3e23-4156-905a-ebf6e8b39ca3",
 										"exec": [
-											"//Assert 401 status if the post reading action fails",
-											"tests[\"Invalid POST Action\"] = responseCode.code === 401;"
+											"/*",
+											" * Test Case:  /api/v1/reading - POST",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" *",
+											" */",
+											"tests[\"Status code is 200\"] = responseCode.code === 200;",
+											"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+											"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+											"if (contentTypeHeaderExists) {",
+											"    tests[\"Content-Type is text/plain\"] = responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+											"}",
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -497,6 +508,68 @@
 									]
 								},
 								"description": "Add a new reading. ServiceException (HTTP 503) for unknown or unanticipated issues. DataValidationException (HTTP 409) if the associated value descriptor is non-existent."
+							},
+							"response": []
+						},
+						{
+							"name": "06 valid token proxy access test coredata",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "cd28dbc8-e7fa-48ee-a951-899984547683",
+										"exec": [
+											" /**",
+											" * Test Case:  /services - GET",
+											" * Version: Alpha",
+											" * @Author: Tingyu Zeng",
+											" * ",
+											" **/",
+											" ",
+											" tests[\"Ping success\"] = responseCode.code === 200;",
+											" if(responseCode.code === 200){",
+											"        var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+											"        tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+											"        if (contentTypeHeaderExists) {",
+											"        tests[\"Content-Type is text/plain\"] =  responseHeaders[\"Content-Type\"].has(\"text/plain\");",
+											"        }",
+											"        if(responseBody.length!== 0){",
+											"           tests[\"Body is correct\"] = responseBody === \"pong\";",
+											"        }",
+											"    }"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{kong}}:8443/coredata/api/v1/ping",
+									"protocol": "https",
+									"host": [
+										"{{kong}}"
+									],
+									"port": "8443",
+									"path": [
+										"coredata",
+										"api",
+										"v1",
+										"ping"
+									]
+								},
+								"description": "Test service providing an indication that the service is available."
 							},
 							"response": []
 						}
