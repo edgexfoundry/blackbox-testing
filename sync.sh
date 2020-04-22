@@ -13,9 +13,6 @@ else
      PERSIST="-mongo"
 fi
 
-# [Workaround] there is no docker-compose-nexus-redis.yml now
-[ "$SECURITY_SERVICE_NEEDED" = true ] && PERSIST="-mongo"
-
 # nightly or other release
 USE_RELEASE=${RELEASE:-nightly-build}
 if [ "$USE_RELEASE" = "nightly-build" ]; then
