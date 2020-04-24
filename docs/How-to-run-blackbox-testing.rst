@@ -66,42 +66,35 @@ The console displays output similar to the following:
 .. code-block:: bash
 
     $ bash deploy-edgeX.sh
-    Starting.. volume
-    WARNING! Using --password via the CLI is insecure. Use --password-stdin.
-    Login Succeeded
-    Creating network "blackbox-testing_edgex-network" with driver "bridge"
-    Creating blackbox-testing_volume_1 ... done
     Starting.. consul
-    WARNING! Using --password via the CLI is insecure. Use --password-stdin.
-    Login Succeeded
-    blackbox-testing_volume_1 is up-to-date
-    Creating blackbox-testing_consul_1 ... done
+    ...
+    Status: Downloaded newer image for nexus3.edgexfoundry.org:10004/docker-edgex-consul:master
+    Creating edgex-core-consul ... done
     ...
     ...
     Starting.. command
-    WARNING! Using --password via the CLI is insecure. Use --password-stdin.
-    Login Succeeded
-    blackbox-testing_volume_1 is up-to-date
-    blackbox-testing_mongo_1 is up-to-date
-    blackbox-testing_consul_1 is up-to-date
-    blackbox-testing_logging_1 is up-to-date
-    blackbox-testing_metadata_1 is up-to-date
-    Creating blackbox-testing_command_1 ... done
+    ...
+    Status: Downloaded newer image for nexus3.edgexfoundry.org:10004/docker-core-command-go:master
+    edgex-core-consul is up-to-date
+    edgex-redis is up-to-date
+    edgex-support-logging is up-to-date
+    edgex-support-notifications is up-to-date
+    edgex-core-metadata is up-to-date
+    Creating edgex-core-command ... done
 
 2. Check the EdgeX services using the **docker ps** command, as shown below:
 
 .. code-block:: bash
 
     $ docker ps
-    CONTAINER ID        IMAGE                                                              COMMAND                  CREATED             STATUS              PORTS                                                                                                            NAMES
-    f1b490b3e0c3        nexus3.edgexfoundry.org:10004/docker-core-command-go:master         "/core-command --con…"   3 minutes ago       Up 3 minutes        0.0.0.0:48082->48082/tcp                                                                                         blackbox-testing_command_1
-    055dc4d48442        nexus3.edgexfoundry.org:10004/docker-core-data-go:master            "/core-data --consul…"   3 minutes ago       Up 3 minutes        0.0.0.0:48080->48080/tcp, 0.0.0.0:32781->5563/tcp                                                                blackbox-testing_data_1
-    e0aa5a675d7d        nexus3.edgexfoundry.org:10004/docker-core-metadata-go:master        "/core-metadata --co…"   3 minutes ago       Up 3 minutes        0.0.0.0:48081->48081/tcp, 48082/tcp                                                                              blackbox-testing_metadata_1
-    deaa276c175f        nexus3.edgexfoundry.org:10004/docker-support-notifications:master   "/bin/sh -c 'java -j…"   3 minutes ago       Up 3 minutes        0.0.0.0:48060->48060/tcp                                                                                         blackbox-testing_notifications_1
-    18336488dba4        nexus3.edgexfoundry.org:10004/docker-support-logging-go:master      "/support-logging --…"   4 minutes ago       Up 4 minutes        0.0.0.0:48061->48061/tcp                                                                                         blackbox-testing_logging_1
-    05896fe88e17        nexus3.edgexfoundry.org:10004/docker-edgex-mongo:master            "docker-entrypoint.s…"   4 minutes ago       Up 4 minutes        0.0.0.0:27017->27017/tcp                                                                                         blackbox-testing_mongo_1
-    9e4bf85969d7        consul:1.3.1                                                       "docker-entrypoint.s…"   4 minutes ago       Up 4 minutes        0.0.0.0:8400->8400/tcp, 8301-8302/udp, 0.0.0.0:8500->8500/tcp, 8300-8302/tcp, 8600/udp, 0.0.0.0:8600->8600/tcp   blackbox-testing_consul_1
-    47f532468383        nexus3.edgexfoundry.org:10004/docker-edgex-volume:master           "/bin/sh -c '/usr/bi…"   4 minutes ago       Up 4 minutes                                                                                                                         blackbox-testing_volume_1
+    CONTAINER ID        IMAGE                                                               COMMAND                  CREATED             STATUS              PORTS                                                                                                       NAMES
+    f1b490b3e0c3        nexus3.edgexfoundry.org:10004/docker-core-command-go:master         "/core-command --con…"   3 minutes ago       Up 3 minutes        0.0.0.0:48082->48082/tcp                                                                                    edgex-core-command
+    055dc4d48442        nexus3.edgexfoundry.org:10004/docker-core-data-go:master            "/core-data --consul…"   3 minutes ago       Up 3 minutes        0.0.0.0:48080->48080/tcp, 0.0.0.0:32781->5563/tcp                                                           edgex-core-data
+    e0aa5a675d7d        nexus3.edgexfoundry.org:10004/docker-core-metadata-go:master        "/core-metadata -cp=…"   3 minutes ago       Up 3 minutes        0.0.0.0:48081->48081/tcp, 48082/tcp                                                                         edgex-core-metadata
+    deaa276c175f        nexus3.edgexfoundry.org:10004/docker-support-notifications:master   "/support-notificati…"   3 minutes ago       Up 3 minutes        0.0.0.0:48060->48060/tcp                                                                                    edgex-support-notifications
+    18336488dba4        nexus3.edgexfoundry.org:10004/docker-support-logging-go:master      "/support-logging --…"   4 minutes ago       Up 4 minutes        0.0.0.0:48061->48061/tcp                                                                                    edgex-support-logging
+    05896fe88e17        redis:5.0.8-alpine                                                  "docker-entrypoint.s…"   4 minutes ago       Up 4 minutes        0.0.0.0:6379->6379/tcp                                                                                      edgex-redis
+    9e4bf85969d7        nexus3.edgexfoundry.org:10004/docker-edgex-consul:master            "edgex-consul-entryp…"   4 minutes ago       Up 4 minutes        0.0.0.0:8400->8400/tcp, 8300-8302/tcp, 8301-8302/udp, 8600/tcp, 8600/udp, 0.0.0.0:8500->8500/tcp            edgex-core-consul
 
 =====================
 Run Test Using Newman
@@ -142,7 +135,7 @@ The output is similar to the following:
 
 .. code-block:: bash
 
-    $ bash ./run.sh -cd
+    $ bash ./bin/run.sh -cd
     -cd
     *********************************************************************
      _____    _           __  __  _____                     _            
@@ -159,12 +152,6 @@ The output is similar to the following:
     
     [INFO] Init postman test data .
     Info: Initiating Coredata Test
-    
-    ...
-    ...
-    ...
-
-    Starting blackbox-testing_volume_1 ... done
     newman
     
     core-data
