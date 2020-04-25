@@ -3,7 +3,6 @@
 echo "done"
 pwd
 
-#docker pull edgexfoundry/docker-edgex-volume
 #docker pull edgexfoundry/docker-core-consul
 #docker pull edgexfoundry/docker-edgex-mongo
 #docker pull edgexfoundry/docker-edgex-mongo-seed

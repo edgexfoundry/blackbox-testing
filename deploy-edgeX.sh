@@ -43,8 +43,6 @@ else
 	export SECURITY_IS_ON="false"
 fi
 
-run_service volume
-
 run_service consul
 
 if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
@@ -96,8 +94,6 @@ run_service system
 
 run_service device-virtual
 
-echo "------- volume ------"
-docker logs edgex-files
 echo "------- consul ------"
 docker logs edgex-core-consul
 echo "------- secrity-secrets-setup ------"
