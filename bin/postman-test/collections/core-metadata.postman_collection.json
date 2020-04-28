@@ -9719,7 +9719,8 @@
 									"    }",
 									"};",
 									"",
-									"pm.sendRequest(createRequest, function (err, response) {",
+									"request = utils.checkToken(createRequest);",
+									"pm.sendRequest(request, function (err, response) {",
 									"    console.log(response);",
 									"    pm.variables.set(\"insertedID\",response.id);",
 									"}); "
