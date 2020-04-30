@@ -150,12 +150,12 @@ testAll() {
 	metaDataTest
 	supportNotificationTest
 	supportSchedulerTest
-	systemManagementTest
 
 	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 		securityTest
 	fi
 
+	systemManagementTest
 }
 
 ## Changing MaxResultCount value to 100 before test
@@ -214,7 +214,7 @@ case $1 in
 	testAll | tee $EDGEXLOGSPATH
 	;;
 *)
-	echo "$(basename ${0}):usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-ss SupportScheduler] | [-dv DeviceVirtual] | [-asc AppServiceConfigurable] | [-sec securityTest] | [-all All]"
+	echo "$(basename ${0}):usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-log Logging] | [-ss SupportScheduler] | [-dv DeviceVirtual] | [-asc AppServiceConfigurable] | [-sec securityTest] | [-all All]"
 	echo
 	exit 0
 	;;
