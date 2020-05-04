@@ -28,16 +28,15 @@ services:
     image: ${appService}
     ports:
       - "48095:48095"
-    entrypoint: ["/app-service-configurable"]
-    command: ["--registry","--confdir=/res", "--skipVersionCheck=true"]
     container_name: edgex-app-service-configurable
     hostname: app-service-configurable
     environment:
-      edgex_registry: consul://edgex-core-consul:8500
+      EDGEX_SECURITY_SECRET_STORE: "false" # required since SecretStore not used and not configured
       edgex_profile: blackbox-tests
       Service_Host: app-service-configurable
       Clients_CoreData_Host: edgex-core-data
       Clients_Logging_Host: edgex-support-logging
+      Registry_Host: edgex-core-consul
       Service_Port: 48095
       MessageBus_SubscribeHost_Host: edgex-core-data
       Database_Host: edgex-mongo
