@@ -76,8 +76,6 @@ else
 	run_service mongo
 fi
 
-run_service logging
-
 run_service data
 
 run_service app-service-rules
@@ -112,8 +110,6 @@ echo "------- edgex-proxy ------"
 docker logs edgex-proxy
 echo "------- ${DATABASE} ------"
 docker logs edgex-${DATABASE}
-echo "------- logging ------"
-docker logs edgex-support-logging
 echo "------- data ------"
 docker logs edgex-core-data
 echo "------- notifications ------"

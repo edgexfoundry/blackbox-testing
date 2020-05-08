@@ -284,7 +284,7 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{systemManagementUrl}}/api/v1/metrics/device-virtual,edgex-core-command,edgex-core-data,edgex-core-metadata,edgex-support-logging,edgex-support-notifications,edgex-support-scheduler",
+              "raw": "{{systemManagementUrl}}/api/v1/metrics/device-virtual,edgex-core-command,edgex-core-data,edgex-core-metadata,edgex-support-notifications,edgex-support-scheduler",
               "host": [
                 "{{systemManagementUrl}}"
               ],
@@ -292,7 +292,7 @@
                 "api",
                 "v1",
                 "metrics",
-                "device-virtual,edgex-core-command,edgex-core-data,edgex-core-metadata,edgex-support-logging,edgex-support-notifications,edgex-support-scheduler"
+                "device-virtual,edgex-core-command,edgex-core-data,edgex-core-metadata,edgex-support-notifications,edgex-support-scheduler"
               ]
             }
           },
@@ -338,7 +338,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"action\":\"start\", \"services\":[\"edgex-core-metadata\", \"edgex-core-data\", \"edgex-core-command\", \"edgex-support-logging\", \"edgex-support-notifications\"] }"
+              "raw": "{\"action\":\"start\", \"services\":[\"edgex-core-metadata\", \"edgex-core-data\", \"edgex-core-command\", \"edgex-support-notifications\"] }"
             },
             "url": {
               "raw": "{{systemManagementUrl}}/api/v1/operation",
@@ -580,7 +580,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"action\":\"restart\", \"services\":[\"edgex-support-logging\",\"edgex-support-notifications\",\"edgex-core-metadata\", \"edgex-core-data\", \"edgex-core-command\"] }"
+              "raw": "{\"action\":\"restart\", \"services\":[\"edgex-support-notifications\",\"edgex-core-metadata\", \"edgex-core-data\", \"edgex-core-command\"] }"
             },
             "url": {
               "raw": "{{systemManagementUrl}}/api/v1/operation",
@@ -823,7 +823,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"action\":\"stop\", \"services\":[\"edgex-core-metadata\", \"edgex-core-data\", \"edgex-core-command\", \"edgex-support-logging\", \"edgex-support-notifications\"] }"
+              "raw": "{\"action\":\"stop\", \"services\":[\"edgex-core-metadata\", \"edgex-core-data\", \"edgex-core-command\", \"edgex-support-notifications\"] }"
             },
             "url": {
               "raw": "{{systemManagementUrl}}/api/v1/operation",
