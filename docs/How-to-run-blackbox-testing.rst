@@ -77,7 +77,6 @@ The console displays output similar to the following:
     Status: Downloaded newer image for nexus3.edgexfoundry.org:10004/docker-core-command-go:master
     edgex-core-consul is up-to-date
     edgex-redis is up-to-date
-    edgex-support-logging is up-to-date
     edgex-support-notifications is up-to-date
     edgex-core-metadata is up-to-date
     Creating edgex-core-command ... done
@@ -92,7 +91,6 @@ The console displays output similar to the following:
     055dc4d48442        nexus3.edgexfoundry.org:10004/docker-core-data-go:master            "/core-data --consul…"   3 minutes ago       Up 3 minutes        0.0.0.0:48080->48080/tcp, 0.0.0.0:32781->5563/tcp                                                           edgex-core-data
     e0aa5a675d7d        nexus3.edgexfoundry.org:10004/docker-core-metadata-go:master        "/core-metadata -cp=…"   3 minutes ago       Up 3 minutes        0.0.0.0:48081->48081/tcp, 48082/tcp                                                                         edgex-core-metadata
     deaa276c175f        nexus3.edgexfoundry.org:10004/docker-support-notifications:master   "/support-notificati…"   3 minutes ago       Up 3 minutes        0.0.0.0:48060->48060/tcp                                                                                    edgex-support-notifications
-    18336488dba4        nexus3.edgexfoundry.org:10004/docker-support-logging-go:master      "/support-logging --…"   4 minutes ago       Up 4 minutes        0.0.0.0:48061->48061/tcp                                                                                    edgex-support-logging
     05896fe88e17        redis:5.0.8-alpine                                                  "docker-entrypoint.s…"   4 minutes ago       Up 4 minutes        0.0.0.0:6379->6379/tcp                                                                                      edgex-redis
     9e4bf85969d7        nexus3.edgexfoundry.org:10004/docker-edgex-consul:master            "edgex-consul-entryp…"   4 minutes ago       Up 4 minutes        0.0.0.0:8400->8400/tcp, 8300-8302/tcp, 8301-8302/udp, 8600/tcp, 8600/udp, 0.0.0.0:8500->8500/tcp            edgex-core-consul
 
@@ -112,7 +110,6 @@ The service's API are tested using the following command:
 Testservice             command 
 ----------------------  ----------------------
 support-notification	 ./bin/run.sh -sn
-support-logging	         ./bin/run.sh -log
 core-metadata	         ./bin/run.sh -md
 core-data	             ./bin/run.sh -cd
 core-command	         ./bin/run.sh -co
@@ -212,7 +209,7 @@ To list all available options:
     ...
     ...
     [INFO] Init postman test data .
-    run.sh:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-lo Logging] | [-all All]
+    run.sh:usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-all All]
 
 ----------------------------------------------
 Present Test Result Using the Allure Framework
@@ -380,8 +377,7 @@ Support-Notifications
 To run support-notification tests you must have the following services running before beginning any tests:
 
 1. database
-2. support-logging
-3. support-notifications
+2. support-notifications
 
 Run the support-notifications-cleaner script, then the importer script, and finally the tests.
 
@@ -405,8 +401,7 @@ To run support-scheduler tests you must have the following services running befo
 
 1. database
 2. core-metadata
-3. support-logging
-4. support-scheduler
+3. support-scheduler
 
 Run the support-notifications-cleaner script, then the importer script, and finally the tests.
 
@@ -430,8 +425,7 @@ To run app-service-configurable tests you must have the following services runni
 
 1. database
 2. core-data
-3. support-logging
-4. app-service-configurable
+3. app-service-configurable
 
 To run app-service-configurable:
 

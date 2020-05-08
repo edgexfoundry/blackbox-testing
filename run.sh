@@ -6,7 +6,6 @@ pwd
 #docker pull edgexfoundry/docker-core-consul
 #docker pull edgexfoundry/docker-edgex-mongo
 #docker pull edgexfoundry/docker-edgex-mongo-seed
-#docker pull edgexfoundry/docker-support-logging
 #docker pull edgexfoundry/docker-support-notifications
 #docker pull edgexfoundry/docker-core-metadata
 #docker pull edgexfoundry/docker-core-data

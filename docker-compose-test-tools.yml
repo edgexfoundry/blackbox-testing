@@ -35,7 +35,6 @@ services:
       edgex_profile: blackbox-tests
       Service_Host: app-service-configurable
       Clients_CoreData_Host: edgex-core-data
-      Clients_Logging_Host: edgex-support-logging
       Registry_Host: edgex-core-consul
       Service_Port: 48095
       MessageBus_SubscribeHost_Host: edgex-core-data

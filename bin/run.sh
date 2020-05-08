@@ -21,7 +21,6 @@ SECURITYLOGSPATH=$BASEPATH/securityservice$TIMESTAMPFORMAT.log
 COREDATALOGSPATH=$BASEPATH/coreData$TIMESTAMPFORMAT.log
 METADATALOGSPATH=$BASEPATH/metaData$TIMESTAMPFORMAT.log
 COMMANDLOGSPATH=$BASEPATH/command$TIMESTAMPFORMAT.log
-LOGGINGLOGSPATH=$BASEPATH/logging$TIMESTAMPFORMAT.log
 SUPPORT_NOTIFICATION_LOG_PATH=$BASEPATH/supportNotification$TIMESTAMPFORMAT.log
 SUPPORT_SCHEDULER_LOG_PATH=$BASEPATH/supportScheduler$TIMESTAMPFORMAT.log
 SYSTEMMANAGEMENTLOGSPATH=$BASEPATH/systemmanagement$TIMESTAMPFORMAT.log
@@ -74,20 +73,6 @@ commandTest() {
     sh $(dirname "$0")/importCommandDataDump.sh
     sh $(dirname "$0")/commandTest.sh
     sh $(dirname "$0")/flushCommandDataDump.sh
-	fi
-
-}
-
-loggingTest() {
-
-	if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
-		source $(dirname "$0")/security/importLoggingDataDump.sh
-		source $(dirname "$0")/security/loggingTest.sh
-		source $(dirname "$0")/security/flushLoggingDataDump.sh
-	else
-    sh $(dirname "$0")/importLoggingDataDump.sh
-    sh $(dirname "$0")/loggingTest.sh
-    sh $(dirname "$0")/flushLoggingDataDump.sh
 	fi
 
 }
@@ -158,10 +143,6 @@ testAll() {
 	systemManagementTest
 }
 
-## Changing MaxResultCount value to 100 before test
-echo "[INFO] Update MaxResultCount and restart services "
-sh $(dirname "$0")/updateMaxResultCount.sh >/dev/null 2>&1
-
 #Main Script starts here
 sh $(dirname "$0")/banner.sh
 
@@ -184,10 +165,6 @@ case $1 in
 -co)
 	echo "Info: Initiating Command Test"
 	commandTest | tee $COMMANDLOGSPATH
-	;;
--log)
-	echo "Info: Initiating Logging Test"
-	loggingTest | tee $LOGGINGLOGSPATH
 	;;
 -sn)
 	echo "Info: Initiating SupportNotifications Test"
@@ -214,7 +191,7 @@ case $1 in
 	testAll | tee $EDGEXLOGSPATH
 	;;
 *)
-	echo "$(basename ${0}):usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-log Logging] | [-ss SupportScheduler] | [-dv DeviceVirtual] | [-asc AppServiceConfigurable] | [-sec securityTest] | [-all All]"
+	echo "$(basename ${0}):usage: [-cd Coredata] | [-md Metadata] | [-co Command] | [-sn SupportNotification] | [-ss SupportScheduler] | [-dv DeviceVirtual] | [-asc AppServiceConfigurable] | [-sec securityTest] | [-all All]"
 	echo
 	exit 0
 	;;
