@@ -1303,7 +1303,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"device\": \"irCamera\",\n    \"readings\": [\n        {\n           \"device\": \"irCamera\",\n           \"name\": \"image\",\n           \"binaryValue\": \"83010203\",\n           \"mediaType\": \"image\"\n        }\n    ]\n}"
+							"raw": "{\n    \"device\": \"irCamera\",\n    \"readings\": [\n        {\n           \"device\": \"irCamera\",\n           \"name\": \"image\",\n           \"binaryValue\": \"83010203\",\n           \"mediaType\": \"image\",\n           \"valueType\": \"Binary\"\n        }\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/event",
@@ -2802,7 +2802,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"device\": \"powerScoutMeter\",\n    \"name\": \"co2\",\n    \"binaryValue\": \"83010203\"\n}"
+							"raw": "{\n    \"device\": \"powerScoutMeter\",\n    \"name\": \"co2\",\n    \"binaryValue\": \"83010203\",\n    \"valueType\": \"Binary\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/reading",
