@@ -15,6 +15,11 @@
 #  * EdgeX Foundry, Fuji, version 1.1.0
 #  * added: Jun 30, 2019
 #  *******************************************************************************/
+# /*
+#  * Copyright (C) 2020 IOTech Ltd
+#  *
+#  * SPDX-License-Identifier: Apache-2.0
+#  */
 
 version: '3.5'
 

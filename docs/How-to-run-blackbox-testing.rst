@@ -30,8 +30,8 @@ Optionally configure the rest of the environment
 
 .. code-block:: bash
 
-        # Optionally use Fuji rather than the default nightly-build version
-        export RELEASE=fuji
+        # Optionally use Geneva rather than the default nightly-build version
+        export RELEASE=geneva
 
         # Optionally use service-enabled rather than the default no security compose file
         export SECURITY_SERVICE_NEEDED=true
@@ -144,7 +144,7 @@ The output is similar to the following:
     
     *********************************************************************
                        COMPONENT BLACKBOX TEST HARNESS
-                               Version: Alpha
+                               Version: Geneva
     *********************************************************************
     
     [INFO] Init postman test data .
