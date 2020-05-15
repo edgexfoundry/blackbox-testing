@@ -10,6 +10,6 @@ echo "            |___/                                              |___/  "
 echo
 echo "**********************************************************************"
 echo "                   COMPONENT BLACKBOX TEST HARNESS                    "
-echo "                             Version: Fuji                            "
+echo "                        Version: ${RELEASE:-geneva}                            "
 echo "**********************************************************************"
 echo
