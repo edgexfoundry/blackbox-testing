@@ -14,7 +14,7 @@ else
 fi
 
 # nightly or other release
-USE_RELEASE=${RELEASE:-geneva}  #change back to nightly-build after confirming geneva release tests pass
+USE_RELEASE=${RELEASE:-nightly-build}
 if [ "$USE_RELEASE" = "nightly-build" ]; then
      COMPOSE_FILE="docker-compose-nexus${PERSIST}${USE_NO_SECURITY}${USE_ARM64}.yml"
      wget -q -O ${COMPOSE_FILE} "https://raw.githubusercontent.com/edgexfoundry/developer-scripts/master/releases/nightly-build/compose-files/${COMPOSE_FILE}"
