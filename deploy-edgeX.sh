@@ -25,16 +25,34 @@
 #    . $(dirname "$0")/bin/env.sh
 #fi
 
+# x86_64 or arm64
+[ "$(uname -m)" != "x86_64" ] && USE_ARM64="-arm64"
+
+# security or no security
+[ "$SECURITY_SERVICE_NEEDED" != true ] && USE_NO_SECURITY="-no-secty"
+
+if [ "${DATABASE:=redis}" != redis ] && [ "$USE_RELEASE" != "geneva" ]; then
+  echo "Redis is only DB supported post Geneva"
+  exit
+fi
+
 if [ -n "${COMPOSE_FILE_PATH}" ] && [ -r "${COMPOSE_FILE_PATH}" ]; then
 	COMPOSE_FILE=${COMPOSE_FILE_PATH}
 else
 	sh ./sync.sh
-	COMPOSE_FILE=$(ls $(dirname "$0") | awk '/docker-compose/ && !/test-tools/')
+	if [ "$USE_RELEASE" = "geneva" ]; then
+	  	COMPOSE_FILE=$(ls $(dirname "$0") | awk '/docker-compose/ && !/test-tools/')
+	fi
 fi
 
 run_service () {
 	echo -e "\033[0;32mStarting.. $1\033[0m"
-  docker-compose -f $COMPOSE_FILE up -d $1
+  if [ "$COMPOSE_FILE" != "" ]; then
+    docker-compose -f $COMPOSE_FILE up -d $1
+  else
+    MAKE_TARGET="run${USE_NO_SECURITY}${USE_ARM64}"
+    make $MAKE_TARGET $1
+  fi
 }
 
 if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
