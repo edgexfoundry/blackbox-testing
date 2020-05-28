@@ -2,7 +2,7 @@
 
 MONGO_PERSIST="-mongo"
 NIGHT_BUILD_URL="https://raw.githubusercontent.com/lenny-intel/developer-scripts/multi2/releases/nightly-build/compose-files"
-GENEVA_URL="https://raw.githubusercontent.com/edgexfoundry/developer-scripts/master/releases/geneva"
+GENEVA_URL="https://raw.githubusercontent.com/edgexfoundry/developer-scripts/master/releases/geneva/compose-files"
 
 # so wget on windows can pull files
 [ "$(uname -o)" = "Msys" ] && WINDOWS_WGET_OPTION="--no-check-certificate"
@@ -44,6 +44,5 @@ if [ "$USE_RELEASE" = "nightly-build" ]; then
 
 elif [ "$USE_RELEASE" = "geneva" ]; then
      COMPOSE_FILE="docker-compose-geneva${PERSIST}${USE_NO_SECURITY}${USE_ARM64}.yml"
-     wget -q -O ${COMPOSE_FILE} "${GENEVA_URL}/${COMPOSE_FILE}"
+     wget -q ${WINDOWS_WGET_OPTION} -O ${COMPOSE_FILE} "${GENEVA_URL}/${COMPOSE_FILE}"
 fi
-

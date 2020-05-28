@@ -108,19 +108,28 @@ The script logic is as follows:
 
 The service's API are tested using the following command:
 
-| Testservice              | command           |
-| ------------------------ | ----------------- |
-| support-notification     | ./bin/run.sh -sn  |
-| support-scheduler        | ./bin/run.sh -ss  |
-| core-metadata            | ./bin/run.sh -md  |
-| core-data                | ./bin/run.sh -cd  |
-| security-test            | ./bin/run.sh -sec |
-| core-command             | ./bin/run.sh -co  |
-| device-virtual           | ./bin/run.sh -dv  |
-| app-service-configurable | ./bin/run.sh -asc |
-| All                      | ./bin/run.sh -all |
+| Testservice                                      | command          |
+| ------------------------------------------------ | ---------------- |
+| support-notification                             | ./bin/run.sh -sn |
+| support-scheduler                                | ./bin/run.sh -ss |
+| core-metadata                                    | ./bin/run.sh -md |
+| core-data                                        | ./bin/run.sh -cd |
+| security-test            ./bin/run.sh -sec       |                  |
+| core-command	         ./bin/run.sh -co        |                  |
+| device-virtual			 ./bin/run.sh -dv<br/> |                  |
+| app-service-configurable ./bin/run.sh -asc<br/>  |                  |
+| All	                     ./bin/run.sh -all    |                  |
 
 
+
+```
+======================  ======================
+              
+
+----------------------  ----------------------
+
+======================  ======================
+```
 For example, when we execute under the Path:
 
 ```bash
@@ -252,7 +261,7 @@ $ newman run /path-to-blackbox-testing-directory/bin/postman-test/collections/co
     -d bin/postman-test/data/data_name.json
 ```
 
-**where "collection_name" is the name of the collection (usually the name of the service under test), the "folder_name"** is the name of the component under test, the "environment_name" is the name of the environment the test should be run under (usually the name of the service under test, with separate environments for running natively and running in a Docker container) and data_name" is the name of the data file for that test, usually corresponding to the name of the folder.
+where "collection_name" is the name of the collection (usually the name of the service under test), the "folder_name" is the name of the component under test, the "environment_name" is the name of the environment the test should be run under (usually the name of the service under test, with separate environments for running natively and running in a Docker container) and data_name" is the name of the data file for that test, usually corresponding to the name of the folder.
 
 ## Run Test Using Postman
 
@@ -264,85 +273,89 @@ We will use the core-data test below as an example.
 
 1. Add the script located at **path/to/blackbox-testing/bin/postman-test/collections/core-data-importer.postman_collection.json**
 
-1-1. Drop, or select, the file in the Import dialog box
-  ![](images/import-collection-file.png)
+    1-1. Drop, or select, the file in the Import dialog box
+    
+    ![](images/import-collection-file.png)
     
     
     
-1-2. Select the Pre-requisite Script tab to view the prepared test data:
+    1-2. Select the Pre-requisite Script tab to view the prepared test data:
     
-![](./images/prepare-test-data.png)
-    
-    
-    
-1-3.  Select the Tests tab to view the script. This script executes POST API to add new test data.
-    
-![](images/import-data-script.png)
+    ![](./images/prepare-test-data.png)
     
     
     
-
+    1-3.  Select the Tests tab to view the script. This script executes POST API to add new test data.
+    
+    ![](images/import-data-script.png)
+    
+    
+    
 2. Import the environment from **path/to/blackbox-testing/bin/postman-test/environment/core-data.postman_environment.json**
 
-![](images/import-env1.png)
+    ![](images/import-env1.png)
 
-![](images/import-env2.png)
+    
 
-​    
+    ![](images/import-env2.png)
+
+    
 
 3. Execute the import script in one of the following ways:
 
-3-1.  Execute the import scripts one-by-one
+    3-1.  Execute the import scripts one-by-one
 
-![](images/import-data-1.png)
+    ![](images/import-data-1.png)
 
-​    
+    
 
-![](images/import-data-2.png)
+	![](images/import-data-2.png)
 	
-3-2. Execute the import scripts using Postman Runner
 	
-![](images/import-data-3.png)
+	
+	3-2. Execute the import scripts using Postman Runner
+	
+	![](images/import-data-3.png)
 
 ### Run Test Script Using Postman
 
 1. Import the **path/to/blackbox-testing/bin/postman-test/collections/core-data.postman_collection.json file**, this file describes the testing APIs and test assertions.
 
-![](images/import-collection-file.png)
+    ![](images/import-collection-file.png)
 
-​    
+    
 
 2. Choose a test folder and env
 
-![](images/run-test-1.png)
+  ![](images/run-test-1.png)
 
   
 
 3. Select the **path/to/blackbox-testing/bin/postman-test/data/eventData.json** file and run tests.
 
-![]( images/run-test-2.png)
+	![]( images/run-test-2.png)
 
 4. View the test result.
 
-![](images/run-test-3.png)
+	![](images/run-test-3.png)
 
 ### Clean test data
 
 1. Add the **path/to/blackbox-testing/bin/postman-test/collections/core-data-cleaner.postman_collection.json** script
 
-![](images/import-collection-file.png)
+	![](images/import-collection-file.png)
 
 2. Execute the cleaner script in one of the following ways:
 
-2-1. Execute the clean scripts one-by-one
+	2-1. Execute the clean scripts one-by-one
 
-![](images/clean-data-1.png)
+	![](images/clean-data-1.png)
 
-​	
-
-2-2. Execute the cleaner scripts using Postman Runner
 	
-![](images/clean-data-2.png)
+
+	2-2. Execute the cleaner scripts using Postman Runner
+	
+	![](images/clean-data-2.png)
 
 ## List of Test Prerequisites
 
@@ -362,9 +375,8 @@ The core-command-cleaner collection requires the core-metadata environment. It d
 
 The core-command-importer collection requires the core-metadata environment. It does not require any data files.
 
-**The core-command collection has four folders:**
-
-1. device: this folder requires the core-command environment and the coreCommandData data file.
+1. The core-command collection has four folders:
+    device: this folder requires the core-command environment and the coreCommandData data file.
 2. device_error_4xx: this folder requires the core-command environment and the coreCommandData data file.
 3. ping: this folder requires the core-command environment. It does not require any data files.
 4. resources: this folder requires the core-command environment. It does not require any data files.
@@ -385,8 +397,7 @@ data files.
 The support-notifications-importer collection requires the support-notification environment. It does not require any
 data files.
 
-**The support-notifications collection has four folders:**
-
+The support-notifications collection has four folders:
 1. subscription: this folder requires the support-notification environment and the subscriptionData data file.
 2. notification: this folder requires the support-notification environment and the notificationData data file.
 3. transmission: this folder requires the support-notification environment and the transmissionData data file.
@@ -408,11 +419,9 @@ data files.
 The support-scheduler-importer collection requires the support-scheduler environment. It does not require any
 data files.
 
-**The support-notifications collection has two folders:**
-
-1. interval: this folder requires the support-scheduler environment and the intervalData data file.
-
-2. intervalAction: this folder requires the support-scheduler environment and the intervalActionData data file.
+The support-notifications collection has two folders:
+    1. interval: this folder requires the support-scheduler environment and the intervalData data file.
+        2. intervalAction: this folder requires the support-scheduler environment and the intervalActionData data file.
 
 ### App-Service-Configurable
 
