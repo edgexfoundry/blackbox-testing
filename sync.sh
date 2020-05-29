@@ -40,7 +40,7 @@ if [ "$USE_RELEASE" = "nightly-build" ]; then
    wget -q ${WINDOWS_WGET_OPTION} -O docker-compose-nexus-add-mqtt.yml \
       "${NIGHT_BUILD_URL}/docker-compose-nexus-add-mqtt.yml"
    wget -q ${WINDOWS_WGET_OPTION} -O docker-compose-nexus-ui.yml \
-      "${NIGHT_BUILD_URL}/docker-compose-nexus-add-mqtt.yml"
+      "${NIGHT_BUILD_URL}/docker-compose-nexus-ui.yml"
 
 elif [ "$USE_RELEASE" = "geneva" ]; then
      COMPOSE_FILE="docker-compose-geneva${PERSIST}${USE_NO_SECURITY}${USE_ARM64}.yml"
