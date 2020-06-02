@@ -31,20 +31,10 @@
 # security or no security for make run option
 [ "$SECURITY_SERVICE_NEEDED" != true ] && USE_NO_SECURITY="no-secty"
 
-if [ "${DATABASE:=redis}" != redis ] && [ "$RELEASE" != "geneva" ]; then
-  echo "Redis is only DB supported post Geneva"
-  exit
-fi
-
 if [ -n "${COMPOSE_FILE_PATH}" ] && [ -r "${COMPOSE_FILE_PATH}" ]; then
 	COMPOSE_FILE=${COMPOSE_FILE_PATH}
 else
 	sh ./sync.sh
-
-
-	if [ "$RELEASE" = "geneva" ]; then
-	  	COMPOSE_FILE=$(ls $(dirname "$0") | grep 'geneva' | awk '/docker-compose/ && !/test-tools/')
-	fi
 fi
 
 echo -e "\033[0;32mStarting services... $1\033[0m"

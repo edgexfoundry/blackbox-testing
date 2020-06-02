@@ -39,24 +39,17 @@ The following command to set up the environment for blackbox-testing
 Optionally configure the rest of the environment
 
 ```bash
-    # Optionally use Geneva rather than the default nightly-build version
-    export RELEASE=geneva
-
-    # Optionally use service-enabled rather than the default no security compose file
+    # Optionally use security services enabled rather than the default no security mode
     export SECURITY_SERVICE_NEEDED=true
-
-    # Optionally use Mongo rather than the default Redis based persistence
-    export DATABASE=mongo
 ```
 
-> *Note: **Mongo** is no longer an option post Geneva. Scripts will error if `DATABASE=mongo` and `RELEASE` is **not** set to `geneva`*
+> *Note: **Mongo** is no longer an option post **Geneva** and **Redis** is the only supported database, thus the DATABASE environment variable is no longer used*
 
 Optionally use local Docker Compose file rather than downloading from the repo.
 
 ```bash
 export COMPOSE_FILE_PATH=...full path to desired Docker Compose file...
 ```
-> *Note: this overrides RELEASE. The corresponding settings for SECURITY_SERVICE_NEEDED and DATABASE are still needed.*
 
 ## Deploy EdgeX
 
