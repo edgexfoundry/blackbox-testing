@@ -3,19 +3,17 @@
 option="${1}"
 
 BB_ROOT_DIR=$(cd $(dirname "$0"); cd ..; pwd)
-COMPOSE=$BB_ROOT_DIR/$(ls $BB_ROOT_DIR | awk '/docker-compose/ && !/test-tools/')
+MAKEFILE=$BB_ROOT_DIR/Makefile
 
 case ${option} in
   -useradd)
   echo "Info: Add security account."
-  OT=$(docker-compose -f ${COMPOSE} run --rm \
-    --entrypoint /edgex/security-proxy-setup edgex-proxy --init=false --useradd=geneva --group=admin | grep '^the access token for')
-  export TOKEN=$(echo ${OT} | sed 's/.*: \([^.]*\.[^.]*\.[^.]*\).*/\1/')
+  export TOKEN=`make -f ${MAKEFILE} get-token ${USE_ARM64} geneva`
+  echo TOKEN=$TOKEN
   ;;
   -userdel)
   echo "Info: Delete security account."
-  docker-compose -f ${COMPOSE} run --rm \
-    --entrypoint /edgex/security-proxy-setup edgex-proxy --init=false --userdel=geneva
+  make -f ${MAKEFILE} del-token ${USE_ARM64} geneva
   ;;
   *)
   exit 0

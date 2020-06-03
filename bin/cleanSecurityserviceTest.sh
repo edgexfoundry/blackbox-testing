@@ -1,8 +1,12 @@
 #!/bin/bash
 
+# x86_64 or arm64 for make run option
+[ "$(uname -m)" != "x86_64" ] && USE_ARM64="arm64"
+
+MAKEFILE=$(dirname "$0")/../Makefile
+
 echo "Info: Clean Securityservice's test data."
 
-COMPOSE=$(dirname "$0")/../$(ls $(dirname "$0")/../ | awk '/docker-compose/ && !/test-tools/')
-docker-compose -f ${COMPOSE} run --rm --entrypoint /edgex/security-proxy-setup edgex-proxy --init=false --userdel=jerry
+make -f ${MAKEFILE} del-token ${USE_ARM64} jerry
 
 echo "Info: Securityservice's test data Cleaned"
