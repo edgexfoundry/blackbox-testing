@@ -67,6 +67,6 @@ services:
 networks:
   edgex-network:
     external:
-     name: ${network}
+     name: edgex_edgex-network
 
 

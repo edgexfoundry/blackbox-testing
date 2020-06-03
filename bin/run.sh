@@ -12,7 +12,6 @@ fi
 set -o pipefail
 
 # Run the compose file for blackbox testing
-export network=$(docker network ls | awk '{print $2}' | grep edgex-network)
 docker-compose -f ${docker_compose_test_tools} up -d app-service-configurable
 
 TIMESTAMPFORMAT=$(date +%d-%m-%Y_%H%M%S)
