@@ -229,10 +229,10 @@ Install and start Allure Docker service
 
 ```bash
 docker pull frankescobar/allure-docker-service
-docker run -p 4040:4040 -p 5050:5050 -e CHECK_RESULTS_EVERY_SECONDS=3 -e KEEP_HISTORY="TRUE" -v /tmp/testResult:/app/allure-results frankescobar/allure-docker-service
+docker run -p 5050:5050 -e CHECK_RESULTS_EVERY_SECONDS=3 -e KEEP_HISTORY="TRUE" -v /tmp/testResult:/app/allure-results frankescobar/allure-docker-service
 ```
 
-This mounts the test results and checks for updates every 3 seconds. Now point your browser to http://localhost:4040 where you can review the report.
+This mounts the test results and checks for updates every 3 seconds. Now point your browser to http://localhost:5050 where you can review the report.
 
 ### Running Newman Tests for Local Development
 
