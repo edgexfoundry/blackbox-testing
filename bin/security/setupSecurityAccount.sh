@@ -2,6 +2,9 @@
 
 option="${1}"
 
+# x86_64 or arm64 for make run option
+[ "$(uname -m)" != "x86_64" ] && USE_ARM64="arm64"
+
 BB_ROOT_DIR=$(cd $(dirname "$0"); cd ..; pwd)
 MAKEFILE=$BB_ROOT_DIR/Makefile
 
