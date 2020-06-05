@@ -14,4 +14,4 @@ bin/testResult/
 Makefile
 docker-compose-*.yml
 !docker-compose-test-tools.yml
-
+compose-files/

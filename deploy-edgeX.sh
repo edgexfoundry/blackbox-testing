@@ -41,7 +41,7 @@ echo -e "\033[0;32mStarting services... $1\033[0m"
 if [ "${COMPOSE_FILE}" != "" ]; then
   docker-compose -p edgex -f ${COMPOSE_FILE} up -d
 else
-  make run ${USE_NO_SECURITY} ${USE_ARM64}
+  cd compose-files; make run ${USE_NO_SECURITY} ${USE_ARM64}
 fi
 
 docker ps --format 'table {{.Names}}\t{{.Image}}' --filter "network=edgex_edgex-network" --filter "network=edgex_default"
