@@ -1,22 +1,26 @@
 #!/bin/bash
 
-NIGHT_BUILD_URL="https://raw.githubusercontent.com/lenny-intel/developer-scripts/multi2/releases/nightly-build/compose-files"
+# TODO: Change URl and file spec to use edgexfoundry master once developer-scripts PR is merged
+NIGHT_BUILD_URL="https://codeload.github.com/lenny-intel/developer-scripts/zip/multi2"
+FILE_SPEC="developer-scripts-multi2/releases/nightly-build/compose-files/*"
 
-# so wget on windows can pull files
-[ "$(uname -o)" = "Msys" ] && WINDOWS_WGET_OPTION="--no-check-certificate"
+# x86_64 or arm64 for make run option
+[ "$(uname -m)" != "x86_64" ] && USE_ARM64="arm64"
 
- # Download all the files, even if may not be used, so 'down' target works.
- wget -q ${WINDOWS_WGET_OPTION} -O Makefile \
-    "${NIGHT_BUILD_URL}/Makefile"
- wget -q ${WINDOWS_WGET_OPTION} -O docker-compose-portainer.yml \
-    "${NIGHT_BUILD_URL}/docker-compose-portainer.yml"
- wget -q ${WINDOWS_WGET_OPTION} -O docker-compose-nexus-base.yml \
-    "${NIGHT_BUILD_URL}/docker-compose-nexus-base.yml"
- wget -q ${WINDOWS_WGET_OPTION} -O docker-compose-nexus-add-device-services.yml \
-    "${NIGHT_BUILD_URL}/docker-compose-nexus-add-device-services.yml"
- wget -q ${WINDOWS_WGET_OPTION} -O docker-compose-nexus-add-security.yml \
-    "${NIGHT_BUILD_URL}/docker-compose-nexus-add-security.yml"
- wget -q ${WINDOWS_WGET_OPTION} -O docker-compose-nexus-add-mqtt.yml \
-    "${NIGHT_BUILD_URL}/docker-compose-nexus-add-mqtt.yml"
- wget -q ${WINDOWS_WGET_OPTION} -O docker-compose-nexus-ui.yml \
-    "${NIGHT_BUILD_URL}/docker-compose-nexus-ui.yml"
+# security or no security for make run option
+[ "$SECURITY_SERVICE_NEEDED" != true ] && USE_NO_SECURITY="no-secty"
+
+# Download and extract all the docker compose files
+curl -o compose-files.zip ${NIGHT_BUILD_URL}
+unzip -o -j compose-files.zip ${FILE_SPEC} -d compose-files
+
+(
+  cd compose-files
+  make gen ${USE_NO_SECURITY} ${USE_ARM64}
+  mv docker-compose.yml ../
+  mv Makefile ../
+  mv .env ../
+)
+
+rm -f compose-files.zip
+rm -rf compose-files

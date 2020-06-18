@@ -25,12 +25,6 @@
 #    . $(dirname "$0")/bin/env.sh
 #fi
 
-# x86_64 or arm64 for make run option
-[ "$(uname -m)" != "x86_64" ] && USE_ARM64="arm64"
-
-# security or no security for make run option
-[ "$SECURITY_SERVICE_NEEDED" != true ] && USE_NO_SECURITY="no-secty"
-
 if [ -n "${COMPOSE_FILE_PATH}" ] && [ -r "${COMPOSE_FILE_PATH}" ]; then
 	COMPOSE_FILE=${COMPOSE_FILE_PATH}
 else
@@ -41,7 +35,7 @@ echo -e "\033[0;32mStarting services... $1\033[0m"
 if [ "${COMPOSE_FILE}" != "" ]; then
   docker-compose -p edgex -f ${COMPOSE_FILE} up -d
 else
-  make run ${USE_NO_SECURITY} ${USE_ARM64}
+  docker-compose -p edgex up -d
 fi
 
 docker ps --format 'table {{.Names}}\t{{.Image}}' --filter "network=edgex_edgex-network" --filter "network=edgex_default"

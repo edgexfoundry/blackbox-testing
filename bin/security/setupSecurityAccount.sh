@@ -11,12 +11,12 @@ MAKEFILE=$BB_ROOT_DIR/Makefile
 case ${option} in
   -useradd)
   echo "Info: Add security account."
-  export TOKEN=`make -f ${MAKEFILE} get-token ${USE_ARM64} geneva`
+  export TOKEN=`make -f ${MAKEFILE} get-token ${USE_ARM64} testinguser`
   echo TOKEN=$TOKEN
   ;;
   -userdel)
   echo "Info: Delete security account."
-  make -f ${MAKEFILE} del-token ${USE_ARM64} geneva
+  make -f ${MAKEFILE} del-token ${USE_ARM64} testinguser
   ;;
   *)
   exit 0
