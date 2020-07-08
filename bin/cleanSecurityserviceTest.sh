@@ -2,6 +2,6 @@
 
 echo "Info: Clean Securityservice's test data."
 
-./bin/setupSecurityAccount.sh -userdel
+./bin/security/setupSecurityAccount.sh -userdel
 
 echo "Info: Securityservice's test data Cleaned"

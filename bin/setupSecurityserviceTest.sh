@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export TOKEN=`./bin/setupSecurityAccount.sh -useradd`
+export TOKEN=`./bin/security/setupSecurityAccount.sh -useradd`
 echo TOKEN=$TOKEN
 
 RT=$(docker exec -i edgex-vault-worker sh -c "cat /tmp/edgex/secrets/edgex-security-proxy-setup/secrets-token.json")
