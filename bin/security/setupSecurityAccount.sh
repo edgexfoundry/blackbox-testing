@@ -2,41 +2,23 @@
 
 option="${1}"
 
-# x86_64 or arm64 for make run option
-[ "$(uname -m)" != "x86_64" ] && USE_ARM64="-arm64"
-
 BB_ROOT_DIR=$(cd $(dirname "$0"); cd ..; pwd)
-MAKEFILE=$BB_ROOT_DIR/Makefile
+COMPOSE=$BB_ROOT_DIR/$(ls $BB_ROOT_DIR | awk '/docker-compose/ && !/test-tools/')
 
 case ${option} in
   -useradd)
   echo "Info: Add security account."
-  TOKEN=`docker run --rm \
-		-e SECRETSERVICE_SERVER=edgex-vault \
-		-e KONGURL_SERVER=kong \
-		-e SECRETSERVICE_TOKENPATH=/tmp/edgex/secrets/edgex-security-proxy-setup/secrets-token.json \
-		-e SECRETSERVICE_CACERTPATH=/tmp/edgex/secrets/ca/ca.pem \
-		--network edgex_edgex-network \
-		--volume /tmp/edgex/secrets/ca:/tmp/edgex/secrets/ca:ro,z \
-		--volume /tmp/edgex/secrets/edgex-security-proxy-setup:/tmp/edgex/secrets/edgex-security-proxy-setup:ro,z \
-		nexus3.edgexfoundry.org:10004/docker-edgex-security-proxy-setup-go${USE_ARM64}:master \
-		--init=false --useradd=testinguser --group=admin \
-		| grep "access token for user testinguser is" | sed 's/.*: \([^.]*\.[^.]*\.[^.]*\).*/\1/'`
-  echo TOKEN=$TOKEN
+  OT=$(docker-compose -p edgex -f ${COMPOSE} run --rm \
+    --entrypoint /edgex/security-proxy-setup edgex-proxy --init=false --useradd=testuser --group=admin | grep '^the access token for')
+  TOKEN=$(echo ${OT} | sed 's/.*: \([^.]*\.[^.]*\.[^.]*\).*/\1/')
+  export Token=${TOKEN}
+  echo ${TOKEN}
   ;;
+
   -userdel)
   echo "Info: Delete security account."
-  	docker run --rm \
-		-e SECRETSERVICE_SERVER=edgex-vault \
-		-e KONGURL_SERVER=kong \
-		-e SECRETSERVICE_TOKENPATH=/tmp/edgex/secrets/edgex-security-proxy-setup/secrets-token.json \
-		-e SECRETSERVICE_CACERTPATH=/tmp/edgex/secrets/ca/ca.pem \
-		--network edgex_edgex-network \
-		--volume /tmp/edgex/secrets/ca:/tmp/edgex/secrets/ca:ro,z \
-		--volume /tmp/edgex/secrets/edgex-security-proxy-setup:/tmp/edgex/secrets/edgex-security-proxy-setup:ro,z \
-		nexus3.edgexfoundry.org:10004/docker-edgex-security-proxy-setup-go${USE_ARM64}:master \
-		--init=false --userdel=testinguser \
-		| grep "successful to delete"
+  docker-compose -p edgex -f ${COMPOSE} run --rm \
+    --entrypoint /edgex/security-proxy-setup edgex-proxy --init=false --userdel=testuser
   ;;
   *)
   exit 0
