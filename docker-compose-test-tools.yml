@@ -43,9 +43,6 @@ services:
       Registry_Host: edgex-core-consul
       Service_Port: 48095
       MessageBus_SubscribeHost_Host: edgex-core-data
-      Database_Host: edgex-mongo
-      Database_Username: appservice
-      Database_Password: password
     networks:
       edgex-network:
         aliases:
@@ -67,6 +64,6 @@ services:
 networks:
   edgex-network:
     external:
-     name: ${network}
+     name: edgex_edgex-network
 
 
