@@ -4055,7 +4055,7 @@
 								"uploadfile"
 							]
 						},
-						"description": "Add a new DeviceProfile (and associated Command objects) via YAML profile file - name must be unique. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns DataValidationException (HTTP 409) if an associated command's name is a duplicate for the profile. Returns ClientException (HTTP 400) if the YAML file is empty."
+						"description": "Add a new DeviceProfile (and associated Command objects) via YAML profile file - name must be unique. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns DataValidationException (HTTP 409) if the profile's name matches an existing device profile. Returns ClientException (HTTP 400) if the profile is invalid."
 					},
 					"response": []
 				},
@@ -4645,7 +4645,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "name: \"yaml thermostat profile\"\ndescription: \"BACnet Honeywell thermostats\"\nmanufacturer: \"Honeywell\"\nmodel: \"ABC123\"\nlabels: \n  - \"bacnet\"\n  - \"thermostat\"\n  - \"Honeywell\"\n  \ncommands:\n  - name: \"cooling point\"\n    get:\n        path: \"/cooling\"\n        responses:\n          - code: \"200\"\n            description: \"not a float\"\n            expectedValues: \n              - \"temperature\"\n    put:\n        path: \"/cooling\" \n        responses:\n          - code: \"200\"\n            description: \"not a float\"\n            expectedValues: \n              - \"temperature\"\n        parameters:\n          - name: \"coolingpoint\"\n            value: \"cooling\"\n          \n"
+							"raw": "name: \"yaml thermostat profile(raw)\"\ndescription: \"BACnet Honeywell thermostats\"\nmanufacturer: \"Honeywell\"\nmodel: \"ABC123\"\nlabels: \n  - \"bacnet\"\n  - \"thermostat\"\n  - \"Honeywell\"\n  \ncommands:\n  - name: \"cooling point\"\n    get:\n        path: \"/cooling\"\n        responses:\n          - code: \"200\"\n            description: \"not a float\"\n            expectedValues: \n              - \"temperature\"\n    put:\n        path: \"/cooling\" \n        responses:\n          - code: \"200\"\n            description: \"not a float\"\n            expectedValues: \n              - \"temperature\"\n        parameters:\n          - name: \"coolingpoint\"\n            value: \"cooling\"\n          \n"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/deviceprofile/upload",
@@ -4659,7 +4659,7 @@
 								"upload"
 							]
 						},
-						"description": "Add a new DeviceProfile (and associated Command objects) via YAML profile file - name must be unique. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns DataValidationException (HTTP 409) if an associated command's name is a duplicate for the profile. Returns ClientException (HTTP 400) if the YAML file is empty."
+						"description": "Add a new DeviceProfile (and associated Command objects) via YAML raw data - name must be unique. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns (HTTP 409) if the profile's name matches an existing device profile. Returns ClientException (HTTP 400) if the profile is invalid."
 					},
 					"response": []
 				}
@@ -4771,7 +4771,7 @@
 								"deviceprofile"
 							]
 						},
-						"description": "Add a new DeviceProfile (and associated Command objects) - name must be unique. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns DataValidationException (HTTP 409) if an associated command's name is a duplicate for the profile."
+						"description": "Add a new DeviceProfile (and associated Command objects) - name must be unique. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns DataValidationException (HTTP 409) if the profile's name matches an existing device profile."
 					},
 					"response": []
 				},
@@ -4880,7 +4880,7 @@
 					"response": []
 				},
 				{
-					"name": "142_409 http://localhost:48081/api/v1/deviceprofile/uploadfile",
+					"name": "142_400 http://localhost:48081/api/v1/deviceprofile/uploadfile",
 					"event": [
 						{
 							"listen": "test",
@@ -4893,7 +4893,8 @@
 									"* @Author: Tata Elxsi",
 									"*",
 									"**/",
-									"tests[\"Status code is 409\"] = responseCode.code === 409;",
+									"// duplicate names in device profile commands",
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
 									"tests[\"Response time is less than \"+data.responseTime+\"ms\"] = responseTime < data.responseTime;",
 									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
 									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
@@ -4986,7 +4987,7 @@
 								"uploadfile"
 							]
 						},
-						"description": "Add a new DeviceProfile (and associated Command objects) - name must be unique. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns DataValidationException (HTTP 409) if an associated command's name is a duplicate for the profile."
+						"description": "Add a new DeviceProfile (and associated Command objects) - name must be unique. Returns ServiceException (HTTP 503) for unknown or unanticipated issues. Returns DataValidationException (HTTP 409) if the profile's name matches an existing device profile"
 					},
 					"response": []
 				},
