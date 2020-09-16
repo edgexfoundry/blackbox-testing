@@ -1,7 +1,7 @@
 #!/bin/bash
 
 COLLECTION_PATH="collections/core-data-cleaner.postman_collection.json"
-ENV_PATH="environment/core-data-docker.postman_environment.json"
+ENV_PATH="environment/core-data${ENV_SUFFIX}.postman_environment.json"
 
 
 echo "Info: Clean Coredata's test data."
