@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "f9aeb50c-4a55-4e9f-9b11-9a1b999aadf6",
-		"name": "\b\bcore-data-importer",
+		"name": "core-data-importer",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
