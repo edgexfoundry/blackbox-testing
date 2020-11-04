@@ -1,7 +1,7 @@
 #!/bin/bash
 
 COLLECTION_PATH="collections/support-notifications.postman_collection.json"
-ENV_PATH="environment/support-notification-docker-security.postman_environment.json"
+ENV_PATH="environment/support-notification${ENV_SUFFIX}-security.postman_environment.json"
 
 echo "Info: Initiating Support Notifications Test."
 

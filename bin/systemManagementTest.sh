@@ -2,7 +2,7 @@
 
 
 COLLECTION_PATH="collections/system-management.postman_collection.json"
-ENV_PATH="environment/system-management-docker.postman_environment.json"
+ENV_PATH="environment/system-management${ENV_SUFFIX}.postman_environment.json"
 
 echo "Info: Initiating System Management Test."
 

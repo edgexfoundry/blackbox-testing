@@ -11,8 +11,33 @@ fi
 # Ensure we fail the job if any steps fail
 set -o pipefail
 
-# Run the compose file for blackbox testing
-docker-compose -f ${docker_compose_test_tools} up -d app-service-configurable
+test_with_docker() {
+  # Run the compose file for blackbox testing
+  docker-compose -f "${docker_compose_test_tools}" up -d app-service-configurable
+  export ENV_SUFFIX="-docker"
+}
+
+test_with_localhost() {
+  # Remove app-service-configurable section from docker compose file
+  sed -i '/^[[:space:]]*app-service-configurable:/,/^[[:space:]]*- edgex-app-service-configurable/d' "$docker_compose_test_tools"
+
+  # Remove docker network section from docker compose file
+  sed -i '/^[[:space:]]*- edgex-network/d' "$docker_compose_test_tools"
+
+  # Remove network section from docker compose file
+  sed -i '/^networks:/,/^[[:space:]]*name: edgex_edgex-network/d' "$docker_compose_test_tools"
+
+  # Replace docker network with network_mode: "host" in docker compose file
+  sed -i 's/^[[:space:]]*networks:/    network_mode: "host"/' "$docker_compose_test_tools"
+
+  export ENV_SUFFIX=""
+}
+
+if [[ "$TEST_ENV" == "localhost" ]]; then
+  test_with_localhost
+else
+  test_with_docker
+fi
 
 TIMESTAMPFORMAT=$(date +%d-%m-%Y_%H%M%S)
 BASEPATH=$(dirname "$0")/postman-test/scriptLogs
