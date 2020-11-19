@@ -10,6 +10,6 @@ echo "            |___/                                              |___/  "
 echo
 echo "**********************************************************************"
 echo "                   COMPONENT BLACKBOX TEST HARNESS                    "
-echo "                        Version: ${RELEASE:-nightly-build}                            "
+echo "                        Version: Hanoi                          "
 echo "**********************************************************************"
 echo
