@@ -150,7 +150,7 @@ $ bash ./bin/run.sh -cd
 
 *********************************************************************
                    COMPONENT BLACKBOX TEST HARNESS
-                           Version: Geneva
+                           Version: Hanoi
 *********************************************************************
 
 [INFO] Init postman test data .
